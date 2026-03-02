@@ -88,6 +88,9 @@ export default function CoursesSection({ sectionIndex }: CoursesSectionProps) {
               Choose your next Adventure!
             </ShinyText>
           </h2>
+          <p className="text-base md:text-lg leading-relaxed max-w-3xl mx-auto mt-4" style={{ color: "var(--color-lighter)" }}>
+            Step into the Teacher-Gamer multiverse—an interconnected set of storyworlds and training paths that help educators use role-playing games as metaphors for real-world learning. Each adventure equips you with new tools, new perspectives, and new ways to bring collaborative storytelling into your classroom.
+          </p>
         </div>
         <div
           data-animate-stagger
