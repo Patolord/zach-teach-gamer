@@ -171,6 +171,18 @@ body {
   }
 }
 
+@keyframes shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 .animate-hero-fade-in {
   animation: hero-fade-in 0.8s ease-out 1s both;
 }

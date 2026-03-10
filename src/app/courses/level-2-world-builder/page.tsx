@@ -6,10 +6,8 @@ import {
   Book,
   CheckCircle,
   Clock,
-  Gift,
   Quote,
   Sparkles,
-  Star,
   Users,
 } from "lucide-react";
 import Link from "next/link";
@@ -147,32 +145,12 @@ export default function Level2WorldBuilderPage() {
                 <Quote className="w-6 h-6 text-primary-light" />
                 What World Builders Are Saying
               </h2>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-primary-light/20">
-                  <div className="flex gap-1 mb-3">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 text-primary-light fill-primary-light" />
-                    ))}
-                  </div>
-                  <p className="text-white/90 italic mb-4 leading-relaxed">
-                    "Building my own campaign world was the most creatively fulfilling professional development I've ever done. My students now explore a world that ties directly into our science curriculum — they don't even realize how much they're learning."
+              <div className="grid md:grid-cols-1 gap-5">
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-primary-light/20">
+                  <p className="text-white/90 italic mb-3 leading-relaxed text-sm">
+                    {`"I have never had a training experience like this before. The integration of SEL into the lessons and the way broader discussions naturally arise from the simple goal of creating a character make this course truly different. I believe this approach is highly important because it helps us draw parallels between the emotional and social aspects of our lives and our characters' stories, making everything more fluid and offering new perspectives."`}
                   </p>
-                  <p className="text-primary-light font-semibold text-sm">
-                    — Rachel K., 7th Grade Science Teacher
-                  </p>
-                </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-primary-light/20">
-                  <div className="flex gap-1 mb-3">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 text-primary-light fill-primary-light" />
-                    ))}
-                  </div>
-                  <p className="text-white/90 italic mb-4 leading-relaxed">
-                    "The story crafting and creature design modules were incredible. I created an entire campaign with original lore, and my students became co-authors of the world. Their writing skills improved dramatically because they actually cared about the narrative."
-                  </p>
-                  <p className="text-primary-light font-semibold text-sm">
-                    — James L., Literacy Coach
-                  </p>
+                  <p className="text-primary-light font-semibold text-sm">— Eduardo Vancsek Andreoli</p>
                 </div>
               </div>
             </div>
@@ -185,101 +163,40 @@ export default function Level2WorldBuilderPage() {
               </p>
             </div>
 
-            {/* Pricing Section */}
-            <div className="space-y-6">
-              {/* Individual Price */}
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/20">
-                <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-                  <div>
-                    <p className="text-sm font-semibold text-white/50 uppercase tracking-wider mb-1">
-                      Level 2 World Builder
-                    </p>
-                    <p className="text-3xl font-bold text-white mb-1">$899</p>
-                    <p className="text-white/70">Includes certification project review</p>
+            {/* CTA */}
+            <div className="relative bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-10 border border-primary-light/30 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary-light/5 via-transparent to-primary-light/10 pointer-events-none" />
+              <div className="relative flex flex-col md:flex-row items-center gap-8">
+                <div className="flex-1 text-center md:text-left">
+                  <h3 className="text-2xl font-bold text-white mb-3">
+                    Ready to Build Your World?
+                  </h3>
+                  <p className="text-white/70 mb-5 leading-relaxed">
+                    Book a free 15-minute discovery call to explore how World Builder certification can elevate your practice. Let's design your next step.
+                  </p>
+                  <div className="flex flex-wrap gap-4 justify-center md:justify-start text-sm text-white/60">
+                    <span className="flex items-center gap-1.5">
+                      <CheckCircle className="w-4 h-4 text-primary-light" />
+                      No commitment required
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <Clock className="w-4 h-4 text-primary-light" />
+                      15-minute call
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <Award className="w-4 h-4 text-primary-light" />
+                      Project-based certification
+                    </span>
                   </div>
+                </div>
+                <div className="shrink-0">
                   <Button
                     size="lg"
-                    className="w-full md:w-auto text-lg font-bold text-white px-12 py-6 bg-primary-light"
+                    className="text-lg font-bold text-white px-10 py-6 bg-primary-light hover:scale-105 transition-transform"
                     {...calProps}
                   >
                     Enroll Now
                   </Button>
-                </div>
-              </div>
-
-              {/* Bundle Deal */}
-              <div className="relative bg-white/10 backdrop-blur-sm rounded-xl p-8 border-2 border-primary-light/50 overflow-hidden">
-                <div className="absolute -top-px -right-px">
-                  <div className="bg-primary-light text-white text-xs font-extrabold px-4 py-1.5 rounded-bl-xl flex items-center gap-1.5">
-                    <Sparkles className="w-3.5 h-3.5" />
-                    SAVE 15%
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-2 mb-5">
-                  <Gift className="w-5 h-5 text-primary-light" />
-                  <h3 className="text-lg font-bold text-primary-light">
-                    Bundle & Save
-                  </h3>
-                </div>
-
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3 flex-wrap">
-                    <span className="px-3 py-1 rounded-full bg-primary-light/15 border border-primary-light/30 text-primary-light text-sm font-semibold">
-                      Level 2 World Builder
-                    </span>
-                    <span className="text-white/40 text-lg">+</span>
-                    <span className="px-3 py-1.5 rounded-full bg-white/10 border border-white/30 text-white text-sm font-semibold">
-                      Any Additional Course
-                    </span>
-                  </div>
-
-                  <p className="text-white/80 text-sm leading-relaxed">
-                    Combine this course with <strong className="text-white">any other course</strong> and get <strong className="text-primary-light">15% off</strong> the total. Choose your path:
-                  </p>
-
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between bg-white/5 rounded-lg px-4 py-3 border border-white/10">
-                      <div className="flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-accent" />
-                        <span className="text-white/80 text-sm">+ Intro to Multiverse</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-white/40 text-sm line-through">$1,198</span>
-                        <span className="text-primary-light font-bold">$1,018</span>
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between bg-white/5 rounded-lg px-4 py-3 border border-white/10">
-                      <div className="flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-secondary" />
-                        <span className="text-white/80 text-sm">+ Level 1 Space-Holder</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-white/40 text-sm line-through">$1,498</span>
-                        <span className="text-primary-light font-bold">$1,273</span>
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between bg-white/5 rounded-lg px-4 py-3 border border-white/10">
-                      <div className="flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-secondary-dark" />
-                        <span className="text-white/80 text-sm">+ Level 3 Planes Walker</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-white/40 text-sm line-through">$2,198</span>
-                        <span className="text-primary-light font-bold">$1,868</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="pt-2">
-                    <Button
-                      size="lg"
-                      className="w-full md:w-auto text-lg font-bold text-white px-10 py-6 bg-primary-light"
-                      {...calProps}
-                    >
-                      Build Your Bundle
-                    </Button>
-                  </div>
                 </div>
               </div>
             </div>

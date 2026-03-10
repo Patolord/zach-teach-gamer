@@ -241,10 +241,10 @@ const CombinedHeroSection = forwardRef<HTMLElement>((_props, ref) => {
               className="list-disc list-inside text-sm md:text-base space-y-2"
               style={{ color: "var(--color-lighter)" }}
             >
-              <li>📘 300 pages of creative strategies and lesson plans</li>
-              <li>🎲 36 life skills through collaborative RPG experiences</li>
-              <li>⚔️ Designed for educators guiding 10+ year-old learners</li>
-              <li>🔥 40+ hours of co-creative play and storytelling</li>
+              <li>300 pages of creative strategies and lesson plans</li>
+              <li>36 life skills through collaborative RPG experiences</li>
+              <li>Designed for educators guiding 10+ year-old learners</li>
+              <li>40+ hours of co-creative play and storytelling</li>
             </ul>
 
             <h2 

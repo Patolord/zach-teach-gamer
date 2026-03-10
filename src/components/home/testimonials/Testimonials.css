@@ -10,6 +10,10 @@
   -webkit-transform: translate3d(0, 0, 0);
 }
 
+.testimonial-marquee:hover {
+  animation-play-state: paused;
+}
+
 .testimonial-marquee-left {
   animation-name: marquee-left;
   animation-duration: var(--speed);

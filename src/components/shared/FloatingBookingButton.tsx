@@ -2,10 +2,12 @@
 
 import { CalendarDays } from "lucide-react";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { getCalApi } from "@calcom/embed-react";
 import { CAL_CONFIG, getCalUIConfig, getCalConfig } from "@/components/home/calendar/cal-config";
 
 export default function FloatingBookingButton() {
+  const pathname = usePathname();
   const [minimized, setMinimized] = useState(false);
   const [visible, setVisible] = useState(false);
   const [pulse, setPulse] = useState(true);
@@ -27,7 +29,7 @@ export default function FloatingBookingButton() {
     return () => clearTimeout(timer);
   }, []);
 
-  if (!visible) return null;
+  if (!visible || pathname === "/") return null;
 
   if (minimized) {
     return (

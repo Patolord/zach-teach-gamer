@@ -35,14 +35,14 @@ export default function ResearchSection({
       link: "https://www.academia.edu/47832669/What_is_Authentic_Education",
     },
     {
-      title: "Converging Approaches is the Future of Education",
-      authors: "Reznichek, Z. & Taiwo, O.",
-      journal: "Academia.edu",
-      year: "2021",
-      views: "194 Views",
+      title: "What is 'Authentic Education'? – Insights into the Age of AI",
+      authors: "Reznichek, Z.",
+      journal: "INDIRE",
+      year: "2025",
+      views: "New",
       abstract:
-        "Current education systems were invented over a hundred years ago to meet the needs of the industrial revolution. This paper argues that the future of education lies in converging multiple pedagogical approaches to meet the diverse needs of 21st-century learners, emphasizing personalization, interdisciplinary learning, and real-world application.",
-      link: "https://www.academia.edu/109006944/Converging_Approaches_is_the_Future_of_Education",
+        "This paper explores the nature of 'authentic education' in a world increasingly shaped by artificial intelligence (AI) and proposes a curriculum philosophy rooted in self-development, civic consciousness, and ecological stewardship.",
+      link: "https://indire.net/Publications/162",
     },
     {
       title:

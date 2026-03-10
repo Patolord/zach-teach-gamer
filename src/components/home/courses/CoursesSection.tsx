@@ -1,5 +1,7 @@
 "use client";
 
+import { MapPin, Sparkles } from "lucide-react";
+import Link from "next/link";
 import { MEDIA } from "@/lib/media";
 import ShinyText from "@/components/ui/shinytext";
 import EletricCard from "./EletricCard";
@@ -30,7 +32,7 @@ export default function CoursesSection({ sectionIndex }: CoursesSectionProps) {
       diceImage: "/dices/dice-purple.webp",
     },
     {
-      title: "Level 2 TG World Builder Certificate",
+      title: "Level 2 TG World Builder Certificate Course",
       description:
         "Build & implement your own campaign world. Uncharted territory: New stories, creatures, magic & tech",
       color: "var(--color-primary-light)",
@@ -107,6 +109,25 @@ export default function CoursesSection({ sectionIndex }: CoursesSectionProps) {
               diceImage={course.diceImage}
             />
           ))}
+        </div>
+
+        {/* Workshops Banner */}
+        <div className="max-w-7xl mx-auto mt-12">
+          <Link
+            href="/workshops"
+            className="group relative block w-full rounded-2xl p-[2px] overflow-hidden transition-all duration-500 hover:scale-[1.01]"
+            style={{
+              background: "linear-gradient(135deg, var(--color-accent), var(--color-secondary), var(--color-accent-light), var(--color-primary-light), var(--color-accent))",
+              backgroundSize: "300% 300%",
+              animation: "shimmer 4s ease-in-out infinite",
+            }}
+          >
+            <div className="relative w-full rounded-2xl px-8 py-6 flex items-center justify-center backdrop-blur-sm" style={{ backgroundColor: "rgba(26, 26, 31, 0.85)" }}>
+              <span className="text-lg md:text-xl font-bold tracking-wide uppercase" style={{ color: "var(--color-lighter)" }}>
+                Workshops Near You
+              </span>
+            </div>
+          </Link>
         </div>
       </div>
 

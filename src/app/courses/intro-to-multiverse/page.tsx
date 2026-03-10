@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft, Book, CheckCircle, Clock, Gift, Quote, Sparkles, Star, Users } from "lucide-react";
+import { ArrowLeft, Book, CheckCircle, Clock, Quote, Star, Users } from "lucide-react";
 import Link from "next/link";
 import { useEffect } from "react";
 import { getCalApi } from "@calcom/embed-react";
@@ -127,133 +127,58 @@ export default function IntroToMultiversePage() {
             <div className="space-y-6">
               <h2 className="text-2xl font-bold text-white flex items-center gap-3">
                 <Quote className="w-6 h-6 text-accent" />
-                What Students Are Saying
+                What Trainees Are Saying
               </h2>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-accent/20">
-                  <div className="flex gap-1 mb-3">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 text-accent fill-accent" />
-                    ))}
-                  </div>
-                  <p className="text-white/90 italic mb-4 leading-relaxed">
-                    "The Intro to Multiverse course completely changed how I approach teaching. The 13 Phases of Character Building gave me a framework I could start using the very next week. My students were more engaged than I've ever seen them."
+              <div className="grid md:grid-cols-2 gap-5">
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-accent/20">
+                  <p className="text-white/90 italic mb-3 leading-relaxed text-sm">
+                    {`"Zach is incredibly patient and manages to break everything down into the manageable chunks each individual needs. He fosters a beautiful sense of belonging with the trainees."`}
                   </p>
-                  <p className="text-accent font-semibold text-sm">
-                    — Sarah M., Middle School Teacher
-                  </p>
+                  <p className="text-accent font-semibold text-sm">— Beki Stoiber</p>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-accent/20">
-                  <div className="flex gap-1 mb-3">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 text-accent fill-accent" />
-                    ))}
-                  </div>
-                  <p className="text-white/90 italic mb-4 leading-relaxed">
-                    "I had zero experience with RPGs before this course. Zach makes everything approachable and fun. By the end, I felt confident enough to introduce character building exercises to my class — and my students loved it."
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-accent/20">
+                  <p className="text-white/90 italic mb-3 leading-relaxed text-sm">
+                    {`"The way we create a character while learning is definitely unique... throughout the process, we not only develop a well-structured character but also gain valuable insights into SEL (Social Emotional Learning)."`}
                   </p>
-                  <p className="text-accent font-semibold text-sm">
-                    — David R., 5th Grade Educator
-                  </p>
+                  <p className="text-accent font-semibold text-sm">— Eduardo Vancsek Andreoli</p>
                 </div>
               </div>
             </div>
 
-            {/* Pricing Section */}
-            <div className="space-y-6">
-              {/* Individual Price */}
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/20">
-                <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-                  <div>
-                    <p className="text-sm font-semibold text-white/50 uppercase tracking-wider mb-1">
-                      Intro to Multiverse
-                    </p>
-                    <p className="text-3xl font-bold text-white mb-1">$299</p>
-                    <p className="text-white/70">One-time payment</p>
+            {/* CTA */}
+            <div className="relative bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-10 border border-accent/30 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-accent/10 pointer-events-none" />
+              <div className="relative flex flex-col md:flex-row items-center gap-8">
+                <div className="flex-1 text-center md:text-left">
+                  <h3 className="text-2xl font-bold text-white mb-3">
+                    Ready to Begin Your Adventure?
+                  </h3>
+                  <p className="text-white/70 mb-5 leading-relaxed">
+                    Book a free 15-minute discovery call to learn how this training can transform your classroom. We'll find the right path for you.
+                  </p>
+                  <div className="flex flex-wrap gap-4 justify-center md:justify-start text-sm text-white/60">
+                    <span className="flex items-center gap-1.5">
+                      <CheckCircle className="w-4 h-4 text-accent" />
+                      No commitment required
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <Clock className="w-4 h-4 text-accent" />
+                      15-minute call
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <Users className="w-4 h-4 text-accent" />
+                      Personalized guidance
+                    </span>
                   </div>
+                </div>
+                <div className="shrink-0">
                   <Button
                     size="lg"
-                    className="w-full md:w-auto text-lg font-bold text-black px-12 py-6 bg-accent"
+                    className="text-lg font-bold text-black px-10 py-6 bg-accent hover:scale-105 transition-transform"
                     {...calProps}
                   >
                     Enroll Now
                   </Button>
-                </div>
-              </div>
-
-              {/* Bundle Deal */}
-              <div className="relative bg-white/10 backdrop-blur-sm rounded-xl p-8 border-2 border-accent/50 overflow-hidden">
-                <div className="absolute -top-px -right-px">
-                  <div className="bg-accent text-black text-xs font-extrabold px-4 py-1.5 rounded-bl-xl flex items-center gap-1.5">
-                    <Sparkles className="w-3.5 h-3.5" />
-                    SAVE 15%
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-2 mb-5">
-                  <Gift className="w-5 h-5 text-accent" />
-                  <h3 className="text-lg font-bold text-accent">
-                    Bundle & Save
-                  </h3>
-                </div>
-
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3 flex-wrap">
-                    <span className="px-3 py-1 rounded-full bg-accent/15 border border-accent/30 text-accent text-sm font-semibold">
-                      Intro to Multiverse
-                    </span>
-                    <span className="text-white/40 text-lg">+</span>
-                    <span className="px-3 py-1.5 rounded-full bg-white/10 border border-white/30 text-white text-sm font-semibold">
-                      Any Additional Course
-                    </span>
-                  </div>
-
-                  <p className="text-white/80 text-sm leading-relaxed">
-                    Combine this course with <strong className="text-white">any other course</strong> and get <strong className="text-accent">15% off</strong> the total. Choose your path:
-                  </p>
-
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between bg-white/5 rounded-lg px-4 py-3 border border-white/10">
-                      <div className="flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-secondary" />
-                        <span className="text-white/80 text-sm">+ Level 1 Space-Holder</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-white/40 text-sm line-through">$898</span>
-                        <span className="text-accent font-bold">$763</span>
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between bg-white/5 rounded-lg px-4 py-3 border border-white/10">
-                      <div className="flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-primary-light" />
-                        <span className="text-white/80 text-sm">+ Level 2 World Builder</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-white/40 text-sm line-through">$1,198</span>
-                        <span className="text-accent font-bold">$1,018</span>
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between bg-white/5 rounded-lg px-4 py-3 border border-white/10">
-                      <div className="flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-secondary-dark" />
-                        <span className="text-white/80 text-sm">+ Level 3 Planes Walker</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-white/40 text-sm line-through">$1,598</span>
-                        <span className="text-accent font-bold">$1,358</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="pt-2">
-                    <Button
-                      size="lg"
-                      className="w-full md:w-auto text-lg font-bold text-black px-10 py-6 bg-accent"
-                      {...calProps}
-                    >
-                      Build Your Bundle
-                    </Button>
-                  </div>
                 </div>
               </div>
             </div>

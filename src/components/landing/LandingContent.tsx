@@ -33,7 +33,15 @@ export default function LandingContent({
           speed={0.5}
           scrambleChars=".:"
         >
-          The future of education is here, happening on tabletops & in schools everywhere.
+          The future of education is here,
+        </ScrambledText>
+        <ScrambledText
+          radius={50}
+          duration={1.2}
+          speed={0.5}
+          scrambleChars=".:"
+        >
+          happening on tabletops & in schools everywhere.
         </ScrambledText>
         <ScrambledText
           radius={50}

@@ -29,7 +29,6 @@ type Workshop = {
   time: string;
   spotsLeft: number;
   totalSpots: number;
-  price: string;
   description: string;
   tags: string[];
   featured?: boolean;
@@ -47,7 +46,6 @@ const upcomingWorkshops: Workshop[] = [
     time: "9:00 AM – 4:00 PM PST",
     spotsLeft: 8,
     totalSpots: 20,
-    price: "$149",
     description:
       "A full-day hands-on workshop where you'll learn the foundations of running RPGs in your classroom. Leave with a ready-to-use session plan.",
     tags: ["Beginner Friendly", "Full Day", "Hands-On"],
@@ -64,7 +62,6 @@ const upcomingWorkshops: Workshop[] = [
     time: "10:00 AM – 3:00 PM EST",
     spotsLeft: 12,
     totalSpots: 25,
-    price: "$129",
     description:
       "Discover how the 13 Phases of Character Building develop social-emotional skills. Practice facilitation techniques with fellow educators.",
     tags: ["SEL Focus", "Half Day", "Interactive"],
@@ -80,7 +77,6 @@ const upcomingWorkshops: Workshop[] = [
     time: "9:00 AM – 5:00 PM BRT",
     spotsLeft: 5,
     totalSpots: 15,
-    price: "R$499",
     description:
       "An advanced workshop for educators ready to create their own campaign worlds. Build immersive narratives tied to your curriculum.",
     tags: ["Advanced", "Full Day", "Portuguese"],
@@ -96,7 +92,6 @@ const upcomingWorkshops: Workshop[] = [
     time: "10:00 AM – 4:00 PM GMT",
     spotsLeft: 18,
     totalSpots: 30,
-    price: "£99",
     description:
       "A collaborative summit bringing together educators to share best practices in RPG-based learning. Includes networking lunch and resource pack.",
     tags: ["Summit", "Networking", "All Levels"],
@@ -112,7 +107,6 @@ const upcomingWorkshops: Workshop[] = [
     time: "9:30 AM – 2:30 PM NZST",
     spotsLeft: 15,
     totalSpots: 20,
-    price: "NZ$119",
     description:
       "Perfect for educators curious about RPGs. Experience a live demo session, learn the basics, and plan your first classroom adventure.",
     tags: ["Beginner Friendly", "Half Day", "Live Demo"],
@@ -128,7 +122,6 @@ const upcomingWorkshops: Workshop[] = [
     time: "9:00 AM – 3:00 PM SAST",
     spotsLeft: 20,
     totalSpots: 25,
-    price: "R1,200",
     description:
       "Explore how collaborative storytelling through RPGs can boost reading, writing, and critical thinking in learners of all ages.",
     tags: ["Literacy", "Storytelling", "All Levels"],
@@ -316,26 +309,21 @@ export default function WorkshopsPage() {
                       </div>
                     </div>
 
-                    {/* Right: Price & CTA */}
+                    {/* Right: CTA */}
                     <div className="flex flex-row lg:flex-col items-center lg:items-end justify-between lg:justify-center gap-4 lg:min-w-[160px] shrink-0">
-                      <div className="text-right">
-                        <p className="text-2xl font-bold text-white">
-                          {ws.price}
-                        </p>
-                        <div className="flex items-center gap-1.5 mt-1">
-                          <Users className="w-3.5 h-3.5 text-white/40" />
-                          <span
-                            className={`text-sm font-semibold ${
-                              ws.spotsLeft <= 5
-                                ? "text-red-400"
-                                : ws.spotsLeft <= 10
-                                  ? "text-amber-400"
-                                  : "text-white/50"
-                            }`}
-                          >
-                            {ws.spotsLeft} spots left
-                          </span>
-                        </div>
+                      <div className="flex items-center gap-1.5">
+                        <Users className="w-3.5 h-3.5 text-white/40" />
+                        <span
+                          className={`text-sm font-semibold ${
+                            ws.spotsLeft <= 5
+                              ? "text-red-400"
+                              : ws.spotsLeft <= 10
+                                ? "text-amber-400"
+                                : "text-white/50"
+                          }`}
+                        >
+                          {ws.spotsLeft} spots left
+                        </span>
                       </div>
                       <Button
                         size="lg"

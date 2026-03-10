@@ -259,6 +259,15 @@ const Testimonials = ({ sectionIndex }: TestimonialsProps) => {
           <MarqueeRow messages={row1Messages} direction="left" speed={40} />
           <MarqueeRow messages={row2Messages} direction="right" speed={35} />
         </div>
+
+        <div className="mt-20 max-w-4xl mx-auto px-6">
+          <p 
+            className="text-base md:text-lg leading-relaxed text-center"
+            style={{ color: "var(--color-lighter)" }}
+          >
+            Because young people learn best when they feel safe, seen, and engaged in something that matters. The 11–14 window is a time of explosive curiosity—kids are little scientists and emerging adventurers, testing ideas and searching for who they are. Yet too often, school narrows that curiosity into performance metrics and pressure. Teacher-Gamer exists to change that. We help educators create face-to-face, story-rich learning environments where students build identity, confidence, and social-emotional skills through collaborative play. When learning feels like an adventure, kids don't check out—they lean in.
+          </p>
+        </div>
       </div>
 
       {/* Bottom horizontal transition element */}
