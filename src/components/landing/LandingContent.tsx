@@ -1,15 +1,5 @@
 import { Loader2, Swords } from "lucide-react";
-import dynamic from "next/dynamic";
 import ScrambledText from "@/components/shared/ScrambledText";
-
-// Lazy load SocialProof to reduce initial bundle size
-const SocialProof = dynamic(
-  () => import("@/components/home/hero-section/SocialProof"),
-  {
-    ssr: false,
-    loading: () => null,
-  },
-);
 
 type Props = {
   onButtonClick?: () => void;
@@ -67,7 +57,6 @@ export default function LandingContent({
         <span>{isLoading ? "Loading..." : "Get Started Now"}</span>
       </button>
 
-      <SocialProof />
     </div>
   );
 }

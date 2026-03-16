@@ -74,22 +74,11 @@ export default function Level2WorldBuilderPage() {
         {/* Header */}
         <div className="container mx-auto px-4 py-8">
           <Link
-            href="/home"
-            onClick={(e) => {
-              e.preventDefault();
-              window.location.href = "/home";
-              setTimeout(() => {
-                const coursesSection =
-                  document.getElementById("courses-section");
-                if (coursesSection) {
-                  coursesSection.scrollIntoView({ behavior: "smooth" });
-                }
-              }, 100);
-            }}
+            href="/home#courses-section"
             className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
-            Back to Home
+            Back to Courses
           </Link>
         </div>
 

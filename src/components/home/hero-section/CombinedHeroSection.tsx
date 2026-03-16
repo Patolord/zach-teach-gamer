@@ -1,15 +1,13 @@
 "use client";
 
-import { ArrowRight, Shield, Star, Users } from "lucide-react";
+import { ArrowRight, Quote, Shield, Star, Users } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { forwardRef } from "react";
+import { forwardRef, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { MEDIA } from "@/lib/media";
 import ShopSectionCard from "../shop/ShopSectionCard";
 import ShinyText from "@/components/ui/shinytext";
-
-// Using global CSS theme variables
 
 const features = [
   { icon: Shield, label: "Proven Method" },
@@ -17,8 +15,37 @@ const features = [
   { icon: Star, label: "Expert-Led Training" },
 ];
 
+const testimonials = [
+  {
+    quote: "Zach is incredibly patient and manages to break everything down into the manageable chunks each individual needs. He fosters a beautiful sense of belonging with the trainees.",
+    author: "Beki Stoiber",
+  },
+  {
+    quote: "The way we create a character while learning is definitely unique... throughout the process, we not only develop a well-structured character but also gain valuable insights into SEL.",
+    author: "Eduardo Vancsek Andreoli",
+  },
+  {
+    quote: "This experience has been a wonderful journey of learning how to be a better teacher, not just a teacher-gamer. It is teaching me to pay attention to what students are saying and doing, and more importantly, what they are not saying and not doing.",
+    author: "Reynaldo Barochelo Jr.",
+  },
+  {
+    quote: "The course provides a safe space where we can openly discuss emerging topics, be ourselves, and let emotions flow. We experience firsthand how emotional and social care is crucial and powerful for learning.",
+    author: "Eduardo Vancsek Andreoli",
+  },
+  {
+    quote: "I have never had a training experience like this before. The integration of SEL into the lessons and the way broader discussions naturally arise from the simple goal of creating a character make this course truly different.",
+    author: "Eduardo Vancsek Andreoli",
+  },
+];
+
 
 const CombinedHeroSection = forwardRef<HTMLElement>((_props, ref) => {
+  const [testimonial, setTestimonial] = useState(testimonials[0]);
+
+  useEffect(() => {
+    setTestimonial(testimonials[Math.floor(Math.random() * testimonials.length)]);
+  }, []);
+
   return (
     <section
       id="hero-section"
@@ -33,26 +60,9 @@ const CombinedHeroSection = forwardRef<HTMLElement>((_props, ref) => {
       />
 
       {/* Hero Section Content with CSS fade-in animation */}
-      <div className="container mx-auto px-4 py-16 md:py-24 lg:py-32 relative z-10 animate-hero-fade-in">
+      <div className="container mx-auto px-4 py-12 md:py-16 lg:py-24 relative z-10 animate-hero-fade-in">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
-            <div 
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-white backdrop-blur-sm"
-              style={{ 
-                backgroundColor: "var(--color-primary-subtle)",
-                border: "2px solid var(--color-primary-light)",
-                boxShadow: "0 0 20px var(--color-primary-glow)"
-              }}
-            >
-              <Star 
-                className="w-4 h-4" 
-                style={{ color: "var(--color-accent)", fill: "var(--color-accent)" }}
-              />
-              <span className="text-sm font-semibold">
-                Now enrolling for Fall 2025
-              </span>
-            </div>
-
             <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance">
               <ShinyText
                 speed={3}
@@ -148,6 +158,31 @@ const CombinedHeroSection = forwardRef<HTMLElement>((_props, ref) => {
                   </span>
                 </div>
               ))}
+            </div>
+
+            <div
+              className="relative rounded-xl p-4 border backdrop-blur-sm max-w-xl"
+              style={{
+                backgroundColor: "rgba(26, 26, 31, 0.5)",
+                borderColor: "var(--color-accent-glow)",
+              }}
+            >
+              <Quote
+                className="w-4 h-4 absolute top-3 left-3 opacity-40"
+                style={{ color: "var(--color-accent)" }}
+              />
+              <p
+                className="text-sm italic leading-relaxed pl-6"
+                style={{ color: "var(--color-lighter)" }}
+              >
+                &ldquo;{testimonial.quote}&rdquo;
+              </p>
+              <p
+                className="text-xs font-semibold mt-2 pl-6"
+                style={{ color: "var(--color-accent)" }}
+              >
+                — {testimonial.author}
+              </p>
             </div>
           </div>
 
