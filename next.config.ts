@@ -17,6 +17,14 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "pbcdn1.podbean.com",
       },
+      {
+        protocol: "https",
+        hostname: "g.foolcdn.com",
+      },
+      {
+        protocol: "https",
+        hostname: "hundred.org",
+      },
     ],
   },
 };
