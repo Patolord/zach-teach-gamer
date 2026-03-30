@@ -2,6 +2,7 @@
 
 import { ExternalLink, Newspaper } from "lucide-react";
 import Image from "next/image";
+import { MEDIA } from "@/lib/media";
 
 const featuredPress = [
   {
@@ -65,18 +66,16 @@ const morePress = [
 
 export default function PressPage() {
   return (
-    <div className="min-h-screen bg-linear-to-b from-zinc-950 via-zinc-900 to-zinc-950">
+    <div className="relative min-h-screen">
+      <div
+        className="fixed inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url('${MEDIA.backgrounds.research}')` }}
+      />
+      <div className="fixed inset-0" style={{ backgroundColor: "rgba(26, 26, 31, 0.6)" }} />
+
+      <div className="relative z-10">
       {/* Hero Section */}
       <section className="relative pt-12 pb-8 lg:pt-30 lg:pb-12 overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,var(--tw-gradient-stops))] from-primary/20 via-transparent to-transparent" />
-        </div>
-
-        <div className="absolute top-20 left-1/4 w-96 h-96 bg-accent/10 rounded-full blur-[128px] animate-pulse" />
-        <div
-          className="absolute bottom-20 right-1/4 w-80 h-80 bg-accent/10 rounded-full blur-[100px] animate-pulse"
-          style={{ animationDelay: "1s" }}
-        />
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
@@ -238,6 +237,7 @@ export default function PressPage() {
 
       {/* Footer Spacing */}
       <div className="h-20" />
+      </div>
     </div>
   );
 }

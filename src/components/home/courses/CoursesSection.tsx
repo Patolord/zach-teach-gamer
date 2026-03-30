@@ -42,7 +42,7 @@ export default function CoursesSection({ sectionIndex }: CoursesSectionProps) {
     {
       title: "Level 3 TG Planes Walker Certificate Course",
       description:
-        "Integrate your own RPGs campaign into your local school system's learning objectives with guidance",
+        "Integrate your own RPG campaigns into your local school system's learning objectives with guidance",
       color: "var(--color-secondary-dark)",
       href: "/courses/level-3-planes-walker",
       diceImage: "/dices/dice-yellow.webp",
