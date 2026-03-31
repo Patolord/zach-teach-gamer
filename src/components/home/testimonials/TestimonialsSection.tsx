@@ -20,21 +20,7 @@ interface TestimonialsProps {
 }
 
 const Testimonials = ({ sectionIndex }: TestimonialsProps) => {
-  const [expandedMessages, setExpandedMessages] = useState<Set<number>>(
-    new Set(),
-  );
-
-  const toggleExpanded = (id: number) => {
-    setExpandedMessages((prev) => {
-      const newSet = new Set(prev);
-      if (newSet.has(id)) {
-        newSet.delete(id);
-      } else {
-        newSet.add(id);
-      }
-      return newSet;
-    });
-  };
+  const [modalMessage, setModalMessage] = useState<message | null>(null);
 
   const messages = [
     {
@@ -88,8 +74,6 @@ const Testimonials = ({ sectionIndex }: TestimonialsProps) => {
   const imageCardClass =
     "shrink-0 w-[380px] min-h-[120px] md:w-[320px] md:min-h-[110px] border-2 rounded-2xl overflow-hidden cursor-pointer will-change-transform transition-all duration-200 ease-in-out hover:-translate-y-1 relative";
 
-  const textCardClass =
-    "shrink-0 w-[380px] min-h-[120px] md:w-[320px] md:min-h-[110px] md:p-5 rounded-2xl p-6 cursor-pointer whitespace-normal will-change-transform transition-all duration-200 ease-in-out hover:-translate-y-1 disabled:cursor-default text-left backdrop-blur-sm";
 
   const MessageCard = ({ message }: { message: message }) => {
     if (message.image) {
@@ -118,25 +102,17 @@ const Testimonials = ({ sectionIndex }: TestimonialsProps) => {
     }
 
     const MAX_LENGTH = 200;
-    const isExpanded = expandedMessages.has(message.id);
     const needsTruncation = message.text && message.text.length > MAX_LENGTH;
-    const displayText =
-      needsTruncation && !isExpanded
-        ? `${message.text?.substring(0, MAX_LENGTH)}...`
-        : message.text;
+    const displayText = needsTruncation
+      ? `${message.text?.substring(0, MAX_LENGTH)}...`
+      : message.text;
 
     return (
       <button
         type="button"
-        onClick={() => needsTruncation && toggleExpanded(message.id)}
-        onKeyDown={(e) => {
-          if (needsTruncation && (e.key === "Enter" || e.key === " ")) {
-            e.preventDefault();
-            toggleExpanded(message.id);
-          }
-        }}
+        onClick={() => needsTruncation && setModalMessage(message)}
         disabled={!needsTruncation}
-        className={textCardClass}
+        className="shrink-0 w-[380px] min-h-[120px] md:w-[320px] md:min-h-[110px] md:p-5 rounded-2xl p-6 cursor-pointer whitespace-normal will-change-transform transition-all duration-200 ease-in-out hover:-translate-y-1 disabled:cursor-default text-left backdrop-blur-sm"
         style={{
           backgroundColor: 'rgba(0, 0, 0, 0.3)',
           borderColor: "var(--color-primary-light)",
@@ -165,7 +141,7 @@ const Testimonials = ({ sectionIndex }: TestimonialsProps) => {
                 className="ml-2 font-semibold"
                 style={{ color: "var(--color-accent)" }}
               >
-                {isExpanded ? "Show less" : "Read more"}
+                Read more
               </span>
             )}
           </p>
@@ -211,7 +187,7 @@ const Testimonials = ({ sectionIndex }: TestimonialsProps) => {
     <section
       id="testimonials-section"
       data-scroll-section={sectionIndex}
-      className="w-full pt-40 relative overflow-x-hidden pb-60"
+      className="w-full pt-28 relative overflow-x-hidden pb-60"
     >
       {/* Background image */}
       <div
@@ -240,7 +216,7 @@ const Testimonials = ({ sectionIndex }: TestimonialsProps) => {
 
       {/* Content */}
       <div data-section-content className="max-w-7xl mx-auto relative z-10">
-        <div data-animate className="text-center mb-32">
+        <div data-animate className="text-center mb-12">
           <h3 className="text-4xl font-semibold tracking-tight mb-4 text-center inline-block whitespace-nowrap">
             <ShinyText
               speed={3}
@@ -283,6 +259,47 @@ const Testimonials = ({ sectionIndex }: TestimonialsProps) => {
           background: "linear-gradient(to right, transparent, var(--color-accent), var(--color-secondary), var(--color-accent), transparent)"
         }}
       />
+
+      {/* Testimonial Modal */}
+      {modalMessage && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <button
+            type="button"
+            aria-label="Close"
+            className="absolute inset-0 bg-black/70 backdrop-blur-sm cursor-default"
+            onClick={() => setModalMessage(null)}
+          />
+          <div
+            className="relative max-w-lg w-full rounded-2xl p-8 backdrop-blur-md border-2"
+            style={{
+              backgroundColor: "rgba(26, 26, 31, 0.95)",
+              borderColor: "var(--color-accent)",
+              boxShadow: "0 8px 40px var(--color-accent-glow), 0 0 60px var(--color-primary-glow)",
+            }}
+          >
+            <button
+              type="button"
+              onClick={() => setModalMessage(null)}
+              className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors cursor-pointer"
+              style={{ color: "var(--color-lighter)" }}
+            >
+              ✕
+            </button>
+            <p
+              className="text-base leading-relaxed whitespace-normal"
+              style={{ color: "var(--color-lighter)" }}
+            >
+              {modalMessage.text}
+            </p>
+            <p
+              className="text-sm font-semibold mt-4"
+              style={{ color: "var(--color-accent)" }}
+            >
+              {modalMessage.handle}
+            </p>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

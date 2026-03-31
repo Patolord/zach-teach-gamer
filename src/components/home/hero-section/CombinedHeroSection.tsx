@@ -40,7 +40,7 @@ const testimonials = [
 
 
 const CombinedHeroSection = forwardRef<HTMLElement>((_props, ref) => {
-  const [testimonial, setTestimonial] = useState(testimonials[0]);
+  const [testimonial, setTestimonial] = useState<typeof testimonials[0] | null>(null);
 
   useEffect(() => {
     setTestimonial(testimonials[Math.floor(Math.random() * testimonials.length)]);
@@ -160,30 +160,32 @@ const CombinedHeroSection = forwardRef<HTMLElement>((_props, ref) => {
               ))}
             </div>
 
-            <div
-              className="relative rounded-xl p-4 border backdrop-blur-sm max-w-xl"
-              style={{
-                backgroundColor: "rgba(26, 26, 31, 0.5)",
-                borderColor: "var(--color-accent-glow)",
-              }}
-            >
-              <Quote
-                className="w-4 h-4 absolute top-3 left-3 opacity-40"
-                style={{ color: "var(--color-accent)" }}
-              />
-              <p
-                className="text-sm italic leading-relaxed pl-6"
-                style={{ color: "var(--color-lighter)" }}
+            {testimonial && (
+              <div
+                className="relative rounded-xl p-4 border backdrop-blur-sm max-w-xl"
+                style={{
+                  backgroundColor: "rgba(26, 26, 31, 0.5)",
+                  borderColor: "var(--color-accent-glow)",
+                }}
               >
-                &ldquo;{testimonial.quote}&rdquo;
-              </p>
-              <p
-                className="text-xs font-semibold mt-2 pl-6"
-                style={{ color: "var(--color-accent)" }}
-              >
-                — {testimonial.author}
-              </p>
-            </div>
+                <Quote
+                  className="w-4 h-4 absolute top-3 left-3 opacity-40"
+                  style={{ color: "var(--color-accent)" }}
+                />
+                <p
+                  className="text-sm italic leading-relaxed pl-6"
+                  style={{ color: "var(--color-lighter)" }}
+                >
+                  &ldquo;{testimonial.quote}&rdquo;
+                </p>
+                <p
+                  className="text-xs font-semibold mt-2 pl-6"
+                  style={{ color: "var(--color-accent)" }}
+                >
+                  — {testimonial.author}
+                </p>
+              </div>
+            )}
           </div>
 
           <div className="relative">

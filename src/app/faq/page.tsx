@@ -65,7 +65,7 @@ const faqCategories: FAQCategory[] = [
       {
         question: "What's included in each course?",
         answer:
-          "Each course includes online lessons, downloadable resources, templates, community access to Teacher Gamer Whats App Fellowship, and practical assignments. Higher-level courses include one-on-one coaching and advanced materials.",
+          "Each course includes online lessons, downloadable resources, templates, community access to Teacher Gamer Whats App Fellowship, Discord Server, and practical assignments. Higher-level courses include one-on-one coaching and advanced materials.",
       },
       {
         question: "Can I access course materials after completion?",
@@ -75,7 +75,7 @@ const faqCategories: FAQCategory[] = [
       {
         question: "Are there prerequisites for advanced courses?",
         answer:
-          "We recommend taking courses in order, as each builds on previous concepts. Experienced game masters may skip Level 1 after completing an assessment.",
+          "The Teacher-Gamer methodology is holistic. We recommend taking courses in order, as each builds on previous concepts and there are original and unique social emotional learning (SEL), project-based learning (PBL), and game-based learning (GBL) elements presented by Teacher-Gamer which provides new perspectives even to advanced educators, players, and DMs.",
       },
       {
         question: "Do you offer group or school-wide training?",
@@ -121,7 +121,7 @@ const faqCategories: FAQCategory[] = [
       {
         question: "Is there a community for course participants?",
         answer:
-          "Yes. All participants get access to a private Discord community to connect, share experiences, and receive feedback.",
+          "Yes. All participants get access to both private WhatsApp and Discord communities to connect, share experiences, and receive feedback.",
       },
       {
         question: "How do I get help if I'm stuck?",
@@ -178,7 +178,7 @@ const faqCategories: FAQCategory[] = [
       {
         question: "Do I need special software?",
         answer:
-          "No. Everything runs in your web browser. A PDF reader is needed for downloads. Discord is optional for community access.",
+          "No. Everything runs in your web browser. A PDF Reader is needed for reading downloaded material. Discord is optional for community access.",
       },
       {
         question: "How do I access my purchases?",

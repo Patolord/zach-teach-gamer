@@ -96,8 +96,8 @@ export default function AboutPage() {
                 <div className="space-y-4 text-lighter/90 leading-relaxed">
                   <p>
                     Life-skills innovator, mindfulness coach, teacher-gamer.
-                    Zach has figured out how to combine game theory, literary
-                    criticism into social emotional learning through
+                    Zach has figured out how to combine game theory and literary
+                    criticism… into social emotional learning through
                     role-playing games with his Masters in Education, teacher
                     training and producing artists.
                   </p>
