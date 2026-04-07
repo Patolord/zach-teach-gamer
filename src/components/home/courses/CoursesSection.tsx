@@ -122,9 +122,9 @@ export default function CoursesSection({ sectionIndex }: CoursesSectionProps) {
               animation: "shimmer 4s ease-in-out infinite",
             }}
           >
-            <div className="relative w-full rounded-2xl px-8 py-6 flex items-center justify-center backdrop-blur-sm" style={{ backgroundColor: "rgba(26, 26, 31, 0.85)" }}>
-              <span className="text-lg md:text-xl font-bold tracking-wide uppercase" style={{ color: "var(--color-lighter)" }}>
-                Workshops Near You
+            <div className="relative w-full rounded-2xl px-4 sm:px-8 py-6 flex items-center justify-center backdrop-blur-sm text-center" style={{ backgroundColor: "rgba(26, 26, 31, 0.85)" }}>
+              <span className="text-base sm:text-lg md:text-xl font-bold tracking-tight text-balance" style={{ color: "var(--color-lighter)" }}>
+                Teacher Gamers Tour 2026 &amp; Workshops Near You
               </span>
             </div>
           </Link>
