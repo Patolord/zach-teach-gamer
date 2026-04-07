@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     "educational games",
   ],
   icons: {
-    icon: "/dices/dice-blue.webp",
+    icon: "/D20redTransparent.png",
   },
   openGraph: {
     title: "Teacher Gamer Revolution",
