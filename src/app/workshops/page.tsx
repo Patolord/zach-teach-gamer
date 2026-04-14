@@ -115,7 +115,7 @@ export default function WorkshopsPage() {
                   </h2>
 
                   <p className="text-lg text-white/60 max-w-xl mx-auto leading-relaxed">
-                    Live workshops, immersive RPG experiences, and the Teacher-Gamer methodology — coming to cities around the world starting in North America June &ndash; September 2026. Official dates and locations dropping soon.
+                    Live workshops, immersive RPG experiences, and the Teacher-Gamer methodology — coming to cities around the world, starting in North America, June &ndash; September 2026. Official dates and locations dropping soon.
                   </p>
 
                   <div className="flex items-center justify-center gap-6 text-sm text-white/40">

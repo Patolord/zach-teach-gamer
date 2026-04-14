@@ -98,7 +98,7 @@ export default function TourPopup() {
           </h2>
 
           <p className="text-sm leading-relaxed" style={{ color: "var(--color-lighter)", opacity: 0.7 }}>
-            Live workshops, immersive RPG experiences, and the Teacher-Gamer methodology — coming to cities around the world starting in North America June &ndash; September 2026. Official dates and locations dropping soon.
+            Live workshops, immersive RPG experiences, and the Teacher-Gamer methodology — coming to cities around the world, starting in North America, June &ndash; September 2026. Official dates and locations dropping soon.
           </p>
 
           <div className="flex items-center justify-center gap-6 text-xs" style={{ color: "var(--color-lighter)", opacity: 0.5 }}>
