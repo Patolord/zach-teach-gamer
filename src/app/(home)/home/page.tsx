@@ -9,6 +9,7 @@ import CombinedHeroSection from "@/components/home/hero-section/CombinedHeroSect
 import ResearchSection from "@/components/home/research/ResearchSection";
 import SubstackSection from "@/components/home/substack/SubstackSection";
 import Testimonials from "@/components/home/testimonials/TestimonialsSection";
+import TourPopup from "@/components/shared/TourPopup";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 export default function HomePage() {
@@ -37,6 +38,7 @@ export default function HomePage() {
 
   return (
     <div>
+      <TourPopup />
       <CombinedHeroSection />
       <Testimonials />
       <CoursesSection />
