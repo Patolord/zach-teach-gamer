@@ -66,6 +66,63 @@ export default function WorkshopsPage() {
           </div>
         </div>
 
+        {/* Tour 2026 */}
+        <div className="container mx-auto px-4 pb-16">
+          <div className="max-w-4xl mx-auto">
+            <div
+              className="relative rounded-2xl p-[2px] overflow-hidden"
+              style={{
+                background: "linear-gradient(135deg, var(--color-accent), var(--color-secondary), var(--color-primary-light), var(--color-accent))",
+                backgroundSize: "300% 300%",
+                animation: "shimmer 4s ease-in-out infinite",
+              }}
+            >
+              <div className="rounded-2xl p-8 md:p-12 text-center space-y-5" style={{ backgroundColor: "rgba(26, 26, 31, 0.93)" }}>
+                <div
+                  className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest"
+                  style={{
+                    backgroundColor: "var(--color-accent)",
+                    color: "var(--color-background)",
+                  }}
+                >
+                  Coming Soon
+                </div>
+
+                <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight">
+                  Teacher-Gamer{" "}
+                  <span
+                    className="bg-clip-text text-transparent"
+                    style={{
+                      backgroundImage: "linear-gradient(135deg, var(--color-accent), var(--color-secondary))",
+                    }}
+                  >
+                    Tour 2026
+                  </span>
+                </h2>
+
+                <p className="text-lg text-white/60 max-w-xl mx-auto leading-relaxed">
+                  Live workshops, immersive RPG experiences, and the Teacher-Gamer methodology — coming to cities around the world. Official dates and locations dropping soon.
+                </p>
+
+                <div className="flex items-center justify-center gap-6 text-sm text-white/40">
+                  <span className="flex items-center gap-1.5">
+                    <MapPin className="w-4 h-4" />
+                    Multiple Cities
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <CalendarDays className="w-4 h-4" />
+                    2026
+                  </span>
+                </div>
+
+                <p className="text-sm text-white/30 italic pt-2">
+                  Stay tuned — details will be announced here.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Featured Workshop */}
         <div className="container mx-auto px-4 pb-20">
           <div className="max-w-4xl mx-auto">
