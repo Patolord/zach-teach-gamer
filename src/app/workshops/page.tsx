@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowLeft, CalendarDays, MapPin, Play, Star } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
 import { getCalApi } from "@calcom/embed-react";
@@ -77,47 +78,61 @@ export default function WorkshopsPage() {
                 animation: "shimmer 4s ease-in-out infinite",
               }}
             >
-              <div className="rounded-2xl p-8 md:p-12 text-center space-y-5" style={{ backgroundColor: "rgba(26, 26, 31, 0.93)" }}>
-                <div
-                  className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest"
-                  style={{
-                    backgroundColor: "var(--color-accent)",
-                    color: "var(--color-background)",
-                  }}
-                >
-                  Coming Soon
+              <div className="rounded-2xl overflow-hidden" style={{ backgroundColor: "rgba(26, 26, 31, 0.93)" }}>
+                {/* Photo */}
+                <div className="relative h-56 sm:h-72 md:h-80 overflow-hidden">
+                  <Image
+                    src="/tour-workshop-group.png"
+                    alt="Large group workshop in outdoor bamboo pavilion"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 768px"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-black/70" />
                 </div>
 
-                <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight">
-                  Teacher-Gamer{" "}
-                  <span
-                    className="bg-clip-text text-transparent"
+                <div className="p-8 md:p-12 text-center space-y-5">
+                  <div
+                    className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest"
                     style={{
-                      backgroundImage: "linear-gradient(135deg, var(--color-accent), var(--color-secondary))",
+                      backgroundColor: "var(--color-accent)",
+                      color: "var(--color-background)",
                     }}
                   >
-                    Tour 2026
-                  </span>
-                </h2>
+                    Coming Soon
+                  </div>
 
-                <p className="text-lg text-white/60 max-w-xl mx-auto leading-relaxed">
-                  Live workshops, immersive RPG experiences, and the Teacher-Gamer methodology — coming to cities around the world. Official dates and locations dropping soon.
-                </p>
+                  <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight">
+                    Teacher-Gamer{" "}
+                    <span
+                      className="bg-clip-text text-transparent"
+                      style={{
+                        backgroundImage: "linear-gradient(135deg, var(--color-accent), var(--color-secondary))",
+                      }}
+                    >
+                      Tour 2026
+                    </span>
+                  </h2>
 
-                <div className="flex items-center justify-center gap-6 text-sm text-white/40">
-                  <span className="flex items-center gap-1.5">
-                    <MapPin className="w-4 h-4" />
-                    Multiple Cities
-                  </span>
-                  <span className="flex items-center gap-1.5">
-                    <CalendarDays className="w-4 h-4" />
-                    2026
-                  </span>
+                  <p className="text-lg text-white/60 max-w-xl mx-auto leading-relaxed">
+                    Live workshops, immersive RPG experiences, and the Teacher-Gamer methodology — coming to cities around the world starting in North America June &ndash; September 2026. Official dates and locations dropping soon.
+                  </p>
+
+                  <div className="flex items-center justify-center gap-6 text-sm text-white/40">
+                    <span className="flex items-center gap-1.5">
+                      <MapPin className="w-4 h-4" />
+                      North America &amp; Beyond
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <CalendarDays className="w-4 h-4" />
+                      June – Sep 2026
+                    </span>
+                  </div>
+
+                  <p className="text-sm text-white/30 italic pt-2">
+                    Stay tuned — details will be announced here.
+                  </p>
                 </div>
-
-                <p className="text-sm text-white/30 italic pt-2">
-                  Stay tuned — details will be announced here.
-                </p>
               </div>
             </div>
           </div>

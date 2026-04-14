@@ -1,6 +1,7 @@
 "use client";
 
 import { CalendarDays, MapPin, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -29,7 +30,7 @@ export default function TourPopup() {
       />
 
       <div
-        className="relative w-full max-w-md rounded-2xl overflow-hidden border-2 animate-hero-fade-in"
+        className="relative w-full max-w-lg rounded-2xl overflow-hidden border-2 animate-hero-fade-in"
         style={{
           backgroundColor: "rgba(26, 26, 31, 0.97)",
           borderColor: "var(--color-accent)",
@@ -40,11 +41,23 @@ export default function TourPopup() {
         <button
           type="button"
           onClick={dismiss}
-          className="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors cursor-pointer"
+          className="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-black/40 hover:bg-black/60 transition-colors cursor-pointer"
           style={{ color: "var(--color-lighter)" }}
         >
           <X className="w-4 h-4" />
         </button>
+
+        {/* Photo */}
+        <div className="relative h-44 sm:h-52 overflow-hidden">
+          <Image
+            src="/tour-rpg-session.png"
+            alt="Immersive RPG session with students around a table"
+            fill
+            className="object-cover"
+            sizes="(max-width: 640px) 100vw, 512px"
+          />
+          <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-black/60" />
+        </div>
 
         <div
           className="w-full h-2"
@@ -56,7 +69,7 @@ export default function TourPopup() {
           }}
         />
 
-        <div className="px-6 pt-8 pb-6 text-center space-y-5">
+        <div className="px-6 pt-6 pb-6 text-center space-y-4">
           <div
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest"
             style={{
@@ -85,17 +98,17 @@ export default function TourPopup() {
           </h2>
 
           <p className="text-sm leading-relaxed" style={{ color: "var(--color-lighter)", opacity: 0.7 }}>
-            Live workshops, immersive experiences, and the Teacher-Gamer methodology — coming to cities around the world. Details dropping soon.
+            Live workshops, immersive RPG experiences, and the Teacher-Gamer methodology — coming to cities around the world starting in North America June &ndash; September 2026. Official dates and locations dropping soon.
           </p>
 
           <div className="flex items-center justify-center gap-6 text-xs" style={{ color: "var(--color-lighter)", opacity: 0.5 }}>
             <span className="flex items-center gap-1.5">
               <MapPin className="w-3.5 h-3.5" />
-              Multiple Cities
+              North America &amp; Beyond
             </span>
             <span className="flex items-center gap-1.5">
               <CalendarDays className="w-3.5 h-3.5" />
-              2026
+              June – Sep 2026
             </span>
           </div>
 
