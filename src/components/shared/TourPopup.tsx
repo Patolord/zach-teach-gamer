@@ -1,10 +1,17 @@
 "use client";
 
-import { CalendarDays, MapPin, X } from "lucide-react";
+import { X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
+import { getCalApi } from "@calcom/embed-react";
+import { CAL_CONFIG, getCalUIConfig, getCalConfig } from "@/components/home/calendar/cal-config";
+
+const calProps = {
+  "data-cal-namespace": CAL_CONFIG.username,
+  "data-cal-link": CAL_CONFIG.username,
+  "data-cal-config": JSON.stringify(getCalConfig()),
+};
 
 export default function TourPopup() {
   const [visible, setVisible] = useState(false);
@@ -12,6 +19,13 @@ export default function TourPopup() {
   useEffect(() => {
     const timer = setTimeout(() => setVisible(true), 3500);
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      const cal = await getCalApi({ namespace: CAL_CONFIG.username });
+      cal("ui", getCalUIConfig());
+    })();
   }, []);
 
   const dismiss = () => {
@@ -30,9 +44,8 @@ export default function TourPopup() {
       />
 
       <div
-        className="relative w-full max-w-lg rounded-2xl overflow-hidden border-2 animate-hero-fade-in"
+        className="relative w-full max-w-2xl rounded-2xl overflow-hidden border-2 animate-hero-fade-in"
         style={{
-          backgroundColor: "rgba(26, 26, 31, 0.97)",
           borderColor: "var(--color-accent)",
           boxShadow:
             "0 0 60px var(--color-accent-glow), 0 0 120px var(--color-primary-glow)",
@@ -41,100 +54,54 @@ export default function TourPopup() {
         <button
           type="button"
           onClick={dismiss}
-          className="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-black/40 hover:bg-black/60 transition-colors cursor-pointer"
+          className="absolute top-3 right-3 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-black/50 hover:bg-black/70 transition-colors cursor-pointer"
           style={{ color: "var(--color-lighter)" }}
         >
           <X className="w-4 h-4" />
         </button>
 
-        {/* Photo */}
-        <div className="relative h-44 sm:h-52 overflow-hidden">
-          <Image
-            src="/tour-rpg-session.png"
-            alt="Immersive RPG session with students around a table"
-            fill
-            className="object-cover"
-            sizes="(max-width: 640px) 100vw, 512px"
-          />
-          <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-black/60" />
-        </div>
-
+        {/* Title bar */}
         <div
-          className="w-full h-2"
-          style={{
-            background:
-              "linear-gradient(90deg, var(--color-accent), var(--color-secondary), var(--color-primary-light), var(--color-accent))",
-            backgroundSize: "300% 100%",
-            animation: "shimmer 3s ease-in-out infinite",
-          }}
-        />
-
-        <div className="px-6 pt-6 pb-6 text-center space-y-4">
-          <div
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest"
+          className="w-full px-4 py-3 text-center"
+          style={{ backgroundColor: "rgba(26, 26, 31, 0.97)" }}
+        >
+          <h2
+            className="text-lg font-bold uppercase tracking-widest bg-clip-text text-transparent"
             style={{
-              backgroundColor: "var(--color-accent)",
-              color: "var(--color-background)",
+              backgroundImage:
+                "linear-gradient(135deg, var(--color-accent), var(--color-secondary))",
             }}
           >
-            Coming Soon
-          </div>
-
-          <h2
-            className="text-3xl md:text-4xl font-bold leading-tight"
-            style={{ color: "var(--color-lighter)" }}
-          >
-            Teacher-Gamer
-            <br />
-            <span
-              className="bg-clip-text text-transparent"
-              style={{
-                backgroundImage:
-                  "linear-gradient(135deg, var(--color-accent), var(--color-secondary))",
-              }}
-            >
-              Tour 2026
-            </span>
+            Teacher-Gamer Tour 2026
           </h2>
+        </div>
 
-          <p className="text-sm leading-relaxed" style={{ color: "var(--color-lighter)", opacity: 0.7 }}>
-            Live workshops, immersive RPG experiences, and the Teacher-Gamer methodology — coming to cities around the world, starting in North America, June &ndash; September 2026. Official dates and locations dropping soon.
-          </p>
+        {/* Poster image — links to workshops */}
+        <Link href="/workshops" onClick={dismiss} className="block">
+          <Image
+            src="/poster.jpg.jpeg"
+            alt="Teacher-Gamer Tour 2026 poster"
+            width={1200}
+            height={1600}
+            className="w-full h-auto block"
+            sizes="(max-width: 768px) 100vw, 672px"
+            priority
+          />
+        </Link>
 
-          <div className="flex items-center justify-center gap-6 text-xs" style={{ color: "var(--color-lighter)", opacity: 0.5 }}>
-            <span className="flex items-center gap-1.5">
-              <MapPin className="w-3.5 h-3.5" />
-              North America &amp; Beyond
-            </span>
-            <span className="flex items-center gap-1.5">
-              <CalendarDays className="w-3.5 h-3.5" />
-              June – Sep 2026
-            </span>
-          </div>
-
-          <div className="flex flex-col gap-3 pt-2">
-            <Button
-              size="lg"
-              className="w-full font-bold text-base"
-              style={{
-                backgroundColor: "var(--color-accent)",
-                color: "var(--color-background)",
-              }}
-              asChild
-            >
-              <Link href="/workshops" onClick={dismiss}>
-                Learn More
-              </Link>
-            </Button>
-            <button
-              type="button"
-              onClick={dismiss}
-              className="text-sm cursor-pointer hover:underline"
-              style={{ color: "var(--color-lighter)", opacity: 0.5 }}
-            >
-              Maybe later
-            </button>
-          </div>
+        {/* CTA bar */}
+        <div
+          className="w-full px-6 py-4 text-center"
+          style={{ backgroundColor: "rgba(26, 26, 31, 0.97)" }}
+        >
+          <button
+            type="button"
+            className="text-sm sm:text-base font-semibold cursor-pointer hover:underline transition-colors"
+            style={{ color: "var(--color-accent)" }}
+            {...calProps}
+          >
+            Book a Discovery Call to talk it over and set things in motion.
+          </button>
         </div>
       </div>
     </div>

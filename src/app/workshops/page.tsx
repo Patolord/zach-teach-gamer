@@ -138,6 +138,57 @@ export default function WorkshopsPage() {
           </div>
         </div>
 
+        {/* Tour 2026 Poster */}
+        <div className="container mx-auto px-4 pb-16">
+          <div className="max-w-4xl mx-auto">
+            <div
+              className="relative rounded-2xl p-[2px] overflow-hidden"
+              style={{
+                background: "linear-gradient(135deg, var(--color-accent), var(--color-secondary), var(--color-primary-light), var(--color-accent))",
+                backgroundSize: "300% 300%",
+                animation: "shimmer 4s ease-in-out infinite",
+              }}
+            >
+              <div className="rounded-2xl overflow-hidden" style={{ backgroundColor: "rgba(26, 26, 31, 0.93)" }}>
+                {/* Title bar */}
+                <div className="w-full px-4 py-4 text-center">
+                  <h2
+                    className="text-xl md:text-2xl font-bold uppercase tracking-widest bg-clip-text text-transparent"
+                    style={{
+                      backgroundImage: "linear-gradient(135deg, var(--color-accent), var(--color-secondary))",
+                    }}
+                  >
+                    Teacher-Gamer Tour 2026
+                  </h2>
+                </div>
+
+                {/* Poster image */}
+                <Image
+                  src="/poster.jpg.jpeg"
+                  alt="Teacher-Gamer Tour 2026 poster"
+                  width={1200}
+                  height={1600}
+                  className="w-full h-auto block"
+                  sizes="(max-width: 768px) 100vw, 768px"
+                  priority
+                />
+
+                {/* CTA bar */}
+                <div className="w-full px-6 py-5 text-center">
+                  <button
+                    type="button"
+                    className="text-base md:text-lg font-semibold cursor-pointer hover:underline transition-colors"
+                    style={{ color: "var(--color-accent)" }}
+                    {...calProps}
+                  >
+                    Book a Discovery Call to talk it over and set things in motion.
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Featured Workshop */}
         <div className="container mx-auto px-4 pb-20">
           <div className="max-w-4xl mx-auto">
