@@ -1,7 +1,28 @@
 import { NextResponse } from "next/server";
 import Parser from "rss-parser";
 
-const parser = new Parser();
+type CustomItem = {
+  enclosure?: { url?: string };
+  "content:encoded"?: string;
+};
+
+const parser: Parser<unknown, CustomItem> = new Parser({
+  customFields: {
+    item: ["enclosure", "content:encoded"],
+  },
+});
+
+// Substack posts typically embed the cover image as the first <img> in the
+// rendered HTML content. Fall back to the RSS <enclosure> when present.
+function extractImage(item: Parser.Item & CustomItem): string | null {
+  if (item.enclosure?.url) {
+    return item.enclosure.url;
+  }
+
+  const html = item["content:encoded"] || item.content || "";
+  const match = html.match(/<img[^>]+src=["']([^"']+)["']/i);
+  return match?.[1] ?? null;
+}
 
 export async function GET() {
   try {
@@ -9,12 +30,12 @@ export async function GET() {
       "https://zacharyreznichek.substack.com/feed",
     );
 
-    // Extract posts from feed items
     const posts = feed.items.map((item) => ({
       title: item.title || "",
       description: item.contentSnippet || item.content || "",
       link: item.link || "",
       pubDate: item.pubDate || "",
+      image: extractImage(item),
     }));
 
     return NextResponse.json({ posts });

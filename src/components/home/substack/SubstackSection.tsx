@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { MEDIA } from "@/lib/media";
@@ -14,6 +15,7 @@ type Post = {
   description: string;
   link: string;
   pubDate?: string;
+  image?: string | null;
 };
 
 export default function SubstackSection({ sectionIndex }: Props) {
@@ -121,7 +123,7 @@ export default function SubstackSection({ sectionIndex }: Props) {
                 className="block group"
               >
                 <div 
-                  className="backdrop-blur-sm rounded-lg shadow-lg border-2 p-6 md:p-8 transition-all"
+                  className="backdrop-blur-sm rounded-lg shadow-lg border-2 overflow-hidden transition-all"
                   style={{
                     backgroundColor: 'rgba(0, 0, 0, 0.3)',
                     borderColor: "color-mix(in srgb, var(--color-primary-light) 50%, transparent)",
@@ -138,22 +140,36 @@ export default function SubstackSection({ sectionIndex }: Props) {
                     e.currentTarget.style.boxShadow = "0 10px 30px var(--color-primary-glow)";
                   }}
                 >
+                  <div className="p-6 md:p-8 flex gap-5">
+                  {post.image && (
+                    <div className="relative shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-md overflow-hidden">
+                      <Image
+                        src={post.image}
+                        alt={post.title}
+                        fill
+                        sizes="96px"
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                    </div>
+                  )}
+
+                  <div className="flex-1 min-w-0">
                   <h3 
-                    className="text-xl pb-4 font-semibold transition-colors px-10"
+                    className="text-xl pb-4 font-semibold transition-colors"
                     style={{ color: "var(--color-lighter)" }}
                   >
                     {post.title}
                   </h3>
 
                   <p 
-                    className="pb-6 leading-relaxed px-10"
+                    className="pb-6 leading-relaxed"
                     style={{ color: "var(--color-lighter)" }}
                   >
                     {post.description}
                   </p>
 
                   <div 
-                    className="flex items-center gap-2 transition-colors font-medium px-10"
+                    className="flex items-center gap-2 transition-colors font-medium"
                     style={{ color: "var(--color-accent)" }}
                   >
                     <span>Read more</span>
@@ -171,6 +187,8 @@ export default function SubstackSection({ sectionIndex }: Props) {
                         d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                       />
                     </svg>
+                  </div>
+                  </div>
                   </div>
                 </div>
               </Link>
