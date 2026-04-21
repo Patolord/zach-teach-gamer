@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft, MapPin, Users, X } from "lucide-react";
+import { ArrowLeft, Award, MapPin, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import {
@@ -16,6 +16,12 @@ import { MEDIA } from "@/lib/media";
 // GeoJSON URL for world map
 const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
+// TG certificate course names
+const TG_COURSES = {
+  intro: "Intro to Multiverse",
+  level1: "Teacher Gamer Level 1",
+} as const;
+
 // Dummy teacher data with locations around the world
 const teacherLocations = [
   {
@@ -25,7 +31,7 @@ const teacherLocations = [
     country: "USA",
     coordinates: [-74.006, 40.7128] as [number, number],
     specialty: "Elementary RPG Education",
-    students: 120,
+    certificates: [TG_COURSES.intro, TG_COURSES.level1],
     avatar: "https://api.dicebear.com/7.x/adventurer/svg?seed=Sarah",
   },
   {
@@ -35,7 +41,7 @@ const teacherLocations = [
     country: "USA",
     coordinates: [-122.4194, 37.7749] as [number, number],
     specialty: "High School Game-Based Learning",
-    students: 85,
+    certificates: [TG_COURSES.intro],
     avatar: "https://api.dicebear.com/7.x/adventurer/svg?seed=James",
   },
   {
@@ -45,7 +51,7 @@ const teacherLocations = [
     country: "United Kingdom",
     coordinates: [-0.1276, 51.5074] as [number, number],
     specialty: "Middle School Narrative Learning",
-    students: 95,
+    certificates: [TG_COURSES.intro, TG_COURSES.level1],
     avatar: "https://api.dicebear.com/7.x/adventurer/svg?seed=Emma",
   },
   {
@@ -55,7 +61,7 @@ const teacherLocations = [
     country: "Germany",
     coordinates: [13.405, 52.52] as [number, number],
     specialty: "Youth Workshop Facilitator",
-    students: 65,
+    certificates: [TG_COURSES.intro],
     avatar: "https://api.dicebear.com/7.x/adventurer/svg?seed=Hans",
   },
   {
@@ -65,7 +71,7 @@ const teacherLocations = [
     country: "Japan",
     coordinates: [139.6917, 35.6895] as [number, number],
     specialty: "Social-Emotional Learning",
-    students: 110,
+    certificates: [TG_COURSES.intro, TG_COURSES.level1],
     avatar: "https://api.dicebear.com/7.x/adventurer/svg?seed=Yuki",
   },
   {
@@ -75,7 +81,7 @@ const teacherLocations = [
     country: "Brazil",
     coordinates: [-46.6333, -23.5505] as [number, number],
     specialty: "Creative Storytelling",
-    students: 78,
+    certificates: [TG_COURSES.intro],
     avatar: "https://api.dicebear.com/7.x/adventurer/svg?seed=Maria",
   },
   {
@@ -85,7 +91,7 @@ const teacherLocations = [
     country: "Russia",
     coordinates: [37.6173, 55.7558] as [number, number],
     specialty: "Critical Thinking Games",
-    students: 92,
+    certificates: [TG_COURSES.intro, TG_COURSES.level1],
     avatar: "https://api.dicebear.com/7.x/adventurer/svg?seed=Olga",
   },
   {
@@ -95,7 +101,7 @@ const teacherLocations = [
     country: "Egypt",
     coordinates: [31.2357, 30.0444] as [number, number],
     specialty: "Mindfulness & Gaming",
-    students: 45,
+    certificates: [TG_COURSES.intro],
     avatar: "https://api.dicebear.com/7.x/adventurer/svg?seed=Ahmed",
   },
   {
@@ -105,7 +111,7 @@ const teacherLocations = [
     country: "France",
     coordinates: [2.3522, 48.8566] as [number, number],
     specialty: "Collaborative Play",
-    students: 88,
+    certificates: [TG_COURSES.intro, TG_COURSES.level1],
     avatar: "https://api.dicebear.com/7.x/adventurer/svg?seed=Sophie",
   },
   {
@@ -115,7 +121,7 @@ const teacherLocations = [
     country: "India",
     coordinates: [72.8777, 19.076] as [number, number],
     specialty: "Empathy Building",
-    students: 130,
+    certificates: [TG_COURSES.intro, TG_COURSES.level1],
     avatar: "https://api.dicebear.com/7.x/adventurer/svg?seed=Raj",
   },
   {
@@ -125,7 +131,7 @@ const teacherLocations = [
     country: "Australia",
     coordinates: [151.2093, -33.8688] as [number, number],
     specialty: "Adventure-Based Learning",
-    students: 72,
+    certificates: [TG_COURSES.intro],
     avatar: "https://api.dicebear.com/7.x/adventurer/svg?seed=Lisa",
   },
   {
@@ -135,7 +141,7 @@ const teacherLocations = [
     country: "Mexico",
     coordinates: [-99.1332, 19.4326] as [number, number],
     specialty: "Cultural Storytelling",
-    students: 68,
+    certificates: [TG_COURSES.intro],
     avatar: "https://api.dicebear.com/7.x/adventurer/svg?seed=Carlos",
   },
 ];
@@ -166,7 +172,10 @@ export default function TeachersMapPage() {
   }, []);
 
   const totalTeachers = teacherLocations.length;
-  const totalStudents = teacherLocations.reduce((acc, t) => acc + t.students, 0);
+  const totalCertificates = teacherLocations.reduce(
+    (acc, t) => acc + t.certificates.length,
+    0,
+  );
 
   return (
     <main className="relative min-h-screen overflow-hidden text-lighter">
@@ -317,10 +326,10 @@ export default function TeachersMapPage() {
               </div>
               
               <div>
-                <p className="text-lighter/60 text-[10px] uppercase tracking-wider mb-0.5">Students</p>
+                <p className="text-lighter/60 text-[10px] uppercase tracking-wider mb-0.5">Education / Certificates</p>
                 <div className="flex items-center gap-1.5">
-                  <span className="text-xl font-bold text-accent">{totalStudents}+</span>
-                  <Users className="w-3.5 h-3.5 text-accent/70" />
+                  <span className="text-xl font-bold text-accent">{totalCertificates}</span>
+                  <Award className="w-3.5 h-3.5 text-accent/70" />
                 </div>
               </div>
             </div>
@@ -397,11 +406,18 @@ export default function TeachersMapPage() {
               </div>
 
               <div className="bg-lighter/5 rounded-lg p-4">
-                <p className="text-lighter/50 text-sm mb-1">Students Taught</p>
-                <p className="text-lighter font-medium flex items-center gap-2">
-                  <Users className="w-4 h-4 text-accent" />
-                  {selectedTeacher.students}+ students
-                </p>
+                <p className="text-lighter/50 text-sm mb-2">Education / Certificates</p>
+                <ul className="space-y-1.5">
+                  {selectedTeacher.certificates.map((cert) => (
+                    <li
+                      key={cert}
+                      className="text-lighter font-medium flex items-center gap-2"
+                    >
+                      <Award className="w-4 h-4 text-accent shrink-0" />
+                      <span>{cert}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
 
