@@ -16,133 +16,42 @@ import { MEDIA } from "@/lib/media";
 // GeoJSON URL for world map
 const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
-// TG certificate course names
-const TG_COURSES = {
-  intro: "Intro to Multiverse",
-  level1: "Teacher Gamer Level 1",
-} as const;
-
-// Dummy teacher data with locations around the world
+// Real Teacher Gamer locations
 const teacherLocations = [
   {
     id: 1,
-    name: "Sarah Mitchell",
-    city: "New York",
-    country: "USA",
-    coordinates: [-74.006, 40.7128] as [number, number],
-    specialty: "Elementary RPG Education",
-    certificates: [TG_COURSES.intro, TG_COURSES.level1],
-    avatar: "https://api.dicebear.com/7.x/croodles-neutral/svg?seed=Sarah&backgroundColor=fef3c7,fde68a,fed7aa,fbcfe8,ddd6fe,bfdbfe",
-  },
-  {
-    id: 2,
-    name: "James Chen",
-    city: "San Francisco",
-    country: "USA",
-    coordinates: [-122.4194, 37.7749] as [number, number],
-    specialty: "High School Game-Based Learning",
-    certificates: [TG_COURSES.intro],
-    avatar: "https://api.dicebear.com/7.x/croodles-neutral/svg?seed=James&backgroundColor=fef3c7,fde68a,fed7aa,fbcfe8,ddd6fe,bfdbfe",
-  },
-  {
-    id: 3,
-    name: "Emma Watson",
-    city: "London",
-    country: "United Kingdom",
-    coordinates: [-0.1276, 51.5074] as [number, number],
-    specialty: "Middle School Narrative Learning",
-    certificates: [TG_COURSES.intro, TG_COURSES.level1],
-    avatar: "https://api.dicebear.com/7.x/croodles-neutral/svg?seed=Emma&backgroundColor=fef3c7,fde68a,fed7aa,fbcfe8,ddd6fe,bfdbfe",
-  },
-  {
-    id: 4,
-    name: "Hans Mueller",
-    city: "Berlin",
-    country: "Germany",
-    coordinates: [13.405, 52.52] as [number, number],
-    specialty: "Youth Workshop Facilitator",
-    certificates: [TG_COURSES.intro],
-    avatar: "https://api.dicebear.com/7.x/croodles-neutral/svg?seed=Hans&backgroundColor=fef3c7,fde68a,fed7aa,fbcfe8,ddd6fe,bfdbfe",
-  },
-  {
-    id: 5,
-    name: "Yuki Tanaka",
-    city: "Tokyo",
-    country: "Japan",
-    coordinates: [139.6917, 35.6895] as [number, number],
-    specialty: "Social-Emotional Learning",
-    certificates: [TG_COURSES.intro, TG_COURSES.level1],
-    avatar: "https://api.dicebear.com/7.x/croodles-neutral/svg?seed=Yuki&backgroundColor=fef3c7,fde68a,fed7aa,fbcfe8,ddd6fe,bfdbfe",
-  },
-  {
-    id: 6,
-    name: "Maria Silva",
+    name: "Bruno Cobbi",
     city: "São Paulo",
     country: "Brazil",
     coordinates: [-46.6333, -23.5505] as [number, number],
-    specialty: "Creative Storytelling",
-    certificates: [TG_COURSES.intro],
-    avatar: "https://api.dicebear.com/7.x/croodles-neutral/svg?seed=Maria&backgroundColor=fef3c7,fde68a,fed7aa,fbcfe8,ddd6fe,bfdbfe",
-  },
-  {
-    id: 7,
-    name: "Olga Petrov",
-    city: "Moscow",
-    country: "Russia",
-    coordinates: [37.6173, 55.7558] as [number, number],
-    specialty: "Critical Thinking Games",
-    certificates: [TG_COURSES.intro, TG_COURSES.level1],
-    avatar: "https://api.dicebear.com/7.x/croodles-neutral/svg?seed=Olga&backgroundColor=fef3c7,fde68a,fed7aa,fbcfe8,ddd6fe,bfdbfe",
-  },
-  {
-    id: 8,
-    name: "Ahmed Hassan",
-    city: "Cairo",
-    country: "Egypt",
-    coordinates: [31.2357, 30.0444] as [number, number],
-    specialty: "Mindfulness & Gaming",
-    certificates: [TG_COURSES.intro],
-    avatar: "https://api.dicebear.com/7.x/croodles-neutral/svg?seed=Ahmed&backgroundColor=fef3c7,fde68a,fed7aa,fbcfe8,ddd6fe,bfdbfe",
-  },
-  {
-    id: 9,
-    name: "Sophie Laurent",
-    city: "Paris",
-    country: "France",
-    coordinates: [2.3522, 48.8566] as [number, number],
-    specialty: "Collaborative Play",
-    certificates: [TG_COURSES.intro, TG_COURSES.level1],
-    avatar: "https://api.dicebear.com/7.x/croodles-neutral/svg?seed=Sophie&backgroundColor=fef3c7,fde68a,fed7aa,fbcfe8,ddd6fe,bfdbfe",
-  },
-  {
-    id: 10,
-    name: "Raj Patel",
-    city: "Mumbai",
-    country: "India",
-    coordinates: [72.8777, 19.076] as [number, number],
-    specialty: "Empathy Building",
-    certificates: [TG_COURSES.intro, TG_COURSES.level1],
-    avatar: "https://api.dicebear.com/7.x/croodles-neutral/svg?seed=Raj&backgroundColor=fef3c7,fde68a,fed7aa,fbcfe8,ddd6fe,bfdbfe",
-  },
-  {
-    id: 11,
-    name: "Lisa Anderson",
-    city: "Sydney",
-    country: "Australia",
-    coordinates: [151.2093, -33.8688] as [number, number],
-    specialty: "Adventure-Based Learning",
-    certificates: [TG_COURSES.intro],
-    avatar: "https://api.dicebear.com/7.x/croodles-neutral/svg?seed=Lisa&backgroundColor=fef3c7,fde68a,fed7aa,fbcfe8,ddd6fe,bfdbfe",
-  },
-  {
-    id: 12,
-    name: "Carlos Mendez",
-    city: "Mexico City",
-    country: "Mexico",
-    coordinates: [-99.1332, 19.4326] as [number, number],
-    specialty: "Cultural Storytelling",
-    certificates: [TG_COURSES.intro],
-    avatar: "https://api.dicebear.com/7.x/croodles-neutral/svg?seed=Carlos&backgroundColor=fef3c7,fde68a,fed7aa,fbcfe8,ddd6fe,bfdbfe",
+    specialties: [
+      "Game-Based Learning",
+      "RPG-Based Facilitation",
+      "Narrative Design",
+      "Professional DMing",
+      "Creative Strategy & Innovation",
+      "Community Building",
+      "Corporate Training & Facilitation",
+      "Public Speaking",
+      "Digital Marketing",
+      "Copywriting",
+      "Translation (EN → PT-BR)",
+      "Martial Arts",
+      "Human-Centered Design & Innovation",
+      "Decentralized Leadership",
+    ],
+    certificates: [
+      "BA in Multimedia Design",
+      "Target Teal — Corporate Facilitation",
+      "Target Teal — Culture Hacking",
+      "Future of Storytelling (University of Potsdam)",
+      "Business Experience (Tracksale)",
+      "Humanized Marketing (Liliane Ferrari)",
+      "Teacher-Gamer — Intro to Multiverse",
+      "Teacher-Gamer — Level 1",
+    ],
+    avatar:
+      "https://api.dicebear.com/7.x/croodles-neutral/svg?seed=BrunoCobbi&backgroundColor=fef3c7,fde68a,fed7aa,fbcfe8,ddd6fe,bfdbfe",
   },
 ];
 
@@ -278,7 +187,11 @@ export default function TeachersMapPage() {
             <p className="text-lighter/90">
               {hoveredTeacher.city}, {hoveredTeacher.country}
             </p>
-            <p className="text-lighter/60 text-sm mt-1">{hoveredTeacher.specialty}</p>
+            <p className="text-lighter/60 text-sm mt-1">
+              {hoveredTeacher.specialties.slice(0, 2).join(" • ")}
+              {hoveredTeacher.specialties.length > 2 &&
+                ` + ${hoveredTeacher.specialties.length - 2} more`}
+            </p>
           </div>
         )}
 
@@ -374,7 +287,7 @@ export default function TeachersMapPage() {
           onClick={() => setSelectedTeacher(null)}
         >
           <div
-            className="relative bg-gradient-to-br from-dark to-background rounded-2xl p-8 max-w-md w-full border border-accent/30 shadow-2xl animate-in zoom-in-95 duration-200"
+            className="relative bg-gradient-to-br from-dark to-background rounded-2xl p-6 md:p-8 max-w-lg w-full max-h-[90vh] overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden border border-accent/30 shadow-2xl animate-in zoom-in-95 duration-200"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close button */}
@@ -414,22 +327,43 @@ export default function TeachersMapPage() {
             {/* Details */}
             <div className="space-y-4">
               <div className="bg-lighter/5 rounded-lg p-4">
-                <p className="text-lighter/50 text-sm mb-1">Specialty</p>
-                <p className="text-lighter font-medium">{selectedTeacher.specialty}</p>
+                <p className="text-lighter/50 text-sm mb-2">Specialties</p>
+                <ul className="flex flex-wrap gap-1.5">
+                  {selectedTeacher.specialties.map((item) => (
+                    <li
+                      key={item}
+                      className="text-xs font-medium text-lighter bg-accent/15 border border-accent/25 rounded-full px-2.5 py-1"
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
 
               <div className="bg-lighter/5 rounded-lg p-4">
                 <p className="text-lighter/50 text-sm mb-2">Education / Certificates</p>
                 <ul className="space-y-1.5">
-                  {selectedTeacher.certificates.map((cert) => (
-                    <li
-                      key={cert}
-                      className="text-lighter font-medium flex items-center gap-2"
-                    >
-                      <Award className="w-4 h-4 text-accent shrink-0" />
-                      <span>{cert}</span>
-                    </li>
-                  ))}
+                  {selectedTeacher.certificates.map((cert) => {
+                    const isTeacherGamer = cert.startsWith("Teacher-Gamer");
+                    return (
+                      <li
+                        key={cert}
+                        className="flex items-start gap-2 text-sm font-medium text-lighter"
+                      >
+                        <Award
+                          className={`w-4 h-4 shrink-0 mt-0.5 ${
+                            isTeacherGamer ? "text-accent" : "text-primary"
+                          }`}
+                        />
+                        <span className="flex-1">{cert}</span>
+                        {isTeacherGamer && (
+                          <span className="shrink-0 text-[10px] uppercase tracking-wider font-bold bg-accent text-accent-foreground rounded-full px-2 py-0.5">
+                            TG
+                          </span>
+                        )}
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             </div>
