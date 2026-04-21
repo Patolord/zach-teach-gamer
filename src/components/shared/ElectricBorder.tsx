@@ -146,7 +146,7 @@ const ElectricBorder: React.FC<ElectricBorderProps> = ({
     borderStyle: "solid",
     borderColor: hexToRgba(color, 0.6),
     filter: `blur(${0.5 + thickness * 0.25}px)`,
-    opacity: 0.5,
+    opacity: 0.15,
   };
 
   const glow2Style: CSSProperties = {
@@ -155,7 +155,7 @@ const ElectricBorder: React.FC<ElectricBorderProps> = ({
     borderStyle: "solid",
     borderColor: color,
     filter: `blur(${2 + thickness * 0.5}px)`,
-    opacity: 0.5,
+    opacity: 0.2,
   };
 
   const bgGlowStyle: CSSProperties = {
@@ -278,6 +278,17 @@ const ElectricBorder: React.FC<ElectricBorderProps> = ({
 
       <div
         className="absolute inset-0 pointer-events-none"
+        style={{ ...inheritRadius, zIndex: -1 }}
+      >
+        <div className="absolute inset-0" style={bgGlowStyle} />
+      </div>
+
+      <div className="relative h-full" style={inheritRadius}>
+        {children}
+      </div>
+
+      <div
+        className="absolute inset-0 pointer-events-none z-10"
         style={inheritRadius}
       >
         <div
@@ -287,11 +298,6 @@ const ElectricBorder: React.FC<ElectricBorderProps> = ({
         />
         <div className="absolute inset-0 box-border" style={glow1Style} />
         <div className="absolute inset-0 box-border" style={glow2Style} />
-        <div className="absolute inset-0" style={bgGlowStyle} />
-      </div>
-
-      <div className="relative h-full" style={inheritRadius}>
-        {children}
       </div>
     </div>
   );
