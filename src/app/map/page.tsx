@@ -1,16 +1,6 @@
 "use client";
 
-import {
-  ArrowLeft,
-  Award,
-  Globe,
-  Instagram,
-  Linkedin,
-  MapPin,
-  Twitter,
-  X,
-  Youtube,
-} from "lucide-react";
+import { ArrowLeft, Award, Instagram, Linkedin, MapPin, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import {
@@ -159,26 +149,16 @@ const teacherLocations = [
 type Teacher = (typeof teacherLocations)[number];
 
 const SOCIAL_PLATFORMS = [
-  { key: "twitter", label: "Twitter", icon: Twitter, base: "https://twitter.com/" },
   { key: "instagram", label: "Instagram", icon: Instagram, base: "https://instagram.com/" },
   { key: "linkedin", label: "LinkedIn", icon: Linkedin, base: "https://linkedin.com/in/" },
-  { key: "youtube", label: "YouTube", icon: Youtube, base: "https://youtube.com/@" },
-  { key: "website", label: "Website", icon: Globe, base: "https://" },
 ] as const;
 
 function getTeacherSocials(teacher: Teacher) {
   const handle = teacher.name.toLowerCase().replace(/\s+/g, "");
-  // Deterministically pick a varied subset per teacher (3-4 links)
-  const count = 3 + (teacher.id % 2);
-  const start = teacher.id % SOCIAL_PLATFORMS.length;
-  return Array.from({ length: count }, (_, i) => {
-    const platform = SOCIAL_PLATFORMS[(start + i) % SOCIAL_PLATFORMS.length];
-    const url =
-      platform.key === "website"
-        ? `${platform.base}${handle}.teachergamer.com`
-        : `${platform.base}${handle}`;
-    return { ...platform, url };
-  });
+  return SOCIAL_PLATFORMS.map((platform) => ({
+    ...platform,
+    url: `${platform.base}${handle}`,
+  }));
 }
 
 interface Particle {
