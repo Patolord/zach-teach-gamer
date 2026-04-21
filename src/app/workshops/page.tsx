@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft, CalendarDays, MapPin, Play, Star } from "lucide-react";
+import { ArrowLeft, ArrowRight, CalendarDays, MapPin, Play, Send, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
@@ -135,6 +135,41 @@ export default function WorkshopsPage() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Bring the Tour to Your Town — slim CTA */}
+        <div className="container mx-auto px-4 pb-16">
+          <div className="max-w-4xl mx-auto">
+            <a
+              href="https://forms.gle/REPLACE_WITH_SURVEY_LINK"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block rounded-xl border border-accent/30 bg-white/5 backdrop-blur-sm hover:border-accent/60 hover:bg-white/[0.07] transition-all"
+            >
+              <div className="flex items-center gap-4 px-5 py-4 sm:px-6 sm:py-5">
+                <div className="shrink-0 w-11 h-11 rounded-lg bg-accent/15 border border-accent/30 flex items-center justify-center">
+                  <Send className="w-5 h-5 text-accent" />
+                </div>
+
+                <div className="flex-1 min-w-0">
+                  <p className="text-xs font-bold uppercase tracking-widest text-accent/80">
+                    Tour 2026
+                  </p>
+                  <p className="text-base sm:text-lg font-semibold text-white leading-snug">
+                    Bring the Teacher-Gamer Tour to your town
+                  </p>
+                  <p className="hidden sm:block text-sm text-white/50 mt-0.5">
+                    Tell us about your place — fill out a short survey.
+                  </p>
+                </div>
+
+                <div className="shrink-0 inline-flex items-center gap-1.5 text-sm font-semibold text-accent group-hover:gap-2.5 transition-all">
+                  <span className="hidden sm:inline">Take the Survey</span>
+                  <ArrowRight className="w-4 h-4" />
+                </div>
+              </div>
+            </a>
           </div>
         </div>
 

@@ -1,6 +1,16 @@
 "use client";
 
-import { ArrowLeft, Award, MapPin, X } from "lucide-react";
+import {
+  ArrowLeft,
+  Award,
+  Globe,
+  Instagram,
+  Linkedin,
+  MapPin,
+  Twitter,
+  X,
+  Youtube,
+} from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import {
@@ -32,7 +42,7 @@ const teacherLocations = [
     coordinates: [-74.006, 40.7128] as [number, number],
     specialty: "Elementary RPG Education",
     certificates: [TG_COURSES.intro, TG_COURSES.level1],
-    avatar: "https://api.dicebear.com/7.x/adventurer/svg?seed=Sarah",
+    avatar: "https://api.dicebear.com/7.x/croodles-neutral/svg?seed=Sarah&backgroundColor=fef3c7,fde68a,fed7aa,fbcfe8,ddd6fe,bfdbfe",
   },
   {
     id: 2,
@@ -42,7 +52,7 @@ const teacherLocations = [
     coordinates: [-122.4194, 37.7749] as [number, number],
     specialty: "High School Game-Based Learning",
     certificates: [TG_COURSES.intro],
-    avatar: "https://api.dicebear.com/7.x/adventurer/svg?seed=James",
+    avatar: "https://api.dicebear.com/7.x/croodles-neutral/svg?seed=James&backgroundColor=fef3c7,fde68a,fed7aa,fbcfe8,ddd6fe,bfdbfe",
   },
   {
     id: 3,
@@ -52,7 +62,7 @@ const teacherLocations = [
     coordinates: [-0.1276, 51.5074] as [number, number],
     specialty: "Middle School Narrative Learning",
     certificates: [TG_COURSES.intro, TG_COURSES.level1],
-    avatar: "https://api.dicebear.com/7.x/adventurer/svg?seed=Emma",
+    avatar: "https://api.dicebear.com/7.x/croodles-neutral/svg?seed=Emma&backgroundColor=fef3c7,fde68a,fed7aa,fbcfe8,ddd6fe,bfdbfe",
   },
   {
     id: 4,
@@ -62,7 +72,7 @@ const teacherLocations = [
     coordinates: [13.405, 52.52] as [number, number],
     specialty: "Youth Workshop Facilitator",
     certificates: [TG_COURSES.intro],
-    avatar: "https://api.dicebear.com/7.x/adventurer/svg?seed=Hans",
+    avatar: "https://api.dicebear.com/7.x/croodles-neutral/svg?seed=Hans&backgroundColor=fef3c7,fde68a,fed7aa,fbcfe8,ddd6fe,bfdbfe",
   },
   {
     id: 5,
@@ -72,7 +82,7 @@ const teacherLocations = [
     coordinates: [139.6917, 35.6895] as [number, number],
     specialty: "Social-Emotional Learning",
     certificates: [TG_COURSES.intro, TG_COURSES.level1],
-    avatar: "https://api.dicebear.com/7.x/adventurer/svg?seed=Yuki",
+    avatar: "https://api.dicebear.com/7.x/croodles-neutral/svg?seed=Yuki&backgroundColor=fef3c7,fde68a,fed7aa,fbcfe8,ddd6fe,bfdbfe",
   },
   {
     id: 6,
@@ -82,7 +92,7 @@ const teacherLocations = [
     coordinates: [-46.6333, -23.5505] as [number, number],
     specialty: "Creative Storytelling",
     certificates: [TG_COURSES.intro],
-    avatar: "https://api.dicebear.com/7.x/adventurer/svg?seed=Maria",
+    avatar: "https://api.dicebear.com/7.x/croodles-neutral/svg?seed=Maria&backgroundColor=fef3c7,fde68a,fed7aa,fbcfe8,ddd6fe,bfdbfe",
   },
   {
     id: 7,
@@ -92,7 +102,7 @@ const teacherLocations = [
     coordinates: [37.6173, 55.7558] as [number, number],
     specialty: "Critical Thinking Games",
     certificates: [TG_COURSES.intro, TG_COURSES.level1],
-    avatar: "https://api.dicebear.com/7.x/adventurer/svg?seed=Olga",
+    avatar: "https://api.dicebear.com/7.x/croodles-neutral/svg?seed=Olga&backgroundColor=fef3c7,fde68a,fed7aa,fbcfe8,ddd6fe,bfdbfe",
   },
   {
     id: 8,
@@ -102,7 +112,7 @@ const teacherLocations = [
     coordinates: [31.2357, 30.0444] as [number, number],
     specialty: "Mindfulness & Gaming",
     certificates: [TG_COURSES.intro],
-    avatar: "https://api.dicebear.com/7.x/adventurer/svg?seed=Ahmed",
+    avatar: "https://api.dicebear.com/7.x/croodles-neutral/svg?seed=Ahmed&backgroundColor=fef3c7,fde68a,fed7aa,fbcfe8,ddd6fe,bfdbfe",
   },
   {
     id: 9,
@@ -112,7 +122,7 @@ const teacherLocations = [
     coordinates: [2.3522, 48.8566] as [number, number],
     specialty: "Collaborative Play",
     certificates: [TG_COURSES.intro, TG_COURSES.level1],
-    avatar: "https://api.dicebear.com/7.x/adventurer/svg?seed=Sophie",
+    avatar: "https://api.dicebear.com/7.x/croodles-neutral/svg?seed=Sophie&backgroundColor=fef3c7,fde68a,fed7aa,fbcfe8,ddd6fe,bfdbfe",
   },
   {
     id: 10,
@@ -122,7 +132,7 @@ const teacherLocations = [
     coordinates: [72.8777, 19.076] as [number, number],
     specialty: "Empathy Building",
     certificates: [TG_COURSES.intro, TG_COURSES.level1],
-    avatar: "https://api.dicebear.com/7.x/adventurer/svg?seed=Raj",
+    avatar: "https://api.dicebear.com/7.x/croodles-neutral/svg?seed=Raj&backgroundColor=fef3c7,fde68a,fed7aa,fbcfe8,ddd6fe,bfdbfe",
   },
   {
     id: 11,
@@ -132,7 +142,7 @@ const teacherLocations = [
     coordinates: [151.2093, -33.8688] as [number, number],
     specialty: "Adventure-Based Learning",
     certificates: [TG_COURSES.intro],
-    avatar: "https://api.dicebear.com/7.x/adventurer/svg?seed=Lisa",
+    avatar: "https://api.dicebear.com/7.x/croodles-neutral/svg?seed=Lisa&backgroundColor=fef3c7,fde68a,fed7aa,fbcfe8,ddd6fe,bfdbfe",
   },
   {
     id: 12,
@@ -142,11 +152,34 @@ const teacherLocations = [
     coordinates: [-99.1332, 19.4326] as [number, number],
     specialty: "Cultural Storytelling",
     certificates: [TG_COURSES.intro],
-    avatar: "https://api.dicebear.com/7.x/adventurer/svg?seed=Carlos",
+    avatar: "https://api.dicebear.com/7.x/croodles-neutral/svg?seed=Carlos&backgroundColor=fef3c7,fde68a,fed7aa,fbcfe8,ddd6fe,bfdbfe",
   },
 ];
 
 type Teacher = (typeof teacherLocations)[number];
+
+const SOCIAL_PLATFORMS = [
+  { key: "twitter", label: "Twitter", icon: Twitter, base: "https://twitter.com/" },
+  { key: "instagram", label: "Instagram", icon: Instagram, base: "https://instagram.com/" },
+  { key: "linkedin", label: "LinkedIn", icon: Linkedin, base: "https://linkedin.com/in/" },
+  { key: "youtube", label: "YouTube", icon: Youtube, base: "https://youtube.com/@" },
+  { key: "website", label: "Website", icon: Globe, base: "https://" },
+] as const;
+
+function getTeacherSocials(teacher: Teacher) {
+  const handle = teacher.name.toLowerCase().replace(/\s+/g, "");
+  // Deterministically pick a varied subset per teacher (3-4 links)
+  const count = 3 + (teacher.id % 2);
+  const start = teacher.id % SOCIAL_PLATFORMS.length;
+  return Array.from({ length: count }, (_, i) => {
+    const platform = SOCIAL_PLATFORMS[(start + i) % SOCIAL_PLATFORMS.length];
+    const url =
+      platform.key === "website"
+        ? `${platform.base}${handle}.teachergamer.com`
+        : `${platform.base}${handle}`;
+    return { ...platform, url };
+  });
+}
 
 interface Particle {
   left: string;
@@ -375,7 +408,7 @@ export default function TeachersMapPage() {
             {/* Avatar */}
             <div className="flex justify-center mb-6">
               <div className="relative">
-                <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-accent/50 bg-dark">
+                <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-accent/50 bg-lighter/90">
                   <img
                     src={selectedTeacher.avatar}
                     alt={selectedTeacher.name}
@@ -421,13 +454,31 @@ export default function TeachersMapPage() {
               </div>
             </div>
 
-            {/* CTA */}
-            <Button
-              className="w-full mt-6 bg-accent hover:bg-accent-light text-background font-semibold"
-              asChild
-            >
-              <Link href="/contact">Connect with {selectedTeacher.name.split(" ")[0]}</Link>
-            </Button>
+            {/* Social Links */}
+            <div className="mt-6">
+              <p className="text-lighter/50 text-sm mb-3 text-center">
+                Connect with {selectedTeacher.name.split(" ")[0]}
+              </p>
+              <ul className="flex items-center justify-center gap-3 flex-wrap">
+                {getTeacherSocials(selectedTeacher).map((social) => {
+                  const Icon = social.icon;
+                  return (
+                    <li key={social.key}>
+                      <a
+                        href={social.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${selectedTeacher.name} on ${social.label}`}
+                        title={social.label}
+                        className="group flex items-center justify-center w-11 h-11 rounded-full bg-lighter/5 border border-lighter/10 text-lighter/80 hover:text-background hover:bg-accent hover:border-accent transition-colors"
+                      >
+                        <Icon className="w-5 h-5" />
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
           </div>
         </div>
       )}

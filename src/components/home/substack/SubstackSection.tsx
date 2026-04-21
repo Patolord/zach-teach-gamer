@@ -84,7 +84,7 @@ export default function SubstackSection({ sectionIndex }: Props) {
         data-animate
         className="relative z-10 w-full max-w-2xl px-8 md:px-12"
       >
-        <h2 className="text-4xl pb-8">
+        <h2 className="text-4xl pb-8 text-center">
           <ShinyText
             speed={3}
             delay={1}
