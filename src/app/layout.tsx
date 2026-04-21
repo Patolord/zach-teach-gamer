@@ -42,6 +42,7 @@ export const metadata: Metadata = {
     "game-based learning",
     "education",
     "teacher gamer",
+    "Zach Reznichek",
     "RPG education",
     "educational games",
   ],
@@ -54,21 +55,12 @@ export const metadata: Metadata = {
       "The future of education is here. Join the Teacher Gamer Revolution and revolutionize the way you learn.",
     type: "website",
     siteName: "Teacher Gamer Revolution",
-    images: [
-      {
-        url: "/tgsociallink.png",
-        width: 1260,
-        height: 600,
-        alt: "Teacher Gamer Revolution",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Teacher Gamer Revolution",
     description:
       "The future of education is here. Join the Teacher Gamer Revolution and revolutionize the way you learn.",
-    images: ["/tgsociallink.png"],
   },
 };
 
