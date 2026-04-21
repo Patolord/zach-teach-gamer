@@ -1,4 +1,8 @@
-import { Loader2, Swords } from "lucide-react";
+"use client";
+
+import { ChevronRight, Loader2, Swords } from "lucide-react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import ScrambledText from "@/components/shared/ScrambledText";
 
 type Props = {
@@ -10,8 +14,26 @@ export default function LandingContent({
   onButtonClick,
   isLoading = false,
 }: Props) {
+  const [hasWatchedIntro, setHasWatchedIntro] = useState(false);
+
+  useEffect(() => {
+    try {
+      setHasWatchedIntro(localStorage.getItem("hasWatchedIntro") === "true");
+    } catch {}
+  }, []);
+
   return (
     <div className="relative z-20 flex flex-col items-center justify-center gap-8 px-4 w-full max-w-5xl mx-auto">
+      {hasWatchedIntro ? (
+        <Link
+          href="/home"
+          className="pointer-events-auto fixed top-4 right-4 z-30 inline-flex items-center gap-1 rounded-full border border-white/20 bg-black/40 px-3 py-1 text-xs uppercase tracking-wider text-white/70 backdrop-blur-sm transition-colors hover:border-white/40 hover:text-white"
+        >
+          <span>Skip intro</span>
+          <ChevronRight className="h-3 w-3" />
+        </Link>
+      ) : null}
+
       <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-center text-white px-2 sm:px-5 leading-tight text-shadow-hero">
         Teacher Gamer Revolution
       </h1>

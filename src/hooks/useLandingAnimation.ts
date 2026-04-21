@@ -210,6 +210,9 @@ export function useLandingAnimation() {
         video.removeEventListener("timeupdate", handleTimeUpdate);
         video.removeEventListener("ended", handleVideoEnd);
         sessionStorage.setItem("transitionOverlay", "true");
+        try {
+          localStorage.setItem("hasWatchedIntro", "true");
+        } catch {}
         startTransition(() => router.push("/home"));
       };
 
