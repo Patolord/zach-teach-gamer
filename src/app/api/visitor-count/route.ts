@@ -1,20 +1,44 @@
-import { get } from "@vercel/edge-config";
 import { NextResponse } from "next/server";
 
 export const runtime = "edge";
 
-// Extract Edge Config ID from connection string
-// Format: https://edge-config.vercel.com/<id>?token=...
-function getEdgeConfigId(): string | null {
-  const edgeConfig = process.env.EDGE_CONFIG;
-  if (!edgeConfig) return null;
-  const match = edgeConfig.match(/edge-config\.vercel\.com\/([^?]+)/);
-  return match ? match[1] : null;
+const BASE = "https://api.counterapi.dev/v2";
+
+function getConfig() {
+  const workspace = process.env.COUNTERAPI_WORKSPACE;
+  const counter = process.env.COUNTERAPI_COUNTER;
+  const token = process.env.COUNTERAPI_TOKEN;
+  if (!workspace || !counter || !token) return null;
+  return { workspace, counter, token };
+}
+
+async function callCounterApi(
+  cfg: { workspace: string; counter: string; token: string },
+  action: "up" | "get",
+): Promise<number> {
+  const path = action === "up" ? "/up" : "";
+  const url = `${BASE}/${cfg.workspace}/${cfg.counter}${path}`;
+  const res = await fetch(url, {
+    headers: { Authorization: `Bearer ${cfg.token}` },
+    cache: "no-store",
+  });
+  if (!res.ok) {
+    throw new Error(`counterapi ${res.status}: ${await res.text()}`);
+  }
+  const json = (await res.json()) as {
+    data?: { up_count?: number; count?: number; value?: number };
+  };
+  return Number(json?.data?.up_count ?? json?.data?.count ?? json?.data?.value ?? 0);
 }
 
 export async function GET() {
+  const cfg = getConfig();
+  if (!cfg) {
+    console.error("Missing CounterAPI env vars");
+    return NextResponse.json({ count: 0 });
+  }
   try {
-    const count = (await get<number>("visitorCount")) ?? 0;
+    const count = await callCounterApi(cfg, "get");
     return NextResponse.json({ count });
   } catch (error) {
     console.error("Error reading visitor count:", error);
@@ -23,43 +47,21 @@ export async function GET() {
 }
 
 export async function POST() {
+  const cfg = getConfig();
+  if (!cfg) {
+    console.error("Missing CounterAPI env vars");
+    return NextResponse.json({ count: 0 });
+  }
   try {
-    const currentCount = (await get<number>("visitorCount")) ?? 0;
-    const newCount = currentCount + 1;
-
-    const edgeConfigId = getEdgeConfigId();
-    const token = process.env.VERCEL_API_TOKEN || process.env.VERCEL_OIDC_TOKEN;
-
-    if (edgeConfigId && token) {
-      const res = await fetch(
-        `https://api.vercel.com/v1/edge-config/${edgeConfigId}/items`,
-        {
-          method: "PATCH",
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            items: [{ operation: "upsert", key: "visitorCount", value: newCount }],
-          }),
-        }
-      );
-      
-      if (!res.ok) {
-        const errorText = await res.text();
-        console.error("Edge Config update failed:", res.status, errorText);
-        // Return current count if update failed
-        return NextResponse.json({ count: currentCount });
-      }
-    } else {
-      console.error("Missing edgeConfigId or token", { edgeConfigId: !!edgeConfigId, token: !!token });
-      return NextResponse.json({ count: currentCount });
-    }
-
-    return NextResponse.json({ count: newCount });
-  } catch (error) {
-    console.error("Error updating visitor count:", error);
-    const count = (await get<number>("visitorCount")) ?? 0;
+    const count = await callCounterApi(cfg, "up");
     return NextResponse.json({ count });
+  } catch (error) {
+    console.error("Error incrementing visitor count:", error);
+    try {
+      const count = await callCounterApi(cfg, "get");
+      return NextResponse.json({ count });
+    } catch {
+      return NextResponse.json({ count: 0 });
+    }
   }
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { CalendarDays } from "lucide-react";
+import { CalendarDays, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { getCalApi } from "@calcom/embed-react";
@@ -11,6 +11,7 @@ export default function FloatingBookingButton() {
   const [minimized, setMinimized] = useState(false);
   const [visible, setVisible] = useState(false);
   const [pulse, setPulse] = useState(true);
+  const [tooltipDismissed, setTooltipDismissed] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -47,14 +48,24 @@ export default function FloatingBookingButton() {
   return (
     <div className="fixed bottom-6 right-6 z-50 flex items-end gap-3 animate-in slide-in-from-right-8 fade-in duration-500">
       {/* Tooltip card */}
-      <div className="hidden sm:flex flex-col gap-1 bg-black/90 backdrop-blur-md border border-accent/30 rounded-xl px-4 py-3 shadow-[0_8px_30px_rgba(0,0,0,0.5)] max-w-[200px]">
-        <p className="text-sm font-bold text-accent leading-tight">
-          Free Discovery Call
-        </p>
-        <p className="text-xs text-white/70 leading-snug">
-          Book a 15-min chat to see how RPGs can transform your classroom.
-        </p>
-      </div>
+      {!tooltipDismissed && (
+        <div className="relative hidden sm:flex flex-col gap-1 bg-black/90 backdrop-blur-md border border-accent/30 rounded-xl px-4 py-3 pr-8 shadow-[0_8px_30px_rgba(0,0,0,0.5)] max-w-[200px]">
+          <button
+            type="button"
+            onClick={() => setTooltipDismissed(true)}
+            className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full flex items-center justify-center text-white/50 hover:text-white hover:bg-white/10 transition-all cursor-pointer"
+            aria-label="Dismiss message"
+          >
+            <X className="w-3 h-3" />
+          </button>
+          <p className="text-sm font-bold text-accent leading-tight">
+            Free Discovery Call
+          </p>
+          <p className="text-xs text-white/70 leading-snug">
+            Book a 15-min chat to see how RPGs can transform your classroom.
+          </p>
+        </div>
+      )}
 
       {/* Floating button group */}
       <div className="relative flex flex-col items-end gap-2">

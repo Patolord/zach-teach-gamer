@@ -4,38 +4,64 @@ import { X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { getCalApi } from "@calcom/embed-react";
-import { CAL_CONFIG, getCalUIConfig, getCalConfig } from "@/components/home/calendar/cal-config";
 
-const calProps = {
-  "data-cal-namespace": CAL_CONFIG.username,
-  "data-cal-link": CAL_CONFIG.username,
-  "data-cal-config": JSON.stringify(getCalConfig()),
-};
+const STORAGE_KEY = "tour-popup-seen";
 
 export default function TourPopup() {
   const [visible, setVisible] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setVisible(true), 3500);
+    setMounted(true);
+    const hasSeen =
+      typeof window !== "undefined" &&
+      window.localStorage.getItem(STORAGE_KEY) === "1";
+
+    if (hasSeen) return;
+
+    const timer = setTimeout(() => setVisible(true), 800);
     return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    (async () => {
-      const cal = await getCalApi({ namespace: CAL_CONFIG.username });
-      cal("ui", getCalUIConfig());
-    })();
   }, []);
 
   const dismiss = () => {
     setVisible(false);
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem(STORAGE_KEY, "1");
+    }
   };
 
-  if (!visible) return null;
+  const reopen = () => {
+    setVisible(true);
+  };
+
+  if (!mounted) return null;
+
+  if (!visible) {
+    return (
+      <button
+        type="button"
+        onClick={reopen}
+        aria-label="Open Teacher-Gamer Tour 2026 poster"
+        className="fixed bottom-6 left-6 z-50 w-16 h-24 rounded-md overflow-hidden border-2 hover:scale-110 transition-transform cursor-pointer animate-in fade-in slide-in-from-bottom-4 duration-300"
+        style={{
+          borderColor: "var(--color-accent)",
+          boxShadow:
+            "0 4px 20px rgba(0,0,0,0.5), 0 0 20px var(--color-accent-glow), 0 0 40px var(--color-primary-glow)",
+        }}
+      >
+        <Image
+          src="/poster.jpg.jpeg"
+          alt=""
+          width={160}
+          height={240}
+          className="w-full h-full object-cover"
+        />
+      </button>
+    );
+  }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-1">
       <button
         type="button"
         aria-label="Close"
@@ -43,66 +69,28 @@ export default function TourPopup() {
         onClick={dismiss}
       />
 
-      <div
-        className="relative w-full max-w-2xl rounded-2xl overflow-hidden border-2 animate-hero-fade-in"
-        style={{
-          borderColor: "var(--color-accent)",
-          boxShadow:
-            "0 0 60px var(--color-accent-glow), 0 0 120px var(--color-primary-glow)",
-        }}
-      >
+      <div className="relative h-[98vh] animate-hero-fade-in">
         <button
           type="button"
           onClick={dismiss}
-          className="absolute top-3 right-3 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-black/50 hover:bg-black/70 transition-colors cursor-pointer"
+          aria-label="Close popup"
+          className="absolute top-3 right-3 z-10 w-9 h-9 flex items-center justify-center rounded-full bg-black/70 hover:bg-black/90 border border-white/20 transition-colors cursor-pointer"
           style={{ color: "var(--color-lighter)" }}
         >
-          <X className="w-4 h-4" />
+          <X className="w-5 h-5" />
         </button>
 
-        {/* Title bar */}
-        <div
-          className="w-full px-4 py-3 text-center"
-          style={{ backgroundColor: "rgba(26, 26, 31, 0.97)" }}
-        >
-          <h2
-            className="text-lg font-bold uppercase tracking-widest bg-clip-text text-transparent"
-            style={{
-              backgroundImage:
-                "linear-gradient(135deg, var(--color-accent), var(--color-secondary))",
-            }}
-          >
-            Teacher-Gamer Tour 2026
-          </h2>
-        </div>
-
-        {/* Poster image — links to workshops */}
-        <Link href="/workshops" onClick={dismiss} className="block">
+        <Link href="/workshops" onClick={dismiss} className="block h-full">
           <Image
             src="/poster.jpg.jpeg"
             alt="Teacher-Gamer Tour 2026 poster"
-            width={1200}
-            height={1600}
-            className="w-full h-auto block"
-            sizes="(max-width: 768px) 100vw, 672px"
+            width={1422}
+            height={2133}
+            className="h-full w-auto object-contain"
+            sizes="100vh"
             priority
           />
         </Link>
-
-        {/* CTA bar */}
-        <div
-          className="w-full px-6 py-4 text-center"
-          style={{ backgroundColor: "rgba(26, 26, 31, 0.97)" }}
-        >
-          <button
-            type="button"
-            className="text-sm sm:text-base font-semibold cursor-pointer hover:underline transition-colors"
-            style={{ color: "var(--color-accent)" }}
-            {...calProps}
-          >
-            Book a Discovery Call to talk it over and set things in motion.
-          </button>
-        </div>
       </div>
     </div>
   );
