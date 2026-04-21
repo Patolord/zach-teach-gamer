@@ -25,7 +25,16 @@ const pirataOne = localFont({
   display: "swap",
 });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : "http://localhost:3000");
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Teacher Gamer Revolution - Game-Based Learning for Education",
   description:
     "The future of education is here. Join the Teacher Gamer Revolution and revolutionize the way you learn through safe and fun game-based learning.",
@@ -44,6 +53,22 @@ export const metadata: Metadata = {
     description:
       "The future of education is here. Join the Teacher Gamer Revolution and revolutionize the way you learn.",
     type: "website",
+    siteName: "Teacher Gamer Revolution",
+    images: [
+      {
+        url: "/tgsociallink.png",
+        width: 1260,
+        height: 600,
+        alt: "Teacher Gamer Revolution",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Teacher Gamer Revolution",
+    description:
+      "The future of education is here. Join the Teacher Gamer Revolution and revolutionize the way you learn.",
+    images: ["/tgsociallink.png"],
   },
 };
 
