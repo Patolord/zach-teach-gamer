@@ -16,8 +16,27 @@ import { MEDIA } from "@/lib/media";
 // GeoJSON URL for world map
 const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
+const SOCIAL_PLATFORMS = [
+  { key: "instagram", label: "Instagram", icon: Instagram, base: "https://instagram.com/" },
+  { key: "linkedin", label: "LinkedIn", icon: Linkedin, base: "https://linkedin.com/in/" },
+] as const;
+
+type TeacherSocialOverrides = Partial<Record<(typeof SOCIAL_PLATFORMS)[number]["key"], string>>;
+
+interface TeacherProfile {
+  id: number;
+  name: string;
+  city: string;
+  country: string;
+  coordinates: [number, number];
+  specialties: string[];
+  certificates: string[];
+  avatar: string;
+  social?: TeacherSocialOverrides;
+}
+
 // Real Teacher Gamer locations
-const teacherLocations = [
+const teacherLocations: TeacherProfile[] = [
   {
     id: 1,
     name: "Bruno Cobbi",
@@ -50,8 +69,11 @@ const teacherLocations = [
       "Teacher-Gamer — Intro to Multiverse",
       "Teacher-Gamer — Level 1",
     ],
-    avatar:
-      "https://api.dicebear.com/7.x/croodles-neutral/svg?seed=BrunoCobbi&backgroundColor=fef3c7,fde68a,fed7aa,fbcfe8,ddd6fe,bfdbfe",
+    avatar: "/teachers/bruno-cobbi.jpg",
+    social: {
+      instagram: "https://www.instagram.com/brunocobbi?igsh=MTIzamZ6ZmNxZTdiYg==",
+      linkedin: "https://www.linkedin.com/in/brunocobbi",
+    },
   },
   {
     id: 2,
@@ -200,16 +222,11 @@ const teacherLocations = [
 
 type Teacher = (typeof teacherLocations)[number];
 
-const SOCIAL_PLATFORMS = [
-  { key: "instagram", label: "Instagram", icon: Instagram, base: "https://instagram.com/" },
-  { key: "linkedin", label: "LinkedIn", icon: Linkedin, base: "https://linkedin.com/in/" },
-] as const;
-
 function getTeacherSocials(teacher: Teacher) {
   const handle = teacher.name.toLowerCase().replace(/\s+/g, "");
   return SOCIAL_PLATFORMS.map((platform) => ({
     ...platform,
-    url: `${platform.base}${handle}`,
+    url: teacher.social?.[platform.key] ?? `${platform.base}${handle}`,
   }));
 }
 
