@@ -17,7 +17,7 @@ export const partnerOrganizations: PartnerEntry[] = [
     description:
       "Da Vinci Life-Skills is a non\u{2011}profit education organisation that provides a biophilic, project\u{2011}based curriculum, a skills\u{2011}based assessment framework, and certified mentor training to help schools and home\u{2011}education communities deliver holistic, real\u{2011}world learning where students can flourish.",
     logoSrc: "/partners/dvls-small-logo.png",
-    logoClassName: "scale-150",
+    logoClassName: "scale-140",
     website: "https://davincilifeskills.com/",
   },
   {
@@ -25,8 +25,8 @@ export const partnerOrganizations: PartnerEntry[] = [
     description:
       "Undiscovered Country provides peace‑and‑conflict diagnostics, archetype profiling, and training programmes that help organisations and schools understand tensions, transform conflict, and build healthier, more harmonious cultures.",
     logoSrc: "/partners/undiscovered-country-logo-2.png",
-    logoClassName: "scale-70",
-    website: "https://undiscoveredcountry.org.uk/",
+    logoClassName: "scale-80",
+    website: "https://www.undiscoveredcountry.org.uk/",
   },
   {
     name: "Upcraft Crew",
