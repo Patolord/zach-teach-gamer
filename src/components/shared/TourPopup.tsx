@@ -1,10 +1,11 @@
 "use client";
 
-import { X } from "lucide-react";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { CSSProperties } from "react";
+import { workshopPosters } from "@/data/workshop-posters";
 
 const STORAGE_KEY = "tour-popup-seen";
 const ANIMATION_MS = 500;
@@ -14,6 +15,7 @@ type PosterState = "hidden" | "entering" | "open" | "closing";
 export default function TourPopup() {
   const [mounted, setMounted] = useState(false);
   const [posterState, setPosterState] = useState<PosterState>("hidden");
+  const [activePosterIndex, setActivePosterIndex] = useState(0);
 
   useEffect(() => {
     setMounted(true);
@@ -48,10 +50,22 @@ export default function TourPopup() {
     setPosterState("entering");
   };
 
+  const showPreviousPoster = () => {
+    setActivePosterIndex((index) =>
+      index === 0 ? workshopPosters.length - 1 : index - 1,
+    );
+  };
+
+  const showNextPoster = () => {
+    setActivePosterIndex((index) => (index + 1) % workshopPosters.length);
+  };
+
   if (!mounted) return null;
 
   const isCollapsed = posterState === "hidden";
   const isOpen = posterState === "open";
+  const activePoster = workshopPosters[activePosterIndex] ?? workshopPosters[0];
+  const hasMultiplePosters = workshopPosters.length > 1;
 
   const posterStyle: CSSProperties = isOpen
     ? {
@@ -79,7 +93,7 @@ export default function TourPopup() {
           }}
         >
           <Image
-            src="/poster.jpg.jpeg"
+            src={activePoster.src}
             alt=""
             width={160}
             height={240}
@@ -118,12 +132,38 @@ export default function TourPopup() {
               <X className="w-5 h-5" />
             </button>
 
+            {hasMultiplePosters && (
+              <>
+                <button
+                  type="button"
+                  onClick={showPreviousPoster}
+                  aria-label="Show previous poster"
+                  className="absolute left-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/70 transition-colors hover:bg-black/90 cursor-pointer"
+                  style={{ color: "var(--color-lighter)" }}
+                >
+                  <ChevronLeft className="h-6 w-6" />
+                </button>
+                <button
+                  type="button"
+                  onClick={showNextPoster}
+                  aria-label="Show next poster"
+                  className="absolute right-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/70 transition-colors hover:bg-black/90 cursor-pointer"
+                  style={{ color: "var(--color-lighter)" }}
+                >
+                  <ChevronRight className="h-6 w-6" />
+                </button>
+                <div className="absolute bottom-3 left-1/2 z-10 -translate-x-1/2 rounded-full border border-white/20 bg-black/70 px-3 py-1 text-xs font-semibold tracking-wide text-white">
+                  {activePosterIndex + 1} / {workshopPosters.length}
+                </div>
+              </>
+            )}
+
             <Link href="/workshops" onClick={dismiss} className="block h-full">
               <Image
-                src="/poster.jpg.jpeg"
-                alt="Teacher-Gamer Tour 2026 poster"
-                width={1422}
-                height={2133}
+                src={activePoster.src}
+                alt={activePoster.alt}
+                width={activePoster.width}
+                height={activePoster.height}
                 className="h-full w-auto object-contain"
                 sizes="100vh"
                 priority

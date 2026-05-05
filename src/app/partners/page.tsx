@@ -1,7 +1,7 @@
+import { ArrowLeft, Handshake, Landmark } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, Handshake, Landmark } from "lucide-react";
 import {
   PARTNER_INTAKE_SURVEY_URL,
   SPONSOR_INTAKE_SURVEY_URL,
@@ -59,42 +59,51 @@ export default function PartnersPage() {
               collaborations.
             </p>
           ) : (
-            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <ul className="flex flex-wrap items-center justify-center gap-x-16 gap-y-12">
               {partnerOrganizations.map((org) => (
-                <li key={org.name}>
+                <li key={org.name} className="w-full max-w-md">
                   {org.website ? (
                     <a
                       href={org.website}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block rounded-xl border border-white/15 bg-white/5 p-6 backdrop-blur-sm hover:border-accent/40 transition-colors"
+                      aria-label={`Visit ${org.name}`}
+                      className="group block"
                     >
-                      <div className="relative h-16 w-full">
+                      <div className="relative mx-auto h-32 w-full transition-transform duration-300 group-hover:scale-105 sm:h-40">
+                        <div className="absolute inset-x-8 top-1/2 h-12 -translate-y-1/2 rounded-full bg-accent/20 blur-2xl transition-opacity duration-300 group-hover:opacity-80" />
                         <Image
                           src={org.logoSrc}
                           alt={org.name}
                           fill
-                          className="object-contain"
-                          sizes="(max-width: 768px) 100vw, 280px"
+                          className={`relative object-contain drop-shadow-[0_16px_36px_rgba(0,0,0,0.55)] ${org.logoClassName ?? ""}`}
+                          sizes="(max-width: 768px) 100vw, 384px"
                         />
                       </div>
-                      <p className="mt-4 text-center text-sm font-medium text-white/80">
+                      <p className="mt-4 text-center text-base font-semibold text-white/85 transition-colors group-hover:text-accent">
                         {org.name}
+                      </p>
+                      <p className="mx-auto mt-2 max-w-md text-center text-sm leading-relaxed text-white/55 transition-colors group-hover:text-white/75">
+                        {org.description}
                       </p>
                     </a>
                   ) : (
-                    <div className="rounded-xl border border-white/15 bg-white/5 p-6 backdrop-blur-sm">
-                      <div className="relative h-16 w-full">
+                    <div className="relative mx-auto h-32 w-full sm:h-40">
+                      <div className="absolute inset-x-8 top-1/2 h-12 -translate-y-1/2 rounded-full bg-accent/20 blur-2xl" />
+                      <div className="relative h-full w-full">
                         <Image
                           src={org.logoSrc}
                           alt={org.name}
                           fill
-                          className="object-contain"
-                          sizes="(max-width: 768px) 100vw, 280px"
+                          className={`object-contain drop-shadow-[0_16px_36px_rgba(0,0,0,0.55)] ${org.logoClassName ?? ""}`}
+                          sizes="(max-width: 768px) 100vw, 384px"
                         />
                       </div>
-                      <p className="mt-4 text-center text-sm font-medium text-white/80">
+                      <p className="mt-4 text-center text-base font-semibold text-white/85">
                         {org.name}
+                      </p>
+                      <p className="mx-auto mt-2 max-w-md text-center text-sm leading-relaxed text-white/55">
+                        {org.description}
                       </p>
                     </div>
                   )}
@@ -129,7 +138,8 @@ export default function PartnersPage() {
                     Become a partner
                   </p>
                   <p className="text-sm text-lighter/75 group-hover:text-background/90 mt-0.5">
-                    Programs, co-design, training, community — tell us what you have in mind.
+                    Programs, co-design, training, community — tell us what you
+                    have in mind.
                   </p>
                 </div>
               </div>
@@ -153,7 +163,8 @@ export default function PartnersPage() {
                     Become a sponsor
                   </p>
                   <p className="text-sm text-lighter/75 group-hover:text-background/90 mt-0.5">
-                    Support missions, tours, scholarships, or events — share your goals here.
+                    Support missions, tours, scholarships, or events — share
+                    your goals here.
                   </p>
                 </div>
               </div>

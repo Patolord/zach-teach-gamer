@@ -1,6 +1,16 @@
 "use client";
 
-import { ArrowLeft, Award, Instagram, Linkedin, Mail, MapPin, X } from "lucide-react";
+import {
+  ArrowLeft,
+  Award,
+  CalendarDays,
+  Instagram,
+  Linkedin,
+  Mail,
+  MapPin,
+  X,
+} from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import type { SVGProps } from "react";
 import { useEffect, useState } from "react";
@@ -30,7 +40,8 @@ function DiscordIcon({ className, ...props }: SVGProps<SVGSVGElement>) {
       className={className}
       viewBox="0 0 24 24"
       fill="currentColor"
-      aria-hidden
+      role="img"
+      aria-label="Discord"
       {...props}
     >
       <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z" />
@@ -51,7 +62,9 @@ function displayFirstName(fullName: string): string {
   return parts[0] ?? fullName;
 }
 
-function contactLinkIcon(link: ContactLink): typeof DiscordIcon | typeof Instagram | typeof Linkedin | typeof Mail {
+function contactLinkIcon(
+  link: ContactLink,
+): typeof DiscordIcon | typeof Instagram | typeof Linkedin | typeof Mail {
   switch (link.type) {
     case "discord":
       return DiscordIcon;
@@ -74,6 +87,19 @@ interface TeacherProfile {
   certificates: string[];
   avatar: string;
   contactLinks: ContactLink[];
+}
+
+interface WorkshopMarker {
+  id: string;
+  title: string;
+  city: string;
+  region: string;
+  country: string;
+  coordinates: [number, number];
+  dateLabel: string;
+  statusLabel: string;
+  description: string;
+  highlights: string[];
 }
 
 const ZACH_MAP_AVATAR = "/teachers/zachary-reznichek.png";
@@ -209,7 +235,10 @@ const teacherLocations: TeacherProfile[] = [
     ],
     avatar: "/teachers/dennis-grillo-de-albuquerque.png",
     contactLinks: [
-      { type: "linkedin", href: "https://www.linkedin.com/in/dennis-grillo-de-albuquerque-2b06079b/" },
+      {
+        type: "linkedin",
+        href: "https://www.linkedin.com/in/dennis-grillo-de-albuquerque-2b06079b/",
+      },
       { type: "discord", href: "https://discord.com/users/488381757821812796" },
     ],
   },
@@ -260,14 +289,40 @@ const teacherLocations: TeacherProfile[] = [
     avatar: "/teachers/kevin-jennings.png",
     contactLinks: [
       { type: "email", href: "mailto:KJennigs1987@gmail.com" },
-      { type: "linkedin", href: "https://www.linkedin.com/in/kevin-jennings-edd-198209a5/" },
+      {
+        type: "linkedin",
+        href: "https://www.linkedin.com/in/kevin-jennings-edd-198209a5/",
+      },
     ],
   },
 ];
 
 type Teacher = (typeof teacherLocations)[number];
 
+const mockWorkshopMarkers: WorkshopMarker[] = [
+  {
+    id: "columbus-oh-2026",
+    title: "Teacher-Gamer Workshop Quest",
+    city: "Columbus",
+    region: "Ohio",
+    country: "USA",
+    coordinates: [-82.9988, 39.9612] as [number, number],
+    dateLabel: "June 11-21, 2026",
+    statusLabel: "Mock Workshop",
+    description:
+      "A mocked in-person Teacher-Gamer workshop stop for hands-on RPG-based facilitation, game-based learning, and community practice.",
+    highlights: [
+      "Live workshop sessions",
+      "RPG-based facilitation practice",
+      "Teacher-Gamer methodology",
+    ],
+  },
+];
+
+type Workshop = (typeof mockWorkshopMarkers)[number];
+
 interface Particle {
+  id: string;
   left: string;
   top: string;
   animationDelay: string;
@@ -277,11 +332,16 @@ interface Particle {
 export default function TeachersMapPage() {
   const [selectedTeacher, setSelectedTeacher] = useState<Teacher | null>(null);
   const [hoveredTeacher, setHoveredTeacher] = useState<Teacher | null>(null);
+  const [selectedWorkshop, setSelectedWorkshop] = useState<Workshop | null>(
+    null,
+  );
+  const [hoveredWorkshop, setHoveredWorkshop] = useState<Workshop | null>(null);
   const [particles, setParticles] = useState<Particle[]>([]);
 
   // Generate particles only on client to avoid hydration mismatch
   useEffect(() => {
-    const generatedParticles = [...Array(20)].map(() => ({
+    const generatedParticles = [...Array(20)].map((_, index) => ({
+      id: `particle-${index}`,
       left: `${Math.random() * 100}%`,
       top: `${Math.random() * 100}%`,
       animationDelay: `${Math.random() * 3}s`,
@@ -303,7 +363,7 @@ export default function TeachersMapPage() {
         className="fixed inset-0 bg-cover bg-center -z-20"
         style={{ backgroundImage: `url('${MEDIA.backgrounds.courses}')` }}
       />
-      <div className="fixed inset-0 bg-gradient-to-b from-black/85 via-black/75 to-black/90 -z-10" />
+      <div className="fixed inset-0 bg-linear-to-b from-black/85 via-black/75 to-black/90 -z-10" />
 
       {/* Full Screen Map Layer */}
       <div className="fixed inset-0 z-0">
@@ -327,7 +387,11 @@ export default function TeachersMapPage() {
                     strokeWidth={0.5}
                     style={{
                       default: { outline: "none", opacity: 0.8 },
-                      hover: { fill: "var(--color-medium)", outline: "none", opacity: 1 },
+                      hover: {
+                        fill: "var(--color-medium)",
+                        outline: "none",
+                        opacity: 1,
+                      },
                       pressed: { outline: "none" },
                     }}
                   />
@@ -340,11 +404,20 @@ export default function TeachersMapPage() {
               <Marker
                 key={teacher.id}
                 coordinates={teacher.coordinates}
-                onMouseEnter={() => setHoveredTeacher(teacher)}
+                onMouseEnter={() => {
+                  setHoveredWorkshop(null);
+                  setHoveredTeacher(teacher);
+                }}
                 onMouseLeave={() => setHoveredTeacher(null)}
-                onClick={() => setSelectedTeacher(teacher)}
+                onClick={() => {
+                  setSelectedWorkshop(null);
+                  setSelectedTeacher(teacher);
+                }}
               >
-                <g transform="translate(-12, -24)" style={{ cursor: "pointer" }}>
+                <g
+                  transform="translate(-12, -24)"
+                  style={{ cursor: "pointer" }}
+                >
                   {/* Pulse animation ring */}
                   <circle
                     cx="12"
@@ -374,13 +447,82 @@ export default function TeachersMapPage() {
                 </g>
               </Marker>
             ))}
+
+            {/* Workshop Markers */}
+            {mockWorkshopMarkers.map((workshop) => {
+              const isWorkshopActive =
+                hoveredWorkshop?.id === workshop.id ||
+                selectedWorkshop?.id === workshop.id;
+
+              return (
+                <Marker
+                  key={workshop.id}
+                  coordinates={workshop.coordinates}
+                  onMouseEnter={() => {
+                    setHoveredTeacher(null);
+                    setHoveredWorkshop(workshop);
+                  }}
+                  onMouseLeave={() => setHoveredWorkshop(null)}
+                  onClick={() => {
+                    setSelectedTeacher(null);
+                    setSelectedWorkshop(workshop);
+                  }}
+                >
+                  <g
+                    transform="translate(-14, -30)"
+                    style={{ cursor: "pointer" }}
+                  >
+                    <circle
+                      cx="14"
+                      cy="22"
+                      r="10"
+                      fill="none"
+                      stroke="var(--color-secondary)"
+                      strokeWidth="2"
+                      opacity="0.45"
+                      className="animate-ping"
+                      style={{ transformOrigin: "14px 22px" }}
+                    />
+                    <path
+                      d="M14 0 26 8v14L14 30 2 22V8z"
+                      fill={
+                        isWorkshopActive
+                          ? "var(--color-secondary)"
+                          : "var(--color-primary-light)"
+                      }
+                      stroke="var(--color-background)"
+                      strokeWidth="1"
+                    />
+                    <rect
+                      x="8"
+                      y="8"
+                      width="12"
+                      height="12"
+                      rx="2"
+                      fill="var(--color-background)"
+                      opacity="0.9"
+                    />
+                    <path
+                      d="M10 12h8M11 6v4M17 6v4M11 15h2M15 15h2"
+                      fill="none"
+                      stroke="var(--color-white)"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="1.4"
+                    />
+                  </g>
+                </Marker>
+              );
+            })}
           </ZoomableGroup>
         </ComposableMap>
 
         {/* Hover Tooltip (positioned absolute relative to screen) */}
-        {hoveredTeacher && !selectedTeacher && (
+        {hoveredTeacher && !selectedTeacher && !selectedWorkshop && (
           <div className="absolute top-24 right-4 md:right-8 bg-background/90 backdrop-blur-sm rounded-lg p-4 border border-accent/30 pointer-events-none z-50 max-w-xs shadow-xl animate-in fade-in zoom-in-95 duration-200">
-            <p className="text-accent font-semibold text-lg">{hoveredTeacher.name}</p>
+            <p className="text-accent font-semibold text-lg">
+              {hoveredTeacher.name}
+            </p>
             <p className="text-lighter/90">
               {hoveredTeacher.city}, {hoveredTeacher.country}
             </p>
@@ -392,21 +534,43 @@ export default function TeachersMapPage() {
           </div>
         )}
 
+        {hoveredWorkshop && !selectedTeacher && !selectedWorkshop && (
+          <div className="absolute top-24 right-4 md:right-8 bg-background/90 backdrop-blur-sm rounded-lg p-4 border border-secondary/40 pointer-events-none z-50 max-w-xs shadow-xl animate-in fade-in zoom-in-95 duration-200">
+            <p className="text-secondary font-semibold text-lg">
+              {hoveredWorkshop.title}
+            </p>
+            <p className="text-lighter/90">
+              {hoveredWorkshop.city}, {hoveredWorkshop.region}
+            </p>
+            <p className="text-lighter/60 text-sm mt-1">
+              {hoveredWorkshop.dateLabel}
+            </p>
+          </div>
+        )}
+
         {/* Map Legend */}
         <div className="absolute bottom-4 right-4 bg-background/80 backdrop-blur-sm rounded-lg p-3 border border-lighter/10 z-10 hidden md:block">
-          <div className="flex items-center gap-2">
-            <div className="w-4 h-4 rounded-full bg-accent animate-pulse" />
-            <span className="text-lighter/70 text-xs">Teacher Location</span>
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-4 rounded-full bg-accent animate-pulse" />
+              <span className="text-lighter/70 text-xs">Teacher Location</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-4 rotate-45 rounded-sm bg-secondary animate-pulse" />
+              <span className="text-lighter/70 text-xs">Workshop</span>
+            </div>
           </div>
-          <p className="text-lighter/50 text-xs mt-1">Click marker for details</p>
+          <p className="text-lighter/50 text-xs mt-1">
+            Click marker for details
+          </p>
         </div>
       </div>
 
       {/* Animated background particles (on top of map for depth) */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-1">
-        {particles.map((particle, i) => (
+        {particles.map((particle) => (
           <div
-            key={i}
+            key={particle.id}
             className="absolute w-1 h-1 bg-accent/30 rounded-full animate-pulse"
             style={{
               left: particle.left,
@@ -435,23 +599,32 @@ export default function TeachersMapPage() {
         <div className="absolute bottom-24 left-0 w-full max-w-[250px] pointer-events-none px-4 md:bottom-8 md:px-6">
           <div className="bg-background/80 backdrop-blur-md rounded-2xl p-4 border border-white/10 text-left pointer-events-auto shadow-2xl">
             <h1 className="text-xl font-bold text-lighter mb-3 leading-tight">
-              Teacher Gamers <span className="block text-accent text-2xl">Worldwide</span>
+              Teacher Gamers{" "}
+              <span className="block text-accent text-2xl">Worldwide</span>
             </h1>
-            
+
             {/* Stats Grid */}
             <div className="grid grid-cols-2 gap-3 pt-3 border-t border-white/10">
               <div>
-                <p className="text-lighter/60 text-[10px] uppercase tracking-wider mb-0.5">Teachers</p>
+                <p className="text-lighter/60 text-[10px] uppercase tracking-wider mb-0.5">
+                  Teachers
+                </p>
                 <div className="flex items-center gap-1.5">
-                  <span className="text-xl font-bold text-accent">{totalTeachers}</span>
+                  <span className="text-xl font-bold text-accent">
+                    {totalTeachers}
+                  </span>
                   <MapPin className="w-3.5 h-3.5 text-accent/70" />
                 </div>
               </div>
-              
+
               <div>
-                <p className="text-lighter/60 text-[10px] uppercase tracking-wider mb-0.5">Education / Certificates</p>
+                <p className="text-lighter/60 text-[10px] uppercase tracking-wider mb-0.5">
+                  Education / Certificates
+                </p>
                 <div className="flex items-center gap-1.5">
-                  <span className="text-xl font-bold text-accent">{totalCertificates}</span>
+                  <span className="text-xl font-bold text-accent">
+                    {totalCertificates}
+                  </span>
                   <Award className="w-3.5 h-3.5 text-accent/70" />
                 </div>
               </div>
@@ -462,33 +635,38 @@ export default function TeachersMapPage() {
         {/* Footer CTA - Bottom Center (Compact) */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 w-full max-w-md px-4 pointer-events-none">
           <div className="bg-background/90 backdrop-blur-md rounded-xl p-4 border border-accent/20 shadow-2xl flex items-center justify-between gap-4 pointer-events-auto">
-             <div className="text-left">
-               <h3 className="text-base font-bold text-lighter">Join the Network</h3>
-               <p className="text-xs text-lighter/70">Become a certified Teacher Gamer</p>
-             </div>
-             <Button
-               size="sm"
-               className="bg-accent hover:bg-accent-light text-background font-semibold shrink-0"
-               asChild
-             >
-               <Link href="/home#courses-section">Get Certified</Link>
-             </Button>
+            <div className="text-left">
+              <h3 className="text-base font-bold text-lighter">
+                Join the Network
+              </h3>
+              <p className="text-xs text-lighter/70">
+                Become a certified Teacher Gamer
+              </p>
+            </div>
+            <Button
+              size="sm"
+              className="bg-accent hover:bg-accent-light text-background font-semibold shrink-0"
+              asChild
+            >
+              <Link href="/home#courses-section">Get Certified</Link>
+            </Button>
           </div>
         </div>
       </div>
 
       {/* Selected Teacher Modal */}
       {selectedTeacher && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/60 backdrop-blur-sm"
-          onClick={() => setSelectedTeacher(null)}
-        >
-          <div
-            className="relative bg-gradient-to-br from-dark to-background rounded-2xl p-6 md:p-8 max-w-lg w-full max-h-[90vh] overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden border border-accent/30 shadow-2xl animate-in zoom-in-95 duration-200"
-            onClick={(e) => e.stopPropagation()}
-          >
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <button
+            type="button"
+            aria-label="Close teacher details"
+            className="absolute inset-0 bg-background/60 backdrop-blur-sm"
+            onClick={() => setSelectedTeacher(null)}
+          />
+          <div className="relative bg-linear-to-br from-dark to-background rounded-2xl p-6 md:p-8 max-w-lg w-full max-h-[90vh] overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden border border-accent/30 shadow-2xl animate-in zoom-in-95 duration-200">
             {/* Close button */}
             <button
+              type="button"
               onClick={() => setSelectedTeacher(null)}
               className="absolute top-4 right-4 text-lighter/60 hover:text-lighter transition-colors"
             >
@@ -499,9 +677,11 @@ export default function TeachersMapPage() {
             <div className="flex justify-center mb-6">
               <div className="relative">
                 <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-accent/50 bg-lighter/90">
-                  <img
+                  <Image
                     src={selectedTeacher.avatar}
                     alt={selectedTeacher.name}
+                    width={96}
+                    height={96}
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -524,7 +704,9 @@ export default function TeachersMapPage() {
             {/* Details */}
             <div className="space-y-4">
               <div className="bg-lighter/5 rounded-lg p-4">
-                <p className="text-lighter/50 text-sm mb-2">Specialties / Services</p>
+                <p className="text-lighter/50 text-sm mb-2">
+                  Specialties / Services
+                </p>
                 <ul className="flex flex-wrap gap-1.5">
                   {selectedTeacher.specialties.map((item) => (
                     <li
@@ -538,7 +720,9 @@ export default function TeachersMapPage() {
               </div>
 
               <div className="bg-lighter/5 rounded-lg p-4">
-                <p className="text-lighter/50 text-sm mb-2">Education / Certificates</p>
+                <p className="text-lighter/50 text-sm mb-2">
+                  Education / Certificates
+                </p>
                 <ul className="space-y-1.5">
                   {selectedTeacher.certificates.map((cert) => {
                     const isTeacherGamer = cert.startsWith("Teacher-Gamer");
@@ -597,6 +781,84 @@ export default function TeachersMapPage() {
                 })}
               </ul>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Selected Workshop Modal */}
+      {selectedWorkshop && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <button
+            type="button"
+            aria-label="Close workshop details"
+            className="absolute inset-0 bg-background/60 backdrop-blur-sm"
+            onClick={() => setSelectedWorkshop(null)}
+          />
+          <div className="relative bg-linear-to-br from-secondary/15 via-dark to-background rounded-2xl p-6 md:p-8 max-w-lg w-full max-h-[90vh] overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden border border-secondary/40 shadow-2xl animate-in zoom-in-95 duration-200">
+            <button
+              type="button"
+              onClick={() => setSelectedWorkshop(null)}
+              className="absolute top-4 right-4 text-lighter/60 hover:text-lighter transition-colors"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            <div className="flex justify-center mb-6">
+              <div className="relative">
+                <div className="flex h-24 w-24 rotate-3 items-center justify-center rounded-2xl border-4 border-secondary/50 bg-secondary/15 shadow-[0_0_28px_rgba(255,159,67,0.22)]">
+                  <CalendarDays className="h-11 w-11 text-secondary" />
+                </div>
+                <div className="absolute -bottom-2 -right-2 bg-secondary rounded-full p-2">
+                  <MapPin className="w-4 h-4 text-background" />
+                </div>
+              </div>
+            </div>
+
+            <div className="text-center mb-6">
+              <p className="mb-2 text-xs font-bold uppercase tracking-[0.22em] text-secondary">
+                {selectedWorkshop.statusLabel}
+              </p>
+              <h2 className="text-2xl font-bold text-lighter mb-1">
+                {selectedWorkshop.title}
+              </h2>
+              <p className="text-secondary font-medium">
+                {selectedWorkshop.city}, {selectedWorkshop.region},{" "}
+                {selectedWorkshop.country}
+              </p>
+              <p className="mt-2 text-sm font-semibold text-lighter/80">
+                {selectedWorkshop.dateLabel}
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              <div className="bg-lighter/5 rounded-lg p-4">
+                <p className="text-lighter/50 text-sm mb-2">Workshop Details</p>
+                <p className="text-sm leading-relaxed text-lighter/80">
+                  {selectedWorkshop.description}
+                </p>
+              </div>
+
+              <div className="bg-lighter/5 rounded-lg p-4">
+                <p className="text-lighter/50 text-sm mb-2">What to Expect</p>
+                <ul className="flex flex-wrap gap-1.5">
+                  {selectedWorkshop.highlights.map((highlight) => (
+                    <li
+                      key={highlight}
+                      className="text-xs font-medium text-lighter bg-secondary/15 border border-secondary/30 rounded-full px-2.5 py-1"
+                    >
+                      {highlight}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <Button
+              className="mt-6 w-full bg-secondary hover:bg-secondary/90 text-background font-semibold"
+              asChild
+            >
+              <Link href="/workshops">View Workshops</Link>
+            </Button>
           </div>
         </div>
       )}
