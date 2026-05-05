@@ -207,7 +207,7 @@ const teacherLocations: TeacherProfile[] = [
       "Teacher-Gamer — Intro & Level 1",
       "Da Vinci Life Skills — Intro & Level 1",
     ],
-    avatar: "/teachers/dennis-grillo-de-albuquerque.jpg",
+    avatar: "/teachers/dennis-grillo-de-albuquerque.png",
     contactLinks: [
       { type: "linkedin", href: "https://www.linkedin.com/in/dennis-grillo-de-albuquerque-2b06079b/" },
       { type: "discord", href: "https://discord.com/users/488381757821812796" },
@@ -257,7 +257,7 @@ const teacherLocations: TeacherProfile[] = [
     certificates: [
       "Doctorate in Educational Leadership — secondary education & game-based learning; emphasis on skill acquisition through game-based learning",
     ],
-    avatar: "/teachers/kevin-jennings.jpg",
+    avatar: "/teachers/kevin-jennings.png",
     contactLinks: [
       { type: "email", href: "mailto:KJennigs1987@gmail.com" },
       { type: "linkedin", href: "https://www.linkedin.com/in/kevin-jennings-edd-198209a5/" },
