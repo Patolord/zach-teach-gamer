@@ -1,15 +1,27 @@
 "use client";
 
-import { ArrowLeft, ArrowRight, CalendarDays, ClipboardList, MapPin, Play, Star } from "lucide-react";
+import { getCalApi } from "@calcom/embed-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  CalendarDays,
+  ClipboardList,
+  MapPin,
+  Play,
+  Star,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
-import { getCalApi } from "@calcom/embed-react";
+import {
+  CAL_CONFIG,
+  getCalConfig,
+  getCalUIConfig,
+} from "@/components/home/calendar/cal-config";
 import { Button } from "@/components/ui/button";
-import { MEDIA } from "@/lib/media";
-import { CAL_CONFIG, getCalUIConfig, getCalConfig } from "@/components/home/calendar/cal-config";
 import { WORKSHOP_HOST_SURVEY_URL } from "@/config/surveys";
 import { workshopPosters } from "@/data/workshop-posters";
+import { MEDIA } from "@/lib/media";
 
 const calProps = {
   "data-cal-namespace": CAL_CONFIG.username,

@@ -7,7 +7,7 @@ export const workshopPosters = [
     height: 2133,
   },
   {
-    title: "GBET Workshop",
+    title: "Origins Game Fair 2026 - GBET Workshop",
     src: "/workshops/GBET-flyer.webp",
     alt: "GBET workshop flyer",
     width: 1545,
