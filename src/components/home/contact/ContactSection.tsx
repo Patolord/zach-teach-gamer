@@ -11,6 +11,14 @@ function DiscordIcon({ className }: { className?: string }) {
   );
 }
 
+function SubstackIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M22.539 8.242H1.461V5.406h21.079v2.836zM1.461 10.812V24L12 18.109 22.539 24V10.812H1.461zM22.539 0H1.461v2.836h21.079V0z" />
+    </svg>
+  );
+}
+
 interface ContactSectionProps {
   sectionIndex?: number;
 }
@@ -57,6 +65,13 @@ const socialLinks = [
     icon: DiscordIcon,
     hoverBg: "#5865F2",
     hoverShadow: "rgba(88,101,242,0.5)",
+  },
+  {
+    name: "Substack",
+    href: "https://zacharyreznichek.substack.com/subscribe",
+    icon: SubstackIcon,
+    hoverBg: "#FF6719",
+    hoverShadow: "rgba(255,103,25,0.5)",
   },
   {
     name: "TikTok",

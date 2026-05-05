@@ -1,7 +1,8 @@
 "use client";
 
-import { ArrowLeft, Award, Instagram, Linkedin, MapPin, X } from "lucide-react";
+import { ArrowLeft, Award, Instagram, Linkedin, Mail, MapPin, X } from "lucide-react";
 import Link from "next/link";
+import type { SVGProps } from "react";
 import { useEffect, useState } from "react";
 import {
   ComposableMap,
@@ -16,12 +17,52 @@ import { MEDIA } from "@/lib/media";
 // GeoJSON URL for world map
 const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
-const SOCIAL_PLATFORMS = [
-  { key: "instagram", label: "Instagram", icon: Instagram, base: "https://instagram.com/" },
-  { key: "linkedin", label: "LinkedIn", icon: Linkedin, base: "https://linkedin.com/in/" },
-] as const;
+type ContactLinkType = "instagram" | "linkedin" | "discord" | "email";
 
-type TeacherSocialOverrides = Partial<Record<(typeof SOCIAL_PLATFORMS)[number]["key"], string>>;
+type ContactLink = {
+  type: ContactLinkType;
+  href: string;
+};
+
+function DiscordIcon({ className, ...props }: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden
+      {...props}
+    >
+      <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z" />
+    </svg>
+  );
+}
+
+const CONTACT_LABEL: Record<ContactLinkType, string> = {
+  instagram: "Instagram",
+  linkedin: "LinkedIn",
+  discord: "Discord",
+  email: "Email",
+};
+
+function displayFirstName(fullName: string): string {
+  const parts = fullName.trim().split(/\s+/);
+  if (parts[0] === "Dr." && parts[1]) return parts[1];
+  return parts[0] ?? fullName;
+}
+
+function contactLinkIcon(link: ContactLink): typeof DiscordIcon | typeof Instagram | typeof Linkedin | typeof Mail {
+  switch (link.type) {
+    case "discord":
+      return DiscordIcon;
+    case "instagram":
+      return Instagram;
+    case "linkedin":
+      return Linkedin;
+    default:
+      return Mail;
+  }
+}
 
 interface TeacherProfile {
   id: number;
@@ -32,10 +73,43 @@ interface TeacherProfile {
   specialties: string[];
   certificates: string[];
   avatar: string;
-  social?: TeacherSocialOverrides;
+  contactLinks: ContactLink[];
 }
 
-// Real Teacher Gamer locations
+const ZACH_MAP_AVATAR = "/teachers/zachary-reznichek.png";
+
+const ZACH_CONTACT_LINKS: ContactLink[] = [
+  { type: "linkedin", href: "https://www.linkedin.com/in/zreznichek/" },
+  { type: "discord", href: "https://discord.gg/XxFWwRB4h" },
+  { type: "instagram", href: "https://www.instagram.com/teachergamerhandbook" },
+];
+
+const zachSpecialties: string[] = [
+  "Teacher Training",
+  "Curriculum Development",
+  "Social Emotional Learning (SEL)",
+  "Game-Based Learning (GBL)",
+  "Project Based Learning (PBL)",
+  "RPG-Based Facilitation",
+  "Improv Facilitation",
+  "Narrative Design",
+  "Professional DMing",
+  "Community Building",
+  "Corporate Training & Facilitation",
+  "Keynote Speaking",
+];
+
+const zachCertificates: string[] = [
+  "BS in Design",
+  "MA in Education",
+  "ESL Teaching Certificate",
+  "Mindfulness Training Certificate",
+  "Founder — Teacher-Gamer",
+  "Author — Teacher-Gamer Handbook",
+  "Co-Founder — Da Vinci Life Skills Curriculum",
+];
+
+// Real Teacher Gamer locations (MAP roster)
 const teacherLocations: TeacherProfile[] = [
   {
     id: 1,
@@ -70,10 +144,10 @@ const teacherLocations: TeacherProfile[] = [
       "Teacher-Gamer — Level 1",
     ],
     avatar: "/teachers/bruno-cobbi.jpg",
-    social: {
-      instagram: "https://www.instagram.com/brunocobbi?igsh=MTIzamZ6ZmNxZTdiYg==",
-      linkedin: "https://www.linkedin.com/in/brunocobbi",
-    },
+    contactLinks: [
+      { type: "instagram", href: "https://www.instagram.com/brunocobbi/" },
+      { type: "linkedin", href: "https://www.linkedin.com/in/brunocobbi/" },
+    ],
   },
   {
     id: 2,
@@ -81,31 +155,10 @@ const teacherLocations: TeacherProfile[] = [
     city: "Montreal",
     country: "Canada",
     coordinates: [-73.5673, 45.5017] as [number, number],
-    specialties: [
-      "Teacher Training",
-      "Curriculum Development",
-      "Social Emotional Learning (SEL)",
-      "Game-Based Learning (GBL)",
-      "Project Based Learning (PBL)",
-      "RPG-Based Facilitation",
-      "Improv Facilitation",
-      "Narrative Design",
-      "Professional DMing",
-      "Community Building",
-      "Corporate Training & Facilitation",
-      "Keynote Speaking",
-    ],
-    certificates: [
-      "BS in Design",
-      "MA in Education",
-      "ESL Teaching Certificate",
-      "Mindfulness Training Certificate",
-      "Founder — Teacher-Gamer",
-      "Author — Teacher-Gamer Handbook",
-      "Co-Founder — Da Vinci Life Skills Curriculum",
-    ],
-    avatar:
-      "https://api.dicebear.com/7.x/croodles-neutral/svg?seed=ZacharyReznichekMTL&backgroundColor=fef3c7,fde68a,fed7aa,fbcfe8,ddd6fe,bfdbfe",
+    specialties: [...zachSpecialties],
+    certificates: [...zachCertificates],
+    avatar: ZACH_MAP_AVATAR,
+    contactLinks: [...ZACH_CONTACT_LINKS],
   },
   {
     id: 3,
@@ -113,31 +166,10 @@ const teacherLocations: TeacherProfile[] = [
     city: "Bayonne",
     country: "France",
     coordinates: [-1.4748, 43.4929] as [number, number],
-    specialties: [
-      "Teacher Training",
-      "Curriculum Development",
-      "Social Emotional Learning (SEL)",
-      "Game-Based Learning (GBL)",
-      "Project Based Learning (PBL)",
-      "RPG-Based Facilitation",
-      "Improv Facilitation",
-      "Narrative Design",
-      "Professional DMing",
-      "Community Building",
-      "Corporate Training & Facilitation",
-      "Keynote Speaking",
-    ],
-    certificates: [
-      "BS in Design",
-      "MA in Education",
-      "ESL Teaching Certificate",
-      "Mindfulness Training Certificate",
-      "Founder — Teacher-Gamer",
-      "Author — Teacher-Gamer Handbook",
-      "Co-Founder — Da Vinci Life Skills Curriculum",
-    ],
-    avatar:
-      "https://api.dicebear.com/7.x/croodles-neutral/svg?seed=ZacharyReznichekBAY&backgroundColor=fef3c7,fde68a,fed7aa,fbcfe8,ddd6fe,bfdbfe",
+    specialties: [...zachSpecialties],
+    certificates: [...zachCertificates],
+    avatar: ZACH_MAP_AVATAR,
+    contactLinks: [...ZACH_CONTACT_LINKS],
   },
   {
     id: 4,
@@ -145,31 +177,10 @@ const teacherLocations: TeacherProfile[] = [
     city: "Los Angeles",
     country: "USA",
     coordinates: [-118.2437, 34.0522] as [number, number],
-    specialties: [
-      "Teacher Training",
-      "Curriculum Development",
-      "Social Emotional Learning (SEL)",
-      "Game-Based Learning (GBL)",
-      "Project Based Learning (PBL)",
-      "RPG-Based Facilitation",
-      "Improv Facilitation",
-      "Narrative Design",
-      "Professional DMing",
-      "Community Building",
-      "Corporate Training & Facilitation",
-      "Keynote Speaking",
-    ],
-    certificates: [
-      "BS in Design",
-      "MA in Education",
-      "ESL Teaching Certificate",
-      "Mindfulness Training Certificate",
-      "Founder — Teacher-Gamer",
-      "Author — Teacher-Gamer Handbook",
-      "Co-Founder — Da Vinci Life Skills Curriculum",
-    ],
-    avatar:
-      "https://api.dicebear.com/7.x/croodles-neutral/svg?seed=ZacharyReznichekLA&backgroundColor=fef3c7,fde68a,fed7aa,fbcfe8,ddd6fe,bfdbfe",
+    specialties: [...zachSpecialties],
+    certificates: [...zachCertificates],
+    avatar: ZACH_MAP_AVATAR,
+    contactLinks: [...ZACH_CONTACT_LINKS],
   },
   {
     id: 5,
@@ -192,43 +203,69 @@ const teacherLocations: TeacherProfile[] = [
       "Translation (EN → PT-BR → EN)",
     ],
     certificates: [
-      "BA in Nursing",
-      "Teacher-Gamer — Intro to Multiverse",
-      "Teacher-Gamer — Level 1",
-      "Da Vinci Life Skills — Intro",
-      "Da Vinci Life Skills — Level 1",
+      "BA Nursing",
+      "Teacher-Gamer — Intro & Level 1",
+      "Da Vinci Life Skills — Intro & Level 1",
     ],
-    avatar:
-      "https://api.dicebear.com/7.x/croodles-neutral/svg?seed=DennisGrilloJC&backgroundColor=fef3c7,fde68a,fed7aa,fbcfe8,ddd6fe,bfdbfe",
+    avatar: "/teachers/dennis-grillo-de-albuquerque.jpg",
+    contactLinks: [
+      { type: "linkedin", href: "https://www.linkedin.com/in/dennis-grillo-de-albuquerque-2b06079b/" },
+      { type: "discord", href: "https://discord.com/users/488381757821812796" },
+    ],
   },
   {
     id: 6,
-    name: "Dennis Grillo de Albuquerque",
-    city: "Pigeon Forge",
-    country: "USA",
-    coordinates: [-83.5545, 35.7884] as [number, number],
+    name: "Randy Ryes",
+    city: "Ubud",
+    country: "Indonesia",
+    coordinates: [115.2589, -8.5069] as [number, number],
     specialties: [
-      "Role-Playing Games",
-      "Teaching",
-      "Nursing",
+      "Lesson Plan Development",
+      "Social Emotional Learning (SEL)",
+      "Game-Based Learning (GBL)",
+      "Project Based Learning (PBL)",
+      "RPG-Based Facilitation",
+      "Improv Facilitation",
+      "Professional DMing",
+      "Community Building",
+      "Event Organising",
+      "Personal Logo Making Facilitation",
     ],
     certificates: [
-      "Teacher-Gamer Certified",
+      "NonViolent Communication — International Intensive Training",
+      "Teacher-Gamer — Intro, Level 1 & Level 2",
+      "Da Vinci Life Skills — Intro, Level 1 & Level 2",
     ],
-    avatar:
-      "https://api.dicebear.com/7.x/croodles-neutral/svg?seed=DennisGrilloPF&backgroundColor=fef3c7,fde68a,fed7aa,fbcfe8,ddd6fe,bfdbfe",
+    avatar: "/teachers/randy-ryes.png",
+    contactLinks: [
+      { type: "linkedin", href: "https://www.linkedin.com/in/randyryes/" },
+      { type: "instagram", href: "https://www.instagram.com/dnd_by.randys/" },
+    ],
+  },
+  {
+    id: 7,
+    name: "Dr. Kevin Jennings",
+    city: "Chickasha",
+    country: "USA",
+    coordinates: [-97.9364, 35.0526] as [number, number],
+    specialties: [
+      "Professor",
+      "Educational Leadership",
+      "Skill Acquisition",
+      "Game-Based Learning",
+    ],
+    certificates: [
+      "Doctorate in Educational Leadership — secondary education & game-based learning; emphasis on skill acquisition through game-based learning",
+    ],
+    avatar: "/teachers/kevin-jennings.jpg",
+    contactLinks: [
+      { type: "email", href: "mailto:KJennigs1987@gmail.com" },
+      { type: "linkedin", href: "https://www.linkedin.com/in/kevin-jennings-edd-198209a5/" },
+    ],
   },
 ];
 
 type Teacher = (typeof teacherLocations)[number];
-
-function getTeacherSocials(teacher: Teacher) {
-  const handle = teacher.name.toLowerCase().replace(/\s+/g, "");
-  return SOCIAL_PLATFORMS.map((platform) => ({
-    ...platform,
-    url: teacher.social?.[platform.key] ?? `${platform.base}${handle}`,
-  }));
-}
 
 interface Particle {
   left: string;
@@ -487,7 +524,7 @@ export default function TeachersMapPage() {
             {/* Details */}
             <div className="space-y-4">
               <div className="bg-lighter/5 rounded-lg p-4">
-                <p className="text-lighter/50 text-sm mb-2">Specialties</p>
+                <p className="text-lighter/50 text-sm mb-2">Specialties / Services</p>
                 <ul className="flex flex-wrap gap-1.5">
                   {selectedTeacher.specialties.map((item) => (
                     <li
@@ -528,22 +565,29 @@ export default function TeachersMapPage() {
               </div>
             </div>
 
-            {/* Social Links */}
+            {/* Contact links */}
             <div className="mt-6">
               <p className="text-lighter/50 text-sm mb-3 text-center">
-                Connect with {selectedTeacher.name.split(" ")[0]}
+                Connect with {displayFirstName(selectedTeacher.name)}
               </p>
               <ul className="flex items-center justify-center gap-3 flex-wrap">
-                {getTeacherSocials(selectedTeacher).map((social) => {
-                  const Icon = social.icon;
+                {selectedTeacher.contactLinks.map((link) => {
+                  const label = CONTACT_LABEL[link.type];
+                  const Icon = contactLinkIcon(link);
+                  const isEmail = link.type === "email";
                   return (
-                    <li key={social.key}>
+                    <li key={`${link.type}-${link.href}`}>
                       <a
-                        href={social.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`${selectedTeacher.name} on ${social.label}`}
-                        title={social.label}
+                        href={link.href}
+                        {...(isEmail
+                          ? {}
+                          : { target: "_blank", rel: "noopener noreferrer" })}
+                        aria-label={
+                          isEmail
+                            ? `Email ${selectedTeacher.name}`
+                            : `${selectedTeacher.name} on ${label}`
+                        }
+                        title={label}
                         className="group flex items-center justify-center w-11 h-11 rounded-full bg-lighter/5 border border-lighter/10 text-lighter/80 hover:text-background hover:bg-accent hover:border-accent transition-colors"
                       >
                         <Icon className="w-5 h-5" />

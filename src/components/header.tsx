@@ -15,6 +15,7 @@ const menu: MenuItem[] = [
   { title: "Training", href: "/home#courses-section" },
   { title: "Calendar", href: "/home#calendar-section" },
   { title: "Workshops", href: "/workshops" },
+  { title: "Partners", href: "/partners" },
   { title: "Map", href: "/map" },
   {
     title: "Media",

@@ -193,6 +193,20 @@ export default function SubstackSection({ sectionIndex }: Props) {
                 </div>
               </Link>
             ))}
+
+            <p className="text-center mt-10 pt-2">
+              <Link
+                href="https://zacharyreznichek.substack.com/subscribe"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block text-lg font-semibold underline-offset-4 decoration-2 transition-colors hover:underline"
+                style={{
+                  color: "var(--color-accent)",
+                }}
+              >
+                Subscribe to the TG Newsletter
+              </Link>
+            </p>
           </div>
         )}
       </div>

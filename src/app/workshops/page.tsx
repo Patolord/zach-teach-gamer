@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft, ArrowRight, CalendarDays, MapPin, Play, Send, Star } from "lucide-react";
+import { ArrowLeft, ArrowRight, CalendarDays, ClipboardList, MapPin, Play, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
@@ -8,6 +8,7 @@ import { getCalApi } from "@calcom/embed-react";
 import { Button } from "@/components/ui/button";
 import { MEDIA } from "@/lib/media";
 import { CAL_CONFIG, getCalUIConfig, getCalConfig } from "@/components/home/calendar/cal-config";
+import { WORKSHOP_HOST_SURVEY_URL } from "@/config/surveys";
 
 const calProps = {
   "data-cal-namespace": CAL_CONFIG.username,
@@ -138,36 +139,35 @@ export default function WorkshopsPage() {
           </div>
         </div>
 
-        {/* Bring the Tour to Your Town — slim CTA */}
+        {/* Host a workshop near you — survey bubble (Teacher-Gamer Tour) */}
         <div className="container mx-auto px-4 pb-16">
           <div className="max-w-4xl mx-auto">
+            <p className="text-xs font-bold uppercase tracking-widest text-accent/90 text-center mb-3">
+              Teacher-Gamer Tour
+            </p>
             <a
-              href="https://forms.gle/REPLACE_WITH_SURVEY_LINK"
+              href={WORKSHOP_HOST_SURVEY_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group block rounded-xl border border-accent/30 bg-white/5 backdrop-blur-sm hover:border-accent/60 hover:bg-white/[0.07] transition-all"
+              className="group flex flex-col sm:flex-row sm:items-center gap-5 rounded-xl border-2 border-primary-light/50 bg-white/10 px-5 py-6 sm:px-6 sm:py-7 backdrop-blur-sm transition-all duration-300 hover:border-accent hover:bg-accent hover:shadow-[0_0_24px_rgba(218,255,13,0.25)]"
             >
-              <div className="flex items-center gap-4 px-5 py-4 sm:px-6 sm:py-5">
-                <div className="shrink-0 w-11 h-11 rounded-lg bg-accent/15 border border-accent/30 flex items-center justify-center">
-                  <Send className="w-5 h-5 text-accent" />
-                </div>
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white/10 group-hover:bg-white/20">
+                <ClipboardList className="h-7 w-7 text-accent group-hover:text-background" />
+              </div>
 
-                <div className="flex-1 min-w-0">
-                  <p className="text-xs font-bold uppercase tracking-widest text-accent/80">
-                    Tour 2026
-                  </p>
-                  <p className="text-base sm:text-lg font-semibold text-white leading-snug">
-                    Bring the Teacher-Gamer Tour to your town
-                  </p>
-                  <p className="hidden sm:block text-sm text-white/50 mt-0.5">
-                    Tell us about your place — fill out a short survey.
-                  </p>
-                </div>
+              <div className="flex-1 min-w-0 space-y-2 text-center sm:text-left">
+                <p className="text-lg sm:text-xl font-bold leading-snug text-lighter group-hover:text-background">
+                  Do you want to host a workshop in your neck of the woods?
+                </p>
+                <p className="text-base leading-relaxed text-lighter/80 group-hover:text-background/95">
+                  Fill in this survey so we can have a conversation of how best to
+                  support your learning community.
+                </p>
+              </div>
 
-                <div className="shrink-0 inline-flex items-center gap-1.5 text-sm font-semibold text-accent group-hover:gap-2.5 transition-all">
-                  <span className="hidden sm:inline">Take the Survey</span>
-                  <ArrowRight className="w-4 h-4" />
-                </div>
+              <div className="flex shrink-0 items-center justify-center gap-2 text-sm font-bold text-accent group-hover:text-background">
+                <span>Open survey</span>
+                <ArrowRight className="h-5 w-5 shrink-0 transition-transform group-hover:translate-x-1 group-hover:text-background" />
               </div>
             </a>
           </div>
