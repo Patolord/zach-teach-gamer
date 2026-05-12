@@ -35,4 +35,18 @@ export const partnerOrganizations: PartnerEntry[] = [
     logoSrc: "/partners/upcraftcrew-logo.png",
     website: "https://upcraftcrew.com/",
   },
+  {
+    name: "GAIA Kids",
+    description:
+      "A global arts\u{2011}for\u{2011}impact initiative that empowers children to use creativity to spark social change, advocate for environmental justice, and build community through collaborative art projects.",
+    logoSrc: "/partners/gaia-kids-logo.png",
+    website: "https://gaiakids.net",
+  },
+  {
+    name: "RPG Dojo",
+    description:
+      "A digital community for studying, playing, chatting, and learning more about TTRPGs.",
+    logoSrc: "/partners/rpg-dojo-logo.jfif",
+    website: "https://rpgdojo.super.site/",
+  },
 ];
