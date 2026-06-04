@@ -14,6 +14,7 @@ import { getCalApi } from "@calcom/embed-react";
 import { Button } from "@/components/ui/button";
 import { MEDIA } from "@/lib/media";
 import { CAL_CONFIG, getCalUIConfig, getCalConfig } from "@/components/home/calendar/cal-config";
+import RandomTestimonialsGrid from "@/components/testimonials/RandomTestimonialsGrid";
 
 const courseFeatures = [
   "Align RPG campaigns with district learning standards",
@@ -87,12 +88,12 @@ export default function Level3PlanesWalkerPage() {
             <div className="space-y-6">
               <div className="flex gap-3 flex-wrap">
                 <div
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary-dark/20 border border-secondary-dark/30 text-secondary-dark"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-course-level-3/20 border border-course-level-3/30 text-course-level-3"
                 >
                   <GraduationCap className="w-4 h-4" />
                   <span className="text-sm font-semibold">Master Level</span>
                 </div>
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary-dark/10 border border-secondary-dark/20 text-white">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-course-level-3/10 border border-course-level-3/20 text-white">
                   <Award className="w-4 h-4" />
                   <span className="text-sm font-semibold">
                     Master Certification
@@ -112,34 +113,41 @@ export default function Level3PlanesWalkerPage() {
               {/* Course Stats */}
               <div className="flex flex-wrap gap-6 pt-4">
                 <div className="flex items-center gap-2 text-white/80">
-                  <Clock className="w-5 h-5 text-secondary-dark" />
+                  <Clock className="w-5 h-5 text-course-level-3" />
                   <span>16-20 weeks</span>
                 </div>
                 <div className="flex items-center gap-2 text-white/80">
-                  <Users className="w-5 h-5 text-secondary-dark" />
+                  <Users className="w-5 h-5 text-course-level-3" />
                   <span>Mentored implementation</span>
                 </div>
                 <div className="flex items-center gap-2 text-white/80">
-                  <Award className="w-5 h-5 text-secondary-dark" />
+                  <Award className="w-5 h-5 text-course-level-3" />
                   <span>Master Certification</span>
                 </div>
               </div>
             </div>
 
-            {/* Testimonials */}
+            <RandomTestimonialsGrid
+              count={2}
+              tags={["level-3", "training", "educator"]}
+              title="What Planes Walkers Are Saying"
+              iconClassName="w-6 h-6 text-course-level-3"
+              accentClassName="text-course-level-3"
+              borderClassName="border-course-level-3/20"
+            />
 
             {/* Prerequisites */}
-            <div className="bg-secondary-dark/10 backdrop-blur-sm rounded-xl p-6 border border-secondary-dark/30">
+            <div className="bg-course-level-3/10 backdrop-blur-sm rounded-xl p-6 border border-course-level-3/30">
               <p className="text-white/90">
-                <strong className="text-secondary-dark">Prerequisite:</strong>{" "}
+                <strong className="text-course-level-3">Prerequisite:</strong>{" "}
                 Level 2 TG World Builder Certificate and at least one year of
                 campaign experience
               </p>
             </div>
 
             {/* CTA */}
-            <div className="relative bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-10 border border-secondary-dark/30 overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-secondary-dark/5 via-transparent to-secondary-dark/10 pointer-events-none" />
+            <div className="relative bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-10 border border-course-level-3/30 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-course-level-3/5 via-transparent to-course-level-3/10 pointer-events-none" />
               <div className="relative flex flex-col md:flex-row items-center gap-8">
                 <div className="flex-1 text-center md:text-left">
                   <h3 className="text-2xl font-bold text-white mb-3">
@@ -150,15 +158,15 @@ export default function Level3PlanesWalkerPage() {
                   </p>
                   <div className="flex flex-wrap gap-4 justify-center md:justify-start text-sm text-white/60">
                     <span className="flex items-center gap-1.5">
-                      <CheckCircle className="w-4 h-4 text-secondary-dark" />
+                      <CheckCircle className="w-4 h-4 text-course-level-3" />
                       No commitment required
                     </span>
                     <span className="flex items-center gap-1.5">
-                      <Clock className="w-4 h-4 text-secondary-dark" />
+                      <Clock className="w-4 h-4 text-course-level-3" />
                       15-minute call
                     </span>
                     <span className="flex items-center gap-1.5">
-                      <GraduationCap className="w-4 h-4 text-secondary-dark" />
+                      <GraduationCap className="w-4 h-4 text-course-level-3" />
                       1-on-1 mentorship included
                     </span>
                   </div>
@@ -166,7 +174,7 @@ export default function Level3PlanesWalkerPage() {
                 <div className="shrink-0">
                   <Button
                     size="lg"
-                    className="text-lg font-bold text-white px-10 py-6 bg-secondary-dark hover:scale-105 transition-transform"
+                    className="text-lg font-bold text-white px-10 py-6 bg-course-level-3 hover:scale-105 transition-transform"
                     {...calProps}
                   >
                     Enroll Now
@@ -186,8 +194,8 @@ export default function Level3PlanesWalkerPage() {
                     key={title}
                     className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20"
                   >
-                    <div className="w-12 h-12 mb-4 rounded-full flex items-center justify-center bg-secondary-dark/20">
-                      <Icon className="w-6 h-6 text-secondary-dark" />
+                    <div className="w-12 h-12 mb-4 rounded-full flex items-center justify-center bg-course-level-3/20">
+                      <Icon className="w-6 h-6 text-course-level-3" />
                     </div>
                     <h3 className="text-xl font-bold text-white mb-2">
                       {title}
@@ -206,7 +214,7 @@ export default function Level3PlanesWalkerPage() {
                   {courseFeatures.map((feature) => (
                     <li key={feature} className="flex items-start gap-3">
                       <CheckCircle
-                        className="w-5 h-5 mt-0.5 shrink-0 text-secondary-dark"
+                        className="w-5 h-5 mt-0.5 shrink-0 text-course-level-3"
                       />
                       <span className="text-white/90">{feature}</span>
                     </li>
@@ -265,7 +273,7 @@ export default function Level3PlanesWalkerPage() {
                     <div className="flex items-center justify-between">
                       <div>
                         <p
-                          className="text-sm font-semibold mb-1 text-secondary-dark"
+                          className="text-sm font-semibold mb-1 text-course-level-3"
                         >
                           {module.module}
                         </p>
@@ -283,7 +291,7 @@ export default function Level3PlanesWalkerPage() {
             </div>
 
             {/* Final CTA */}
-            <div className="bg-gradient-to-br from-secondary-dark/20 to-transparent rounded-xl p-8 border border-secondary-dark/30 text-center space-y-6">
+            <div className="bg-gradient-to-br from-course-level-3/20 to-transparent rounded-xl p-8 border border-course-level-3/30 text-center space-y-6">
               <h2 className="text-3xl font-bold text-white">
                 Ready to Become a Master Teacher Gamer?
               </h2>
@@ -293,7 +301,7 @@ export default function Level3PlanesWalkerPage() {
               </p>
               <Button
                 size="lg"
-                className="text-lg font-bold text-white px-12 py-6 bg-secondary-dark"
+                className="text-lg font-bold text-white px-12 py-6 bg-course-level-3"
                 {...calProps}
               >
                 Enroll in Level 3 Certification

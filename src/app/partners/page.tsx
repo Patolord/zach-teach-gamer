@@ -60,17 +60,11 @@ export default function PartnersPage() {
             </p>
           ) : (
             <ul className="flex flex-wrap items-center justify-center gap-x-16 gap-y-12">
-              {partnerOrganizations.map((org) => (
-                <li key={org.name} className="w-full max-w-md">
-                  {org.website ? (
-                    <a
-                      href={org.website}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`Visit ${org.name}`}
-                      className="group block"
-                    >
-                      <div className="relative mx-auto h-32 w-full transition-transform duration-300 group-hover:scale-105 sm:h-40">
+              {partnerOrganizations.map((org) => {
+                const content = (
+                  <>
+                    {org.logoSrc ? (
+                      <div className="relative mx-auto h-32 w-full sm:h-40">
                         <div className="absolute inset-x-8 top-1/2 h-12 -translate-y-1/2 rounded-full bg-accent/20 blur-2xl transition-opacity duration-300 group-hover:opacity-80" />
                         <Image
                           src={org.logoSrc}
@@ -80,35 +74,44 @@ export default function PartnersPage() {
                           sizes="(max-width: 768px) 100vw, 384px"
                         />
                       </div>
+                    ) : (
+                      <div className="mx-auto flex h-32 w-full max-w-md items-center justify-center rounded-xl border border-dashed border-white/20 bg-white/5 px-6 sm:h-40">
+                        <p className="text-center text-2xl font-bold tracking-tight text-white/90 sm:text-3xl">
+                          {org.name}
+                        </p>
+                      </div>
+                    )}
+                    {org.logoSrc ? (
                       <p className="mt-4 text-center text-base font-semibold text-white/85 transition-colors group-hover:text-accent">
                         {org.name}
                       </p>
-                      <p className="mx-auto mt-2 max-w-md text-center text-sm leading-relaxed text-white/55 transition-colors group-hover:text-white/75">
-                        {org.description}
-                      </p>
-                    </a>
-                  ) : (
-                    <div className="relative mx-auto h-32 w-full sm:h-40">
-                      <div className="absolute inset-x-8 top-1/2 h-12 -translate-y-1/2 rounded-full bg-accent/20 blur-2xl" />
-                      <div className="relative h-full w-full">
-                        <Image
-                          src={org.logoSrc}
-                          alt={org.name}
-                          fill
-                          className={`object-contain drop-shadow-[0_16px_36px_rgba(0,0,0,0.55)] ${org.logoClassName ?? ""}`}
-                          sizes="(max-width: 768px) 100vw, 384px"
-                        />
-                      </div>
-                      <p className="mt-4 text-center text-base font-semibold text-white/85">
-                        {org.name}
-                      </p>
-                      <p className="mx-auto mt-2 max-w-md text-center text-sm leading-relaxed text-white/55">
-                        {org.description}
-                      </p>
-                    </div>
-                  )}
-                </li>
-              ))}
+                    ) : null}
+                    <p
+                      className={`mx-auto max-w-md text-center text-sm leading-relaxed text-white/55 transition-colors group-hover:text-white/75 ${org.logoSrc ? "mt-2" : "mt-4"}`}
+                    >
+                      {org.description}
+                    </p>
+                  </>
+                );
+
+                return (
+                  <li key={org.name} className="w-full max-w-md">
+                    {org.website ? (
+                      <a
+                        href={org.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Visit ${org.name}`}
+                        className="group block"
+                      >
+                        {content}
+                      </a>
+                    ) : (
+                      <div className="group block">{content}</div>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           )}
         </div>

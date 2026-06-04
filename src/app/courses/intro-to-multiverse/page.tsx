@@ -1,12 +1,13 @@
 "use client";
 
-import { ArrowLeft, Book, CheckCircle, Clock, Quote, Star, Users } from "lucide-react";
+import { ArrowLeft, Book, CheckCircle, Clock, Star, Users } from "lucide-react";
 import Link from "next/link";
 import { useEffect } from "react";
 import { getCalApi } from "@calcom/embed-react";
 import { Button } from "@/components/ui/button";
 import { MEDIA } from "@/lib/media";
 import { CAL_CONFIG, getCalUIConfig, getCalConfig } from "@/components/home/calendar/cal-config";
+import RandomTestimonialsGrid from "@/components/testimonials/RandomTestimonialsGrid";
 
 const calProps = {
   "data-cal-namespace": CAL_CONFIG.username,
@@ -79,7 +80,7 @@ export default function IntroToMultiversePage() {
             {/* Header Section */}
             <div className="space-y-6">
               <div
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 border border-accent/30 text-accent"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-course-intro/20 border border-course-intro/30 text-course-intro"
               >
                 <Star className="w-4 h-4" />
                 <span className="text-sm font-semibold">Beginner Level</span>
@@ -98,45 +99,32 @@ export default function IntroToMultiversePage() {
               {/* Course Stats */}
               <div className="flex flex-wrap gap-6 pt-4">
                 <div className="flex items-center gap-2 text-white/80">
-                  <Clock className="w-5 h-5 text-accent" />
+                  <Clock className="w-5 h-5 text-course-intro" />
                   <span>6-8 weeks</span>
                 </div>
                 <div className="flex items-center gap-2 text-white/80">
-                  <Users className="w-5 h-5 text-accent" />
+                  <Users className="w-5 h-5 text-course-intro" />
                   <span>Small group sessions</span>
                 </div>
                 <div className="flex items-center gap-2 text-white/80">
-                  <Book className="w-5 h-5 text-accent" />
+                  <Book className="w-5 h-5 text-course-intro" />
                   <span>Self-paced learning</span>
                 </div>
               </div>
             </div>
 
-            {/* Testimonials */}
-            <div className="space-y-6">
-              <h2 className="text-2xl font-bold text-white flex items-center gap-3">
-                <Quote className="w-6 h-6 text-accent" />
-                What Trainees Are Saying
-              </h2>
-              <div className="grid md:grid-cols-2 gap-5">
-                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-accent/20">
-                  <p className="text-white/90 italic mb-3 leading-relaxed text-sm">
-                    {`"Zach is incredibly patient and manages to break everything down into the manageable chunks each individual needs. He fosters a beautiful sense of belonging with the trainees."`}
-                  </p>
-                  <p className="text-accent font-semibold text-sm">— Beki Stoiber</p>
-                </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-accent/20">
-                  <p className="text-white/90 italic mb-3 leading-relaxed text-sm">
-                    {`"The way we create a character while learning is definitely unique... throughout the process, we not only develop a well-structured character but also gain valuable insights into SEL (Social Emotional Learning)."`}
-                  </p>
-                  <p className="text-accent font-semibold text-sm">— Eduardo Vancsek Andreoli</p>
-                </div>
-              </div>
-            </div>
+            <RandomTestimonialsGrid
+              count={2}
+              tags={["intro-multiverse", "training"]}
+              title="What Trainees Are Saying"
+              iconClassName="w-6 h-6 text-course-intro"
+              accentClassName="text-course-intro"
+              borderClassName="border-course-intro/20"
+            />
 
             {/* CTA */}
-            <div className="relative bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-10 border border-accent/30 overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-accent/10 pointer-events-none" />
+            <div className="relative bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-10 border border-course-intro/30 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-course-intro/5 via-transparent to-course-intro/10 pointer-events-none" />
               <div className="relative flex flex-col md:flex-row items-center gap-8">
                 <div className="flex-1 text-center md:text-left">
                   <h3 className="text-2xl font-bold text-white mb-3">
@@ -147,15 +135,15 @@ export default function IntroToMultiversePage() {
                   </p>
                   <div className="flex flex-wrap gap-4 justify-center md:justify-start text-sm text-white/60">
                     <span className="flex items-center gap-1.5">
-                      <CheckCircle className="w-4 h-4 text-accent" />
+                      <CheckCircle className="w-4 h-4 text-course-intro" />
                       No commitment required
                     </span>
                     <span className="flex items-center gap-1.5">
-                      <Clock className="w-4 h-4 text-accent" />
+                      <Clock className="w-4 h-4 text-course-intro" />
                       15-minute call
                     </span>
                     <span className="flex items-center gap-1.5">
-                      <Users className="w-4 h-4 text-accent" />
+                      <Users className="w-4 h-4 text-course-intro" />
                       Personalized guidance
                     </span>
                   </div>
@@ -163,7 +151,7 @@ export default function IntroToMultiversePage() {
                 <div className="shrink-0">
                   <Button
                     size="lg"
-                    className="text-lg font-bold text-black px-10 py-6 bg-accent hover:scale-105 transition-transform"
+                    className="text-lg font-bold text-black px-10 py-6 bg-course-intro hover:scale-105 transition-transform"
                     {...calProps}
                   >
                     Enroll Now
@@ -183,8 +171,8 @@ export default function IntroToMultiversePage() {
                     key={title}
                     className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20"
                   >
-                    <div className="w-12 h-12 mb-4 rounded-full flex items-center justify-center bg-accent/20">
-                      <Icon className="w-6 h-6 text-accent" />
+                    <div className="w-12 h-12 mb-4 rounded-full flex items-center justify-center bg-course-intro/20">
+                      <Icon className="w-6 h-6 text-course-intro" />
                     </div>
                     <h3 className="text-xl font-bold text-white mb-2">
                       {title}
@@ -203,7 +191,7 @@ export default function IntroToMultiversePage() {
                   {courseFeatures.map((feature) => (
                     <li key={feature} className="flex items-start gap-3">
                       <CheckCircle
-                        className="w-5 h-5 mt-0.5 shrink-0 text-accent"
+                        className="w-5 h-5 mt-0.5 shrink-0 text-course-intro"
                       />
                       <span className="text-white/90">{feature}</span>
                     </li>
@@ -247,7 +235,7 @@ export default function IntroToMultiversePage() {
                     <div className="flex items-center justify-between">
                       <div>
                         <p
-                          className="text-sm font-semibold mb-1 text-accent"
+                          className="text-sm font-semibold mb-1 text-course-intro"
                         >
                           {module.module}
                         </p>
@@ -265,7 +253,7 @@ export default function IntroToMultiversePage() {
             </div>
 
             {/* Final CTA */}
-            <div className="bg-gradient-to-br from-accent/20 to-transparent rounded-xl p-8 border border-accent/30 text-center space-y-6">
+            <div className="bg-gradient-to-br from-course-intro/20 to-transparent rounded-xl p-8 border border-course-intro/30 text-center space-y-6">
               <h2 className="text-3xl font-bold text-white">
                 Ready to Start Your Journey?
               </h2>
@@ -275,7 +263,7 @@ export default function IntroToMultiversePage() {
               </p>
               <Button
                 size="lg"
-                className="text-lg font-bold text-black px-12 py-6 bg-accent"
+                className="text-lg font-bold text-black px-12 py-6 bg-course-intro"
                 {...calProps}
               >
                 Enroll in Intro to Multiverse

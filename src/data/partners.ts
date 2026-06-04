@@ -5,8 +5,8 @@
 export type PartnerEntry = {
   name: string;
   description: string;
-  /** Path under `public/` e.g. `/partners/acme.png` */
-  logoSrc: string;
+  /** Path under `public/` e.g. `/partners/acme.png` — omit until logo is available */
+  logoSrc?: string;
   logoClassName?: string;
   website?: string;
 };
@@ -43,10 +43,24 @@ export const partnerOrganizations: PartnerEntry[] = [
     website: "https://gaiakids.net",
   },
   {
+    name: "Cultivate",
+    description:
+      "Cultivate is a small, empathic, research\u{2011}informed school for ages 6\u{2013}14 where learning through play, connection, creativity, and project\u{2011}based learning empowers children to belong, collaborate, and flourish as active participants in their own education.",
+    logoSrc: "/partners/cultivate-logo-bright.png",
+    logoClassName: "scale-90 drop-shadow-[0_0_20px_rgba(120,200,120,0.35)]",
+    website: "https://www.cultivatelearning.org.uk/",
+  },
+  {
+    name: "VitaEquilibrium",
+    description:
+      "VitaEquilibrium offers movement\u{2011}based, contemplative workshops and retreats\u{2014}rooted in somatic movement practices like 5Rhythms\u{2014}that help people cultivate balance, connection, and a more harmonious way of living.",
+  },
+  {
     name: "RPG Dojo",
     description:
       "A digital community for studying, playing, chatting, and learning more about TTRPGs.",
-    logoSrc: "/partners/rpg-dojo-logo.jfif",
+    logoSrc: "/partners/rpg-dojo-logo.png",
+    logoClassName: "scale-95",
     website: "https://rpgdojo.super.site/",
   },
 ];

@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { X } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 interface ModalProps {
   isOpen: boolean;
@@ -276,33 +278,53 @@ export default function Footer() {
 
   return (
     <>
-      <footer className="bg-gray-800 text-white py-8">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col items-center space-y-4">
-            <p className="text-center">
-              &copy; {new Date().getFullYear()} Teacher Gamer. All rights
-              reserved.
-            </p>
-            <div className="flex items-center gap-4 text-sm">
-              <button
-                onClick={() => setTermsOpen(true)}
-                className="text-gray-400 hover:text-white transition-colors underline-offset-2 hover:underline"
-              >
-                Terms of Service
-              </button>
-              <span className="text-gray-600">|</span>
-              <button
-                onClick={() => setPrivacyOpen(true)}
-                className="text-gray-400 hover:text-white transition-colors underline-offset-2 hover:underline"
-              >
-                Privacy Policy
-              </button>
-            </div>
-            {visitorCount !== null && (
-              <p className="text-xs text-gray-500">
-                {visitorCount.toLocaleString()} visitors
+      <footer className="bg-gray-800 text-white">
+        <div className="container mx-auto px-4 py-3 md:py-4">
+          <div className="relative flex flex-col items-center gap-2 md:flex-row md:items-center md:gap-3">
+            {/* Clears fixed tour poster (bottom-left); does not shift centered logo */}
+            <div className="hidden md:block w-20 shrink-0" aria-hidden />
+
+            <Link
+              href="/"
+              className="shrink-0 md:absolute md:left-1/2 md:top-1/2 md:z-10 md:-translate-x-1/2 md:-translate-y-1/2"
+              aria-label="Teacher Gamer Revolution — home"
+            >
+              <Image
+                src="/teacher-gamer-revolution-logo-transparent.png"
+                alt="Teacher Gamer Revolution"
+                width={1024}
+                height={265}
+                unoptimized
+                className="h-16 w-auto max-w-[min(95vw,40rem)] object-contain sm:h-[4.25rem] md:h-24 lg:h-28"
+              />
+            </Link>
+
+            <div className="flex w-full flex-col items-center gap-1 text-center md:ml-auto md:w-auto md:items-end md:text-right">
+              <p className="text-xs md:text-sm leading-snug">
+                &copy; {new Date().getFullYear()} Teacher Gamer. All rights
+                reserved.
               </p>
-            )}
+              <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-0.5 text-xs md:justify-end md:text-sm">
+                <button
+                  onClick={() => setTermsOpen(true)}
+                  className="text-gray-400 hover:text-white transition-colors underline-offset-2 hover:underline"
+                >
+                  Terms of Service
+                </button>
+                <span className="text-gray-600">|</span>
+                <button
+                  onClick={() => setPrivacyOpen(true)}
+                  className="text-gray-400 hover:text-white transition-colors underline-offset-2 hover:underline"
+                >
+                  Privacy Policy
+                </button>
+              </div>
+              {visitorCount !== null && (
+                <p className="text-xs text-gray-500">
+                  {visitorCount.toLocaleString()} visitors
+                </p>
+              )}
+            </div>
           </div>
         </div>
       </footer>

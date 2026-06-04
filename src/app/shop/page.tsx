@@ -13,6 +13,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import RandomTestimonialsShop from "@/components/testimonials/RandomTestimonialsShop";
 import { MEDIA } from "@/lib/media";
 
 const bookFeatures = [
@@ -254,115 +255,7 @@ export default function ShopPage() {
                 <span className="text-lighter"> Are Saying</span>
               </h2>
 
-              <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                {/* Goodreads Review - Jo Falk */}
-                <div className="flex flex-col backdrop-blur-sm rounded-xl p-6 bg-primary-subtle border-2 border-primary-light/25 shadow-[0_10px_30px_var(--color-primary-glow)]">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-2">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={`t1-${i}`} className="w-4 h-4 text-accent fill-accent" />
-                      ))}
-                    </div>
-                    <span className="text-xs text-lighter/50">Goodreads</span>
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-base italic mb-3 text-light">
-                      "This book is a labour of love and adventure! It is beautifully
-                      illustrated and has lots of detailed explanations and insight. As
-                      an educator, I see so many possibilities and positive ways role
-                      play games and Zach's way of working empowers kids."
-                    </p>
-                    <p className="text-sm italic mb-4 text-light">
-                      "My son has been playing role play games with Zach over the last
-                      few years and has grown as a thinker, strategist and in his
-                      creativity through his programme."
-                    </p>
-                  </div>
-                  <div className="flex items-center justify-between mt-auto">
-                    <p className="font-semibold text-lighter text-sm">
-                      - Jo Falk
-                    </p>
-                    <span className="text-xs text-lighter/40">Oct 2021</span>
-                  </div>
-                </div>
-
-                {/* Goodreads Review - Noan */}
-                <div className="flex flex-col backdrop-blur-sm rounded-xl p-6 bg-primary-subtle border-2 border-primary-light/25 shadow-[0_10px_30px_var(--color-primary-glow)]">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-2">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={`t2-${i}`} className="w-4 h-4 text-accent fill-accent" />
-                      ))}
-                    </div>
-                    <span className="text-xs text-lighter/50">Goodreads</span>
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-base italic mb-3 text-light">
-                      "As a teacher and a gamer (teacher-gamer) this handbook is a
-                      pretty amazing tome of knowledge. It covers so many elements of
-                      how to take the gaming experience and bring it into the classroom.
-                      Zach provides practical advice mixed with storytelling."
-                    </p>
-                    <p className="text-sm italic mb-4 text-light">
-                      "What Zach covers in detail is not only good ideas, rather a new
-                      approach to education. It takes the concept of gamification and
-                      flips it on its head... instead of thinking about what elements of
-                      games can be applied to learning, it asks one to think about the
-                      learning that happens while gaming."
-                    </p>
-                  </div>
-                  <div className="flex items-center justify-between mt-auto">
-                    <p className="font-semibold text-lighter text-sm">
-                      - Noan
-                    </p>
-                    <span className="text-xs text-lighter/40">Apr 2022</span>
-                  </div>
-                </div>
-
-                {/* Goodreads Review - Belinda Sircombe-Jellett */}
-                <div className="flex flex-col backdrop-blur-sm rounded-xl p-6 bg-primary-subtle border-2 border-primary-light/25 shadow-[0_10px_30px_var(--color-primary-glow)]">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-2">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={`t3-${i}`} className="w-4 h-4 text-accent fill-accent" />
-                      ))}
-                    </div>
-                    <span className="text-xs text-lighter/50">Goodreads</span>
-                  </div>
-                  <p className="text-base italic mb-4 text-light flex-1">
-                    "The depth of material, ideas, resources and detail in this book
-                    is staggering. I cannot begin to imagine the amount of time (in
-                    years) that has been dedicated to making such a comprehensive and
-                    well laid out guide to RPG's as this one. Very impressive."
-                  </p>
-                  <div className="flex items-center justify-between mt-auto">
-                    <p className="font-semibold text-lighter text-sm">
-                      - Belinda Sircombe-Jellett
-                    </p>
-                    <span className="text-xs text-lighter/40">Oct 2021</span>
-                  </div>
-                </div>
-                {/* DriveThruRPG Review - Bruno */}
-                <div className="md:col-span-3 max-w-2xl mx-auto backdrop-blur-sm rounded-xl p-6 bg-primary-subtle border-2 border-primary-light/25 shadow-[0_10px_30px_var(--color-primary-glow)]">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-2">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={`t4-${i}`} className="w-4 h-4 text-accent fill-accent" />
-                      ))}
-                    </div>
-                    <span className="text-xs text-lighter/50">DriveThruRPG</span>
-                  </div>
-                  <p className="text-base italic mb-4 text-light">
-                    {`"If you've ever believed RPGs could be more than "just a game," this book gives you the map to make that belief real. The Teacher Gamer Handbook isn't a manual to follow — it's an invitation to create, mess up, laugh, and learn alongside your student-players."`}
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <p className="font-semibold text-lighter text-sm">
-                      - Bruno
-                    </p>
-                    <span className="text-xs text-lighter/40">Nov 2025</span>
-                  </div>
-                </div>
-              </div>
+              <RandomTestimonialsShop />
             </div>
 
             {/* Products Section */}

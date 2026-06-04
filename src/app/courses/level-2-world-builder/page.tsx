@@ -6,7 +6,6 @@ import {
   Book,
   CheckCircle,
   Clock,
-  Quote,
   Sparkles,
   Users,
 } from "lucide-react";
@@ -16,6 +15,7 @@ import { getCalApi } from "@calcom/embed-react";
 import { Button } from "@/components/ui/button";
 import { MEDIA } from "@/lib/media";
 import { CAL_CONFIG, getCalUIConfig, getCalConfig } from "@/components/home/calendar/cal-config";
+import RandomTestimonialsGrid from "@/components/testimonials/RandomTestimonialsGrid";
 
 const courseFeatures = [
   "Design comprehensive campaign worlds",
@@ -89,12 +89,12 @@ export default function Level2WorldBuilderPage() {
             <div className="space-y-6">
               <div className="flex gap-3 flex-wrap">
                 <div
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-light/20 border border-primary-light/30 text-primary-light"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-course-level-2/20 border border-course-level-2/30 text-course-level-2"
                 >
                   <Sparkles className="w-4 h-4" />
                   <span className="text-sm font-semibold">Advanced Level</span>
                 </div>
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-light/10 border border-primary-light/20 text-white">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-course-level-2/10 border border-course-level-2/20 text-white">
                   <Award className="w-4 h-4" />
                   <span className="text-sm font-semibold">
                     Certification Course
@@ -114,47 +114,41 @@ export default function Level2WorldBuilderPage() {
               {/* Course Stats */}
               <div className="flex flex-wrap gap-6 pt-4">
                 <div className="flex items-center gap-2 text-white/80">
-                  <Clock className="w-5 h-5 text-primary-light" />
+                  <Clock className="w-5 h-5 text-course-level-2" />
                   <span>14-16 weeks</span>
                 </div>
                 <div className="flex items-center gap-2 text-white/80">
-                  <Users className="w-5 h-5 text-primary-light" />
+                  <Users className="w-5 h-5 text-course-level-2" />
                   <span>Cohort-based learning</span>
                 </div>
                 <div className="flex items-center gap-2 text-white/80">
-                  <Award className="w-5 h-5 text-primary-light" />
+                  <Award className="w-5 h-5 text-course-level-2" />
                   <span>Level 2 Certification</span>
                 </div>
               </div>
             </div>
 
-            {/* Testimonials */}
-            <div className="space-y-6">
-              <h2 className="text-2xl font-bold text-white flex items-center gap-3">
-                <Quote className="w-6 h-6 text-primary-light" />
-                What World Builders Are Saying
-              </h2>
-              <div className="grid md:grid-cols-1 gap-5">
-                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-primary-light/20">
-                  <p className="text-white/90 italic mb-3 leading-relaxed text-sm">
-                    {`"I have never had a training experience like this before. The integration of SEL into the lessons and the way broader discussions naturally arise from the simple goal of creating a character make this course truly different. I believe this approach is highly important because it helps us draw parallels between the emotional and social aspects of our lives and our characters' stories, making everything more fluid and offering new perspectives."`}
-                  </p>
-                  <p className="text-primary-light font-semibold text-sm">— Eduardo Vancsek Andreoli</p>
-                </div>
-              </div>
-            </div>
+            <RandomTestimonialsGrid
+              count={2}
+              tags={["level-2", "training"]}
+              title="What World Builders Are Saying"
+              iconClassName="w-6 h-6 text-course-level-2"
+              accentClassName="text-course-level-2"
+              borderClassName="border-course-level-2/20"
+              columns={1}
+            />
 
             {/* Prerequisites */}
-            <div className="bg-primary-light/10 backdrop-blur-sm rounded-xl p-6 border border-primary-light/30">
+            <div className="bg-course-level-2/10 backdrop-blur-sm rounded-xl p-6 border border-course-level-2/30">
               <p className="text-white/90">
-                <strong className="text-primary-light">Prerequisite:</strong>{" "}
+                <strong className="text-course-level-2">Prerequisite:</strong>{" "}
                 Level 1 TG Space-Holder Certificate or equivalent experience
               </p>
             </div>
 
             {/* CTA */}
-            <div className="relative bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-10 border border-primary-light/30 overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary-light/5 via-transparent to-primary-light/10 pointer-events-none" />
+            <div className="relative bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-10 border border-course-level-2/30 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-course-level-2/5 via-transparent to-course-level-2/10 pointer-events-none" />
               <div className="relative flex flex-col md:flex-row items-center gap-8">
                 <div className="flex-1 text-center md:text-left">
                   <h3 className="text-2xl font-bold text-white mb-3">
@@ -165,15 +159,15 @@ export default function Level2WorldBuilderPage() {
                   </p>
                   <div className="flex flex-wrap gap-4 justify-center md:justify-start text-sm text-white/60">
                     <span className="flex items-center gap-1.5">
-                      <CheckCircle className="w-4 h-4 text-primary-light" />
+                      <CheckCircle className="w-4 h-4 text-course-level-2" />
                       No commitment required
                     </span>
                     <span className="flex items-center gap-1.5">
-                      <Clock className="w-4 h-4 text-primary-light" />
+                      <Clock className="w-4 h-4 text-course-level-2" />
                       15-minute call
                     </span>
                     <span className="flex items-center gap-1.5">
-                      <Award className="w-4 h-4 text-primary-light" />
+                      <Award className="w-4 h-4 text-course-level-2" />
                       Project-based certification
                     </span>
                   </div>
@@ -181,7 +175,7 @@ export default function Level2WorldBuilderPage() {
                 <div className="shrink-0">
                   <Button
                     size="lg"
-                    className="text-lg font-bold text-white px-10 py-6 bg-primary-light hover:scale-105 transition-transform"
+                    className="text-lg font-bold text-white px-10 py-6 bg-course-level-2 hover:scale-105 transition-transform"
                     {...calProps}
                   >
                     Enroll Now
@@ -201,8 +195,8 @@ export default function Level2WorldBuilderPage() {
                     key={title}
                     className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20"
                   >
-                    <div className="w-12 h-12 mb-4 rounded-full flex items-center justify-center bg-primary-light/20">
-                      <Icon className="w-6 h-6 text-primary-light" />
+                    <div className="w-12 h-12 mb-4 rounded-full flex items-center justify-center bg-course-level-2/20">
+                      <Icon className="w-6 h-6 text-course-level-2" />
                     </div>
                     <h3 className="text-xl font-bold text-white mb-2">
                       {title}
@@ -221,7 +215,7 @@ export default function Level2WorldBuilderPage() {
                   {courseFeatures.map((feature) => (
                     <li key={feature} className="flex items-start gap-3">
                       <CheckCircle
-                        className="w-5 h-5 mt-0.5 shrink-0 text-primary-light"
+                        className="w-5 h-5 mt-0.5 shrink-0 text-course-level-2"
                       />
                       <span className="text-white/90">{feature}</span>
                     </li>
@@ -275,7 +269,7 @@ export default function Level2WorldBuilderPage() {
                     <div className="flex items-center justify-between">
                       <div>
                         <p
-                          className="text-sm font-semibold mb-1 text-primary-light"
+                          className="text-sm font-semibold mb-1 text-course-level-2"
                         >
                           {module.module}
                         </p>
@@ -293,7 +287,7 @@ export default function Level2WorldBuilderPage() {
             </div>
 
             {/* Final CTA */}
-            <div className="bg-gradient-to-br from-primary-light/20 to-transparent rounded-xl p-8 border border-primary-light/30 text-center space-y-6">
+            <div className="bg-gradient-to-br from-course-level-2/20 to-transparent rounded-xl p-8 border border-course-level-2/30 text-center space-y-6">
               <h2 className="text-3xl font-bold text-white">
                 Ready to Build Your World?
               </h2>
@@ -303,7 +297,7 @@ export default function Level2WorldBuilderPage() {
               </p>
               <Button
                 size="lg"
-                className="text-lg font-bold text-white px-12 py-6 bg-primary-light"
+                className="text-lg font-bold text-white px-12 py-6 bg-course-level-2"
                 {...calProps}
               >
                 Enroll in Level 2 Certification

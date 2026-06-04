@@ -6,7 +6,6 @@ import {
   Book,
   CheckCircle,
   Clock,
-  Quote,
   Star,
   Users,
 } from "lucide-react";
@@ -16,6 +15,7 @@ import { getCalApi } from "@calcom/embed-react";
 import { Button } from "@/components/ui/button";
 import { MEDIA } from "@/lib/media";
 import { CAL_CONFIG, getCalUIConfig, getCalConfig } from "@/components/home/calendar/cal-config";
+import RandomTestimonialsGrid from "@/components/testimonials/RandomTestimonialsGrid";
 
 const courseFeatures = [
   "Master out-game character development techniques",
@@ -89,12 +89,12 @@ export default function Level1SpaceHolderPage() {
             <div className="space-y-6">
               <div className="flex gap-3 flex-wrap">
                 <div
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/20 border border-secondary/30 text-secondary"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-course-level-1/20 border border-course-level-1/30 text-course-level-1"
                 >
                   <Star className="w-4 h-4" />
                   <span className="text-sm font-semibold">BEST VALUE</span>
                 </div>
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/10 border border-secondary/20 text-white">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-course-level-1/10 border border-course-level-1/20 text-white">
                   <Award className="w-4 h-4" />
                   <span className="text-sm font-semibold">
                     Certification Course
@@ -115,45 +115,32 @@ export default function Level1SpaceHolderPage() {
               {/* Course Stats */}
               <div className="flex flex-wrap gap-6 pt-4">
                 <div className="flex items-center gap-2 text-white/80">
-                  <Clock className="w-5 h-5 text-secondary" />
+                  <Clock className="w-5 h-5 text-course-level-1" />
                   <span>10-12 weeks</span>
                 </div>
                 <div className="flex items-center gap-2 text-white/80">
-                  <Users className="w-5 h-5 text-secondary" />
+                  <Users className="w-5 h-5 text-course-level-1" />
                   <span>Cohort-based learning</span>
                 </div>
                 <div className="flex items-center gap-2 text-white/80">
-                  <Award className="w-5 h-5 text-secondary" />
+                  <Award className="w-5 h-5 text-course-level-1" />
                   <span>Level 1 Certification</span>
                 </div>
               </div>
             </div>
 
-            {/* Testimonials */}
-            <div className="space-y-6">
-              <h2 className="text-2xl font-bold text-white flex items-center gap-3">
-                <Quote className="w-6 h-6 text-secondary" />
-                What Certified Educators Are Saying
-              </h2>
-              <div className="grid md:grid-cols-2 gap-5">
-                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-secondary/20">
-                  <p className="text-white/90 italic mb-3 leading-relaxed text-sm">
-                    {`"I really like the methods used so far. The way the discussions about various topics naturally emerge from simple concepts of character and world-building is highly effective for learning. I have received all the support I need. Zach is an excellent teacher, and everyone studying alongside me has been great as well."`}
-                  </p>
-                  <p className="text-secondary font-semibold text-sm">— Eduardo Vancsek Andreoli</p>
-                </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-secondary/20">
-                  <p className="text-white/90 italic mb-3 leading-relaxed text-sm">
-                    {`"The course provides a safe space where we can openly discuss emerging topics, be ourselves, and let emotions flow. We experience firsthand how emotional and social care is crucial and powerful for learning, as it is an integral part of the lessons."`}
-                  </p>
-                  <p className="text-secondary font-semibold text-sm">— Eduardo Vancsek Andreoli</p>
-                </div>
-              </div>
-            </div>
+            <RandomTestimonialsGrid
+              count={2}
+              tags={["level-1", "training"]}
+              title="What Certified Educators Are Saying"
+              iconClassName="w-6 h-6 text-course-level-1"
+              accentClassName="text-course-level-1"
+              borderClassName="border-course-level-1/20"
+            />
 
             {/* CTA */}
-            <div className="relative bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-10 border border-secondary/30 overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 via-transparent to-secondary/10 pointer-events-none" />
+            <div className="relative bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-10 border border-course-level-1/30 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-course-level-1/5 via-transparent to-course-level-1/10 pointer-events-none" />
               <div className="relative flex flex-col md:flex-row items-center gap-8">
                 <div className="flex-1 text-center md:text-left">
                   <h3 className="text-2xl font-bold text-white mb-3">
@@ -164,15 +151,15 @@ export default function Level1SpaceHolderPage() {
                   </p>
                   <div className="flex flex-wrap gap-4 justify-center md:justify-start text-sm text-white/60">
                     <span className="flex items-center gap-1.5">
-                      <CheckCircle className="w-4 h-4 text-secondary" />
+                      <CheckCircle className="w-4 h-4 text-course-level-1" />
                       No commitment required
                     </span>
                     <span className="flex items-center gap-1.5">
-                      <Clock className="w-4 h-4 text-secondary" />
+                      <Clock className="w-4 h-4 text-course-level-1" />
                       15-minute call
                     </span>
                     <span className="flex items-center gap-1.5">
-                      <Award className="w-4 h-4 text-secondary" />
+                      <Award className="w-4 h-4 text-course-level-1" />
                       Includes certification
                     </span>
                   </div>
@@ -180,7 +167,7 @@ export default function Level1SpaceHolderPage() {
                 <div className="shrink-0">
                   <Button
                     size="lg"
-                    className="text-lg font-bold text-white px-10 py-6 bg-secondary hover:scale-105 transition-transform"
+                    className="text-lg font-bold text-white px-10 py-6 bg-course-level-1 hover:scale-105 transition-transform"
                     {...calProps}
                   >
                     Enroll Now
@@ -200,8 +187,8 @@ export default function Level1SpaceHolderPage() {
                     key={title}
                     className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20"
                   >
-                    <div className="w-12 h-12 mb-4 rounded-full flex items-center justify-center bg-secondary/20">
-                      <Icon className="w-6 h-6 text-secondary" />
+                    <div className="w-12 h-12 mb-4 rounded-full flex items-center justify-center bg-course-level-1/20">
+                      <Icon className="w-6 h-6 text-course-level-1" />
                     </div>
                     <h3 className="text-xl font-bold text-white mb-2">
                       {title}
@@ -220,7 +207,7 @@ export default function Level1SpaceHolderPage() {
                   {courseFeatures.map((feature) => (
                     <li key={feature} className="flex items-start gap-3">
                       <CheckCircle
-                        className="w-5 h-5 mt-0.5 shrink-0 text-secondary"
+                        className="w-5 h-5 mt-0.5 shrink-0 text-course-level-1"
                       />
                       <span className="text-white/90">{feature}</span>
                     </li>
@@ -269,7 +256,7 @@ export default function Level1SpaceHolderPage() {
                     <div className="flex items-center justify-between">
                       <div>
                         <p
-                          className="text-sm font-semibold mb-1 text-secondary"
+                          className="text-sm font-semibold mb-1 text-course-level-1"
                         >
                           {module.module}
                         </p>
@@ -287,7 +274,7 @@ export default function Level1SpaceHolderPage() {
             </div>
 
             {/* Final CTA */}
-            <div className="bg-gradient-to-br from-secondary/20 to-transparent rounded-xl p-8 border border-secondary/30 text-center space-y-6">
+            <div className="bg-gradient-to-br from-course-level-1/20 to-transparent rounded-xl p-8 border border-course-level-1/30 text-center space-y-6">
               <h2 className="text-3xl font-bold text-white">
                 Ready to Get Certified?
               </h2>
@@ -297,7 +284,7 @@ export default function Level1SpaceHolderPage() {
               </p>
               <Button
                 size="lg"
-                className="text-lg font-bold text-white px-12 py-6 bg-secondary"
+                className="text-lg font-bold text-white px-12 py-6 bg-course-level-1"
                 {...calProps}
               >
                 Enroll in Level 1 Certification

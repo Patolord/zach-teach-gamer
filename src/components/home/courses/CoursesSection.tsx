@@ -4,50 +4,14 @@ import { MapPin, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { MEDIA } from "@/lib/media";
 import ShinyText from "@/components/ui/shinytext";
+import { homeCourseCards } from "@/data/course-themes";
 import EletricCard from "./EletricCard";
-
-// Using global CSS theme variables
 
 interface CoursesSectionProps {
   sectionIndex?: number;
 }
 
 export default function CoursesSection({ sectionIndex }: CoursesSectionProps) {
-  const courses = [
-    {
-      title: "Intro to Multiverse",
-      description:
-        "Get an introduction to how RPGs and the multiverse can drive adult readiness through PBL and SEL as we work through the 13 Phases of Character Building.",
-      color: "var(--color-accent)",
-      href: "/courses/intro-to-multiverse",
-      diceImage: "/dices/dice-blue.webp",
-    },
-    {
-      title: "Level 1 TG Space-Holder Certificate Course",
-      description:
-        "Learn to move from out-game character development to in-game role-playing and run a pilot to get teacher gamer level one certified.",
-      color: "var(--color-secondary)",
-      badge: "BEST VALUE",
-      href: "/courses/level-1-space-holder",
-      diceImage: "/dices/dice-purple.webp",
-    },
-    {
-      title: "Level 2 TG World Builder Certificate Course",
-      description:
-        "Build & implement your own campaign world. Uncharted territory: New stories, creatures, magic & tech",
-      color: "var(--color-primary-light)",
-      href: "/courses/level-2-world-builder",
-      diceImage: "/dices/dice-green.webp",
-    },
-    {
-      title: "Level 3 TG Planes Walker Certificate Course",
-      description:
-        "Integrate your own RPG campaigns into your local school system's learning objectives with guidance",
-      color: "var(--color-secondary-dark)",
-      href: "/courses/level-3-planes-walker",
-      diceImage: "/dices/dice-yellow.webp",
-    },
-  ];
 
   return (
     <section
@@ -98,9 +62,9 @@ export default function CoursesSection({ sectionIndex }: CoursesSectionProps) {
           data-animate-stagger
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto"
         >
-          {courses.map((course) => (
+          {homeCourseCards.map((course) => (
             <EletricCard
-              key={course.title}
+              key={course.id}
               title={course.title}
               description={course.description}
               color={course.color}

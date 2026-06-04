@@ -1,6 +1,7 @@
 "use client";
 
 import { ChevronRight, Loader2, Swords } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import ScrambledText from "@/components/shared/ScrambledText";
@@ -34,8 +35,17 @@ export default function LandingContent({
         </Link>
       ) : null}
 
-      <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-center text-white px-2 sm:px-5 leading-tight text-shadow-hero">
-        Teacher Gamer Revolution
+      <h1 className="w-full max-w-4xl px-2 sm:px-5">
+        <Image
+          src="/teacher-gamer-revolution-logo-transparent.png"
+          alt="Teacher Gamer Revolution"
+          width={1024}
+          height={265}
+          priority
+          unoptimized
+          className="w-full h-auto object-contain"
+          sizes="(max-width: 640px) 90vw, (max-width: 1024px) 80vw, 896px"
+        />
       </h1>
 
       <div className="pb-30 text-lg sm:text-xl md:text-2xl px-2 text-center text-shadow-subtitle flex flex-col gap-2">

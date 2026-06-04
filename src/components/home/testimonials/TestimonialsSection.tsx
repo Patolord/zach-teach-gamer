@@ -1,228 +1,247 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MEDIA } from "@/lib/media";
+import { pickUniqueRandomTestimonials } from "@/lib/testimonials";
 import ShinyText from "@/components/ui/shinytext";
 import "./Testimonials.css";
 
-// Using global CSS theme variables
-
-type message = {
+type TextMarqueeItem = {
   id: number;
-  text?: string;
-  handle?: string;
-  image?: string;
+  kind: "text";
+  text: string;
+  handle: string;
 };
+
+type ImageMarqueeItem = {
+  id: number;
+  kind: "image";
+  image: string;
+};
+
+type MarqueeItem = TextMarqueeItem | ImageMarqueeItem;
 
 interface TestimonialsProps {
   sectionIndex?: number;
 }
 
-const Testimonials = ({ sectionIndex }: TestimonialsProps) => {
-  const [modalMessage, setModalMessage] = useState<message | null>(null);
+const IMAGE_CARDS: ImageMarqueeItem[] = [
+  { id: 9001, kind: "image", image: MEDIA.testimonials.testimonial1 },
+  { id: 9002, kind: "image", image: MEDIA.testimonials.testimonial2 },
+  { id: 9003, kind: "image", image: MEDIA.testimonials.testimonial3 },
+];
 
-  const messages = [
-    {
-      id: 1,
-      text: "Our son Hartley has a greater level of confidence in his skill to take initiative and control over his actions. He also notices that he has a more active and aware mind after the class since he is making choices constantly. The focus and effort that is put towards the development of his character has deepened his awareness of himself and his ability to articulate this in his writing and imaginative play both at home and at school. In an age where devices have taken over, we have been privileged to find a program that both honors and endorses the deep reservoir of the human imagination",
+function interleaveTextAndImages(
+  texts: TextMarqueeItem[],
+  images: ImageMarqueeItem[],
+): MarqueeItem[] {
+  if (!images.length) return texts;
 
-      handle: "@Heidi (mother of Hartley age 12)",
-    },
-    {
-      id: 2,
-      text: "It’s really interesting to adapt your play-style to your characters, especially as they sometimes contrast your own personality. Though the game is based around fantasy, you end up learning how to think realistically and critically. Honestly, my only complaint is that the classes don’t go on for longer. [classes are 4 hours long]",
-      handle: "@Shanti (age 15)",
-    },
-    {
-      id: 3,
-      image: MEDIA.testimonials.testimonial1,
-    },
-    {
-      id: 4,
-      text: "I learnt the importance of evaluating a situation before jumping to conclusions, the helpfulness of working with others whom have skills I do not possess, and how fun it is to blindly run into the hands of danger. It’s a blanket of fun, wrapped in a layer of unsuspecting danger, and bundled, finally, in a…",
-      handle: "@Kaesha (homeschooler)",
-    },
-    {
-      id: 5,
-      text: "I love going on an adventure and discovering new things. It’s fun. You can use spells, craft and fight. You’ll probably freak out when you die",
-      handle: "@Eron (age 10)",
-    },
-    {
-      id: 6,
-      image: MEDIA.testimonials.testimonial2,
-    },
-    {
-      id: 7,
-      text: "It’s fun and we learn lots of things, like strategy, team work, assessing the situation and making terrains",
-      handle: "@Julian (age 10)",
-    },
-    {
-      id: 8,
-      text: "I learned to try new things. Originally I thought I would not like this thematic but actually I learnt a lot about trying new things",
-      handle: "@Eve (age 12)",
-    },
-    {
-      id: 9,
-      image: MEDIA.testimonials.testimonial3,
-    },
+  const result: MarqueeItem[] = [];
+  const gap = Math.max(2, Math.floor(texts.length / images.length));
+  let textIndex = 0;
+
+  for (let imageIndex = 0; imageIndex < images.length; imageIndex += 1) {
+    for (let n = 0; n < gap && textIndex < texts.length; n += 1) {
+      result.push(texts[textIndex]);
+      textIndex += 1;
+    }
+    result.push(images[imageIndex]);
+  }
+
+  while (textIndex < texts.length) {
+    result.push(texts[textIndex]);
+    textIndex += 1;
+  }
+
+  return result;
+}
+
+function buildMarqueeRows(): { row1: MarqueeItem[]; row2: MarqueeItem[] } {
+  const textCards: TextMarqueeItem[] = pickUniqueRandomTestimonials(11, [
+    "marquee",
+  ]).map((item, index) => ({
+    id: index + 1,
+    kind: "text" as const,
+    text: item.quote,
+    handle: item.author,
+  }));
+
+  // Top row: text → 3 photos side by side → text
+  const row1: MarqueeItem[] = [
+    ...textCards.slice(0, 3),
+    ...IMAGE_CARDS,
+    ...textCards.slice(3, 7),
   ];
 
-  const row1Messages = messages.slice(0, 5);
-  const row2Messages = messages.slice(5, 9);
+  // Bottom row: remaining quotes woven with photos
+  const row2 = interleaveTextAndImages(
+    textCards.slice(7),
+    [...IMAGE_CARDS].reverse(),
+  );
 
-  const imageCardClass =
-    "shrink-0 w-[380px] min-h-[120px] md:w-[320px] md:min-h-[110px] border-2 rounded-2xl overflow-hidden cursor-pointer will-change-transform transition-all duration-200 ease-in-out hover:-translate-y-1 relative";
+  return { row1, row2 };
+}
 
+const cardShell =
+  "shrink-0 w-[300px] min-h-[180px] sm:w-[340px] sm:min-h-[200px] rounded-2xl border-2 transition-transform duration-200 ease-in-out hover:-translate-y-1";
 
-  const MessageCard = ({ message }: { message: message }) => {
-    if (message.image) {
-      return (
-        <div 
-          className={imageCardClass}
-          style={{
-            borderColor: "var(--color-accent)",
-            boxShadow: "0 4px 12px var(--color-primary-glow)",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.boxShadow = "0 6px 20px var(--color-accent-glow), 0 0 30px var(--color-primary-glow)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.boxShadow = "0 4px 12px var(--color-primary-glow)";
-          }}
-        >
-          <Image
-            src={message.image}
-            alt="Testimonial"
-            fill
-            className="object-cover"
-          />
-        </div>
-      );
-    }
+function TextCard({
+  item,
+  onReadMore,
+}: {
+  item: TextMarqueeItem;
+  onReadMore: (item: TextMarqueeItem) => void;
+}) {
+  const MAX_LENGTH = 200;
+  const needsTruncation = item.text.length > MAX_LENGTH;
+  const displayText = needsTruncation
+    ? `${item.text.slice(0, MAX_LENGTH)}...`
+    : item.text;
 
-    const MAX_LENGTH = 200;
-    const needsTruncation = message.text && message.text.length > MAX_LENGTH;
-    const displayText = needsTruncation
-      ? `${message.text?.substring(0, MAX_LENGTH)}...`
-      : message.text;
-
-    return (
-      <button
-        type="button"
-        onClick={() => needsTruncation && setModalMessage(message)}
-        disabled={!needsTruncation}
-        className="shrink-0 w-[380px] min-h-[120px] md:w-[320px] md:min-h-[110px] md:p-5 rounded-2xl p-6 cursor-pointer whitespace-normal will-change-transform transition-all duration-200 ease-in-out hover:-translate-y-1 disabled:cursor-default text-left backdrop-blur-sm"
-        style={{
-          backgroundColor: 'rgba(0, 0, 0, 0.3)',
-          borderColor: "var(--color-primary-light)",
-          borderWidth: '2px',
-          boxShadow: "0 4px 12px var(--color-primary-glow)",
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-          e.currentTarget.style.borderColor = "var(--color-accent)";
-          e.currentTarget.style.boxShadow = "0 6px 20px var(--color-accent-glow), 0 0 30px var(--color-primary-glow)";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
-          e.currentTarget.style.borderColor = "var(--color-primary-light)";
-          e.currentTarget.style.boxShadow = "0 4px 12px var(--color-primary-glow)";
-        }}
+  return (
+    <button
+      type="button"
+      onClick={() => needsTruncation && onReadMore(item)}
+      disabled={!needsTruncation}
+      className={`${cardShell} cursor-pointer p-5 text-left backdrop-blur-sm disabled:cursor-default sm:p-6`}
+      style={{
+        backgroundColor: "rgba(0, 0, 0, 0.35)",
+        borderColor: "var(--color-primary-light)",
+        boxShadow: "0 4px 12px var(--color-primary-glow)",
+      }}
+    >
+      <p
+        className="m-0 grow text-[0.95rem] leading-relaxed whitespace-normal"
+        style={{ color: "var(--color-lighter)" }}
       >
-        <div className="flex flex-col gap-4 h-full">
-          <p 
-            className="text-[0.95rem] leading-[1.6] m-0 grow whitespace-normal"
-            style={{ color: "var(--color-lighter)" }}
+        {displayText}
+        {needsTruncation ? (
+          <span
+            className="ml-2 font-semibold"
+            style={{ color: "var(--color-accent)" }}
           >
-            {displayText}
-            {needsTruncation && (
-              <span 
-                className="ml-2 font-semibold"
-                style={{ color: "var(--color-accent)" }}
-              >
-                Read more
-              </span>
-            )}
-          </p>
-          <div className="flex items-center gap-3">
-            <span 
-              className="text-sm font-medium"
-              style={{ color: "var(--color-lighter)" }}
-            >
-              {message.handle}
-            </span>
-          </div>
-        </div>
-      </button>
-    );
-  };
+            Read more
+          </span>
+        ) : null}
+      </p>
+      <p
+        className="mt-4 text-sm font-medium"
+        style={{ color: "var(--color-lighter)" }}
+      >
+        {item.handle}
+      </p>
+    </button>
+  );
+}
 
-  const MarqueeRow = ({
-    messages,
-    direction = "left",
-    speed = 30,
-  }: {
-    messages: message[];
-    direction: "left" | "right";
-    speed: number;
-  }) => {
-    const duplicatedMessages = [...messages, ...messages];
+function ImageCard({ item }: { item: ImageMarqueeItem }) {
+  return (
+    <div
+      className={`${cardShell} relative overflow-hidden`}
+      style={{
+        borderColor: "var(--color-accent)",
+        boxShadow: "0 4px 12px var(--color-primary-glow)",
+      }}
+    >
+      <Image
+        src={item.image}
+        alt="Testimonial"
+        fill
+        className="object-cover"
+        sizes="340px"
+      />
+    </div>
+  );
+}
 
-    return (
-      <div className="w-full overflow-visible relative mb-5 py-[2px] last:mb-0">
-        <div
-          className={`testimonial-marquee testimonial-marquee-${direction}`}
-          style={{ animationDuration: `${speed}s`, willChange: "transform" }}
-        >
-          {duplicatedMessages.map((message, index) => (
-            <MessageCard key={`${message.id}-${index}`} message={message} />
-          ))}
-        </div>
+function MarqueeRow({
+  items,
+  direction,
+  speed,
+  onReadMore,
+}: {
+  items: MarqueeItem[];
+  direction: "left" | "right";
+  speed: number;
+  onReadMore: (item: TextMarqueeItem) => void;
+}) {
+  if (!items.length) return null;
+
+  const track = [...items, ...items];
+
+  return (
+    <div className="w-full overflow-hidden py-1">
+      <div
+        className={`testimonial-marquee testimonial-marquee-${direction}`}
+        style={{ animationDuration: `${speed}s` }}
+      >
+        {track.map((item, index) =>
+          item.kind === "image" ? (
+            <ImageCard key={`${item.id}-${index}`} item={item} />
+          ) : (
+            <TextCard
+              key={`${item.id}-${index}`}
+              item={item}
+              onReadMore={onReadMore}
+            />
+          ),
+        )}
       </div>
-    );
-  };
+    </div>
+  );
+}
+
+const Testimonials = ({ sectionIndex }: TestimonialsProps) => {
+  const [modalItem, setModalItem] = useState<TextMarqueeItem | null>(null);
+  const [row1, setRow1] = useState<MarqueeItem[]>([]);
+  const [row2, setRow2] = useState<MarqueeItem[]>([]);
+
+  useEffect(() => {
+    const { row1: r1, row2: r2 } = buildMarqueeRows();
+    setRow1(r1);
+    setRow2(r2);
+  }, []);
 
   return (
     <section
       id="testimonials-section"
       data-scroll-section={sectionIndex}
-      className="w-full pt-28 relative overflow-x-hidden pb-60"
+      className="relative w-full overflow-x-hidden pt-28 pb-40"
     >
-      {/* Background image */}
       <div
-        className="absolute inset-0 bg-cover bg-no-repeat bg-center"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url('${MEDIA.backgrounds.testimonials}')` }}
       />
-      {/* 40% black overlay */}
-      <div 
-        className="absolute inset-0" 
+      <div
+        className="absolute inset-0"
         style={{ backgroundColor: "rgba(26, 26, 31, 0.4)" }}
       />
 
-      {/* Top horizontal transition element */}
-      <div 
-        className="absolute top-0 left-0 right-0 h-px opacity-60 z-10"
+      <div
+        className="absolute top-0 right-0 left-0 z-10 h-px opacity-60"
         style={{
-          background: "linear-gradient(to right, transparent, var(--color-accent), var(--color-secondary), var(--color-accent), transparent)"
+          background:
+            "linear-gradient(to right, transparent, var(--color-accent), var(--color-secondary), var(--color-accent), transparent)",
         }}
       />
-      <div 
-        className="absolute top-0 left-0 right-0 h-24 pointer-events-none z-10"
+      <div
+        className="pointer-events-none absolute top-0 right-0 left-0 z-10 h-24"
         style={{
-          background: "linear-gradient(to bottom, var(--color-secondary-soft), transparent)"
+          background:
+            "linear-gradient(to bottom, var(--color-secondary-soft), transparent)",
         }}
       />
 
-      {/* Content */}
-      <div data-section-content className="max-w-7xl mx-auto relative z-10">
-        <div data-animate className="text-center mb-12">
-          <h3 className="text-4xl font-semibold tracking-tight mb-4 text-center inline-block whitespace-nowrap">
+      <div data-section-content className="relative z-20 mx-auto max-w-7xl px-4">
+        <div className="relative z-20 mb-12 text-center">
+          <h3 className="text-4xl font-semibold tracking-tight text-accent">
             <ShinyText
               speed={3}
-              delay={1}
-              color={"var(--color-accent)"}
-              shineColor="#fff"
+              delay={0}
+              color="var(--color-accent)"
+              shineColor="#ffffff"
               spread={30}
               yoyo
             >
@@ -231,75 +250,80 @@ const Testimonials = ({ sectionIndex }: TestimonialsProps) => {
           </h3>
         </div>
 
-        <div className="relative w-full max-w-[1500px] mx-auto overflow-hidden before:content-[''] before:absolute before:inset-y-0 before:left-0 before:w-[200px] before:z-10 before:pointer-events-none before:bg-gradient-to-r before:from-black before:to-transparent after:content-[''] after:absolute after:inset-y-0 after:right-0 after:w-[200px] after:z-10 after:pointer-events-none after:bg-gradient-to-l after:from-black after:to-transparent">
-          <MarqueeRow messages={row1Messages} direction="left" speed={40} />
-          <MarqueeRow messages={row2Messages} direction="right" speed={35} />
-        </div>
-
-        <div className="mt-20 max-w-4xl mx-auto px-6">
-          <p 
-            className="text-base md:text-lg leading-relaxed text-center"
-            style={{ color: "var(--color-lighter)" }}
-          >
-            Because young people learn best when they feel safe, seen, and engaged in something that matters. The 11–14 window is a time of explosive curiosity—kids are little scientists and emerging adventurers, testing ideas and searching for who they are. Yet too often, school narrows that curiosity into performance metrics and pressure. Teacher-Gamer exists to change that. We help educators create face-to-face, story-rich learning environments where students build identity, confidence, and social-emotional skills through collaborative play. When learning feels like an adventure, kids don't check out—they lean in.
-          </p>
+        <div className="relative mx-auto w-full max-w-[1500px] overflow-hidden mask-[linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
+          <div className="flex flex-col gap-5">
+            <MarqueeRow
+              items={row1}
+              direction="left"
+              speed={55}
+              onReadMore={setModalItem}
+            />
+            <MarqueeRow
+              items={row2}
+              direction="right"
+              speed={50}
+              onReadMore={setModalItem}
+            />
+          </div>
         </div>
       </div>
 
-      {/* Bottom horizontal transition element */}
-      <div 
-        className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none z-10"
+      <div
+        className="pointer-events-none absolute right-0 bottom-0 left-0 z-10 h-24"
         style={{
-          background: "linear-gradient(to top, var(--color-secondary-soft), transparent)"
+          background:
+            "linear-gradient(to top, var(--color-secondary-soft), transparent)",
         }}
       />
-      <div 
-        className="absolute bottom-0 left-0 right-0 h-px opacity-60 z-10"
+      <div
+        className="absolute right-0 bottom-0 left-0 z-10 h-px opacity-60"
         style={{
-          background: "linear-gradient(to right, transparent, var(--color-accent), var(--color-secondary), var(--color-accent), transparent)"
+          background:
+            "linear-gradient(to right, transparent, var(--color-accent), var(--color-secondary), var(--color-accent), transparent)",
         }}
       />
 
-      {/* Testimonial Modal */}
-      {modalMessage && (
+      {modalItem ? (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <button
             type="button"
             aria-label="Close"
-            className="absolute inset-0 bg-black/70 backdrop-blur-sm cursor-default"
-            onClick={() => setModalMessage(null)}
+            className="absolute inset-0 cursor-default bg-black/70 backdrop-blur-sm"
+            onClick={() => setModalItem(null)}
           />
           <div
-            className="relative max-w-lg w-full rounded-2xl p-8 backdrop-blur-md border-2"
+            className="relative w-full max-w-lg rounded-2xl border-2 p-8 backdrop-blur-md"
             style={{
               backgroundColor: "rgba(26, 26, 31, 0.95)",
               borderColor: "var(--color-accent)",
-              boxShadow: "0 8px 40px var(--color-accent-glow), 0 0 60px var(--color-primary-glow)",
+              boxShadow:
+                "0 8px 40px var(--color-accent-glow), 0 0 60px var(--color-primary-glow)",
             }}
           >
             <button
               type="button"
-              onClick={() => setModalMessage(null)}
-              className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors cursor-pointer"
+              onClick={() => setModalItem(null)}
+              className="absolute top-4 right-4 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20"
               style={{ color: "var(--color-lighter)" }}
+              aria-label="Close"
             >
-              ✕
+              ×
             </button>
             <p
               className="text-base leading-relaxed whitespace-normal"
               style={{ color: "var(--color-lighter)" }}
             >
-              {modalMessage.text}
+              {modalItem.text}
             </p>
             <p
-              className="text-sm font-semibold mt-4"
+              className="mt-4 text-sm font-semibold"
               style={{ color: "var(--color-accent)" }}
             >
-              {modalMessage.handle}
+              {modalItem.handle}
             </p>
           </div>
         </div>
-      )}
+      ) : null}
     </section>
   );
 };
