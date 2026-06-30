@@ -419,6 +419,78 @@ export default function ShopPage() {
                   </div>
                 </div>
               </div>
+
+              <div className="relative overflow-hidden rounded-3xl border border-primary-light/30 bg-primary-subtle/90 p-8 shadow-[0_18px_50px_var(--color-primary-glow)] backdrop-blur-sm md:p-10">
+                <div className="absolute inset-0 bg-gradient-to-br from-course-intro/10 via-transparent to-primary/30 pointer-events-none" />
+                <div className="relative flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
+                  <div className="flex items-start gap-5">
+                    <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-2xl border border-primary-light/40 bg-white/10 p-2 shadow-[0_0_25px_rgba(83,190,255,0.22)]">
+                      <Image
+                        src="/partners/hero-workshop-logo.png"
+                        alt="Hero Workshop"
+                        fill
+                        className="object-contain p-2"
+                        sizes="96px"
+                      />
+                    </div>
+                    <div className="space-y-3">
+                      <p className="text-sm font-semibold uppercase tracking-[0.28em] text-course-intro">
+                        Partner Highlight
+                      </p>
+                      <h3 className="text-3xl font-bold text-lighter">
+                        Level 1 TG: Intro to the Multiverse Certificate Course
+                        at Hero Workshop, in-person Culver City, California
+                      </h3>
+                      <p className="max-w-2xl text-lg leading-relaxed text-lighter/80">
+                        24-hour in-person accelerator course!
+                        <span className="my-3 block h-px w-32 bg-course-intro/60" />
+                        <strong className="block text-2xl md:text-3xl font-bold text-lighter">
+                          August 9, 15, 16, 2026.
+                        </strong>
+                        <span className="mt-1 block text-xl font-semibold text-course-intro">
+                          (8:30am - 5:15pm)
+                        </span>
+                        <span className="mt-3 block">
+                          We are teaming up with Hero Workshop to bring the
+                          Teacher-Gamer Revolution to the Los Angeles education
+                          community.
+                        </span>
+                      </p>
+                      <div className="flex flex-wrap gap-4 text-sm text-lighter/75">
+                        <span className="flex items-center gap-2">
+                          <CheckCircle className="h-4 w-4 text-course-intro" />
+                          Story-led learning
+                        </span>
+                        <span className="flex items-center gap-2">
+                          <CheckCircle className="h-4 w-4 text-course-intro" />
+                          Creative facilitation
+                        </span>
+                        <span className="flex items-center gap-2">
+                          <CheckCircle className="h-4 w-4 text-course-intro" />
+                          Partner spotlight
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="shrink-0 space-y-3 text-center">
+                    <p className="text-3xl font-bold text-lighter">$450</p>
+                    <Button
+                      asChild
+                      size="lg"
+                      className="text-lg font-bold px-10 py-6 bg-course-intro text-background hover:scale-105 transition-transform shadow-[0_0_30px_rgba(83,190,255,0.24)]"
+                    >
+                      <a
+                        href="https://www.heroworkshop.org/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Enroll Now
+                      </a>
+                    </Button>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* CTA Section */}

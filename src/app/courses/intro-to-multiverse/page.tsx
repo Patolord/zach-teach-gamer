@@ -22,25 +22,28 @@ const courseFeatures = [
   "Social-Emotional Learning (SEL) through gaming",
   "Complete guide through the 13 Phases of Character Building",
   "Practical exercises and activities",
-  "Downloadable resources and templates",
+  "A PDF copy of the Teacher-Gamer Handbook",
   "Certificate of completion",
 ];
 
 const whatYouWillLearn = [
   {
     icon: Book,
-    title: "RPG Foundations",
-    description: "Master the basics of tabletop role-playing and storytelling",
+    title: "TTRPG Foundation & LARPing",
+    description:
+      "Master the basics of introducing tabletop role-playing, co-storytelling, and live action role-playing (LARP)",
   },
   {
     icon: Users,
     title: "Character Development",
-    description: "Guide students through meaningful character creation",
+    description:
+      "Guide students through meaningful character creation and game-based learning (GBL)",
   },
   {
     icon: CheckCircle,
     title: "Learning Integration",
-    description: "Connect gaming mechanics to educational outcomes",
+    description:
+      "Connect gaming mechanics and project-based learning (PBL) to educational outcomes and social-emotional learning (SEL)",
   },
 ];
 
@@ -87,13 +90,22 @@ export default function IntroToMultiversePage() {
               </div>
 
               <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight">
-                Intro to Multiverse
+                Level 1 TG: Intro to the Multiverse Certificate Course
               </h1>
 
               <p className="text-xl text-white/90 leading-relaxed max-w-3xl">
                 Get an introduction to how RPGs and the multiverse can drive
                 adult readiness through PBL and SEL as we work through the 13
-                Phases of Character Building.
+                Phases of Character Building. Learn to move from out-game
+                character development to in-game role-playing.
+              </p>
+
+              <p className="text-lg text-white/80 leading-relaxed max-w-3xl">
+                Intro to the Multiverse - Level 1 Teacher-Gamer is a
+                beginner-friendly, hands-on introduction to the Teacher-Gamer
+                Method — perfect for DMs, teachers, therapists, youth workers,
+                and parents who want to bring tabletop role-playing games into
+                learning spaces safely, confidently, and creatively.
               </p>
 
               {/* Course Stats */}
@@ -150,11 +162,11 @@ export default function IntroToMultiversePage() {
                 </div>
                 <div className="shrink-0">
                   <Button
+                    asChild
                     size="lg"
                     className="text-lg font-bold text-black px-10 py-6 bg-course-intro hover:scale-105 transition-transform"
-                    {...calProps}
                   >
-                    Enroll Now
+                    <Link href="/shop">Enroll Now</Link>
                   </Button>
                 </div>
               </div>
@@ -200,7 +212,6 @@ export default function IntroToMultiversePage() {
               </div>
             </div>
 
-            {/* Course Curriculum */}
             <div className="space-y-6">
               <h2 className="text-3xl font-bold text-white">
                 Course Curriculum
@@ -208,24 +219,30 @@ export default function IntroToMultiversePage() {
               <div className="space-y-4">
                 {[
                   {
-                    module: "Module 1",
-                    title: "Introduction to RPGs in Education",
-                    lessons: 5,
-                  },
-                  {
-                    module: "Module 2",
-                    title: "The 13 Phases of Character Building",
-                    lessons: 8,
-                  },
-                  {
-                    module: "Module 3",
-                    title: "Project-Based Learning Integration",
+                    module: "Theory meets Practicum",
+                    title: null,
                     lessons: 6,
+                    bullets: [
+                      "How to introduce running safe SEL (social emotional learning) tabletop role-playing game (TTRPG) sessions for youth and adults",
+                      "How to ramp up and co-world build with players from scratch",
+                      "How to turn gameplay into SEL, collaboration, and real learning outcomes",
+                      "How to facilitate groups with confidence (even if you're new to DMing)",
+                      "How to co-design quests, challenges, and story arcs that support growth",
+                      "How to bring TTRPGs into classrooms, homeschools, therapy, and camps",
+                    ],
                   },
                   {
-                    module: "Module 4",
-                    title: "Social-Emotional Learning Through Gaming",
-                    lessons: 7,
+                    module: "Hands-on creative skills you'll practice",
+                    title: null,
+                    lessons: 6,
+                    bullets: [
+                      "The 13-Phase Character Build",
+                      "Role-play gamify regular tabletop games",
+                      "The Teacher-Gamer Skillset + How-To-Play Skillset",
+                      "Terrain building basics (10 phases)",
+                      "Miniature painting",
+                      "Kinaesthetic activities for embodied learning",
+                    ],
                   },
                 ].map((module) => (
                   <div
@@ -235,18 +252,32 @@ export default function IntroToMultiversePage() {
                     <div className="flex items-center justify-between">
                       <div>
                         <p
-                          className="text-sm font-semibold mb-1 text-course-intro"
+                          className="text-lg md:text-xl font-semibold mb-2 text-course-intro"
                         >
                           {module.module}
                         </p>
-                        <h3 className="text-xl font-bold text-white">
-                          {module.title}
-                        </h3>
+                        {module.title ? (
+                          <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight">
+                            {module.title}
+                          </h3>
+                        ) : null}
                       </div>
                       <span className="text-white/60 text-sm">
                         {module.lessons} lessons
                       </span>
                     </div>
+                    {"bullets" in module ? (
+                      <ul className="mt-5 space-y-4">
+                        {module.bullets.map((item) => (
+                          <li key={item} className="flex items-start gap-3">
+                            <CheckCircle className="w-5 h-5 mt-0.5 shrink-0 text-course-intro" />
+                            <span className="text-xl md:text-2xl font-bold leading-tight text-white">
+                              {item}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
                   </div>
                 ))}
               </div>
