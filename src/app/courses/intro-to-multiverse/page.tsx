@@ -140,23 +140,26 @@ export default function IntroToMultiversePage() {
               <div className="relative flex flex-col md:flex-row items-center gap-8">
                 <div className="flex-1 text-center md:text-left">
                   <h3 className="text-2xl font-bold text-white mb-3">
-                    Ready to Begin Your Adventure?
+                    Level 1 TG: Intro to the Multiverse Certificate Course at
+                    Hero Workshop, in-person Culver City, California
                   </h3>
                   <p className="text-white/70 mb-5 leading-relaxed">
-                    Book a free 15-minute discovery call to learn how this training can transform your classroom. We'll find the right path for you.
+                    24-hour in-person accelerator course designed for educators,
+                    facilitators, and creative guides ready to step into the
+                    Teacher-Gamer world.
                   </p>
                   <div className="flex flex-wrap gap-4 justify-center md:justify-start text-sm text-white/60">
                     <span className="flex items-center gap-1.5">
                       <CheckCircle className="w-4 h-4 text-course-intro" />
-                      No commitment required
+                      August 9, 15, 16, 2026
                     </span>
                     <span className="flex items-center gap-1.5">
                       <Clock className="w-4 h-4 text-course-intro" />
-                      15-minute call
+                      8:30am - 5:15pm
                     </span>
                     <span className="flex items-center gap-1.5">
                       <Users className="w-4 h-4 text-course-intro" />
-                      Personalized guidance
+                      Culver City, California
                     </span>
                   </div>
                 </div>
@@ -293,11 +296,11 @@ export default function IntroToMultiversePage() {
                 through game-based learning.
               </p>
               <Button
+                asChild
                 size="lg"
                 className="text-lg font-bold text-black px-12 py-6 bg-course-intro"
-                {...calProps}
               >
-                Enroll in Intro to Multiverse
+                <Link href="/shop">Enroll in Intro to Multiverse</Link>
               </Button>
             </div>
           </div>
