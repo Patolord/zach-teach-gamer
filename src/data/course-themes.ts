@@ -20,7 +20,7 @@ export const courseThemes = {
     id: "intro",
     title: "Level 1 TG: Intro to the Multiverse Certificate Course",
     description:
-      "How TTRPGs and the multiverse can drive adult readiness through PBL and SEL using the 13 Phases of Character Building and learning to move from out-game character development to in-game role-playing. Get certified as a Level 1 TG Space-Holder.",
+      "How TTRPGs and the multiverse can drive adult readiness through PBL and SEL using the 13 Phases of Character Building and learning to move from out-game character development to in-game role-playing.",
 
     color: "#38bdf8",
     token: "course-intro",
@@ -31,7 +31,7 @@ export const courseThemes = {
     id: "level1",
     title: "TTRPG Labs - Exploratory Fellowships & Workshops",
     description:
-      "Earn hours for TG Level 2 and 3 certificates, including in-gaming, out-gaming, meta-gaming, terrain building, villain creation and campaign design, co-teaching and mentor fellowships. Get certified as a Level 1 TG Space-Holder.",
+      "Earn hours for TG Level 2 and 3 certificates, including in-gaming, out-gaming, meta-gaming, terrain building, villain creation and campaign design, co-teaching and mentor fellowships",
     color: "#a855f7",
     token: "course-level-1",
     diceImage: "/dices/dice-purple.webp",
