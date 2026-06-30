@@ -21,6 +21,22 @@ export const partnerOrganizations: PartnerEntry[] = [
     website: "https://davincilifeskills.com/",
   },
   {
+    name: "RPG Dojo",
+    description:
+      "A digital community for studying, playing, chatting, and learning more about TTRPGs.",
+    logoSrc: "/partners/rpg-dojo-logo.png",
+    logoClassName: "scale-95",
+    website: "https://rpgdojo.super.site/",
+  },
+  {
+    name: "The Hero Workshop",
+    description:
+      "The Hero Workshop supports young people through story-driven, game-based experiences that build confidence, creativity, and social-emotional growth.",
+    logoSrc: "/partners/hero-workshop-logo.png",
+    logoClassName: "scale-95",
+    website: "https://www.heroworkshop.org/",
+  },
+  {
     name: "Undiscovered Country",
     description:
       "Undiscovered Country provides peace‑and‑conflict diagnostics, archetype profiling, and training programmes that help organisations and schools understand tensions, transform conflict, and build healthier, more harmonious cultures.",
@@ -39,7 +55,7 @@ export const partnerOrganizations: PartnerEntry[] = [
     name: "GAIA Kids",
     description:
       "A global arts\u{2011}for\u{2011}impact initiative that empowers children to use creativity to spark social change, advocate for environmental justice, and build community through collaborative art projects.",
-    logoSrc: "/partners/gaia-kids-logo.png",
+    logoSrc: "/partners/gaia-kids-logo-removebg-preview.png",
     website: "https://gaiakids.net",
   },
   {
@@ -54,13 +70,8 @@ export const partnerOrganizations: PartnerEntry[] = [
     name: "VitaEquilibrium",
     description:
       "VitaEquilibrium offers movement\u{2011}based, contemplative workshops and retreats\u{2014}rooted in somatic movement practices like 5Rhythms\u{2014}that help people cultivate balance, connection, and a more harmonious way of living.",
-  },
-  {
-    name: "RPG Dojo",
-    description:
-      "A digital community for studying, playing, chatting, and learning more about TTRPGs.",
-    logoSrc: "/partners/rpg-dojo-logo.png",
+    logoSrc: "/partners/vitaequilibrium-logo.png",
     logoClassName: "scale-95",
-    website: "https://rpgdojo.super.site/",
+    website: "https://www.vitaequilibrium.com/",
   },
 ];

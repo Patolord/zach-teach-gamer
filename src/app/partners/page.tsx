@@ -59,7 +59,7 @@ export default function PartnersPage() {
               collaborations.
             </p>
           ) : (
-            <ul className="flex flex-wrap items-center justify-center gap-x-16 gap-y-12">
+            <ul className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
               {partnerOrganizations.map((org) => {
                 const content = (
                   <>
@@ -95,19 +95,19 @@ export default function PartnersPage() {
                 );
 
                 return (
-                  <li key={org.name} className="w-full max-w-md">
+                  <li key={org.name} className="h-full">
                     {org.website ? (
                       <a
                         href={org.website}
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`Visit ${org.name}`}
-                        className="group block"
+                        className="group block h-full"
                       >
                         {content}
                       </a>
                     ) : (
-                      <div className="group block">{content}</div>
+                      <div className="group block h-full">{content}</div>
                     )}
                   </li>
                 );
