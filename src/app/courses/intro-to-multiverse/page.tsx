@@ -108,7 +108,7 @@ export default function IntroToMultiversePage() {
                 </div>
                 <div className="flex items-center gap-2 text-white/80">
                   <Book className="w-5 h-5 text-course-intro" />
-                  <span>Self-paced learning</span>
+                  <span>In-person & online courses available</span>
                 </div>
               </div>
             </div>

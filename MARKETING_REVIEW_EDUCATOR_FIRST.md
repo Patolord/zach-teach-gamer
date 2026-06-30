@@ -47,7 +47,7 @@ File: `src/components/home/courses/CoursesSection.tsx`
 
 Each course card should include:
 - **Time**: “6 weeks • 24 hours” (or your best estimate)
-- **Format**: “Self-paced + cohort option” (only if true)
+- **Format**: "In person and Online courses available"
 - **Starting price**: “Starts at $299” (or “From $___”)
 - **Outcome line**: “By the end, you can run a 6‑week pilot.”
 

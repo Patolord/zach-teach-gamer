@@ -60,7 +60,7 @@ const faqCategories: FAQCategory[] = [
       {
         question: "How long are the courses?",
         answer:
-          "Course lengths vary from 6–20 weeks depending on the level and how many hours per week. Level 1 is 24 hours over 6 weeks, Level 2 is 48 hours 12 weeks, and Level 3 is 72 hours over 20 weeks. All courses are self-paced with optional cohort-based learning.",
+          "Course lengths vary from 6–20 weeks depending on the level and how many hours per week. Level 1 is 24 hours over 6 weeks, Level 2 is 48 hours 12 weeks, and Level 3 is 72 hours over 20 weeks. All courses are self-paced with optional cohort-based learning. In-person & online courses available.",
       },
       {
         question: "What's included in each course?",
