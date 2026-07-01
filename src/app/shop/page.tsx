@@ -48,13 +48,13 @@ const benefits = [
 export default function ShopPage() {
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleCheckout = async () => {
+  const handleCheckout = async (productType: "handbook" | "level1_workshop" = "handbook") => {
     setIsLoading(true);
     try {
       const response = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({}),
+        body: JSON.stringify({ productType }),
       });
 
       const data = await response.json();
@@ -190,7 +190,7 @@ export default function ShopPage() {
                     <Button
                       size="lg"
                       className="relative w-full text-xl font-extrabold py-7 transition-all duration-300 bg-accent text-background hover:bg-accent-light shadow-[0_4px_20px_var(--color-accent-glow),0_0_40px_var(--color-secondary-soft)] hover:shadow-[0_6px_30px_rgba(218,255,13,0.45),0_0_50px_rgba(255,216,90,0.25)] hover:scale-[1.02]"
-                      onClick={handleCheckout}
+                      onClick={() => handleCheckout("handbook")}
                       disabled={isLoading}
                     >
                       {isLoading ? (
@@ -287,7 +287,7 @@ export default function ShopPage() {
                     </p>
                     <Button
                       className="w-full font-bold mt-auto transition-all duration-300 bg-accent text-background hover:bg-accent-light"
-                      onClick={handleCheckout}
+                      onClick={() => handleCheckout("handbook")}
                       disabled={isLoading}
                     >
                       {isLoading ? (
@@ -474,19 +474,21 @@ export default function ShopPage() {
                   </div>
 
                   <div className="shrink-0 space-y-3 text-center">
-                    <p className="text-3xl font-bold text-lighter">$450</p>
+                    <p className="text-3xl font-bold text-lighter">$640 CAD</p>
                     <Button
-                      asChild
                       size="lg"
                       className="text-lg font-bold px-10 py-6 bg-course-intro text-background hover:scale-105 transition-transform shadow-[0_0_30px_rgba(83,190,255,0.24)]"
+                      onClick={() => handleCheckout("level1_workshop")}
+                      disabled={isLoading}
                     >
-                      <a
-                        href="https://www.heroworkshop.org/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Enroll Now
-                      </a>
+                      {isLoading ? (
+                        <>
+                          <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                          Processing...
+                        </>
+                      ) : (
+                        "Enroll Now"
+                      )}
                     </Button>
                   </div>
                 </div>
@@ -506,7 +508,7 @@ export default function ShopPage() {
               <Button
                 size="lg"
                 className="text-lg font-bold px-12 py-6 transition-all duration-300 bg-accent text-background hover:bg-accent-light shadow-[0_4px_20px_var(--color-accent-glow),0_0_40px_var(--color-secondary-soft)] hover:shadow-[0_6px_30px_rgba(218,255,13,0.45),0_0_50px_rgba(255,216,90,0.25)]"
-                onClick={handleCheckout}
+                onClick={() => handleCheckout("handbook")}
                 disabled={isLoading}
               >
                 {isLoading ? (
