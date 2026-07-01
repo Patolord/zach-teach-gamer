@@ -474,7 +474,7 @@ export default function ShopPage() {
                   </div>
 
                   <div className="shrink-0 space-y-3 text-center">
-                    <p className="text-3xl font-bold text-lighter">$640 CAD</p>
+                    <p className="text-3xl font-bold text-lighter">$450 USD</p>
                     <Button
                       size="lg"
                       className="text-lg font-bold px-10 py-6 bg-course-intro text-background hover:scale-105 transition-transform shadow-[0_0_30px_rgba(83,190,255,0.24)]"
