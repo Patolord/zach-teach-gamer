@@ -2,6 +2,10 @@ import { type NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+const workshopPriceId =
+  process.env.STRIPE_LEVEL1_WORKSHOP_PRICE_ID ??
+  "price_1To7HtIDMam6NySx5ztOftuW";
+
 if (!stripeSecretKey) {
   throw new Error("STRIPE_SECRET_KEY environment variable is not set");
 }
@@ -12,7 +16,14 @@ const stripe = new Stripe(stripeSecretKey, {
 
 export async function POST(request: NextRequest) {
   try {
-    const priceId = process.env.STRIPE_PRICE_ID;
+    const body = (await request.json().catch(() => ({}))) as {
+      productType?: string;
+    };
+    const handbookPriceId = process.env.STRIPE_PRICE_ID;
+    const priceId =
+      body.productType === "level1_workshop"
+        ? workshopPriceId
+        : handbookPriceId;
 
     if (!priceId) {
       return NextResponse.json(
