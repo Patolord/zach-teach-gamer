@@ -19,9 +19,10 @@ export async function POST(request: NextRequest) {
     const body = (await request.json().catch(() => ({}))) as {
       productType?: string;
     };
+    const productType = body.productType ?? "handbook";
     const handbookPriceId = process.env.STRIPE_PRICE_ID;
     const priceId =
-      body.productType === "level1_workshop"
+      productType === "level1_workshop"
         ? workshopPriceId
         : handbookPriceId;
 
@@ -42,6 +43,11 @@ export async function POST(request: NextRequest) {
         },
       ],
       mode: "payment",
+      customer_creation: "always",
+      billing_address_collection: "auto",
+      metadata: {
+        productType,
+      },
       success_url: `${origin}/shop/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/shop/cancel`,
     });

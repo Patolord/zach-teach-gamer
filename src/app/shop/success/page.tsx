@@ -27,8 +27,9 @@ export default function SuccessPage() {
           </h1>
 
           <p className="text-white/80 text-lg">
-            Thank you for your purchase! You will receive a confirmation email
-            shortly with your order details and download links.
+            Thank you for your purchase! If you bought the handbook PDF, your
+            download email is being prepared now. If it does not arrive in a
+            few minutes, please contact support.
           </p>
 
           <div className="pt-4 space-y-3">
