@@ -1,10 +1,11 @@
+import { issueSignedToken, presignUrl } from "@vercel/blob";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 const stripeWebhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
-const handbookPdfUrl = process.env.HANDBOOK_PDF_URL;
+const handbookBlobPath = process.env.HANDBOOK_BLOB_PATH;
 const resendApiKey = process.env.RESEND_API_KEY;
 const orderConfirmFromEmail = process.env.ORDER_CONFIRM_FROM_EMAIL;
 
@@ -21,18 +22,37 @@ const stripe = new Stripe(stripeSecretKey, {
 });
 const verifiedWebhookSecret = stripeWebhookSecret;
 
-async function sendHandbookEmail(email: string) {
-  if (!handbookPdfUrl) {
-    console.warn("HANDBOOK_PDF_URL is not configured; skipping handbook email");
-    return;
+async function getHandbookDownloadUrl() {
+  if (!handbookBlobPath) {
+    throw new Error("HANDBOOK_BLOB_PATH is not configured");
   }
 
+  const signedToken = await issueSignedToken({
+    pathname: handbookBlobPath,
+    operations: ["get"],
+  });
+
+  const validUntil = Date.now() + 1000 * 60 * 60 * 24 * 7;
+
+  const { presignedUrl } = await presignUrl(signedToken, {
+    access: "private",
+    operation: "get",
+    pathname: handbookBlobPath,
+    validUntil,
+  });
+
+  return presignedUrl;
+}
+
+async function sendHandbookEmail(email: string) {
   if (!resendApiKey || !orderConfirmFromEmail) {
     console.warn(
       "RESEND_API_KEY or ORDER_CONFIRM_FROM_EMAIL is missing; webhook confirmed payment but no custom email was sent",
     );
     return;
   }
+
+  const handbookDownloadUrl = await getHandbookDownloadUrl();
 
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
@@ -49,7 +69,8 @@ async function sendHandbookEmail(email: string) {
           <p>Hi there,</p>
           <p>Thanks for purchasing <strong>The Teacher-Gamer Handbook</strong>.</p>
           <p>You can download your PDF here:</p>
-          <p><a href="${handbookPdfUrl}">${handbookPdfUrl}</a></p>
+          <p><a href="${handbookDownloadUrl}">${handbookDownloadUrl}</a></p>
+          <p>This private download link expires in 7 days.</p>
           <p>If you have any trouble accessing it, just reply to this email and we will help.</p>
           <p>Best,<br />Teacher-Gamer</p>
         </div>
