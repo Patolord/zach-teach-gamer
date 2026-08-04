@@ -19,6 +19,7 @@ if (!stripeWebhookSecret) {
 const stripe = new Stripe(stripeSecretKey, {
   apiVersion: "2026-02-25.clover",
 });
+const verifiedWebhookSecret = stripeWebhookSecret;
 
 async function sendHandbookEmail(email: string) {
   if (!handbookPdfUrl) {
@@ -79,7 +80,7 @@ export async function POST(request: Request) {
     event = stripe.webhooks.constructEvent(
       payload,
       signature,
-      stripeWebhookSecret,
+      verifiedWebhookSecret,
     );
   } catch (error) {
     console.error("Stripe webhook signature verification failed:", error);
