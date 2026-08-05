@@ -1,11 +1,10 @@
-import { issueSignedToken, presignUrl } from "@vercel/blob";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
+import { getHandbookDownloadUrl } from "@/lib/handbook-download";
 
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 const stripeWebhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
-const handbookBlobPath = process.env.HANDBOOK_BLOB_PATH;
 const resendApiKey = process.env.RESEND_API_KEY;
 const orderConfirmFromEmail = process.env.ORDER_CONFIRM_FROM_EMAIL;
 
@@ -21,28 +20,6 @@ const stripe = new Stripe(stripeSecretKey, {
   apiVersion: "2026-02-25.clover",
 });
 const verifiedWebhookSecret = stripeWebhookSecret;
-
-async function getHandbookDownloadUrl() {
-  if (!handbookBlobPath) {
-    throw new Error("HANDBOOK_BLOB_PATH is not configured");
-  }
-
-  const signedToken = await issueSignedToken({
-    pathname: handbookBlobPath,
-    operations: ["get"],
-  });
-
-  const validUntil = Date.now() + 1000 * 60 * 60 * 24 * 7;
-
-  const { presignedUrl } = await presignUrl(signedToken, {
-    access: "private",
-    operation: "get",
-    pathname: handbookBlobPath,
-    validUntil,
-  });
-
-  return presignedUrl;
-}
 
 async function sendHandbookEmail(email: string) {
   if (!resendApiKey || !orderConfirmFromEmail) {

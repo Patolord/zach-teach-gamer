@@ -1,31 +1,11 @@
-import { issueSignedToken, presignUrl } from "@vercel/blob";
 import { NextResponse } from "next/server";
+import {
+  getHandbookDownloadUrl,
+  isHandbookBlobConfigured,
+} from "@/lib/handbook-download";
 
-const handbookBlobPath = process.env.HANDBOOK_BLOB_PATH;
 const resendApiKey = process.env.RESEND_API_KEY;
 const orderConfirmFromEmail = process.env.ORDER_CONFIRM_FROM_EMAIL;
-
-async function getHandbookDownloadUrl() {
-  if (!handbookBlobPath) {
-    throw new Error("HANDBOOK_BLOB_PATH is not configured");
-  }
-
-  const signedToken = await issueSignedToken({
-    pathname: handbookBlobPath,
-    operations: ["get"],
-  });
-
-  const validUntil = Date.now() + 1000 * 60 * 60 * 24 * 7;
-
-  const { presignedUrl } = await presignUrl(signedToken, {
-    access: "private",
-    operation: "get",
-    pathname: handbookBlobPath,
-    validUntil,
-  });
-
-  return presignedUrl;
-}
 
 async function sendHandbookEmail(email: string) {
   if (!resendApiKey || !orderConfirmFromEmail) {
@@ -68,7 +48,7 @@ export async function GET(request: Request) {
   const sendEmail = searchParams.get("sendEmail") === "true";
 
   const config = {
-    handbookBlobPathConfigured: Boolean(handbookBlobPath),
+    handbookBlobPathConfigured: isHandbookBlobConfigured(),
     resendConfigured: Boolean(resendApiKey),
     fromEmailConfigured: Boolean(orderConfirmFromEmail),
   };
