@@ -20,8 +20,7 @@ type SuccessPageProps = {
 async function getSessionState(sessionId?: string) {
   if (!sessionId || !stripeSecretKey) {
     return {
-      downloadUrl: null,
-      downloadableLabel: null,
+      downloads: [],
       isDownloadablePurchase: false,
     };
   }
@@ -32,31 +31,39 @@ async function getSessionState(sessionId?: string) {
 
   try {
     const session = await stripe.checkout.sessions.retrieve(sessionId);
-    const productType = session.metadata?.productType;
-    const isDownloadablePurchase = isDownloadableProductType(productType);
+    const productTypes = (
+      session.metadata?.productTypes ??
+      session.metadata?.productType ??
+      ""
+    )
+      .split(",")
+      .map((productType) => productType.trim())
+      .filter(isDownloadableProductType);
+    const isDownloadablePurchase = productTypes.length > 0;
     const isPaid = session.payment_status === "paid";
 
     if (isDownloadablePurchase && isPaid) {
-      const downloadUrl = await getProductDownloadUrl(productType);
+      const downloads = await Promise.all(
+        productTypes.map(async (productType) => ({
+          label: getDownloadableProductLabel(productType),
+          url: await getProductDownloadUrl(productType),
+        })),
+      );
+
       return {
-        downloadUrl,
-        downloadableLabel: getDownloadableProductLabel(productType),
+        downloads,
         isDownloadablePurchase: true,
       };
     }
 
     return {
-      downloadUrl: null,
-      downloadableLabel: isDownloadablePurchase
-        ? getDownloadableProductLabel(productType)
-        : null,
+      downloads: [],
       isDownloadablePurchase,
     };
   } catch (error) {
     console.error("Failed to load Stripe success session:", error);
     return {
-      downloadUrl: null,
-      downloadableLabel: null,
+      downloads: [],
       isDownloadablePurchase: false,
     };
   }
@@ -66,8 +73,8 @@ export default async function SuccessPage({
   searchParams,
 }: SuccessPageProps) {
   const { session_id: sessionId } = await searchParams;
-  const { downloadUrl, downloadableLabel, isDownloadablePurchase } =
-    await getSessionState(sessionId);
+  const { downloads, isDownloadablePurchase } = await getSessionState(sessionId);
+  const hasDownloads = downloads.length > 0;
 
   return (
     <main className="relative min-h-screen flex items-center justify-center">
@@ -88,26 +95,29 @@ export default async function SuccessPage({
           </h1>
 
           <p className="text-white/80 text-lg">
-            {downloadUrl
-              ? `Your ${downloadableLabel} is ready. Use the button below to download your private copy.`
+            {hasDownloads
+              ? downloads.length === 1
+                ? `Your ${downloads[0].label} is ready. Use the button below to download your private copy.`
+                : "Your PDFs are ready. Use the buttons below to download your private copies."
               : isDownloadablePurchase
-                ? `We confirmed your ${downloadableLabel} purchase, but the download link is not ready yet. Please contact support if this does not resolve shortly.`
+                ? "We confirmed your purchase, but the download links are not ready yet. Please contact support if this does not resolve shortly."
                 : "Thank you for your purchase! Your payment was completed successfully."}
           </p>
 
           <div className="pt-4 space-y-3">
-            {downloadUrl ? (
+            {downloads.map((download) => (
               <Button
+                key={download.url}
                 size="lg"
                 className="w-full bg-amber-400 hover:bg-amber-300 text-zinc-900 font-bold"
                 asChild
               >
-                <a href={downloadUrl} target="_blank" rel="noreferrer">
+                <a href={download.url} target="_blank" rel="noreferrer">
                   <Download className="w-5 h-5 mr-2" />
-                  Download PDF
+                  Download {download.label}
                 </a>
               </Button>
-            ) : null}
+            ))}
 
             <Button
               size="lg"

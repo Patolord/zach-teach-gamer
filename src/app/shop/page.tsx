@@ -361,6 +361,24 @@ export default function ShopPage() {
                 </div>
               </div>
 
+              <div className="mx-auto max-w-xl rounded-2xl border border-accent/30 bg-accent/10 p-5 text-center shadow-[0_10px_30px_var(--color-accent-glow)]">
+                <h3 className="text-2xl font-bold text-lighter">
+                  Teacher-Gamer Screen Bundle
+                </h3>
+                <p className="mt-2 text-lighter/80">
+                  Get both Landscape and Portrait PDFs together.
+                </p>
+                <p className="my-4 text-3xl font-bold text-accent">$18 CAD</p>
+                <Button
+                  asChild
+                  className="w-full max-w-sm font-bold bg-accent text-background hover:bg-accent-light"
+                >
+                  <a href="/api/checkout?productTypes=screen_landscape,screen_portrait">
+                    Buy Both Screens
+                  </a>
+                </Button>
+              </div>
+
               <div className="relative overflow-hidden rounded-3xl border border-primary-light/30 bg-primary-subtle/90 p-8 shadow-[0_18px_50px_var(--color-primary-glow)] backdrop-blur-sm md:p-10">
                 <div className="absolute inset-0 bg-gradient-to-br from-course-intro/10 via-transparent to-primary/30 pointer-events-none" />
                 <div className="relative flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
