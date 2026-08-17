@@ -47,6 +47,7 @@ const benefits = [
 
 export default function ShopPage() {
   const [isLoading, setIsLoading] = useState(false);
+  const [checkoutError, setCheckoutError] = useState<string | null>(null);
 
   const handleCheckout = async (
     productType:
@@ -56,6 +57,7 @@ export default function ShopPage() {
       | "screen_portrait" = "handbook",
   ) => {
     setIsLoading(true);
+    setCheckoutError(null);
     try {
       const response = await fetch("/api/checkout", {
         method: "POST",
@@ -69,10 +71,12 @@ export default function ShopPage() {
         window.location.href = data.url;
       } else {
         console.error("Checkout error:", data.error);
+        setCheckoutError("Checkout did not open. Please try again.");
         setIsLoading(false);
       }
     } catch (error) {
       console.error("Checkout error:", error);
+      setCheckoutError("Checkout did not open. Please try again.");
       setIsLoading(false);
     }
   };
@@ -102,6 +106,11 @@ export default function ShopPage() {
         {/* Main Content */}
         <div className="container mx-auto px-4 py-6 md:py-10">
           <div className="max-w-6xl mx-auto">
+            {checkoutError ? (
+              <p className="mx-auto mb-6 max-w-xl rounded-xl border border-red-300/40 bg-red-950/60 px-4 py-3 text-center text-sm font-bold text-red-100">
+                {checkoutError}
+              </p>
+            ) : null}
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               {/* Book Image Section */}
               <div className="space-y-6">
@@ -302,7 +311,7 @@ export default function ShopPage() {
                           Processing...
                         </>
                       ) : (
-                        "ADD TO CART"
+                        "Buy PDF"
                       )}
                     </Button>
                   </div>
@@ -378,7 +387,7 @@ export default function ShopPage() {
                           Processing...
                         </>
                       ) : (
-                        "ADD TO CART"
+                        "Buy Landscape PDF"
                       )}
                     </Button>
                   </div>
@@ -415,7 +424,7 @@ export default function ShopPage() {
                           Processing...
                         </>
                       ) : (
-                        "ADD TO CART"
+                        "Buy Portrait PDF"
                       )}
                     </Button>
                   </div>
