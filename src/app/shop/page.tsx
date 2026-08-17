@@ -5,13 +5,11 @@ import {
   Book,
   CheckCircle,
   ExternalLink,
-  Loader2,
   ShoppingCart,
   Star,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import RandomTestimonialsShop from "@/components/testimonials/RandomTestimonialsShop";
 import { MEDIA } from "@/lib/media";
@@ -46,41 +44,6 @@ const benefits = [
 ];
 
 export default function ShopPage() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [checkoutError, setCheckoutError] = useState<string | null>(null);
-
-  const handleCheckout = async (
-    productType:
-      | "handbook"
-      | "level1_workshop"
-      | "screen_landscape"
-      | "screen_portrait" = "handbook",
-  ) => {
-    setIsLoading(true);
-    setCheckoutError(null);
-    try {
-      const response = await fetch("/api/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ productType }),
-      });
-
-      const data = await response.json();
-
-      if (data.url) {
-        window.location.href = data.url;
-      } else {
-        console.error("Checkout error:", data.error);
-        setCheckoutError("Checkout did not open. Please try again.");
-        setIsLoading(false);
-      }
-    } catch (error) {
-      console.error("Checkout error:", error);
-      setCheckoutError("Checkout did not open. Please try again.");
-      setIsLoading(false);
-    }
-  };
-
   return (
     <main className="relative min-h-screen">
       {/* Background */}
@@ -106,11 +69,6 @@ export default function ShopPage() {
         {/* Main Content */}
         <div className="container mx-auto px-4 py-6 md:py-10">
           <div className="max-w-6xl mx-auto">
-            {checkoutError ? (
-              <p className="mx-auto mb-6 max-w-xl rounded-xl border border-red-300/40 bg-red-950/60 px-4 py-3 text-center text-sm font-bold text-red-100">
-                {checkoutError}
-              </p>
-            ) : null}
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               {/* Book Image Section */}
               <div className="space-y-6">
@@ -203,22 +161,14 @@ export default function ShopPage() {
                       19% OFF
                     </div>
                     <Button
+                      asChild
                       size="lg"
                       className="relative w-full text-xl font-extrabold py-7 transition-all duration-300 bg-accent text-background hover:bg-accent-light shadow-[0_4px_20px_var(--color-accent-glow),0_0_40px_var(--color-secondary-soft)] hover:shadow-[0_6px_30px_rgba(218,255,13,0.45),0_0_50px_rgba(255,216,90,0.25)] hover:scale-[1.02]"
-                      onClick={() => handleCheckout("handbook")}
-                      disabled={isLoading}
                     >
-                      {isLoading ? (
-                        <>
-                          <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                          Processing...
-                        </>
-                      ) : (
-                        <>
+                      <a href="/api/checkout?productType=handbook">
                           <ShoppingCart className="w-5 h-5 mr-2" />
                           Get The PDF — Instant Download
-                        </>
-                      )}
+                      </a>
                     </Button>
                   </div>
                   <p className="text-center text-sm text-accent/80 font-medium -mt-1">
@@ -301,18 +251,10 @@ export default function ShopPage() {
                       $29.99 CAD
                     </p>
                     <Button
+                      asChild
                       className="w-full font-bold mt-auto transition-all duration-300 bg-accent text-background hover:bg-accent-light"
-                      onClick={() => handleCheckout("handbook")}
-                      disabled={isLoading}
                     >
-                      {isLoading ? (
-                        <>
-                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                          Processing...
-                        </>
-                      ) : (
-                        "Buy PDF"
-                      )}
+                      <a href="/api/checkout?productType=handbook">Buy PDF</a>
                     </Button>
                   </div>
                 </div>
@@ -377,18 +319,12 @@ export default function ShopPage() {
                       </p>
                     </div>
                     <Button
+                      asChild
                       className="w-full font-bold mt-auto transition-all duration-300 bg-accent text-background hover:bg-accent-light"
-                      onClick={() => handleCheckout("screen_landscape")}
-                      disabled={isLoading}
                     >
-                      {isLoading ? (
-                        <>
-                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                          Processing...
-                        </>
-                      ) : (
-                        "Buy Landscape PDF"
-                      )}
+                      <a href="/api/checkout?productType=screen_landscape">
+                        Buy Landscape PDF
+                      </a>
                     </Button>
                   </div>
                 </div>
@@ -414,18 +350,12 @@ export default function ShopPage() {
                       </p>
                     </div>
                     <Button
+                      asChild
                       className="w-full font-bold mt-auto transition-all duration-300 bg-accent text-background hover:bg-accent-light"
-                      onClick={() => handleCheckout("screen_portrait")}
-                      disabled={isLoading}
                     >
-                      {isLoading ? (
-                        <>
-                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                          Processing...
-                        </>
-                      ) : (
-                        "Buy Portrait PDF"
-                      )}
+                      <a href="/api/checkout?productType=screen_portrait">
+                        Buy Portrait PDF
+                      </a>
                     </Button>
                   </div>
                 </div>
@@ -487,19 +417,13 @@ export default function ShopPage() {
                   <div className="shrink-0 space-y-3 text-center">
                     <p className="text-3xl font-bold text-lighter">$450 USD</p>
                     <Button
+                      asChild
                       size="lg"
                       className="text-lg font-bold px-10 py-6 bg-course-intro text-background hover:scale-105 transition-transform shadow-[0_0_30px_rgba(83,190,255,0.24)]"
-                      onClick={() => handleCheckout("level1_workshop")}
-                      disabled={isLoading}
                     >
-                      {isLoading ? (
-                        <>
-                          <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                          Processing...
-                        </>
-                      ) : (
-                        "Enroll Now"
-                      )}
+                      <a href="/api/checkout?productType=level1_workshop">
+                        Enroll Now
+                      </a>
                     </Button>
                   </div>
                 </div>
@@ -517,22 +441,14 @@ export default function ShopPage() {
                 your classroom into an engaging learning adventure.
               </p>
               <Button
+                asChild
                 size="lg"
                 className="text-lg font-bold px-12 py-6 transition-all duration-300 bg-accent text-background hover:bg-accent-light shadow-[0_4px_20px_var(--color-accent-glow),0_0_40px_var(--color-secondary-soft)] hover:shadow-[0_6px_30px_rgba(218,255,13,0.45),0_0_50px_rgba(255,216,90,0.25)]"
-                onClick={() => handleCheckout("handbook")}
-                disabled={isLoading}
               >
-                {isLoading ? (
-                  <>
-                    <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                    Processing...
-                  </>
-                ) : (
-                  <>
-                    <ShoppingCart className="w-5 h-5 mr-2" />
-                    Get Started - Buy PDF
-                  </>
-                )}
+                <a href="/api/checkout?productType=handbook">
+                  <ShoppingCart className="w-5 h-5 mr-2" />
+                  Get Started - Buy PDF
+                </a>
               </Button>
             </div>
           </div>
