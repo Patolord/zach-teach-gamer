@@ -24,20 +24,9 @@ function checkoutErrorResponse(error: unknown) {
   );
 }
 
-function parseProductTypes(request: NextRequest, body?: { productType?: string; productTypes?: string[] }) {
-  const productTypesParam = request.nextUrl.searchParams.get("productTypes");
-  const productTypeParam = request.nextUrl.searchParams.get("productType");
-  const requestedTypes =
-    body?.productTypes ??
-    productTypesParam?.split(",") ??
-    [body?.productType ?? productTypeParam ?? "handbook"];
-
-  return requestedTypes.map((type) => type.trim()).filter(Boolean);
-}
-
 async function createCheckoutSession(
   request: NextRequest,
-  productTypes: string[],
+  productType: string,
 ) {
   const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 
@@ -48,29 +37,21 @@ async function createCheckoutSession(
   const stripe = new Stripe(stripeSecretKey, {
     apiVersion: "2026-02-25.clover",
   });
-  const lineItems = productTypes.map((productType) => {
-    const priceId = productPriceEnv[productType];
+  const priceId = productPriceEnv[productType];
 
-    if (!priceId) {
-      throw new Error(`Price ID not configured for ${productType}`);
-    }
-
-    return {
-      price: priceId,
-      quantity: 1,
-    };
-  });
+  if (!priceId) {
+    throw new Error(`Price ID not configured for ${productType}`);
+  }
 
   const origin = request.headers.get("origin") || request.nextUrl.origin;
 
   return stripe.checkout.sessions.create({
-    line_items: lineItems,
+    line_items: [{ price: priceId, quantity: 1 }],
     mode: "payment",
     customer_creation: "always",
     billing_address_collection: "auto",
     metadata: {
-      productType: productTypes[0] ?? "handbook",
-      productTypes: productTypes.join(","),
+      productType,
     },
     success_url: `${origin}/shop/success?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${origin}/shop/cancel`,
@@ -79,8 +60,9 @@ async function createCheckoutSession(
 
 export async function GET(request: NextRequest) {
   try {
-    const productTypes = parseProductTypes(request);
-    const session = await createCheckoutSession(request, productTypes);
+    const productType =
+      request.nextUrl.searchParams.get("productType") ?? "handbook";
+    const session = await createCheckoutSession(request, productType);
 
     if (!session.url) {
       throw new Error("Stripe did not return a checkout URL");
@@ -97,10 +79,9 @@ export async function POST(request: NextRequest) {
   try {
     const body = (await request.json().catch(() => ({}))) as {
       productType?: string;
-      productTypes?: string[];
     };
-    const productTypes = parseProductTypes(request, body);
-    const session = await createCheckoutSession(request, productTypes);
+    const productType = body.productType ?? "handbook";
+    const session = await createCheckoutSession(request, productType);
 
     return NextResponse.json({ url: session.url });
   } catch (error) {
