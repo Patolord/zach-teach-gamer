@@ -48,7 +48,13 @@ const benefits = [
 export default function ShopPage() {
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleCheckout = async (productType: "handbook" | "level1_workshop" = "handbook") => {
+  const handleCheckout = async (
+    productType:
+      | "handbook"
+      | "level1_workshop"
+      | "screen_landscape"
+      | "screen_portrait" = "handbook",
+  ) => {
     setIsLoading(true);
     try {
       const response = await fetch("/api/checkout", {
@@ -341,7 +347,7 @@ export default function ShopPage() {
                   </div>
                 </div>
 
-                {/* Product 3: Teacher Gamer Screen (Landscape) - External Link */}
+                {/* Product 3: Teacher Gamer Screen (Landscape) */}
                 <div className="backdrop-blur-sm rounded-xl overflow-hidden flex flex-col bg-primary-subtle border-2 border-primary-light/25 shadow-[0_10px_30px_var(--color-primary-glow)]">
                   <div className="relative aspect-3/4 w-full">
                     <Image
@@ -357,30 +363,28 @@ export default function ShopPage() {
                       Teacher Gamer Screen (Landscape)
                     </h3>
                     <div className="text-center mb-4">
-                      <p className="text-sm mb-1 text-light">
-                        Starting From:
-                      </p>
                       <p className="text-2xl font-bold text-lighter">
-                        $4.99 USD
+                        $9 CAD
                       </p>
                     </div>
                     <Button
-                      asChild
                       className="w-full font-bold mt-auto transition-all duration-300 bg-accent text-background hover:bg-accent-light"
+                      onClick={() => handleCheckout("screen_landscape")}
+                      disabled={isLoading}
                     >
-                      <a
-                        href="https://www.drivethrurpg.com/pt/product/364211/teacher-gamer-screen-landscape"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        BUY NOW
-                        <ExternalLink className="w-4 h-4 ml-2" />
-                      </a>
+                      {isLoading ? (
+                        <>
+                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                          Processing...
+                        </>
+                      ) : (
+                        "ADD TO CART"
+                      )}
                     </Button>
                   </div>
                 </div>
 
-                {/* Product 4: Teacher Gamer Screen (Portrait) - External Link */}
+                {/* Product 4: Teacher Gamer Screen (Portrait) */}
                 <div className="backdrop-blur-sm rounded-xl overflow-hidden flex flex-col bg-primary-subtle border-2 border-primary-light/25 shadow-[0_10px_30px_var(--color-primary-glow)]">
                   <div className="relative aspect-3/4 w-full">
                     <Image
@@ -396,25 +400,23 @@ export default function ShopPage() {
                       Teacher Gamer Screen (Portrait)
                     </h3>
                     <div className="text-center mb-4">
-                      <p className="text-sm mb-1 text-light">
-                        Starting From:
-                      </p>
                       <p className="text-2xl font-bold text-lighter">
-                        $4.99 USD
+                        $9 CAD
                       </p>
                     </div>
                     <Button
-                      asChild
                       className="w-full font-bold mt-auto transition-all duration-300 bg-accent text-background hover:bg-accent-light"
+                      onClick={() => handleCheckout("screen_portrait")}
+                      disabled={isLoading}
                     >
-                      <a
-                        href="https://www.drivethrurpg.com/product/364214/TeacherGamer-Screen-portrait"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        BUY NOW
-                        <ExternalLink className="w-4 h-4 ml-2" />
-                      </a>
+                      {isLoading ? (
+                        <>
+                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                          Processing...
+                        </>
+                      ) : (
+                        "ADD TO CART"
+                      )}
                     </Button>
                   </div>
                 </div>

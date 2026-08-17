@@ -2,7 +2,11 @@ import { CheckCircle, Download } from "lucide-react";
 import Link from "next/link";
 import Stripe from "stripe";
 import { Button } from "@/components/ui/button";
-import { getHandbookDownloadUrl } from "@/lib/handbook-download";
+import {
+  getDownloadableProductLabel,
+  getProductDownloadUrl,
+  isDownloadableProductType,
+} from "@/lib/handbook-download";
 import { MEDIA } from "@/lib/media";
 
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
@@ -15,7 +19,11 @@ type SuccessPageProps = {
 
 async function getSessionState(sessionId?: string) {
   if (!sessionId || !stripeSecretKey) {
-    return { handbookDownloadUrl: null, isHandbookPurchase: false };
+    return {
+      downloadUrl: null,
+      downloadableLabel: null,
+      isDownloadablePurchase: false,
+    };
   }
 
   const stripe = new Stripe(stripeSecretKey, {
@@ -24,18 +32,33 @@ async function getSessionState(sessionId?: string) {
 
   try {
     const session = await stripe.checkout.sessions.retrieve(sessionId);
-    const isHandbookPurchase = session.metadata?.productType === "handbook";
+    const productType = session.metadata?.productType;
+    const isDownloadablePurchase = isDownloadableProductType(productType);
     const isPaid = session.payment_status === "paid";
 
-    if (isHandbookPurchase && isPaid) {
-      const handbookDownloadUrl = await getHandbookDownloadUrl();
-      return { handbookDownloadUrl, isHandbookPurchase: true };
+    if (isDownloadablePurchase && isPaid) {
+      const downloadUrl = await getProductDownloadUrl(productType);
+      return {
+        downloadUrl,
+        downloadableLabel: getDownloadableProductLabel(productType),
+        isDownloadablePurchase: true,
+      };
     }
 
-    return { handbookDownloadUrl: null, isHandbookPurchase };
+    return {
+      downloadUrl: null,
+      downloadableLabel: isDownloadablePurchase
+        ? getDownloadableProductLabel(productType)
+        : null,
+      isDownloadablePurchase,
+    };
   } catch (error) {
     console.error("Failed to load Stripe success session:", error);
-    return { handbookDownloadUrl: null, isHandbookPurchase: false };
+    return {
+      downloadUrl: null,
+      downloadableLabel: null,
+      isDownloadablePurchase: false,
+    };
   }
 }
 
@@ -43,7 +66,7 @@ export default async function SuccessPage({
   searchParams,
 }: SuccessPageProps) {
   const { session_id: sessionId } = await searchParams;
-  const { handbookDownloadUrl, isHandbookPurchase } =
+  const { downloadUrl, downloadableLabel, isDownloadablePurchase } =
     await getSessionState(sessionId);
 
   return (
@@ -65,21 +88,21 @@ export default async function SuccessPage({
           </h1>
 
           <p className="text-white/80 text-lg">
-            {handbookDownloadUrl
-              ? "Your handbook is ready. Use the button below to download your private copy."
-              : isHandbookPurchase
-                ? "We confirmed your handbook purchase, but the download link is not ready yet. Please contact support if this does not resolve shortly."
+            {downloadUrl
+              ? `Your ${downloadableLabel} is ready. Use the button below to download your private copy.`
+              : isDownloadablePurchase
+                ? `We confirmed your ${downloadableLabel} purchase, but the download link is not ready yet. Please contact support if this does not resolve shortly.`
                 : "Thank you for your purchase! Your payment was completed successfully."}
           </p>
 
           <div className="pt-4 space-y-3">
-            {handbookDownloadUrl ? (
+            {downloadUrl ? (
               <Button
                 size="lg"
                 className="w-full bg-amber-400 hover:bg-amber-300 text-zinc-900 font-bold"
                 asChild
               >
-                <a href={handbookDownloadUrl} target="_blank" rel="noreferrer">
+                <a href={downloadUrl} target="_blank" rel="noreferrer">
                   <Download className="w-5 h-5 mr-2" />
                   Download PDF
                 </a>

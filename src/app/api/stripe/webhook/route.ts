@@ -1,7 +1,12 @@
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
-import { getHandbookDownloadUrl } from "@/lib/handbook-download";
+import {
+  getDownloadableProductLabel,
+  getProductDownloadUrl,
+  isDownloadableProductType,
+  type DownloadableProductType,
+} from "@/lib/handbook-download";
 
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 const stripeWebhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
@@ -21,7 +26,10 @@ const stripe = new Stripe(stripeSecretKey, {
 });
 const verifiedWebhookSecret = stripeWebhookSecret;
 
-async function sendHandbookEmail(email: string) {
+async function sendDownloadEmail(
+  email: string,
+  productType: DownloadableProductType,
+) {
   if (!resendApiKey || !orderConfirmFromEmail) {
     console.warn(
       "RESEND_API_KEY or ORDER_CONFIRM_FROM_EMAIL is missing; webhook confirmed payment but no custom email was sent",
@@ -29,7 +37,8 @@ async function sendHandbookEmail(email: string) {
     return;
   }
 
-  const handbookDownloadUrl = await getHandbookDownloadUrl();
+  const downloadUrl = await getProductDownloadUrl(productType);
+  const productLabel = getDownloadableProductLabel(productType);
 
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
@@ -40,13 +49,13 @@ async function sendHandbookEmail(email: string) {
     body: JSON.stringify({
       from: orderConfirmFromEmail,
       to: [email],
-      subject: "Your Teacher-Gamer Handbook PDF",
+      subject: `Your Teacher-Gamer ${productLabel}`,
       html: `
         <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #111827;">
           <p>Hi there,</p>
-          <p>Thanks for purchasing <strong>The Teacher-Gamer Handbook</strong>.</p>
+          <p>Thanks for purchasing your <strong>Teacher-Gamer ${productLabel}</strong>.</p>
           <p>You can download your PDF here:</p>
-          <p><a href="${handbookDownloadUrl}">${handbookDownloadUrl}</a></p>
+          <p><a href="${downloadUrl}">${downloadUrl}</a></p>
           <p>This private download link expires in 7 days.</p>
           <p>If you have any trouble accessing it, just reply to this email and we will help.</p>
           <p>Best,<br />Teacher-Gamer</p>
@@ -57,7 +66,7 @@ async function sendHandbookEmail(email: string) {
 
   if (!response.ok) {
     const errorText = await response.text();
-    throw new Error(`Failed to send handbook email: ${errorText}`);
+    throw new Error(`Failed to send download email: ${errorText}`);
   }
 }
 
@@ -94,8 +103,8 @@ export async function POST(request: Request) {
       const productType = session.metadata?.productType;
       const email = session.customer_details?.email ?? session.customer_email;
 
-      if (productType === "handbook" && email) {
-        await sendHandbookEmail(email);
+      if (isDownloadableProductType(productType) && email) {
+        await sendDownloadEmail(email, productType);
       }
     }
 

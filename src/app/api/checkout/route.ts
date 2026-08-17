@@ -5,6 +5,12 @@ const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 const workshopPriceId =
   process.env.STRIPE_LEVEL1_WORKSHOP_PRICE_ID ??
   "price_1To7HtIDMam6NySx5ztOftuW";
+const productPriceEnv: Record<string, string | undefined> = {
+  handbook: process.env.STRIPE_PRICE_ID,
+  level1_workshop: workshopPriceId,
+  screen_landscape: process.env.STRIPE_SCREEN_LANDSCAPE_PRICE_ID,
+  screen_portrait: process.env.STRIPE_SCREEN_PORTRAIT_PRICE_ID,
+};
 
 if (!stripeSecretKey) {
   throw new Error("STRIPE_SECRET_KEY environment variable is not set");
@@ -20,11 +26,7 @@ export async function POST(request: NextRequest) {
       productType?: string;
     };
     const productType = body.productType ?? "handbook";
-    const handbookPriceId = process.env.STRIPE_PRICE_ID;
-    const priceId =
-      productType === "level1_workshop"
-        ? workshopPriceId
-        : handbookPriceId;
+    const priceId = productPriceEnv[productType];
 
     if (!priceId) {
       return NextResponse.json(
