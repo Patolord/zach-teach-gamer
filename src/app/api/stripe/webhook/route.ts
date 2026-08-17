@@ -8,23 +8,8 @@ import {
   type DownloadableProductType,
 } from "@/lib/handbook-download";
 
-const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
-const stripeWebhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 const resendApiKey = process.env.RESEND_API_KEY;
 const orderConfirmFromEmail = process.env.ORDER_CONFIRM_FROM_EMAIL;
-
-if (!stripeSecretKey) {
-  throw new Error("STRIPE_SECRET_KEY environment variable is not set");
-}
-
-if (!stripeWebhookSecret) {
-  throw new Error("STRIPE_WEBHOOK_SECRET environment variable is not set");
-}
-
-const stripe = new Stripe(stripeSecretKey, {
-  apiVersion: "2026-02-25.clover",
-});
-const verifiedWebhookSecret = stripeWebhookSecret;
 
 async function sendDownloadEmail(
   email: string,
@@ -71,6 +56,20 @@ async function sendDownloadEmail(
 }
 
 export async function POST(request: Request) {
+  const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+  const stripeWebhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
+
+  if (!stripeSecretKey || !stripeWebhookSecret) {
+    console.error("Stripe webhook environment variables are missing");
+    return NextResponse.json(
+      { error: "Stripe webhook is not configured" },
+      { status: 500 },
+    );
+  }
+
+  const stripe = new Stripe(stripeSecretKey, {
+    apiVersion: "2026-02-25.clover",
+  });
   const payload = await request.text();
   const signature = (await headers()).get("stripe-signature");
 
@@ -87,7 +86,7 @@ export async function POST(request: Request) {
     event = stripe.webhooks.constructEvent(
       payload,
       signature,
-      verifiedWebhookSecret,
+      stripeWebhookSecret,
     );
   } catch (error) {
     console.error("Stripe webhook signature verification failed:", error);

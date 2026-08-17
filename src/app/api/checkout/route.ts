@@ -1,7 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 
-const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 const workshopPriceId =
   process.env.STRIPE_LEVEL1_WORKSHOP_PRICE_ID ??
   "price_1To7HtIDMam6NySx5ztOftuW";
@@ -12,16 +11,20 @@ const productPriceEnv: Record<string, string | undefined> = {
   screen_portrait: process.env.STRIPE_SCREEN_PORTRAIT_PRICE_ID,
 };
 
-if (!stripeSecretKey) {
-  throw new Error("STRIPE_SECRET_KEY environment variable is not set");
-}
-
-const stripe = new Stripe(stripeSecretKey, {
-  apiVersion: "2026-02-25.clover",
-});
-
 export async function POST(request: NextRequest) {
   try {
+    const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+
+    if (!stripeSecretKey) {
+      return NextResponse.json(
+        { error: "Stripe checkout is not configured" },
+        { status: 500 },
+      );
+    }
+
+    const stripe = new Stripe(stripeSecretKey, {
+      apiVersion: "2026-02-25.clover",
+    });
     const body = (await request.json().catch(() => ({}))) as {
       productType?: string;
     };
