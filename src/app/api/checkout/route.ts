@@ -11,6 +11,19 @@ const productPriceEnv: Record<string, string | undefined> = {
   screen_portrait: process.env.STRIPE_SCREEN_PORTRAIT_PRICE_ID,
 };
 
+function checkoutErrorResponse(error: unknown) {
+  const message = error instanceof Error ? error.message : "Unknown error";
+  const isProduction = process.env.VERCEL_ENV === "production";
+
+  return NextResponse.json(
+    {
+      error: "Failed to create checkout session",
+      ...(isProduction ? {} : { message }),
+    },
+    { status: 500 },
+  );
+}
+
 async function createCheckoutSession(request: NextRequest, productType: string) {
   const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 
@@ -60,10 +73,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.redirect(session.url);
   } catch (error) {
     console.error("Stripe checkout redirect error:", error);
-    return NextResponse.json(
-      { error: "Failed to create checkout session" },
-      { status: 500 },
-    );
+    return checkoutErrorResponse(error);
   }
 }
 
@@ -78,9 +88,6 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ url: session.url });
   } catch (error) {
     console.error("Stripe checkout error:", error);
-    return NextResponse.json(
-      { error: "Failed to create checkout session" },
-      { status: 500 },
-    );
+    return checkoutErrorResponse(error);
   }
 }
