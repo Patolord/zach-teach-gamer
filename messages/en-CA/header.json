@@ -1,0 +1,18 @@
+{
+  "menu": "Menu",
+  "toggleMenu": "Toggle menu",
+  "closeMenu": "Close menu",
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "training": "Training",
+    "calendar": "Calendar",
+    "workshops": "Workshops",
+    "partners": "Partners",
+    "map": "Map",
+    "media": "Media",
+    "press": "Press",
+    "shop": "Shop",
+    "faq": "FAQ"
+  }
+}

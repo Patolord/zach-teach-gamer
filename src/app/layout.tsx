@@ -2,6 +2,8 @@ import { ImageKitProvider } from "@imagekit/next";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import Script from "next/script";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getTranslations } from "next-intl/server";
 import "./globals.css";
 
 import ConditionalSplashCursor from "@/components/shared/ConditionalSplashCursor";
@@ -34,45 +36,51 @@ const siteUrl =
       ? `https://${process.env.VERCEL_URL}`
       : "http://localhost:3000");
 
-export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title: "Teacher Gamer Revolution - Game-Based Learning for Education",
-  description:
-    "The future of education is here. Join the Teacher Gamer Revolution and revolutionize the way you learn through safe and fun game-based learning.",
-  keywords: [
-    "game-based learning",
-    "education",
-    "teacher gamer",
-    "Zach Reznichek",
-    "RPG education",
-    "educational games",
-  ],
-  icons: {
-    icon: "/D20redTransparent.png",
-  },
-  openGraph: {
-    title: "Teacher Gamer Revolution",
-    description:
-      "The future of education is here. Join the Teacher Gamer Revolution and revolutionize the way you learn.",
-    type: "website",
-    siteName: "Teacher Gamer Revolution",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Teacher Gamer Revolution",
-    description:
-      "The future of education is here. Join the Teacher Gamer Revolution and revolutionize the way you learn.",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("common.metadata");
 
-export default function RootLayout({
+  return {
+    metadataBase: new URL(siteUrl),
+    title: t("title"),
+    description: t("description"),
+    keywords: [
+      "game-based learning",
+      "education",
+      "teacher gamer",
+      "Zach Reznichek",
+      "RPG education",
+      "educational games",
+    ],
+    icons: {
+      icon: "/D20redTransparent.png",
+    },
+    openGraph: {
+      title: t("ogTitle"),
+      description: t("ogDescription"),
+      type: "website",
+      siteName: t("ogTitle"),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("ogTitle"),
+      description: t("ogDescription"),
+    },
+  };
+}
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Locale comes from the NEXT_LOCALE cookie (see src/i18n/request.ts).
+  // data-locale drives the Canada (purple) / Brazil (green) theme in globals.css.
+  const locale = await getLocale();
+
   return (
     <html
-      lang="en"
+      lang={locale}
+      data-locale={locale}
       className={`${amarante.variable} ${aladin.variable} ${pirataOne.variable}`}
     >
       <head>
@@ -117,12 +125,14 @@ export default function RootLayout({
             src="https://px.ads.linkedin.com/collect/?pid=9671124&fmt=gif"
           />
         </noscript>
-        <ImageKitProvider urlEndpoint="https://ik.imagekit.io/TeacherGamer/Site/">
-          {children}
+        <NextIntlClientProvider>
+          <ImageKitProvider urlEndpoint="https://ik.imagekit.io/TeacherGamer/Site/">
+            {children}
 
-          <FloatingBookingButton />
-          <ConditionalSplashCursor />
-        </ImageKitProvider>
+            <FloatingBookingButton />
+            <ConditionalSplashCursor />
+          </ImageKitProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

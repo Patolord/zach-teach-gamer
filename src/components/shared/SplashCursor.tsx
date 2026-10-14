@@ -1187,10 +1187,21 @@ export default function SplashCursor({
     }
 
     function generateColor(): ColorRGB {
+      // Brand hue follows the active locale theme (see globals.css):
+      // purple for Canada (en-CA), green for Brazil (pt-BR).
+      const isBrazil = document.documentElement.dataset.locale === "pt-BR";
+      const brandColors = isBrazil
+        ? [
+            { r: 0.122, g: 0.616, b: 0.333 }, // Forest Green #1F9D55
+            { r: 0.494, g: 0.886, b: 0.659 }, // Mint #7EE2A8
+          ]
+        : [
+            { r: 0.416, g: 0.294, b: 0.812 }, // Deep Purple #6A4BCF
+            { r: 0.725, g: 0.655, b: 1.0 }, // Soft Lavender #B9A7FF
+          ];
       // Our theme colors - Magical Fantasy Theme
       const themeColors = [
-        { r: 0.416, g: 0.294, b: 0.812 }, // Deep Purple #6A4BCF
-        { r: 0.725, g: 0.655, b: 1.0 },   // Soft Lavender #B9A7FF
+        ...brandColors,
         { r: 0.855, g: 1.0, b: 0.051 },   // Lime Yellow #DAFF0D
         { r: 0.898, g: 1.0, b: 0.302 },   // Lime Light #E5FF4D
         { r: 1.0, g: 0.847, b: 0.353 },   // Warm Yellow #FFD85A
