@@ -2,7 +2,7 @@
 
 import Cal, { getCalApi } from "@calcom/embed-react";
 import { useEffect } from "react";
-import { CAL_CONFIG, getCalUIConfig, getCalConfig } from "./cal-config";
+import { CAL_CONFIG, getCalConfig, getCalUIConfig } from "./cal-config";
 
 export default function Calendar() {
   useEffect(() => {

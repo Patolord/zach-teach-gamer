@@ -36,20 +36,20 @@
   /* ========================================
      ACCENT COLORS - Lime Yellow (CTAs & Highlights)
      ======================================== */
-  --color-accent: #DAFF0D;
-  --color-accent-light: #E5FF4D;
-  --color-accent-dark: #C5E600;
+  --color-accent: #daff0d;
+  --color-accent-light: #e5ff4d;
+  --color-accent-dark: #c5e600;
   --color-accent-glow: rgba(218, 255, 13, 0.2);
-  --color-accent-foreground: #1A1A1F;
+  --color-accent-foreground: #1a1a1f;
 
   /* ========================================
      SECONDARY COLORS - Warm Yellow
      ======================================== */
-  --color-secondary: #FFD85A;
-  --color-secondary-light: #FFE699;
-  --color-secondary-dark: #E6C040;
+  --color-secondary: #ffd85a;
+  --color-secondary-light: #ffe699;
+  --color-secondary-dark: #e6c040;
   --color-secondary-soft: rgba(255, 216, 90, 0.2);
-  --color-secondary-foreground: #1A1A1F;
+  --color-secondary-foreground: #1a1a1f;
 
   /* Course cards & detail pages (match dice colors) */
   --color-course-intro: #38bdf8;
@@ -60,21 +60,21 @@
   /* ========================================
      NEUTRAL COLORS - Grays & Blacks
      ======================================== */
-  --color-background: #1A1A1F;
-  --color-foreground: #E5E4E8;
-  --color-dark: #2A2A32;
-  --color-medium: #6B6780;
-  --color-light: #B8B5C4;
-  --color-lighter: #E5E4E8;
-  --color-white: #F9F9F9;
-  --color-muted: #6B6780;
-  --color-muted-foreground: #B8B5C4;
+  --color-background: #1a1a1f;
+  --color-foreground: #e5e4e8;
+  --color-dark: #2a2a32;
+  --color-medium: #6b6780;
+  --color-light: #b8b5c4;
+  --color-lighter: #e5e4e8;
+  --color-white: #f9f9f9;
+  --color-muted: #6b6780;
+  --color-muted-foreground: #b8b5c4;
 
   /* ========================================
      UTILITY COLORS
      ======================================== */
-  --color-destructive: #DC2626;
-  --color-destructive-foreground: #F9F9F9;
+  --color-destructive: #dc2626;
+  --color-destructive-foreground: #f9f9f9;
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
@@ -83,9 +83,9 @@
      CARD & POPOVER
      ======================================== */
   --color-card: rgba(42, 42, 50, 0.5);
-  --color-card-foreground: #E5E4E8;
+  --color-card-foreground: #e5e4e8;
   --color-popover: rgba(42, 42, 50, 0.95);
-  --color-popover-foreground: #E5E4E8;
+  --color-popover-foreground: #e5e4e8;
 
   /* ========================================
      OPACITY VARIANTS (for overlays)
@@ -106,65 +106,65 @@ body {
      Deep Purple Magical Fantasy Theme
      ======================================== */
   --radius: 0.625rem;
-  
+
   /* Primary - Deep Purple (Canada / en-CA default) */
-  --primary: #6A4BCF;
-  --primary-light: #B9A7FF;
-  --primary-lighter: #D4C9FF;
-  --primary-dark: #5538B5;
+  --primary: #6a4bcf;
+  --primary-light: #b9a7ff;
+  --primary-lighter: #d4c9ff;
+  --primary-dark: #5538b5;
   --primary-subtle: rgba(106, 75, 207, 0.1);
   --primary-glow: rgba(106, 75, 207, 0.3);
-  --primary-foreground: #F9F9F9;
-  
+  --primary-foreground: #f9f9f9;
+
   /* Accent - Lime Yellow */
-  --accent: #DAFF0D;
-  --accent-foreground: #1A1A1F;
-  
+  --accent: #daff0d;
+  --accent-foreground: #1a1a1f;
+
   /* Secondary - Warm Yellow */
-  --secondary: #FFD85A;
-  --secondary-foreground: #1A1A1F;
-  
+  --secondary: #ffd85a;
+  --secondary-foreground: #1a1a1f;
+
   /* Background & Foreground */
-  --background: #1A1A1F;
-  --foreground: #E5E4E8;
-  
+  --background: #1a1a1f;
+  --foreground: #e5e4e8;
+
   /* Muted */
-  --muted: #6B6780;
-  --muted-foreground: #B8B5C4;
-  
+  --muted: #6b6780;
+  --muted-foreground: #b8b5c4;
+
   /* Card */
   --card: rgba(42, 42, 50, 0.5);
-  --card-foreground: #E5E4E8;
-  
+  --card-foreground: #e5e4e8;
+
   /* Popover */
   --popover: rgba(42, 42, 50, 0.95);
-  --popover-foreground: #E5E4E8;
-  
+  --popover-foreground: #e5e4e8;
+
   /* Border & Input */
   --border: rgba(185, 167, 255, 0.2);
   --input: rgba(185, 167, 255, 0.3);
-  --ring: #B9A7FF;
-  
+  --ring: #b9a7ff;
+
   /* Destructive */
-  --destructive: #DC2626;
-  --destructive-foreground: #F9F9F9;
-  
+  --destructive: #dc2626;
+  --destructive-foreground: #f9f9f9;
+
   /* Charts - Purple & Yellow Palette */
-  --chart-1: #6A4BCF;
-  --chart-2: #B9A7FF;
-  --chart-3: #DAFF0D;
-  --chart-4: #FFD85A;
-  --chart-5: #E5E4E8;
-  
+  --chart-1: #6a4bcf;
+  --chart-2: #b9a7ff;
+  --chart-3: #daff0d;
+  --chart-4: #ffd85a;
+  --chart-5: #e5e4e8;
+
   /* Sidebar */
   --sidebar: rgba(42, 42, 50, 0.95);
-  --sidebar-foreground: #E5E4E8;
-  --sidebar-primary: #6A4BCF;
-  --sidebar-primary-foreground: #F9F9F9;
-  --sidebar-accent: #DAFF0D;
-  --sidebar-accent-foreground: #1A1A1F;
+  --sidebar-foreground: #e5e4e8;
+  --sidebar-primary: #6a4bcf;
+  --sidebar-primary-foreground: #f9f9f9;
+  --sidebar-accent: #daff0d;
+  --sidebar-accent-foreground: #1a1a1f;
   --sidebar-border: rgba(185, 167, 255, 0.2);
-  --sidebar-ring: #B9A7FF;
+  --sidebar-ring: #b9a7ff;
 }
 
 /* ========================================
@@ -174,23 +174,23 @@ body {
    keeping the lime/gold accents from the base theme.
    ======================================== */
 :root[data-locale="pt-BR"] {
-  --primary: #1F9D55;
-  --primary-light: #7EE2A8;
-  --primary-lighter: #B9F0D0;
-  --primary-dark: #157A42;
+  --primary: #1f9d55;
+  --primary-light: #7ee2a8;
+  --primary-lighter: #b9f0d0;
+  --primary-dark: #157a42;
   --primary-subtle: rgba(31, 157, 85, 0.1);
   --primary-glow: rgba(31, 157, 85, 0.3);
 
   --border: rgba(126, 226, 168, 0.2);
   --input: rgba(126, 226, 168, 0.3);
-  --ring: #7EE2A8;
+  --ring: #7ee2a8;
 
-  --chart-1: #1F9D55;
-  --chart-2: #7EE2A8;
+  --chart-1: #1f9d55;
+  --chart-2: #7ee2a8;
 
-  --sidebar-primary: #1F9D55;
+  --sidebar-primary: #1f9d55;
   --sidebar-border: rgba(126, 226, 168, 0.2);
-  --sidebar-ring: #7EE2A8;
+  --sidebar-ring: #7ee2a8;
 }
 
 @layer base {
@@ -200,6 +200,18 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* World map countries (react-simple-maps v5 uses plain SVG props) */
+.map-geography {
+  outline: none;
+  opacity: 0.8;
+  transition: opacity 0.15s ease-out;
+}
+
+.map-geography:hover {
+  fill: var(--color-medium);
+  opacity: 1;
 }
 
 /* Hero section fade-in animation */
@@ -345,19 +357,27 @@ body {
 
 /* Text shadow utilities for landing page */
 .text-shadow-hero {
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7), 0 2px 8px rgba(0, 0, 0, 0.5);
+  text-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.7),
+    0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 .text-shadow-subtitle {
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7), 0 1px 4px rgba(0, 0, 0, 0.5);
+  text-shadow:
+    0 2px 12px rgba(0, 0, 0, 0.7),
+    0 1px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* 3D Button utilities for landing page */
 .btn-3d {
-  box-shadow: 0 4px 12px var(--primary-glow), inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow:
+    0 4px 12px var(--primary-glow),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .btn-3d:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px var(--primary-glow), inset 0 -3px 6px rgba(0, 0, 0, 0.3);
+  box-shadow:
+    0 6px 16px var(--primary-glow),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.3);
 }

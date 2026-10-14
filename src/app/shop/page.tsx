@@ -8,11 +8,12 @@ import {
   ShoppingCart,
   Star,
 } from "lucide-react";
-import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
 import RandomTestimonialsShop from "@/components/testimonials/RandomTestimonialsShop";
+import { Button } from "@/components/ui/button";
+import StarRating from "@/components/ui/star-rating";
 import { MEDIA } from "@/lib/media";
 
 const bookFeatures = [
@@ -80,12 +81,7 @@ export default function ShopPage() {
                 {/* Rating/Reviews */}
                 <div className="backdrop-blur-sm rounded-xl p-6 max-w-md mx-auto bg-primary-subtle border-2 border-primary-light/25 shadow-[0_10px_30px_var(--color-primary-glow)]">
                   <div className="flex items-center justify-center gap-2 mb-2">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className="w-5 h-5 text-accent fill-accent"
-                      />
-                    ))}
+                    <StarRating className="w-5 h-5" />
                   </div>
                   <p className="text-center text-lg font-semibold text-lighter">
                     {t("hero.rating")}

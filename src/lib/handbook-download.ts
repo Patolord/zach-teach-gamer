@@ -6,8 +6,7 @@ export const downloadableProductTypes = [
   "screen_portrait",
 ] as const;
 
-export type DownloadableProductType =
-  (typeof downloadableProductTypes)[number];
+export type DownloadableProductType = (typeof downloadableProductTypes)[number];
 
 const downloadableProducts: Record<
   DownloadableProductType,

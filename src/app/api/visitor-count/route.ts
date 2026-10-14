@@ -28,7 +28,9 @@ async function callCounterApi(
   const json = (await res.json()) as {
     data?: { up_count?: number; count?: number; value?: number };
   };
-  return Number(json?.data?.up_count ?? json?.data?.count ?? json?.data?.value ?? 0);
+  return Number(
+    json?.data?.up_count ?? json?.data?.count ?? json?.data?.value ?? 0,
+  );
 }
 
 export async function GET() {

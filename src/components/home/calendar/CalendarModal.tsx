@@ -3,7 +3,7 @@
 import { getCalApi } from "@calcom/embed-react";
 import { useTranslations } from "next-intl";
 import { useEffect } from "react";
-import { CAL_CONFIG, getCalUIConfig, getCalConfig } from "./cal-config";
+import { CAL_CONFIG, getCalConfig, getCalUIConfig } from "./cal-config";
 
 interface CalendarModalProps {
   buttonText?: string;

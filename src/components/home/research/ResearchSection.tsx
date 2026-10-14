@@ -1,9 +1,9 @@
-import { useTranslations } from "next-intl";
-import Link from "next/link";
-import { MEDIA } from "@/lib/media";
-import ShinyText from "@/components/ui/shinytext";
-import { Button } from "@/components/ui/button";
 import { ExternalLink } from "lucide-react";
+import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Button } from "@/components/ui/button";
+import ShinyText from "@/components/ui/shinytext";
+import { MEDIA } from "@/lib/media";
 
 // Using global CSS theme variables
 

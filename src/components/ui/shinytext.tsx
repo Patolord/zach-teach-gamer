@@ -1,137 +1,114 @@
-import React, { useState, useCallback, useEffect, useRef } from 'react';
-import { motion, useMotionValue, useAnimationFrame, useTransform } from 'motion/react';
+"use client";
+
+import type React from "react";
+import { useEffect, useRef } from "react";
 
 interface ShinyTextProps {
   text?: string;
   children?: React.ReactNode;
   disabled?: boolean;
+  /** Seconds for one sweep of the shine across the text */
   speed?: number;
   className?: string;
   color?: string;
   shineColor?: string;
+  /** Gradient angle in degrees */
   spread?: number;
+  /** Sweep back and forth instead of restarting from the same side */
   yoyo?: boolean;
   pauseOnHover?: boolean;
-  direction?: 'left' | 'right';
+  direction?: "left" | "right";
+  /** Seconds to hold at the end of each sweep */
   delay?: number;
 }
 
+/**
+ * Gradient "shine" sweeping across text.
+ *
+ * Runs on the Web Animations API instead of a JS-per-frame loop, so it has
+ * no animation-library dependency and the browser can throttle it when the
+ * tab is hidden. Honours prefers-reduced-motion by rendering a static gradient.
+ */
 const ShinyText: React.FC<ShinyTextProps> = ({
   text,
   children,
   disabled = false,
   speed = 2,
-  className = '',
-  color = 'var(--color-light)',
-  shineColor = 'var(--color-lighter)',
+  className = "",
+  color = "var(--color-light)",
+  shineColor = "var(--color-lighter)",
   spread = 120,
   yoyo = false,
   pauseOnHover = false,
-  direction = 'left',
-  delay = 0
+  direction = "left",
+  delay = 0,
 }) => {
-  const [isPaused, setIsPaused] = useState(false);
-  const progress = useMotionValue(0);
-  const elapsedRef = useRef(0);
-  const lastTimeRef = useRef<number | null>(null);
-  const directionRef = useRef(direction === 'left' ? 1 : -1);
-
-  const animationDuration = speed * 1000;
-  const delayDuration = delay * 1000;
-
-  useAnimationFrame(time => {
-    if (disabled || isPaused) {
-      lastTimeRef.current = null;
-      return;
-    }
-
-    if (lastTimeRef.current === null) {
-      lastTimeRef.current = time;
-      return;
-    }
-
-    const deltaTime = time - lastTimeRef.current;
-    lastTimeRef.current = time;
-
-    elapsedRef.current += deltaTime;
-
-    // Animation goes from 0 to 100
-    if (yoyo) {
-      const cycleDuration = animationDuration + delayDuration;
-      const fullCycle = cycleDuration * 2;
-      const cycleTime = elapsedRef.current % fullCycle;
-
-      if (cycleTime < animationDuration) {
-        // Forward animation: 0 -> 100
-        const p = (cycleTime / animationDuration) * 100;
-        progress.set(directionRef.current === 1 ? p : 100 - p);
-      } else if (cycleTime < cycleDuration) {
-        // Delay at end
-        progress.set(directionRef.current === 1 ? 100 : 0);
-      } else if (cycleTime < cycleDuration + animationDuration) {
-        // Reverse animation: 100 -> 0
-        const reverseTime = cycleTime - cycleDuration;
-        const p = 100 - (reverseTime / animationDuration) * 100;
-        progress.set(directionRef.current === 1 ? p : 100 - p);
-      } else {
-        // Delay at start
-        progress.set(directionRef.current === 1 ? 0 : 100);
-      }
-    } else {
-      const cycleDuration = animationDuration + delayDuration;
-      const cycleTime = elapsedRef.current % cycleDuration;
-
-      if (cycleTime < animationDuration) {
-        // Animation phase: 0 -> 100
-        const p = (cycleTime / animationDuration) * 100;
-        progress.set(directionRef.current === 1 ? p : 100 - p);
-      } else {
-        // Delay phase - hold at end (shine off-screen)
-        progress.set(directionRef.current === 1 ? 100 : 0);
-      }
-    }
-  });
+  const ref = useRef<HTMLSpanElement>(null);
+  const animationRef = useRef<Animation | null>(null);
 
   useEffect(() => {
-    directionRef.current = direction === 'left' ? 1 : -1;
-    elapsedRef.current = 0;
-    progress.set(0);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [direction]);
+    const el = ref.current;
+    if (!el || disabled) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (typeof el.animate !== "function") return;
 
-  // Transform: p=0 -> 150% (shine off right), p=100 -> -50% (shine off left)
-  const backgroundPosition = useTransform(progress, (p: number) => `${150 - p * 2}% center`);
+    const sweepMs = Math.max(speed, 0.01) * 1000;
+    const holdMs = Math.max(delay, 0) * 1000;
+    const total = sweepMs + holdMs;
+    // p=0 -> shine off the right edge, p=1 -> shine off the left edge
+    const from = direction === "left" ? "150% center" : "-50% center";
+    const to = direction === "left" ? "-50% center" : "150% center";
 
-  const handleMouseEnter = useCallback(() => {
-    if (pauseOnHover) setIsPaused(true);
-  }, [pauseOnHover]);
+    const animation = el.animate(
+      [
+        { backgroundPosition: from, offset: 0 },
+        { backgroundPosition: to, offset: sweepMs / total },
+        { backgroundPosition: to, offset: 1 },
+      ],
+      {
+        duration: total,
+        iterations: Number.POSITIVE_INFINITY,
+        direction: yoyo ? "alternate" : "normal",
+        easing: "linear",
+      },
+    );
+    animationRef.current = animation;
 
-  const handleMouseLeave = useCallback(() => {
-    if (pauseOnHover) setIsPaused(false);
-  }, [pauseOnHover]);
+    return () => {
+      animation.cancel();
+      animationRef.current = null;
+    };
+  }, [disabled, speed, delay, direction, yoyo]);
+
+  const handleMouseEnter = () => {
+    if (pauseOnHover) animationRef.current?.pause();
+  };
+
+  const handleMouseLeave = () => {
+    if (pauseOnHover) animationRef.current?.play();
+  };
 
   const gradientStyle: React.CSSProperties = {
     backgroundImage: `linear-gradient(${spread}deg, ${color} 0%, ${color} 35%, ${shineColor} 50%, ${color} 65%, ${color} 100%)`,
-    backgroundSize: '200% auto',
-    WebkitBackgroundClip: 'text',
-    backgroundClip: 'text',
-    WebkitTextFillColor: 'transparent'
+    backgroundSize: "200% auto",
+    backgroundPosition: direction === "left" ? "150% center" : "-50% center",
+    WebkitBackgroundClip: "text",
+    backgroundClip: "text",
+    WebkitTextFillColor: "transparent",
   };
 
-  const content = children || text;
-
   return (
-    <motion.span
+    // biome-ignore lint/a11y/noStaticElementInteractions: hover only pauses a decorative animation; nothing is actionable
+    <span
+      ref={ref}
       className={`inline-block ${className}`}
-      style={{ ...gradientStyle, backgroundPosition }}
+      style={gradientStyle}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {content}
-    </motion.span>
+      {children || text}
+    </span>
   );
 };
 
 export default ShinyText;
-//   plugins: [],
-// };

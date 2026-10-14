@@ -1,9 +1,9 @@
 "use client";
 
 import { ArrowLeft, Award, BookOpen, Heart, Target, Users } from "lucide-react";
-import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { MEDIA } from "@/lib/media";
 

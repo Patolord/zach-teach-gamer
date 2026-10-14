@@ -1,5 +1,6 @@
 "use client";
 
+import { getCalApi } from "@calcom/embed-react";
 import {
   ArrowLeft,
   Award,
@@ -9,18 +10,17 @@ import {
   Star,
   Users,
 } from "lucide-react";
-import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { useEffect } from "react";
-import { getCalApi } from "@calcom/embed-react";
-import { Button } from "@/components/ui/button";
-import { MEDIA } from "@/lib/media";
 import {
   CAL_CONFIG,
-  getCalUIConfig,
   getCalConfig,
+  getCalUIConfig,
 } from "@/components/home/calendar/cal-config";
 import RandomTestimonialsGrid from "@/components/testimonials/RandomTestimonialsGrid";
+import { Button } from "@/components/ui/button";
+import { MEDIA } from "@/lib/media";
 
 const courseFeatures = [
   "outGame",

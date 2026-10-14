@@ -1,9 +1,9 @@
 "use client";
 
 import { ChevronRight, Loader2, Swords } from "lucide-react";
-import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import LocaleToggle from "@/components/shared/LocaleToggle";
 import ScrambledText from "@/components/shared/ScrambledText";
@@ -102,7 +102,6 @@ export default function LandingContent({
         )}
         <span>{isLoading ? t("loading") : t("getStarted")}</span>
       </button>
-
     </div>
   );
 }
