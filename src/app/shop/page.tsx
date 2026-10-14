@@ -8,6 +8,7 @@ import {
   ShoppingCart,
   Star,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -15,35 +16,25 @@ import RandomTestimonialsShop from "@/components/testimonials/RandomTestimonials
 import { MEDIA } from "@/lib/media";
 
 const bookFeatures = [
-  "📘 300 pages of creative strategies and lesson plans",
-  "🎲 36 life skills through collaborative RPG experiences",
-  "⚔️ Designed for educators guiding 10+ year-old learners",
-  "🔥 40+ hours of co-creative play and storytelling",
-  "✨ Step-by-step implementation guides",
-  "🎯 Classroom-tested activities and scenarios",
-  "📊 Assessment tools and progress tracking",
-  "💡 Tips from experienced game master educators",
-];
+  "pages",
+  "lifeSkills",
+  "audience",
+  "hours",
+  "guides",
+  "activities",
+  "assessment",
+  "tips",
+] as const;
 
 const benefits = [
-  {
-    icon: Book,
-    title: "Complete Framework",
-    description: "Everything you need to integrate RPGs into your curriculum",
-  },
-  {
-    icon: Star,
-    title: "Proven Methods",
-    description: "Tested in real classrooms with measurable results",
-  },
-  {
-    icon: CheckCircle,
-    title: "Easy to Follow",
-    description: "Clear instructions for educators of all experience levels",
-  },
-];
+  { id: "framework", icon: Book },
+  { id: "proven", icon: Star },
+  { id: "easy", icon: CheckCircle },
+] as const;
 
 export default function ShopPage() {
+  const t = useTranslations("shop");
+
   return (
     <main className="relative min-h-screen">
       {/* Background */}
@@ -62,7 +53,7 @@ export default function ShopPage() {
             className="inline-flex items-center gap-2 text-lighter hover:text-accent transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
-            Back to Home
+            {t("backToHome")}
           </Link>
         </div>
 
@@ -77,7 +68,7 @@ export default function ShopPage() {
                   <div className="relative w-full h-full rounded-2xl overflow-hidden border-4 border-primary shadow-[0_25px_50px_-12px_var(--color-primary-glow),0_0_60px_var(--color-primary-subtle)]">
                     <Image
                       src={MEDIA.assets.bookCover}
-                      alt="The Teacher-Gamer Handbook Cover"
+                      alt={t("hero.coverAlt")}
                       fill
                       className="object-cover"
                       priority
@@ -90,26 +81,29 @@ export default function ShopPage() {
                 <div className="backdrop-blur-sm rounded-xl p-6 max-w-md mx-auto bg-primary-subtle border-2 border-primary-light/25 shadow-[0_10px_30px_var(--color-primary-glow)]">
                   <div className="flex items-center justify-center gap-2 mb-2">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 text-accent fill-accent" />
+                      <Star
+                        key={i}
+                        className="w-5 h-5 text-accent fill-accent"
+                      />
                     ))}
                   </div>
                   <p className="text-center text-lg font-semibold text-lighter">
-                    4.9/5 from 200+ Educators
+                    {t("hero.rating")}
                   </p>
                 </div>
 
                 {/* Benefits */}
                 <div className="grid grid-cols-3 gap-3 max-w-md mx-auto">
-                  {benefits.map(({ icon: Icon, title }) => (
+                  {benefits.map(({ id, icon: Icon }) => (
                     <div
-                      key={title}
+                      key={id}
                       className="backdrop-blur-sm rounded-xl p-3 text-center space-y-1.5 bg-primary-subtle border border-primary-light/25"
                     >
                       <div className="w-10 h-10 mx-auto rounded-full flex items-center justify-center bg-accent-glow">
                         <Icon className="w-5 h-5 text-accent" />
                       </div>
                       <h3 className="text-xs font-bold text-accent leading-tight">
-                        {title}
+                        {t(`benefits.${id}.title`)}
                       </h3>
                     </div>
                   ))}
@@ -122,19 +116,20 @@ export default function ShopPage() {
                   <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-sm bg-primary-subtle border-2 border-primary-light shadow-[0_0_20px_var(--color-primary-glow)]">
                     <Book className="w-4 h-4 text-accent" />
                     <span className="text-sm font-semibold text-lighter">
-                      Educational Resource
+                      {t("hero.badge")}
                     </span>
                   </div>
 
                   <h1 className="text-4xl md:text-5xl font-bold leading-tight">
-                    <span className="text-accent">The Teacher-Gamer</span>
-                    <span className="text-lighter"> Handbook</span>
+                    {t.rich("hero.title", {
+                      accent: (chunks) => (
+                        <span className="text-accent">{chunks}</span>
+                      ),
+                    })}
                   </h1>
 
                   <p className="text-xl leading-relaxed text-lighter">
-                    Build literacy. Spark imagination. Empower learners. Transform
-                    classrooms into immersive adventures where students learn by
-                    playing, failing, and growing together.
+                    {t("hero.tagline")}
                   </p>
                 </div>
 
@@ -148,9 +143,7 @@ export default function ShopPage() {
                       $36.99 USD
                     </span>
                   </div>
-                  <p className="mt-2 text-lighter">
-                    Digital & Physical versions available
-                  </p>
+                  <p className="mt-2 text-lighter">{t("hero.formats")}</p>
                 </div>
 
                 <div className="flex flex-col gap-4">
@@ -158,7 +151,7 @@ export default function ShopPage() {
                   <div className="relative">
                     <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-accent via-accent-light to-accent opacity-75 blur-sm animate-pulse" />
                     <div className="absolute -top-3 -right-2 z-10 px-3 py-1 text-sm font-extrabold rounded-full bg-accent text-background shadow-[0_2px_10px_var(--color-accent-glow)] animate-bounce">
-                      19% OFF
+                      {t("hero.discountBadge")}
                     </div>
                     <Button
                       asChild
@@ -166,13 +159,13 @@ export default function ShopPage() {
                       className="relative w-full text-xl font-extrabold py-7 transition-all duration-300 bg-accent text-background hover:bg-accent-light shadow-[0_4px_20px_var(--color-accent-glow),0_0_40px_var(--color-secondary-soft)] hover:shadow-[0_6px_30px_rgba(218,255,13,0.45),0_0_50px_rgba(255,216,90,0.25)] hover:scale-[1.02]"
                     >
                       <a href="/api/checkout?productType=handbook">
-                          <ShoppingCart className="w-5 h-5 mr-2" />
-                          Get The PDF — Instant Download
+                        <ShoppingCart className="w-5 h-5 mr-2" />
+                        {t("hero.buyPdf")}
                       </a>
                     </Button>
                   </div>
                   <p className="text-center text-sm text-accent/80 font-medium -mt-1">
-                    Save 19% vs Physical Book — $29.99 CAD via Stripe — Instant Download
+                    {t("hero.buyPdfNote")}
                   </p>
 
                   {/* Buy Physical Book - External Link (Secondary) */}
@@ -187,7 +180,7 @@ export default function ShopPage() {
                       rel="noopener noreferrer"
                     >
                       <Book className="w-4 h-4 mr-2" />
-                      Buy Physical Book
+                      {t("hero.buyPhysical")}
                       <ExternalLink className="w-4 h-4 ml-2" />
                     </a>
                   </Button>
@@ -196,16 +189,19 @@ export default function ShopPage() {
                 {/* What's Inside */}
                 <div className="space-y-4">
                   <h2 className="text-2xl font-bold">
-                    <span className="text-accent">What's</span>
-                    <span className="text-lighter"> Inside</span>
+                    {t.rich("features.title", {
+                      accent: (chunks) => (
+                        <span className="text-accent">{chunks}</span>
+                      ),
+                    })}
                   </h2>
                   <ul className="space-y-3">
-                    {bookFeatures.map((feature, index) => (
+                    {bookFeatures.map((feature) => (
                       <li
-                        key={index}
+                        key={feature}
                         className="flex items-start gap-3 text-lg text-lighter"
                       >
-                        <span>{feature}</span>
+                        <span>{t(`features.items.${feature}`)}</span>
                       </li>
                     ))}
                   </ul>
@@ -216,8 +212,11 @@ export default function ShopPage() {
             {/* Testimonials */}
             <div className="mt-20 space-y-8">
               <h2 className="text-3xl font-bold text-center mb-10">
-                <span className="text-accent">What Educators</span>
-                <span className="text-lighter"> Are Saying</span>
+                {t.rich("testimonials.title", {
+                  accent: (chunks) => (
+                    <span className="text-accent">{chunks}</span>
+                  ),
+                })}
               </h2>
 
               <RandomTestimonialsShop />
@@ -226,8 +225,11 @@ export default function ShopPage() {
             {/* Products Section */}
             <div className="mt-20 space-y-8">
               <h2 className="text-3xl font-bold text-center">
-                <span className="text-accent">Available</span>
-                <span className="text-lighter"> Products</span>
+                {t.rich("products.title", {
+                  accent: (chunks) => (
+                    <span className="text-accent">{chunks}</span>
+                  ),
+                })}
               </h2>
 
               {/* Products Grid */}
@@ -237,7 +239,7 @@ export default function ShopPage() {
                   <div className="relative aspect-3/4 w-full">
                     <Image
                       src={MEDIA.assets.bookCover}
-                      alt="Teacher Gamer Handbook (PDF)"
+                      alt={t("products.handbookPdf.name")}
                       fill
                       className="object-cover"
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
@@ -245,7 +247,7 @@ export default function ShopPage() {
                   </div>
                   <div className="p-6 flex-1 flex flex-col">
                     <h3 className="text-lg font-bold mb-4 text-center text-lighter">
-                      Teacher Gamer Handbook (PDF)
+                      {t("products.handbookPdf.name")}
                     </h3>
                     <p className="text-2xl font-bold text-center mb-4 text-lighter">
                       $29.99 CAD
@@ -254,7 +256,9 @@ export default function ShopPage() {
                       asChild
                       className="w-full font-bold mt-auto transition-all duration-300 bg-accent text-background hover:bg-accent-light"
                     >
-                      <a href="/api/checkout?productType=handbook">Buy PDF</a>
+                      <a href="/api/checkout?productType=handbook">
+                        {t("products.handbookPdf.cta")}
+                      </a>
                     </Button>
                   </div>
                 </div>
@@ -264,7 +268,7 @@ export default function ShopPage() {
                   <div className="relative aspect-3/4 w-full">
                     <Image
                       src={MEDIA.assets.bookCover2}
-                      alt="Teacher Gamer Handbook (Softcover / Hardcover)"
+                      alt={t("products.handbookPrint.name")}
                       fill
                       className="object-cover"
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
@@ -272,11 +276,11 @@ export default function ShopPage() {
                   </div>
                   <div className="p-6 flex-1 flex flex-col">
                     <h3 className="text-lg font-bold mb-2 text-center text-lighter">
-                      Teacher Gamer Handbook (Softcover / Hardcover)
+                      {t("products.handbookPrint.name")}
                     </h3>
                     <div className="text-center mb-4">
                       <p className="text-sm mb-1 text-light">
-                        Starting From:
+                        {t("products.startingFrom")}
                       </p>
                       <p className="text-2xl font-bold text-lighter">
                         $36.99 USD
@@ -291,7 +295,7 @@ export default function ShopPage() {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        BUY NOW
+                        {t("products.handbookPrint.cta")}
                         <ExternalLink className="w-4 h-4 ml-2" />
                       </a>
                     </Button>
@@ -303,7 +307,7 @@ export default function ShopPage() {
                   <div className="relative aspect-3/4 w-full">
                     <Image
                       src={MEDIA.assets.bookCover3}
-                      alt="Teacher Gamer Screen (Landscape)"
+                      alt={t("products.screenLandscape.name")}
                       fill
                       className="object-cover"
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
@@ -311,19 +315,17 @@ export default function ShopPage() {
                   </div>
                   <div className="p-6 flex-1 flex flex-col">
                     <h3 className="text-lg font-bold mb-2 text-center text-lighter">
-                      Teacher Gamer Screen (Landscape)
+                      {t("products.screenLandscape.name")}
                     </h3>
                     <div className="text-center mb-4">
-                      <p className="text-2xl font-bold text-lighter">
-                        $9 CAD
-                      </p>
+                      <p className="text-2xl font-bold text-lighter">$9 CAD</p>
                     </div>
                     <Button
                       asChild
                       className="w-full font-bold mt-auto transition-all duration-300 bg-accent text-background hover:bg-accent-light"
                     >
                       <a href="/api/checkout?productType=screen_landscape">
-                        Buy Landscape PDF
+                        {t("products.screenLandscape.cta")}
                       </a>
                     </Button>
                   </div>
@@ -334,7 +336,7 @@ export default function ShopPage() {
                   <div className="relative aspect-3/4 w-full">
                     <Image
                       src={MEDIA.assets.bookCover4}
-                      alt="Teacher Gamer Screen (Portrait)"
+                      alt={t("products.screenPortrait.name")}
                       fill
                       className="object-cover"
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
@@ -342,19 +344,17 @@ export default function ShopPage() {
                   </div>
                   <div className="p-6 flex-1 flex flex-col">
                     <h3 className="text-lg font-bold mb-2 text-center text-lighter">
-                      Teacher Gamer Screen (Portrait)
+                      {t("products.screenPortrait.name")}
                     </h3>
                     <div className="text-center mb-4">
-                      <p className="text-2xl font-bold text-lighter">
-                        $9 CAD
-                      </p>
+                      <p className="text-2xl font-bold text-lighter">$9 CAD</p>
                     </div>
                     <Button
                       asChild
                       className="w-full font-bold mt-auto transition-all duration-300 bg-accent text-background hover:bg-accent-light"
                     >
                       <a href="/api/checkout?productType=screen_portrait">
-                        Buy Portrait PDF
+                        {t("products.screenPortrait.cta")}
                       </a>
                     </Button>
                   </div>
@@ -368,7 +368,7 @@ export default function ShopPage() {
                     <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-2xl border border-primary-light/40 bg-white/10 p-2 shadow-[0_0_25px_rgba(83,190,255,0.22)]">
                       <Image
                         src="/partners/hero-workshop-logo.png"
-                        alt="Hero Workshop"
+                        alt={t("partner.logoAlt")}
                         fill
                         className="object-contain p-2"
                         sizes="96px"
@@ -376,39 +376,36 @@ export default function ShopPage() {
                     </div>
                     <div className="space-y-3">
                       <p className="text-sm font-semibold uppercase tracking-[0.28em] text-course-intro">
-                        Partner Highlight
+                        {t("partner.eyebrow")}
                       </p>
                       <h3 className="text-3xl font-bold text-lighter">
-                        Level 1 TG: Intro to the Multiverse Certificate Course
-                        at Hero Workshop, in-person Culver City, California
+                        {t("partner.title")}
                       </h3>
                       <p className="max-w-2xl text-lg leading-relaxed text-lighter/80">
-                        24-hour in-person accelerator course!
+                        {t("partner.intro")}
                         <span className="my-3 block h-px w-32 bg-course-intro/60" />
                         <strong className="block text-2xl md:text-3xl font-bold text-lighter">
-                          August 9, 15, 16, 2026.
+                          {t("partner.dates")}
                         </strong>
                         <span className="mt-1 block text-xl font-semibold text-course-intro">
-                          (8:30am - 5:15pm)
+                          {t("partner.hours")}
                         </span>
                         <span className="mt-3 block">
-                          We are teaming up with Hero Workshop to bring the
-                          Teacher-Gamer Revolution to the Los Angeles education
-                          community.
+                          {t("partner.description")}
                         </span>
                       </p>
                       <div className="flex flex-wrap gap-4 text-sm text-lighter/75">
                         <span className="flex items-center gap-2">
                           <CheckCircle className="h-4 w-4 text-course-intro" />
-                          Story-led learning
+                          {t("partner.storyLed")}
                         </span>
                         <span className="flex items-center gap-2">
                           <CheckCircle className="h-4 w-4 text-course-intro" />
-                          Creative facilitation
+                          {t("partner.creativeFacilitation")}
                         </span>
                         <span className="flex items-center gap-2">
                           <CheckCircle className="h-4 w-4 text-course-intro" />
-                          Partner spotlight
+                          {t("partner.spotlight")}
                         </span>
                       </div>
                     </div>
@@ -422,7 +419,7 @@ export default function ShopPage() {
                       className="text-lg font-bold px-10 py-6 bg-course-intro text-background hover:scale-105 transition-transform shadow-[0_0_30px_rgba(83,190,255,0.24)]"
                     >
                       <a href="/api/checkout?productType=level1_workshop">
-                        Enroll Now
+                        {t("partner.enroll")}
                       </a>
                     </Button>
                   </div>
@@ -433,12 +430,14 @@ export default function ShopPage() {
             {/* CTA Section */}
             <div className="mt-20 text-center space-y-6">
               <h2 className="text-3xl font-bold">
-                <span className="text-accent">Ready to Get</span>
-                <span className="text-lighter"> Started?</span>
+                {t.rich("cta.title", {
+                  accent: (chunks) => (
+                    <span className="text-accent">{chunks}</span>
+                  ),
+                })}
               </h2>
               <p className="text-xl max-w-2xl mx-auto text-lighter">
-                Explore our collection of educational resources designed to transform
-                your classroom into an engaging learning adventure.
+                {t("cta.description")}
               </p>
               <Button
                 asChild
@@ -447,7 +446,7 @@ export default function ShopPage() {
               >
                 <a href="/api/checkout?productType=handbook">
                   <ShoppingCart className="w-5 h-5 mr-2" />
-                  Get Started - Buy PDF
+                  {t("cta.button")}
                 </a>
               </Button>
             </div>

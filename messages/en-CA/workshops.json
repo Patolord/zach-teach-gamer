@@ -1,1 +1,51 @@
-{}
+{
+  "backToHome": "Back to Home",
+  "hero": {
+    "badge": "In-Person Events",
+    "title": "<accent>Workshops</accent> Near You",
+    "description": "Join us in person for hands-on, immersive workshops. Learn game-based teaching methods side-by-side with fellow educators in your region."
+  },
+  "tour": {
+    "photoAlt": "Large group workshop in outdoor bamboo pavilion",
+    "comingSoon": "Coming Soon",
+    "title": "Teacher-Gamer <gradient>Tour 2026</gradient>",
+    "description": "Live workshops, immersive RPG experiences, and the Teacher-Gamer methodology — coming to cities around the world, starting in North America, June – September 2026. Official dates and locations dropping soon.",
+    "region": "North America & Beyond",
+    "dates": "June – Sep 2026",
+    "stayTuned": "Stay tuned — details will be announced here."
+  },
+  "hostSurvey": {
+    "eyebrow": "Teacher-Gamer Tour",
+    "title": "Do you want to host a workshop in your neck of the woods?",
+    "description": "Fill in this survey so we can have a conversation of how best to support your learning community.",
+    "cta": "Open survey"
+  },
+  "posters": {
+    "items": {
+      "tour2026": {
+        "title": "Teacher-Gamer Tour 2026",
+        "alt": "Teacher-Gamer Tour 2026 poster"
+      },
+      "originsGama": {
+        "title": "Origins Game Fair 2026 — Game-Based Education & Therapy Conference",
+        "alt": "GAMA Origins Game Fair 2026 workshop and conference schedule"
+      }
+    },
+    "cta": "Book a Discovery Call to talk it over and set things in motion."
+  },
+  "featured": {
+    "videoTitle": "Frontloading Life Skills During the 11–14 Window – ISEP Webinar",
+    "badge": "ISEP Webinar",
+    "date": "March 4, 2026 · 4:00 PM",
+    "location": "ISEP — Polytechnic of Porto, Portugal",
+    "title": "Frontloading Life Skills During the 11–14 Window",
+    "speaker": "Z Reznichek — Teacher-Gamer",
+    "description": "Exploring practical ‘eruptive methodologies’ that are embodied, off-screen, and collective — moving through ‘possibility thinking’ into PBL, SEL, GBL and world-building role-playing games that are, pedagogically speaking, co-designed learning environments for agency, risk, and imagination in this Window of Wonder from 11–14 years old."
+  },
+  "requestWorkshop": {
+    "title": "Want a Workshop in <accent>Your City</accent>?",
+    "description": "We're expanding to new locations all the time. If you'd like to host or request a Teacher Gamer workshop in your area, let us know!",
+    "request": "Request a Workshop",
+    "contact": "Contact Us"
+  }
+}

@@ -15,6 +15,7 @@ type PosterState = "hidden" | "entering" | "open" | "closing";
 
 export default function TourPopup() {
   const t = useTranslations("shared.tourPopup");
+  const tWorkshops = useTranslations("workshops");
   const [mounted, setMounted] = useState(false);
   const [posterState, setPosterState] = useState<PosterState>("hidden");
   const [activePosterIndex, setActivePosterIndex] = useState(0);
@@ -163,7 +164,7 @@ export default function TourPopup() {
             <Link href="/workshops" onClick={dismiss} className="block h-full">
               <Image
                 src={activePoster.src}
-                alt={activePoster.alt}
+                alt={tWorkshops(`posters.items.${activePoster.id}.alt`)}
                 width={activePoster.width}
                 height={activePoster.height}
                 className="h-full w-auto object-contain"

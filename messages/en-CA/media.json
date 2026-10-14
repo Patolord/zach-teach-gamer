@@ -1,1 +1,95 @@
-{}
+{
+  "hero": {
+    "title": "Podcasts & Gallery",
+    "description": "Dive into conversations about game-based learning, explore behind-the-scenes moments, and discover the magic of the Teacher-Gamer methodology.",
+    "introVideoTitle": "Teacher Gamer Introduction Video"
+  },
+  "videos": {
+    "more": "More Videos",
+    "subscribe": "Subscribe on Youtube"
+  },
+  "podcast": {
+    "title": "Latest <gradient>Teacher Gamer Podcast</gradient> Episodes",
+    "featured": "Featured",
+    "playerTitle": "TGPC - The Power of Writing",
+    "listenNow": "Listen Now",
+    "platforms": "Listen on your favorite platform",
+    "viewOnPodbean": "View on Podbean",
+    "episodes": {
+      "powerOfGbl": {
+        "date": "Dec 2024",
+        "description": "Exploring how tabletop RPGs transform education and build critical thinking skills in young minds."
+      },
+      "ep1JesseDriver": {
+        "date": "Dec 2021",
+        "description": "Our opening episode highlights different styles of teacher-gaming. We talk \"Make Play\", Mantic Games, cheap materials, MS hobby & craft time, TT vs digital culture, mini-war gaming, homebrewing."
+      },
+      "ep8HandbookIntro": {
+        "date": "Mar 2025",
+        "description": "Kicking the season off with a sneak peek of the Teacher-Gamer Handbook audio book. Deep dive into using RPGs in schools as project based (PBL) and social emotional learning (SEL) through Zach's 36 life-skills methodology."
+      }
+    }
+  },
+  "gallery": {
+    "title": "Gallery",
+    "description": "Explore moments from our sessions, workshops, and the creative world of game-based learning.",
+    "categories": {
+      "all": "All",
+      "sessions": "Sessions",
+      "learning": "Learning",
+      "workshops": "Workshops"
+    },
+    "loadMore": "Load More",
+    "remaining": "({n} remaining)",
+    "images": {
+      "gamingSession": "Gaming Session",
+      "groupActivity": "Group Activity",
+      "dndAdventure": "D&D Adventure",
+      "tabletopGaming": "Tabletop Gaming",
+      "learningMoment": "Learning Moment",
+      "classroomSession": "Classroom Session",
+      "studentEngagement": "Student Engagement",
+      "creativePlay": "Creative Play",
+      "workshopActivity": "Workshop Activity",
+      "gameMasterTeaching": "Game Master Teaching",
+      "collaborativeLearning": "Collaborative Learning",
+      "rpgSession": "RPG Session",
+      "characterBuilding": "Character Building",
+      "storytellingSession": "Storytelling Session",
+      "teamCollaboration": "Team Collaboration",
+      "adventurePlanning": "Adventure Planning",
+      "gameSetup": "Game Setup",
+      "studentFocus": "Student Focus",
+      "interactiveLearning": "Interactive Learning",
+      "groupDiscussion": "Group Discussion",
+      "creativeExpression": "Creative Expression",
+      "problemSolving": "Problem Solving",
+      "gamingFun": "Gaming Fun",
+      "classroomAdventure": "Classroom Adventure",
+      "teamBuilding": "Team Building",
+      "imaginationAtWork": "Imagination at Work",
+      "learningThroughPlay": "Learning Through Play",
+      "gameMastering": "Game Mastering",
+      "studentCreativity": "Student Creativity",
+      "adventureTime": "Adventure Time",
+      "collaborativeStory": "Collaborative Story",
+      "workshopMoment": "Workshop Moment",
+      "teacherGamerSession": "Teacher Gamer Session",
+      "engagedLearners": "Engaged Learners",
+      "miniaturePainting": "Miniature Painting",
+      "rolePlayingFun": "Role-Playing Fun",
+      "panoramicSession": "Panoramic Session",
+      "gamingGroup": "Gaming Group",
+      "teachingMoment": "Teaching Moment",
+      "studentAchievement": "Student Achievement",
+      "gameNight": "Game Night",
+      "specialEvent": "Special Event",
+      "onlineTeaching": "Online Teaching",
+      "behindTheScenes": "Behind the Scenes"
+    }
+  },
+  "lightbox": {
+    "aria": "Image lightbox",
+    "close": "Close lightbox"
+  }
+}

@@ -1,9 +1,10 @@
 import { CheckCircle, Download } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 import Stripe from "stripe";
 import { Button } from "@/components/ui/button";
 import {
-  getDownloadableProductLabel,
+  type DownloadableProductType,
   getProductDownloadUrl,
   isDownloadableProductType,
 } from "@/lib/handbook-download";
@@ -17,11 +18,17 @@ type SuccessPageProps = {
   }>;
 };
 
-async function getSessionState(sessionId?: string) {
+type SessionState = {
+  downloadUrl: string | null;
+  downloadableType: DownloadableProductType | null;
+  isDownloadablePurchase: boolean;
+};
+
+async function getSessionState(sessionId?: string): Promise<SessionState> {
   if (!sessionId || !stripeSecretKey) {
     return {
       downloadUrl: null,
-      downloadableLabel: null,
+      downloadableType: null,
       isDownloadablePurchase: false,
     };
   }
@@ -39,31 +46,30 @@ async function getSessionState(sessionId?: string) {
     if (isDownloadablePurchase && isPaid) {
       return {
         downloadUrl: await getProductDownloadUrl(productType),
-        downloadableLabel: getDownloadableProductLabel(productType),
+        downloadableType: productType,
         isDownloadablePurchase: true,
       };
     }
 
     return {
       downloadUrl: null,
-      downloadableLabel: null,
+      downloadableType: null,
       isDownloadablePurchase,
     };
   } catch (error) {
     console.error("Failed to load Stripe success session:", error);
     return {
       downloadUrl: null,
-      downloadableLabel: null,
+      downloadableType: null,
       isDownloadablePurchase: false,
     };
   }
 }
 
-export default async function SuccessPage({
-  searchParams,
-}: SuccessPageProps) {
+export default async function SuccessPage({ searchParams }: SuccessPageProps) {
+  const t = await getTranslations("shop");
   const { session_id: sessionId } = await searchParams;
-  const { downloadUrl, downloadableLabel, isDownloadablePurchase } =
+  const { downloadUrl, downloadableType, isDownloadablePurchase } =
     await getSessionState(sessionId);
 
   return (
@@ -81,19 +87,21 @@ export default async function SuccessPage({
           </div>
 
           <h1 className="text-3xl md:text-4xl font-bold text-white">
-            Payment Successful!
+            {t("success.title")}
           </h1>
 
           <p className="text-white/80 text-lg">
-            {downloadUrl && downloadableLabel
-              ? `Your ${downloadableLabel} is ready. Use the button below to download your private copy.`
+            {downloadUrl && downloadableType
+              ? t("success.ready", {
+                  product: t(`success.productLabels.${downloadableType}`),
+                })
               : isDownloadablePurchase
-                ? "We confirmed your purchase, but the download links are not ready yet. Please contact support if this does not resolve shortly."
-                : "Thank you for your purchase! Your payment was completed successfully."}
+                ? t("success.pending")
+                : t("success.thanks")}
           </p>
 
           <div className="pt-4 space-y-3">
-            {downloadUrl && downloadableLabel ? (
+            {downloadUrl && downloadableType ? (
               <Button
                 size="lg"
                 className="w-full bg-amber-400 hover:bg-amber-300 text-zinc-900 font-bold"
@@ -101,7 +109,7 @@ export default async function SuccessPage({
               >
                 <a href={downloadUrl} target="_blank" rel="noreferrer">
                   <Download className="w-5 h-5 mr-2" />
-                  Download PDF
+                  {t("success.download")}
                 </a>
               </Button>
             ) : null}
@@ -111,7 +119,7 @@ export default async function SuccessPage({
               className="w-full bg-amber-400 hover:bg-amber-300 text-zinc-900 font-bold"
               asChild
             >
-              <Link href="/shop">Continue Shopping</Link>
+              <Link href="/shop">{t("success.continueShopping")}</Link>
             </Button>
 
             <Button
@@ -120,7 +128,7 @@ export default async function SuccessPage({
               className="w-full border-white/30 text-white hover:bg-white/10 font-bold"
               asChild
             >
-              <Link href="/home">Back to Home</Link>
+              <Link href="/home">{t("backToHome")}</Link>
             </Button>
           </div>
         </div>

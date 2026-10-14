@@ -1,1 +1,109 @@
-{}
+{
+  "backToHome": "Back to Home",
+  "title": "Teacher Gamers <accent>Worldwide</accent>",
+  "stats": {
+    "teachers": "Teachers",
+    "certificates": "Education / Certificates"
+  },
+  "legend": {
+    "teacher": "Teacher Location",
+    "workshop": "Workshop",
+    "hint": "Click marker for details"
+  },
+  "tooltip": {
+    "more": "+ {n} more"
+  },
+  "cta": {
+    "title": "Join the Network",
+    "subtitle": "Become a certified Teacher Gamer",
+    "button": "Get Certified"
+  },
+  "contactLabels": {
+    "instagram": "Instagram",
+    "linkedin": "LinkedIn",
+    "discord": "Discord",
+    "email": "Email"
+  },
+  "teacherModal": {
+    "closeAria": "Close teacher details",
+    "specialties": "Specialties / Services",
+    "certificates": "Education / Certificates",
+    "tgBadge": "TG",
+    "connectWith": "Connect with {name}",
+    "emailAria": "Email {name}",
+    "profileAria": "{name} on {platform}"
+  },
+  "workshopModal": {
+    "closeAria": "Close workshop details",
+    "details": "Workshop Details",
+    "expect": "What to Expect",
+    "viewWorkshops": "View Workshops"
+  },
+  "specialties": {
+    "teacherTraining": "Teacher Training",
+    "curriculumDevelopment": "Curriculum Development",
+    "sel": "Social Emotional Learning (SEL)",
+    "gbl": "Game-Based Learning (GBL)",
+    "pbl": "Project Based Learning (PBL)",
+    "rpgFacilitation": "RPG-Based Facilitation",
+    "improvFacilitation": "Improv Facilitation",
+    "narrativeDesign": "Narrative Design",
+    "professionalDming": "Professional DMing",
+    "communityBuilding": "Community Building",
+    "corporateTraining": "Corporate Training & Facilitation",
+    "keynoteSpeaking": "Keynote Speaking",
+    "gameBasedLearning": "Game-Based Learning",
+    "creativeStrategy": "Creative Strategy & Innovation",
+    "publicSpeaking": "Public Speaking",
+    "digitalMarketing": "Digital Marketing",
+    "copywriting": "Copywriting",
+    "translationEnPtBr": "Translation (EN → PT-BR)",
+    "martialArts": "Martial Arts",
+    "humanCenteredDesign": "Human-Centered Design & Innovation",
+    "decentralizedLeadership": "Decentralized Leadership",
+    "translationEnPtBrEn": "Translation (EN → PT-BR → EN)",
+    "lessonPlanDevelopment": "Lesson Plan Development",
+    "eventOrganising": "Event Organising",
+    "personalLogoFacilitation": "Personal Logo Making Facilitation",
+    "professor": "Professor",
+    "educationalLeadership": "Educational Leadership",
+    "skillAcquisition": "Skill Acquisition"
+  },
+  "certificates": {
+    "bsDesign": "BS in Design",
+    "maEducation": "MA in Education",
+    "eslCertificate": "ESL Teaching Certificate",
+    "mindfulnessCertificate": "Mindfulness Training Certificate",
+    "founderTeacherGamer": "Founder — Teacher-Gamer",
+    "authorHandbook": "Author — Teacher-Gamer Handbook",
+    "coFounderDaVinci": "Co-Founder — Da Vinci Life Skills Curriculum",
+    "baMultimediaDesign": "BA in Multimedia Design",
+    "targetTealCorporateFacilitation": "Target Teal — Corporate Facilitation",
+    "targetTealCultureHacking": "Target Teal — Culture Hacking",
+    "futureOfStorytelling": "Future of Storytelling (University of Potsdam)",
+    "businessExperienceTracksale": "Business Experience (Tracksale)",
+    "humanizedMarketing": "Humanized Marketing (Liliane Ferrari)",
+    "tgIntroMultiverse": "Teacher-Gamer — Intro to Multiverse",
+    "tgLevel1": "Teacher-Gamer — Level 1",
+    "baNursing": "BA Nursing",
+    "tgIntroLevel1": "Teacher-Gamer — Intro & Level 1",
+    "daVinciIntroLevel1": "Da Vinci Life Skills — Intro & Level 1",
+    "nvcIntensive": "NonViolent Communication — International Intensive Training",
+    "tgIntroLevel1Level2": "Teacher-Gamer — Intro, Level 1 & Level 2",
+    "daVinciIntroLevel1Level2": "Da Vinci Life Skills — Intro, Level 1 & Level 2",
+    "doctorateEducationalLeadership": "Doctorate in Educational Leadership — secondary education & game-based learning; emphasis on skill acquisition through game-based learning"
+  },
+  "workshops": {
+    "columbusOh2026": {
+      "title": "Teacher-Gamer Workshop Quest",
+      "dateLabel": "June 11-21, 2026",
+      "statusLabel": "Mock Workshop",
+      "description": "A mocked in-person Teacher-Gamer workshop stop for hands-on RPG-based facilitation, game-based learning, and community practice.",
+      "highlights": {
+        "live": "Live workshop sessions",
+        "practice": "RPG-based facilitation practice",
+        "method": "Teacher-Gamer methodology"
+      }
+    }
+  }
+}
