@@ -1,1 +1,155 @@
-{}
+{
+  "backToHome": "Back to Home",
+  "hero": {
+    "badge": "Frequently Asked Questions",
+    "title": "<accent>How Can We</accent><light> Help You?</light>",
+    "intro": "Find answers to common questions about our courses, products, and game-based learning methodology. Can’t find what you’re looking for? <link>Contact us</link>."
+  },
+  "stats": {
+    "educators": { "value": "500+", "label": "Educators Trained" },
+    "students": { "value": "10K+", "label": "Students Reached" },
+    "satisfaction": { "value": "95%", "label": "Satisfaction Rate" },
+    "support": { "value": "24/7", "label": "Support Access" }
+  },
+  "categories": {
+    "gettingStarted": "Getting Started",
+    "courses": "Courses & Content",
+    "pricing": "Pricing & Payment",
+    "community": "Community & Support",
+    "shop": "Shop & Products",
+    "technical": "Technical & General"
+  },
+  "items": {
+    "whatIsGbl": {
+      "question": "What is game-based learning?",
+      "answer": "Game-based learning uses role-playing games and interactive storytelling to teach academic concepts and skills. It engages students through narrative, character development, and collaborative problem-solving while meeting educational standards."
+    },
+    "rpgExperience": {
+      "question": "Do I need RPG experience to take your courses?",
+      "answer": "Not at all! Our courses are designed for educators at all levels, from complete beginners to experienced game masters. We start with the basics and build up your skills progressively."
+    },
+    "ageGroups": {
+      "question": "What age groups can benefit from game-based learning?",
+      "answer": "We primarily work with students aged 10 and above, though our methods can be adapted for various age ranges. The key is adjusting complexity and themes to match students’ developmental levels."
+    },
+    "implementationTime": {
+      "question": "How long does it take to implement game-based learning?",
+      "answer": "You can start small with single sessions and scale up as you grow comfortable. Most educators begin seeing engagement benefits within their first few sessions, with full implementation of an introductory course taking 10 weeks."
+    },
+    "courseLength": {
+      "question": "How long are the courses?",
+      "answer": "Course lengths vary from 6–20 weeks depending on the level and how many hours per week. Level 1 is 24 hours over 6 weeks, Level 2 is 48 hours 12 weeks, and Level 3 is 72 hours over 20 weeks. All courses are self-paced with optional cohort-based learning. In-person & online courses available."
+    },
+    "courseIncludes": {
+      "question": "What’s included in each course?",
+      "answer": "Each course includes online lessons, downloadable resources, templates, community access to Teacher Gamer Whats App Fellowship, Discord Server, and practical assignments. Higher-level courses include one-on-one coaching and advanced materials."
+    },
+    "accessAfterCompletion": {
+      "question": "Can I access course materials after completion?",
+      "answer": "Yes. You get lifetime access to all course materials, including future updates and additions."
+    },
+    "prerequisites": {
+      "question": "Are there prerequisites for advanced courses?",
+      "answer": "The Teacher-Gamer methodology is holistic. We recommend taking courses in order, as each builds on previous concepts and there are original and unique social emotional learning (SEL), project-based learning (PBL), and game-based learning (GBL) elements presented by Teacher-Gamer which provides new perspectives even to advanced educators, players, and DMs."
+    },
+    "groupTraining": {
+      "question": "Do you offer group or school-wide training?",
+      "answer": "Yes. We offer custom training packages for schools and districts, including bulk pricing and tailored professional development."
+    },
+    "courseCost": {
+      "question": "How much do courses cost?",
+      "answer": "Level 1 starts at $299, Level 2 at $599, and Level 3 at $999. Payment plans and bundle discounts are available."
+    },
+    "refunds": {
+      "question": "Do you offer refunds?",
+      "answer": "Yes. We offer a 30-day money-back guarantee."
+    },
+    "paymentPlans": {
+      "question": "Are payment plans available?",
+      "answer": "Yes. We offer 3-month and 6-month payment plans for all courses."
+    },
+    "educatorDiscounts": {
+      "question": "Do you offer educator discounts?",
+      "answer": "Yes. Active educators receive a 20% discount with verification."
+    },
+    "schoolReimbursement": {
+      "question": "Can I get reimbursed by my school?",
+      "answer": "Many schools reimburse professional development. We provide detailed receipts and documentation to support reimbursement requests."
+    },
+    "communityAccess": {
+      "question": "Is there a community for course participants?",
+      "answer": "Yes. All participants get access to both private WhatsApp and Discord communities to connect, share experiences, and receive feedback."
+    },
+    "gettingHelp": {
+      "question": "How do I get help if I’m stuck?",
+      "answer": "Support is available via community forums, email, live Q&A sessions (for higher-tier courses), and documentation. Most questions are answered within 24 hours."
+    },
+    "collaboration": {
+      "question": "Can I collaborate with other educators?",
+      "answer": "Yes. Collaboration is encouraged, including co-teaching, sharing resources, and joint campaign creation."
+    },
+    "networking": {
+      "question": "Are there networking opportunities?",
+      "answer": "We host monthly virtual meetups, annual conferences, and regional workshops."
+    },
+    "products": {
+      "question": "What products do you sell?",
+      "answer": "We offer game master guides, campaign modules, dice sets, character sheets, world-building templates, and classroom posters."
+    },
+    "digitalPhysical": {
+      "question": "Do digital products come with physical items?",
+      "answer": "Some bundles include both digital and physical components. Digital products are available immediately after purchase."
+    },
+    "shipping": {
+      "question": "What’s your shipping policy?",
+      "answer": "Orders ship within 2–3 business days. Domestic shipping takes 5–7 days; international shipping takes 10–14 days. Free US shipping on orders over $50."
+    },
+    "returns": {
+      "question": "Can I return physical products?",
+      "answer": "Physical products can be returned within 30 days if unused and in original condition. Digital products are non-refundable after download."
+    },
+    "devices": {
+      "question": "What devices are supported?",
+      "answer": "Our platform works on desktops, laptops, tablets, and smartphones. A larger screen is recommended for courses."
+    },
+    "software": {
+      "question": "Do I need special software?",
+      "answer": "No. Everything runs in your web browser. A PDF Reader is needed for reading downloaded material. Discord is optional for community access."
+    },
+    "accessPurchases": {
+      "question": "How do I access my purchases?",
+      "answer": "Log into your account and visit “My Courses” or “My Downloads” in your dashboard."
+    },
+    "sharingAccess": {
+      "question": "Can I share my course access with colleagues?",
+      "answer": "Individual licenses are single-user. Group and school packages are available."
+    },
+    "dataSecurity": {
+      "question": "Is my data secure?",
+      "answer": "Yes. We use industry-standard encryption and comply with all privacy regulations."
+    }
+  },
+  "stillQuestions": {
+    "title": "<accent>Still Have</accent><light> Questions?</light>",
+    "body": "Can’t find the answer you’re looking for? Our support team is here to help. Reach out and we’ll get back to you as soon as possible.",
+    "contactSupport": "Contact Support",
+    "browseCourses": "Browse Courses"
+  },
+  "resources": {
+    "docs": {
+      "title": "Documentation",
+      "body": "Explore our comprehensive guides and tutorials.",
+      "link": "Read Docs →"
+    },
+    "community": {
+      "title": "Community",
+      "body": "Join our Discord to connect with other educators.",
+      "link": "Join Discord →"
+    },
+    "trial": {
+      "title": "Free Trial",
+      "body": "Try our intro course for free before committing.",
+      "link": "Start Free Trial →"
+    }
+  }
+}

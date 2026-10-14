@@ -1,1 +1,57 @@
-{}
+{
+  "metadata": {
+    "title": "Partners & Sponsors | Teacher Gamer",
+    "description": "Organizations supporting Teacher-Gamer — and how to collaborate as a partner or sponsor."
+  },
+  "backToHome": "Back to Home",
+  "hero": {
+    "eyebrow": "Collaboration",
+    "title": "<accent>Partners</accent> & Sponsors",
+    "body": "We are grateful to the companies, schools, and brands that help grow game-based learning with Teacher-Gamer. Want to join them? Tell us how you would like to work together."
+  },
+  "featured": {
+    "title": "Featured organizations",
+    "empty": "Partner and sponsor logos will appear here as we announce collaborations.",
+    "visit": "Visit {name}"
+  },
+  "organizations": {
+    "daVinciLifeSkills": {
+      "description": "Da Vinci Life-Skills is a non‑profit education organisation that provides a biophilic, project‑based curriculum, a skills‑based assessment framework, and certified mentor training to help schools and home‑education communities deliver holistic, real‑world learning where students can flourish."
+    },
+    "rpgDojo": {
+      "description": "A digital community for studying, playing, chatting, and learning more about TTRPGs."
+    },
+    "heroWorkshop": {
+      "description": "The Hero Workshop supports young people through story-driven, game-based experiences that build confidence, creativity, and social-emotional growth."
+    },
+    "undiscoveredCountry": {
+      "description": "Undiscovered Country provides peace‑and‑conflict diagnostics, archetype profiling, and training programmes that help organisations and schools understand tensions, transform conflict, and build healthier, more harmonious cultures."
+    },
+    "upcraftCrew": {
+      "description": "Full-stack engineering support for teams fixing delivery bottlenecks, refactors, and MVP builds."
+    },
+    "gaiaKids": {
+      "description": "A global arts‑for‑impact initiative that empowers children to use creativity to spark social change, advocate for environmental justice, and build community through collaborative art projects."
+    },
+    "cultivate": {
+      "description": "Cultivate is a small, empathic, research‑informed school for ages 6–14 where learning through play, connection, creativity, and project‑based learning empowers children to belong, collaborate, and flourish as active participants in their own education."
+    },
+    "vitaEquilibrium": {
+      "description": "VitaEquilibrium offers movement‑based, contemplative workshops and retreats—rooted in somatic movement practices like 5Rhythms—that help people cultivate balance, connection, and a more harmonious way of living."
+    }
+  },
+  "workWithUs": {
+    "title": "Work with us",
+    "body": "Ready to explore a partnership or sponsorship? Choose the path that fits you and complete a short survey — we will follow up from there.",
+    "partner": {
+      "title": "Become a partner",
+      "body": "Programs, co-design, training, community — tell us what you have in mind.",
+      "cta": "Open partner survey →"
+    },
+    "sponsor": {
+      "title": "Become a sponsor",
+      "body": "Support missions, tours, scholarships, or events — share your goals here.",
+      "cta": "Open sponsor survey →"
+    }
+  }
+}

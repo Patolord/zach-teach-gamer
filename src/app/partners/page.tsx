@@ -1,5 +1,7 @@
 import { ArrowLeft, Handshake, Landmark } from "lucide-react";
 import type { Metadata } from "next";
+import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -9,13 +11,17 @@ import {
 import { partnerOrganizations } from "@/data/partners";
 import { MEDIA } from "@/lib/media";
 
-export const metadata: Metadata = {
-  title: "Partners & Sponsors | Teacher Gamer",
-  description:
-    "Organizations supporting Teacher-Gamer — and how to collaborate as a partner or sponsor.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("partners.metadata");
+  return {
+    title: t("title"),
+    description: t("description"),
+  };
+}
 
 export default function PartnersPage() {
+  const t = useTranslations("partners");
+
   return (
     <main className="relative min-h-screen">
       <div
@@ -31,32 +37,31 @@ export default function PartnersPage() {
             className="inline-flex items-center gap-2 text-white/70 hover:text-white transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
-            Back to Home
+            {t("backToHome")}
           </Link>
         </div>
 
         <div className="container mx-auto max-w-4xl px-4 pt-10 pb-12 text-center space-y-5">
           <p className="text-sm font-bold uppercase tracking-widest text-accent">
-            Collaboration
+            {t("hero.eyebrow")}
           </p>
           <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight">
-            <span className="text-accent">Partners</span> &amp; Sponsors
+            {t.rich("hero.title", {
+              accent: (chunks) => <span className="text-accent">{chunks}</span>,
+            })}
           </h1>
           <p className="text-lg text-white/75 max-w-2xl mx-auto leading-relaxed">
-            We are grateful to the companies, schools, and brands that help grow
-            game-based learning with Teacher-Gamer. Want to join them? Tell us
-            how you would like to work together.
+            {t("hero.body")}
           </p>
         </div>
 
         <div className="container mx-auto px-4 pb-16 max-w-5xl">
           <h2 className="text-xl font-semibold text-white text-center mb-8">
-            Featured organizations
+            {t("featured.title")}
           </h2>
           {partnerOrganizations.length === 0 ? (
             <p className="text-center text-white/55 max-w-md mx-auto leading-relaxed">
-              Partner and sponsor logos will appear here as we announce
-              collaborations.
+              {t("featured.empty")}
             </p>
           ) : (
             <ul className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
@@ -89,7 +94,7 @@ export default function PartnersPage() {
                     <p
                       className={`mx-auto max-w-md text-center text-sm leading-relaxed text-white/55 transition-colors group-hover:text-white/75 ${org.logoSrc ? "mt-2" : "mt-4"}`}
                     >
-                      {org.description}
+                      {t(`organizations.${org.id}.description`)}
                     </p>
                   </>
                 );
@@ -101,7 +106,7 @@ export default function PartnersPage() {
                         href={org.website}
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label={`Visit ${org.name}`}
+                        aria-label={t("featured.visit", { name: org.name })}
                         className="group block h-full"
                       >
                         {content}
@@ -118,11 +123,10 @@ export default function PartnersPage() {
 
         <div className="container mx-auto px-4 pb-24 max-w-4xl">
           <h2 className="text-xl font-semibold text-white text-center mb-3">
-            Work with us
+            {t("workWithUs.title")}
           </h2>
           <p className="text-center text-white/60 mb-10 max-w-xl mx-auto">
-            Ready to explore a partnership or sponsorship? Choose the path that
-            fits you and complete a short survey — we will follow up from there.
+            {t("workWithUs.body")}
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -138,16 +142,15 @@ export default function PartnersPage() {
                 </div>
                 <div className="text-left min-w-0">
                   <p className="text-lg font-bold text-lighter group-hover:text-background">
-                    Become a partner
+                    {t("workWithUs.partner.title")}
                   </p>
                   <p className="text-sm text-lighter/75 group-hover:text-background/90 mt-0.5">
-                    Programs, co-design, training, community — tell us what you
-                    have in mind.
+                    {t("workWithUs.partner.body")}
                   </p>
                 </div>
               </div>
               <span className="text-sm font-semibold text-accent group-hover:text-background">
-                Open partner survey →
+                {t("workWithUs.partner.cta")}
               </span>
             </a>
 
@@ -163,16 +166,15 @@ export default function PartnersPage() {
                 </div>
                 <div className="text-left min-w-0">
                   <p className="text-lg font-bold text-lighter group-hover:text-background">
-                    Become a sponsor
+                    {t("workWithUs.sponsor.title")}
                   </p>
                   <p className="text-sm text-lighter/75 group-hover:text-background/90 mt-0.5">
-                    Support missions, tours, scholarships, or events — share
-                    your goals here.
+                    {t("workWithUs.sponsor.body")}
                   </p>
                 </div>
               </div>
               <span className="text-sm font-semibold text-accent group-hover:text-background">
-                Open sponsor survey →
+                {t("workWithUs.sponsor.cta")}
               </span>
             </a>
           </div>

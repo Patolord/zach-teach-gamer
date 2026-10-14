@@ -1,1 +1,11 @@
-{}
+{
+  "badge": "Falha Crítica",
+  "headline": "Seu grupo caiu em uma zona fora do mapa.",
+  "body": "Esta página ainda não existe no multiverso Teacher-Gamer. Sem problemas — pegue um d20, reagrupe e volte para a aventura.",
+  "links": {
+    "home": "Voltar à Base",
+    "map": "Encontrar Teacher Gamers",
+    "workshops": "Entrar em uma Missão de Workshop",
+    "faq": "Ler o Livro de Regras (FAQ)"
+  }
+}

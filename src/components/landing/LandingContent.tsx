@@ -1,7 +1,7 @@
 "use client";
 
 import { ChevronRight, Loader2, Swords } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -18,6 +18,7 @@ export default function LandingContent({
   isLoading = false,
 }: Props) {
   const t = useTranslations("landing");
+  const locale = useLocale();
   const [hasWatchedIntro, setHasWatchedIntro] = useState(false);
 
   useEffect(() => {
@@ -56,7 +57,12 @@ export default function LandingContent({
         />
       </h1>
 
-      <div className="pb-30 text-lg sm:text-xl md:text-2xl px-2 text-center text-shadow-subtitle flex flex-col gap-2">
+      {/* Keyed by locale: ScrambledText splits the text into spans on mount,
+          so it must remount to show the newly selected language. */}
+      <div
+        key={locale}
+        className="pb-30 text-lg sm:text-xl md:text-2xl px-2 text-center text-shadow-subtitle flex flex-col gap-2"
+      >
         <ScrambledText
           radius={50}
           duration={1.2}

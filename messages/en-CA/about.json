@@ -1,1 +1,51 @@
-{}
+{
+  "backToHome": "Back to Home",
+  "title": "<light>About </light><accent>Teacher-Gamer</accent>",
+  "zach": {
+    "photoAlt": "Zach Reznichek",
+    "name": "<accent>Zach </accent><light>Reznichek</light>",
+    "credentials": "MA Education, .b Mindfulness certified",
+    "bio": "Life-skills innovator, mindfulness coach, teacher-gamer. Zach has figured out how to combine game theory and literary criticism… into social emotional learning through role-playing games with his Masters in Education, teacher training and producing artists.",
+    "quote1": "“The satisfaction of youth success is second to none. I shared my love of role-playing games with kids in schools, homeschools, summer camps and youth workshops to glowing success. For the last 5 years, I have been honing this socio-emotional life-skills curriculum to be ready to share with the world.”",
+    "quote2": "“We are all in this journey together to make the world more sustainable, conscious and connected. Bringing RPGs into education is teaching narrative and critical thinking, while refereeing collaboration and risk taking. Boom! It is so fun!”",
+    "moreAboutZach": "More About Zach"
+  },
+  "sel": {
+    "title": "<accent>Social Emotional Learning</accent><light> through Role-Playing Games</light>",
+    "paragraph1": "Although millions of people have played role-playing games, to put them into cognitive, psychological, social, mindful and educational terms is to begin to run along the cutting edge of transformative opportunities that are, as yet, barely measured.",
+    "paragraph2": "For the last 10 years, Zach has spent countless hours with students and observed the need for more offscreen learning opportunities. What he found with role playing games, is that students have the freedom to propose ideas, disagree, and take a stand when they wouldn’t normally feel comfortable, because, as their character, they do not have to uphold the social dictates of their friends – in fact the rules of role-playing require they uphold their character’s values and motivations.",
+    "paragraph3": "Students can literally try out what it feels like to go against everything they stand for as a person, because they have aligned their character’s personality arc to be completely different from their own. And why? Just to see what happens, or how it feels!",
+    "imageAlt": "Students learning through role-playing games",
+    "callout": "This is teaching role-playing games as a skillset where students can learn to accept, process and move on from defeat and be gracious winners socially. Without telling their classmates or teacher how they should feel, or hiding it in a container, teachers can facilitate this implicit learning through careful observation and space holding."
+  },
+  "values": {
+    "title": "<light>Our </light><accent>Core Values</accent>",
+    "subtitle": "The principles that guide our approach to transformative education",
+    "items": {
+      "studentCentered": {
+        "title": "Student-Centered",
+        "description": "Youth success is our primary focus, creating safe spaces for growth and discovery"
+      },
+      "narrativeLearning": {
+        "title": "Narrative Learning",
+        "description": "Teaching critical thinking through storytelling and collaborative role-play"
+      },
+      "socialEmotionalGrowth": {
+        "title": "Social-Emotional Growth",
+        "description": "Building life skills, empathy, and emotional intelligence through gaming"
+      },
+      "purposefulPlay": {
+        "title": "Purposeful Play",
+        "description": "Transforming education through intentional, meaningful game experiences"
+      }
+    }
+  },
+  "cta": {
+    "badge": "Join Our Community",
+    "title": "<accent>Ready to Transform</accent><light> Education?</light>",
+    "body": "Discover how role-playing games can revolutionize learning in your classroom or educational setting.",
+    "exploreCourses": "Explore Our Courses",
+    "getInTouch": "Get in Touch",
+    "getHandbook": "Get the Hand Book"
+  }
+}

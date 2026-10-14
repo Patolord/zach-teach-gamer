@@ -1,1 +1,51 @@
-{}
+{
+  "backToHome": "Voltar ao Início",
+  "title": "<light>Sobre o </light><accent>Teacher-Gamer</accent>",
+  "zach": {
+    "photoAlt": "Zach Reznichek",
+    "name": "<accent>Zach </accent><light>Reznichek</light>",
+    "credentials": "Mestre em Educação, certificado em Mindfulness .b",
+    "bio": "Inovador em habilidades para a vida, coach de mindfulness, teacher-gamer. Zach descobriu como combinar teoria dos jogos e crítica literária… em aprendizagem socioemocional por meio de jogos de RPG, com seu mestrado em Educação, formação de professores e produção de artistas.",
+    "quote1": "“A satisfação de ver o sucesso dos jovens é incomparável. Compartilhei meu amor pelos jogos de RPG com crianças em escolas, educação domiciliar, acampamentos de verão e workshops para jovens, com resultados brilhantes. Nos últimos 5 anos, venho aperfeiçoando este currículo socioemocional de habilidades para a vida para que ele esteja pronto para ser compartilhado com o mundo.”",
+    "quote2": "“Estamos todos juntos nesta jornada para tornar o mundo mais sustentável, consciente e conectado. Levar o RPG para a educação é ensinar narrativa e pensamento crítico, enquanto se arbitra a colaboração e a tomada de riscos. Bum! É muito divertido!”",
+    "moreAboutZach": "Mais sobre o Zach"
+  },
+  "sel": {
+    "title": "<accent>Aprendizagem Socioemocional</accent><light> por meio de jogos de RPG</light>",
+    "paragraph1": "Embora milhões de pessoas já tenham jogado RPG, traduzi-lo em termos cognitivos, psicológicos, sociais, de atenção plena e educacionais é começar a percorrer a fronteira de oportunidades transformadoras que, até agora, mal foram medidas.",
+    "paragraph2": "Nos últimos 10 anos, Zach passou incontáveis horas com estudantes e observou a necessidade de mais oportunidades de aprendizagem fora das telas. O que ele descobriu com os jogos de RPG é que os estudantes têm liberdade para propor ideias, discordar e se posicionar quando normalmente não se sentiriam à vontade, porque, como seu personagem, não precisam seguir os ditames sociais dos amigos – na verdade, as regras do RPG exigem que eles sustentem os valores e as motivações do seu personagem.",
+    "paragraph3": "Os estudantes podem literalmente experimentar como é ir contra tudo aquilo que defendem como pessoa, porque alinharam o arco de personalidade do seu personagem para ser completamente diferente do seu. E por quê? Só para ver o que acontece, ou como é a sensação!",
+    "imageAlt": "Estudantes aprendendo por meio de jogos de RPG",
+    "callout": "Isto é ensinar jogos de RPG como um conjunto de habilidades, em que os estudantes podem aprender a aceitar, processar e seguir em frente após a derrota, e a vencer com elegância no convívio social. Sem dizer aos colegas ou ao professor como eles deveriam se sentir, nem esconder isso em um recipiente, os educadores podem facilitar essa aprendizagem implícita por meio da observação cuidadosa e da sustentação do espaço."
+  },
+  "values": {
+    "title": "<light>Nossos </light><accent>Valores Essenciais</accent>",
+    "subtitle": "Os princípios que guiam nossa abordagem para uma educação transformadora",
+    "items": {
+      "studentCentered": {
+        "title": "Foco no Estudante",
+        "description": "O sucesso dos jovens é o nosso foco principal, criando espaços seguros para crescimento e descoberta"
+      },
+      "narrativeLearning": {
+        "title": "Aprendizagem Narrativa",
+        "description": "Ensinar pensamento crítico por meio da contação de histórias e da interpretação colaborativa de papéis"
+      },
+      "socialEmotionalGrowth": {
+        "title": "Crescimento Socioemocional",
+        "description": "Desenvolver habilidades para a vida, empatia e inteligência emocional por meio dos jogos"
+      },
+      "purposefulPlay": {
+        "title": "Brincar com Propósito",
+        "description": "Transformar a educação por meio de experiências de jogo intencionais e significativas"
+      }
+    }
+  },
+  "cta": {
+    "badge": "Junte-se à Nossa Comunidade",
+    "title": "<accent>Pronto para Transformar</accent><light> a Educação?</light>",
+    "body": "Descubra como os jogos de RPG podem revolucionar a aprendizagem na sua sala de aula ou no seu contexto educacional.",
+    "exploreCourses": "Explore Nossos Cursos",
+    "getInTouch": "Fale Conosco",
+    "getHandbook": "Adquira o Handbook"
+  }
+}

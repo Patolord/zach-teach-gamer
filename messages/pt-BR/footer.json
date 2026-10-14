@@ -1,1 +1,105 @@
-{}
+{
+  "logoAlt": "Teacher Gamer Revolution",
+  "logoAriaLabel": "Teacher Gamer Revolution — página inicial",
+  "copyright": "© {year} Teacher Gamer. Todos os direitos reservados.",
+  "visitors": "{count, number} visitantes",
+  "closeModal": "Fechar janela",
+  "links": {
+    "terms": "Termos de Serviço",
+    "privacy": "Política de Privacidade"
+  },
+  "terms": {
+    "title": "Termos de Serviço",
+    "lastUpdated": "Última atualização: janeiro de 2026",
+    "sections": {
+      "acceptance": {
+        "title": "1. Aceitação dos Termos",
+        "body": "Ao acessar e utilizar o site e os serviços do Teacher Gamer, você concorda em se vincular a estes Termos de Serviço. Se você não concordar com estes termos, por favor não utilize nossos serviços."
+      },
+      "services": {
+        "title": "2. Descrição dos Serviços",
+        "body": "O Teacher Gamer oferece cursos, workshops e recursos educacionais focados em metodologias de aprendizagem baseada em jogos para educadores. Nossos serviços incluem cursos online, produtos digitais e serviços de consultoria."
+      },
+      "accounts": {
+        "title": "3. Contas de Usuário",
+        "body": "Ao criar uma conta conosco, você deve fornecer informações precisas e completas. Você é responsável por manter a confidencialidade das credenciais da sua conta e por todas as atividades realizadas com ela."
+      },
+      "intellectualProperty": {
+        "title": "4. Propriedade Intelectual",
+        "body": "Todo o conteúdo, incluindo, entre outros, cursos, materiais, elementos gráficos e marcas, é de propriedade do Teacher Gamer e está protegido pelas leis de propriedade intelectual. Você não pode reproduzir, distribuir ou criar obras derivadas sem nossa autorização expressa por escrito."
+      },
+      "payment": {
+        "title": "5. Pagamento e Reembolsos",
+        "body": "O pagamento de cursos e produtos é devido no momento da compra. Oferecemos reembolso em até 14 dias após a compra caso você não esteja satisfeito com nossos serviços, desde que não tenha concluído mais de 25% do conteúdo do curso."
+      },
+      "liability": {
+        "title": "6. Limitação de Responsabilidade",
+        "body": "O Teacher Gamer não será responsável por quaisquer danos indiretos, incidentais, especiais, consequenciais ou punitivos decorrentes do uso dos nossos serviços. Nossa responsabilidade total não excederá o valor pago por você pelos serviços em questão."
+      },
+      "changes": {
+        "title": "7. Alterações nos Termos",
+        "body": "Reservamo-nos o direito de modificar estes termos a qualquer momento. Notificaremos os usuários sobre alterações significativas por e-mail ou por meio do nosso site. O uso continuado dos nossos serviços após as alterações constitui aceitação dos termos modificados."
+      },
+      "contact": {
+        "title": "8. Informações de Contato",
+        "body": "Se você tiver dúvidas sobre estes Termos de Serviço, entre em contato conosco pelo formulário de contato do nosso site."
+      }
+    }
+  },
+  "privacy": {
+    "title": "Política de Privacidade",
+    "lastUpdated": "Última atualização: janeiro de 2026",
+    "sections": {
+      "collection": {
+        "title": "1. Informações que Coletamos",
+        "body": "Coletamos as informações que você nos fornece diretamente, incluindo nome, endereço de e-mail e dados de pagamento, quando você se inscreve em cursos ou realiza compras. Também coletamos dados de uso automaticamente por meio de cookies e tecnologias semelhantes."
+      },
+      "usage": {
+        "title": "2. Como Usamos Suas Informações",
+        "intro": "Usamos as informações coletadas para:",
+        "items": {
+          "provide": "Fornecer, manter e aprimorar nossos serviços",
+          "transactions": "Processar transações e enviar informações relacionadas",
+          "promotions": "Enviar comunicações promocionais (com o seu consentimento)",
+          "respond": "Responder aos seus comentários e perguntas",
+          "analyze": "Analisar padrões de uso para melhorar a experiência do usuário"
+        }
+      },
+      "sharing": {
+        "title": "3. Compartilhamento de Informações",
+        "body": "Não vendemos, trocamos nem alugamos suas informações pessoais a terceiros. Podemos compartilhar suas informações com prestadores de serviço que nos auxiliam na operação do site e na condução dos nossos negócios, desde que concordem em manter essas informações em sigilo."
+      },
+      "security": {
+        "title": "4. Segurança dos Dados",
+        "body": "Adotamos medidas de segurança adequadas para proteger suas informações pessoais contra acesso, alteração, divulgação ou destruição não autorizados. No entanto, nenhum método de transmissão pela Internet é 100% seguro."
+      },
+      "cookies": {
+        "title": "5. Cookies e Rastreamento",
+        "body": "Usamos cookies e tecnologias de rastreamento semelhantes para acompanhar a atividade em nosso site e armazenar determinadas informações. Você pode configurar seu navegador para recusar todos os cookies ou para avisar quando um cookie estiver sendo enviado."
+      },
+      "rights": {
+        "title": "6. Seus Direitos",
+        "intro": "Você tem o direito de:",
+        "items": {
+          "access": "Acessar seus dados pessoais",
+          "correct": "Corrigir dados imprecisos",
+          "delete": "Solicitar a exclusão dos seus dados",
+          "object": "Opor-se ao tratamento dos seus dados",
+          "portability": "Solicitar a portabilidade dos seus dados"
+        }
+      },
+      "children": {
+        "title": "7. Privacidade de Crianças",
+        "body": "Nossos serviços não são direcionados a crianças menores de 13 anos. Não coletamos intencionalmente informações pessoais de crianças menores de 13 anos. Se descobrirmos que coletamos tais informações, tomaremos providências para excluí-las."
+      },
+      "changes": {
+        "title": "8. Alterações nesta Política",
+        "body": "Podemos atualizar esta Política de Privacidade periodicamente. Notificaremos você sobre quaisquer alterações publicando a nova Política de Privacidade nesta página e atualizando a data de “Última atualização”."
+      },
+      "contact": {
+        "title": "9. Fale Conosco",
+        "body": "Se você tiver dúvidas sobre esta Política de Privacidade, entre em contato conosco pelo formulário de contato do nosso site."
+      }
+    }
+  }
+}
