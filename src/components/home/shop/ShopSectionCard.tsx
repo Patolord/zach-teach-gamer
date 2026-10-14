@@ -1,6 +1,7 @@
 "use client";
 
 import { gsap } from "gsap";
+import { useTranslations } from "next-intl";
 import type React from "react";
 import { type ReactNode, useEffect, useRef } from "react";
 import { MEDIA } from "@/lib/media";
@@ -18,6 +19,7 @@ const ShopSectionCard: React.FC<ShopSectionCardProps> = ({
   image = MEDIA.assets.bookCover,
   children,
 }) => {
+  const t = useTranslations("home.handbook");
   const svgRef = useRef<HTMLDivElement | null>(null);
   const displacementMapRef = useRef<SVGFEDisplacementMapElement | null>(null);
   const cursor = useRef<{ x: number; y: number }>({
@@ -138,7 +140,7 @@ const ShopSectionCard: React.FC<ShopSectionCardProps> = ({
         viewBox="-60 -75 720 900"
         preserveAspectRatio="xMidYMid slice"
         className="relative w-full h-full block [will-change:transform]"
-        aria-label="Shop Section Card"
+        aria-label={t("cardLabel")}
         role="img"
       >
         <filter id="imgFilter">

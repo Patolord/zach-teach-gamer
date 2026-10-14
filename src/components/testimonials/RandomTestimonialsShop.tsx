@@ -1,9 +1,11 @@
 "use client";
 
 import { Star } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useRandomTestimonials } from "@/hooks/useRandomTestimonials";
 
 export default function RandomTestimonialsShop() {
+  const t = useTranslations("home.testimonials");
   const items = useRandomTestimonials(3, ["handbook", "educator"]);
 
   if (!items.length) return null;
@@ -24,7 +26,7 @@ export default function RandomTestimonialsShop() {
                 />
               ))}
             </div>
-            <span className="text-xs text-lighter/50">Community</span>
+            <span className="text-xs text-lighter/50">{t("community")}</span>
           </div>
           <p className="text-base italic mb-4 text-light flex-1">
             &ldquo;{item.quote}&rdquo;

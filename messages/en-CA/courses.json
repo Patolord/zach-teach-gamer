@@ -1,1 +1,259 @@
-{}
+{
+  "badges": {
+    "bestValue": "BEST VALUE"
+  },
+  "common": {
+    "backToCourses": "Back to Courses",
+    "certificationCourse": "Certification Course",
+    "cohortBased": "Cohort-based learning",
+    "noCommitment": "No commitment required",
+    "fifteenMinuteCall": "15-minute call",
+    "enrollNow": "Enroll Now",
+    "whatYouWillLearn": "What You'll Learn",
+    "courseIncludes": "Course Includes",
+    "courseCurriculum": "Course Curriculum",
+    "module": "Module {n}",
+    "lessons": "{count} lessons",
+    "prerequisite": "Prerequisite:"
+  },
+  "intro": {
+    "title": "Level 1 TG: Intro to the Multiverse Certificate Course",
+    "description": "How TTRPGs and the multiverse can drive adult readiness through PBL and SEL using the 13 Phases of Character Building and learning to move from out-game character development to in-game role-playing.",
+    "page": {
+      "badge": "Beginner Level",
+      "lead": "Get an introduction to how RPGs and the multiverse can drive adult readiness through PBL and SEL as we work through the 13 Phases of Character Building. Learn to move from out-game character development to in-game role-playing.",
+      "intro": "Intro to the Multiverse - Level 1 Teacher-Gamer is a beginner-friendly, hands-on introduction to the Teacher-Gamer Method — perfect for DMs, teachers, therapists, youth workers, and parents who want to bring tabletop role-playing games into learning spaces safely, confidently, and creatively.",
+      "stats": {
+        "duration": "6-8 weeks",
+        "format": "Small group sessions",
+        "delivery": "In-person & online courses available"
+      },
+      "testimonialsTitle": "What Trainees Are Saying",
+      "cta": {
+        "title": "Level 1 TG: Intro to the Multiverse Certificate Course at Hero Workshop, in-person Culver City, California",
+        "description": "24-hour in-person accelerator course designed for educators, facilitators, and creative guides ready to step into the Teacher-Gamer world.",
+        "dates": "August 9, 15, 16, 2026",
+        "time": "8:30am - 5:15pm",
+        "location": "Culver City, California"
+      },
+      "learn": {
+        "foundation": {
+          "title": "TTRPG Foundation & LARPing",
+          "description": "Master the basics of introducing tabletop role-playing, co-storytelling, and live action role-playing (LARP)"
+        },
+        "character": {
+          "title": "Character Development",
+          "description": "Guide students through meaningful character creation and game-based learning (GBL)"
+        },
+        "integration": {
+          "title": "Learning Integration",
+          "description": "Connect gaming mechanics and project-based learning (PBL) to educational outcomes and social-emotional learning (SEL)"
+        }
+      },
+      "features": {
+        "fundamentals": "Introduction to Role-Playing Games (RPGs) fundamentals",
+        "multiverse": "Understanding the multiverse concept in education",
+        "pbl": "Project-Based Learning (PBL) integration strategies",
+        "sel": "Social-Emotional Learning (SEL) through gaming",
+        "phases": "Complete guide through the 13 Phases of Character Building",
+        "exercises": "Practical exercises and activities",
+        "handbook": "A PDF copy of the Teacher-Gamer Handbook",
+        "certificate": "Certificate of completion"
+      },
+      "curriculum": {
+        "modules": {
+          "theory": "Theory meets Practicum",
+          "skills": "Hands-on creative skills you'll practice"
+        },
+        "bullets": {
+          "safeSessions": "How to introduce running safe SEL (social emotional learning) tabletop role-playing game (TTRPG) sessions for youth and adults",
+          "worldBuild": "How to ramp up and co-world build with players from scratch",
+          "outcomes": "How to turn gameplay into SEL, collaboration, and real learning outcomes",
+          "facilitate": "How to facilitate groups with confidence (even if you're new to DMing)",
+          "quests": "How to co-design quests, challenges, and story arcs that support growth",
+          "settings": "How to bring TTRPGs into classrooms, homeschools, therapy, and camps",
+          "characterBuild": "The 13-Phase Character Build",
+          "gamify": "Role-play gamify regular tabletop games",
+          "skillset": "The Teacher-Gamer Skillset + How-To-Play Skillset",
+          "terrain": "Terrain building basics (10 phases)",
+          "miniatures": "Miniature painting",
+          "kinaesthetic": "Kinaesthetic activities for embodied learning"
+        }
+      },
+      "finalCta": {
+        "title": "Ready to Start Your Journey?",
+        "description": "Join hundreds of educators who are transforming their classrooms through game-based learning.",
+        "button": "Enroll in Intro to Multiverse"
+      }
+    }
+  },
+  "level1": {
+    "title": "TTRPG Labs - Exploratory Fellowships & Workshops",
+    "description": "Earn hours for TG Level 2 and 3 certificates, including in-gaming, out-gaming, meta-gaming, terrain building, villain creation and campaign design, co-teaching and mentor fellowships",
+    "page": {
+      "heading": "Level 1 TG Space-Holder Certificate Course",
+      "lead": "Learn to move from out-game character development to in-game role-playing and run a pilot to get teacher gamer level one certified.",
+      "stats": {
+        "duration": "10-12 weeks",
+        "certification": "Level 1 Certification"
+      },
+      "testimonialsTitle": "What Certified Educators Are Saying",
+      "cta": {
+        "title": "Ready to Earn Your Certification?",
+        "description": "Book a free 15-minute discovery call to discuss your certification journey. We'll map out the best path for your goals.",
+        "includesCertification": "Includes certification"
+      },
+      "learn": {
+        "spaceHolding": {
+          "title": "Space-Holding Skills",
+          "description": "Create safe, engaging environments for student-led play"
+        },
+        "sessions": {
+          "title": "Session Management",
+          "description": "Plan and facilitate effective RPG sessions"
+        },
+        "certification": {
+          "title": "Level 1 Certification",
+          "description": "Complete your pilot and earn professional recognition"
+        }
+      },
+      "features": {
+        "outGame": "Master out-game character development techniques",
+        "transition": "Transition seamlessly from character building to role-playing",
+        "pilot": "Run your first pilot session with confidence",
+        "certification": "Earn Teacher Gamer Level 1 Certification",
+        "planning": "Comprehensive session planning guides",
+        "behaviour": "Behavior management strategies for game sessions",
+        "assessment": "Assessment and evaluation tools",
+        "community": "Access to exclusive educator community"
+      },
+      "curriculum": {
+        "characterDevelopment": "Advanced Character Development",
+        "rolePlaying": "Facilitating In-Game Role-Playing",
+        "spaceHolding": "Space-Holding Techniques",
+        "pilot": "Running Your Pilot Session",
+        "certification": "Certification Preparation"
+      },
+      "finalCta": {
+        "title": "Ready to Get Certified?",
+        "description": "Join the next cohort and earn your Level 1 Teacher Gamer Certification.",
+        "button": "Enroll in Level 1 Certification"
+      }
+    }
+  },
+  "level2": {
+    "title": "Level 2 TG World Builder Certificate Course",
+    "description": "Build & implement your own campaign world. Uncharted territory: New stories, creatures, magic & tech",
+    "page": {
+      "badge": "Advanced Level",
+      "heading": "Level 2 TG World Builder Certificate",
+      "lead": "Build & implement your own campaign world. Uncharted territory: New stories, creatures, magic & tech.",
+      "stats": {
+        "duration": "14-16 weeks",
+        "certification": "Level 2 Certification"
+      },
+      "testimonialsTitle": "What World Builders Are Saying",
+      "prerequisite": "Level 1 TG Space-Holder Certificate or equivalent experience",
+      "cta": {
+        "title": "Ready to Build Your World?",
+        "description": "Book a free 15-minute discovery call to explore how World Builder certification can elevate your practice. Let's design your next step.",
+        "projectBased": "Project-based certification"
+      },
+      "learn": {
+        "world": {
+          "title": "World Creation",
+          "description": "Build immersive, engaging campaign worlds from scratch"
+        },
+        "story": {
+          "title": "Story Crafting",
+          "description": "Develop compelling narratives and plot structures"
+        },
+        "certification": {
+          "title": "Level 2 Certification",
+          "description": "Demonstrate mastery through your own campaign"
+        }
+      },
+      "features": {
+        "worlds": "Design comprehensive campaign worlds",
+        "stories": "Create original stories, creatures, and magic systems",
+        "technology": "Develop unique technology and world mechanics",
+        "implement": "Implement your campaign in real classrooms",
+        "frameworks": "Advanced world-building frameworks",
+        "engagement": "Student engagement optimization strategies",
+        "crossCurricular": "Cross-curricular integration techniques",
+        "certification": "Level 2 Teacher Gamer Certification"
+      },
+      "curriculum": {
+        "foundations": "World-Building Foundations",
+        "creatures": "Creating Creatures & Characters",
+        "magic": "Magic Systems & Technology",
+        "storyArc": "Story Arc Development",
+        "implementation": "Campaign Implementation",
+        "project": "Certification Project"
+      },
+      "finalCta": {
+        "title": "Ready to Build Your World?",
+        "description": "Create an unforgettable campaign that will engage and inspire your students.",
+        "button": "Enroll in Level 2 Certification"
+      }
+    }
+  },
+  "level3": {
+    "title": "Level 3 TG Planes Walker Certificate Course",
+    "description": "Integrate your own RPG campaigns into your local school system's learning objectives with guidance",
+    "page": {
+      "badge": "Master Level",
+      "masterCertification": "Master Certification",
+      "lead": "Integrate your own RPGs campaign into your local school system's learning objectives with guidance.",
+      "stats": {
+        "duration": "16-20 weeks",
+        "format": "Mentored implementation"
+      },
+      "testimonialsTitle": "What Planes Walkers Are Saying",
+      "prerequisite": "Level 2 TG World Builder Certificate and at least one year of campaign experience",
+      "cta": {
+        "title": "Ready to Walk Between Worlds?",
+        "description": "Book a free 15-minute discovery call to discuss the Planes Walker path. This is the highest level of mastery — let's see if you're ready.",
+        "mentorship": "1-on-1 mentorship included"
+      },
+      "learn": {
+        "standards": {
+          "title": "Standards Alignment",
+          "description": "Map RPG elements to educational learning objectives"
+        },
+        "scaling": {
+          "title": "Program Scaling",
+          "description": "Expand RPG integration across multiple classrooms"
+        },
+        "certification": {
+          "title": "Master Certification",
+          "description": "Achieve the highest level of Teacher Gamer recognition"
+        }
+      },
+      "features": {
+        "standards": "Align RPG campaigns with district learning standards",
+        "policy": "Navigate educational policy and approval processes",
+        "buyIn": "Build administrator buy-in and support",
+        "crossCurricular": "Create cross-curricular learning connections",
+        "assessment": "Develop assessment and evaluation frameworks",
+        "scale": "Scale RPG programs within your district",
+        "mentor": "Mentor other educators in RPG integration",
+        "certification": "Master Teacher Gamer Certification"
+      },
+      "curriculum": {
+        "standards": "Understanding Educational Standards",
+        "campaignDesign": "Standards-Aligned Campaign Design",
+        "support": "Building Administrative Support",
+        "assessment": "Assessment & Documentation",
+        "scaling": "Program Implementation & Scaling",
+        "mentoring": "Mentoring Future Teacher Gamers",
+        "capstone": "Master Certification Capstone"
+      },
+      "finalCta": {
+        "title": "Ready to Become a Master Teacher Gamer?",
+        "description": "Lead the transformation of education in your school district through game-based learning.",
+        "button": "Enroll in Level 3 Certification"
+      }
+    }
+  }
+}

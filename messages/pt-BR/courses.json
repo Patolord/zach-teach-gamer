@@ -1,1 +1,259 @@
-{}
+{
+  "badges": {
+    "bestValue": "MELHOR CUSTO-BENEFÍCIO"
+  },
+  "common": {
+    "backToCourses": "Voltar aos Cursos",
+    "certificationCourse": "Curso de Certificação",
+    "cohortBased": "Aprendizagem em turma",
+    "noCommitment": "Sem compromisso",
+    "fifteenMinuteCall": "Conversa de 15 minutos",
+    "enrollNow": "Inscreva-se Agora",
+    "whatYouWillLearn": "O Que Você Vai Aprender",
+    "courseIncludes": "O Curso Inclui",
+    "courseCurriculum": "Conteúdo do Curso",
+    "module": "Módulo {n}",
+    "lessons": "{count} aulas",
+    "prerequisite": "Pré-requisito:"
+  },
+  "intro": {
+    "title": "Nível 1 TG: Curso de Certificação Introdução ao Multiverso",
+    "description": "Como os jogos de RPG de mesa e o multiverso podem preparar para a vida adulta por meio da ABP e da aprendizagem socioemocional, usando as 13 Fases de Construção de Personagem e aprendendo a passar do desenvolvimento de personagem fora do jogo para a interpretação dentro do jogo.",
+    "page": {
+      "badge": "Nível Iniciante",
+      "lead": "Conheça como os RPGs e o multiverso podem preparar para a vida adulta por meio da ABP e da aprendizagem socioemocional enquanto percorremos as 13 Fases de Construção de Personagem. Aprenda a passar do desenvolvimento de personagem fora do jogo para a interpretação dentro do jogo.",
+      "intro": "Introdução ao Multiverso - Nível 1 Teacher-Gamer é uma introdução prática e acessível ao Método Teacher-Gamer — perfeita para mestres de jogo, professores, terapeutas, educadores sociais e pais que querem levar os jogos de RPG de mesa para espaços de aprendizagem com segurança, confiança e criatividade.",
+      "stats": {
+        "duration": "6-8 semanas",
+        "format": "Sessões em pequenos grupos",
+        "delivery": "Cursos presenciais e online disponíveis"
+      },
+      "testimonialsTitle": "O Que os Participantes Estão Dizendo",
+      "cta": {
+        "title": "Nível 1 TG: Curso de Certificação Introdução ao Multiverso no Hero Workshop, presencial em Culver City, Califórnia",
+        "description": "Curso intensivo presencial de 24 horas, pensado para educadores, facilitadores e guias criativos prontos para entrar no mundo Teacher-Gamer.",
+        "dates": "9, 15 e 16 de agosto de 2026",
+        "time": "8h30 - 17h15",
+        "location": "Culver City, Califórnia"
+      },
+      "learn": {
+        "foundation": {
+          "title": "Fundamentos de TTRPG & LARP",
+          "description": "Domine o básico para introduzir o RPG de mesa, a narrativa colaborativa e o live action role-playing (LARP)"
+        },
+        "character": {
+          "title": "Desenvolvimento de Personagem",
+          "description": "Guie os alunos em uma criação de personagem significativa e na aprendizagem baseada em jogos (ABJ)"
+        },
+        "integration": {
+          "title": "Integração com a Aprendizagem",
+          "description": "Conecte as mecânicas de jogo e a aprendizagem baseada em projetos (ABP) a resultados educacionais e à aprendizagem socioemocional"
+        }
+      },
+      "features": {
+        "fundamentals": "Introdução aos fundamentos dos jogos de RPG",
+        "multiverse": "Compreensão do conceito de multiverso na educação",
+        "pbl": "Estratégias de integração da Aprendizagem Baseada em Projetos (ABP)",
+        "sel": "Aprendizagem socioemocional por meio dos jogos",
+        "phases": "Guia completo pelas 13 Fases de Construção de Personagem",
+        "exercises": "Exercícios e atividades práticas",
+        "handbook": "Uma cópia em PDF do Teacher-Gamer Handbook",
+        "certificate": "Certificado de conclusão"
+      },
+      "curriculum": {
+        "modules": {
+          "theory": "Teoria encontra Prática",
+          "skills": "Habilidades criativas práticas que você vai exercitar"
+        },
+        "bullets": {
+          "safeSessions": "Como começar a conduzir sessões seguras de RPG de mesa com foco socioemocional para jovens e adultos",
+          "worldBuild": "Como preparar e construir um mundo em conjunto com os jogadores, do zero",
+          "outcomes": "Como transformar o jogo em aprendizagem socioemocional, colaboração e resultados reais de aprendizagem",
+          "facilitate": "Como facilitar grupos com confiança (mesmo se você nunca mestrou)",
+          "quests": "Como cocriar missões, desafios e arcos narrativos que apoiam o crescimento",
+          "settings": "Como levar os jogos de RPG de mesa para salas de aula, ensino domiciliar, terapia e acampamentos",
+          "characterBuild": "A Construção de Personagem em 13 Fases",
+          "gamify": "Transformar jogos de mesa comuns em RPG",
+          "skillset": "O Conjunto de Habilidades Teacher-Gamer + Conjunto de Habilidades de Como Jogar",
+          "terrain": "Noções básicas de construção de terreno (10 fases)",
+          "miniatures": "Pintura de miniaturas",
+          "kinaesthetic": "Atividades cinestésicas para uma aprendizagem corporificada"
+        }
+      },
+      "finalCta": {
+        "title": "Pronto para Começar sua Jornada?",
+        "description": "Junte-se a centenas de educadores que estão transformando suas salas de aula por meio da aprendizagem baseada em jogos.",
+        "button": "Inscreva-se na Introdução ao Multiverso"
+      }
+    }
+  },
+  "level1": {
+    "title": "TTRPG Labs - Fellowships Exploratórios & Workshops",
+    "description": "Acumule horas para os certificados TG Nível 2 e 3, incluindo in-gaming, out-gaming, meta-gaming, construção de terreno, criação de vilões e design de campanha, codocência e fellowships de mentoria",
+    "page": {
+      "heading": "Nível 1 TG: Curso de Certificação Space-Holder",
+      "lead": "Aprenda a passar do desenvolvimento de personagem fora do jogo para a interpretação dentro do jogo e conduza um piloto para obter a certificação Teacher Gamer nível um.",
+      "stats": {
+        "duration": "10-12 semanas",
+        "certification": "Certificação Nível 1"
+      },
+      "testimonialsTitle": "O Que os Educadores Certificados Estão Dizendo",
+      "cta": {
+        "title": "Pronto para Conquistar sua Certificação?",
+        "description": "Agende uma conversa gratuita de 15 minutos para falar sobre sua jornada de certificação. Vamos traçar o melhor caminho para os seus objetivos.",
+        "includesCertification": "Inclui certificação"
+      },
+      "learn": {
+        "spaceHolding": {
+          "title": "Habilidades de Space-Holding",
+          "description": "Crie ambientes seguros e envolventes para o jogo conduzido pelos alunos"
+        },
+        "sessions": {
+          "title": "Gestão de Sessões",
+          "description": "Planeje e facilite sessões de RPG eficazes"
+        },
+        "certification": {
+          "title": "Certificação Nível 1",
+          "description": "Conclua seu piloto e conquiste reconhecimento profissional"
+        }
+      },
+      "features": {
+        "outGame": "Domine técnicas de desenvolvimento de personagem fora do jogo",
+        "transition": "Faça a transição natural da construção de personagem para a interpretação",
+        "pilot": "Conduza sua primeira sessão piloto com confiança",
+        "certification": "Conquiste a Certificação Teacher Gamer Nível 1",
+        "planning": "Guias completos de planejamento de sessões",
+        "behaviour": "Estratégias de manejo de comportamento para sessões de jogo",
+        "assessment": "Ferramentas de avaliação",
+        "community": "Acesso à comunidade exclusiva de educadores"
+      },
+      "curriculum": {
+        "characterDevelopment": "Desenvolvimento Avançado de Personagem",
+        "rolePlaying": "Facilitando a Interpretação Dentro do Jogo",
+        "spaceHolding": "Técnicas de Space-Holding",
+        "pilot": "Conduzindo sua Sessão Piloto",
+        "certification": "Preparação para a Certificação"
+      },
+      "finalCta": {
+        "title": "Pronto para se Certificar?",
+        "description": "Entre na próxima turma e conquiste sua Certificação Teacher Gamer Nível 1.",
+        "button": "Inscreva-se na Certificação Nível 1"
+      }
+    }
+  },
+  "level2": {
+    "title": "Nível 2 TG: Curso de Certificação World Builder",
+    "description": "Construa e implemente seu próprio mundo de campanha. Território inexplorado: novas histórias, criaturas, magia e tecnologia",
+    "page": {
+      "badge": "Nível Avançado",
+      "heading": "Nível 2 TG: Certificação World Builder",
+      "lead": "Construa e implemente seu próprio mundo de campanha. Território inexplorado: novas histórias, criaturas, magia e tecnologia.",
+      "stats": {
+        "duration": "14-16 semanas",
+        "certification": "Certificação Nível 2"
+      },
+      "testimonialsTitle": "O Que os World Builders Estão Dizendo",
+      "prerequisite": "Certificado Nível 1 TG Space-Holder ou experiência equivalente",
+      "cta": {
+        "title": "Pronto para Construir seu Mundo?",
+        "description": "Agende uma conversa gratuita de 15 minutos para descobrir como a certificação World Builder pode elevar sua prática. Vamos desenhar seu próximo passo.",
+        "projectBased": "Certificação baseada em projeto"
+      },
+      "learn": {
+        "world": {
+          "title": "Criação de Mundos",
+          "description": "Construa mundos de campanha imersivos e envolventes do zero"
+        },
+        "story": {
+          "title": "Construção de Histórias",
+          "description": "Desenvolva narrativas cativantes e estruturas de enredo"
+        },
+        "certification": {
+          "title": "Certificação Nível 2",
+          "description": "Demonstre domínio por meio da sua própria campanha"
+        }
+      },
+      "features": {
+        "worlds": "Projete mundos de campanha completos",
+        "stories": "Crie histórias, criaturas e sistemas de magia originais",
+        "technology": "Desenvolva tecnologias e mecânicas de mundo únicas",
+        "implement": "Implemente sua campanha em salas de aula reais",
+        "frameworks": "Estruturas avançadas de construção de mundos",
+        "engagement": "Estratégias para otimizar o engajamento dos alunos",
+        "crossCurricular": "Técnicas de integração interdisciplinar",
+        "certification": "Certificação Teacher Gamer Nível 2"
+      },
+      "curriculum": {
+        "foundations": "Fundamentos da Construção de Mundos",
+        "creatures": "Criando Criaturas & Personagens",
+        "magic": "Sistemas de Magia & Tecnologia",
+        "storyArc": "Desenvolvimento de Arcos Narrativos",
+        "implementation": "Implementação da Campanha",
+        "project": "Projeto de Certificação"
+      },
+      "finalCta": {
+        "title": "Pronto para Construir seu Mundo?",
+        "description": "Crie uma campanha inesquecível que vai engajar e inspirar seus alunos.",
+        "button": "Inscreva-se na Certificação Nível 2"
+      }
+    }
+  },
+  "level3": {
+    "title": "Nível 3 TG: Curso de Certificação Planes Walker",
+    "description": "Integre suas próprias campanhas de RPG aos objetivos de aprendizagem do sistema escolar da sua região, com orientação",
+    "page": {
+      "badge": "Nível Mestre",
+      "masterCertification": "Certificação Mestre",
+      "lead": "Integre sua própria campanha de RPG aos objetivos de aprendizagem do sistema escolar da sua região, com orientação.",
+      "stats": {
+        "duration": "16-20 semanas",
+        "format": "Implementação com mentoria"
+      },
+      "testimonialsTitle": "O Que os Planes Walkers Estão Dizendo",
+      "prerequisite": "Certificado Nível 2 TG World Builder e pelo menos um ano de experiência com campanhas",
+      "cta": {
+        "title": "Pronto para Caminhar Entre Mundos?",
+        "description": "Agende uma conversa gratuita de 15 minutos para falar sobre a trilha Planes Walker. Este é o nível mais alto de maestria — vamos ver se você está pronto.",
+        "mentorship": "Mentoria individual incluída"
+      },
+      "learn": {
+        "standards": {
+          "title": "Alinhamento com as Diretrizes",
+          "description": "Relacione os elementos do RPG aos objetivos de aprendizagem"
+        },
+        "scaling": {
+          "title": "Expansão do Programa",
+          "description": "Amplie a integração do RPG para várias salas de aula"
+        },
+        "certification": {
+          "title": "Certificação Mestre",
+          "description": "Alcance o mais alto nível de reconhecimento Teacher Gamer"
+        }
+      },
+      "features": {
+        "standards": "Alinhe campanhas de RPG às diretrizes de aprendizagem da rede de ensino",
+        "policy": "Navegue pelas políticas educacionais e pelos processos de aprovação",
+        "buyIn": "Conquiste o apoio e a adesão da gestão escolar",
+        "crossCurricular": "Crie conexões de aprendizagem interdisciplinares",
+        "assessment": "Desenvolva estruturas de avaliação",
+        "scale": "Expanda programas de RPG na sua rede de ensino",
+        "mentor": "Seja mentor de outros educadores na integração do RPG",
+        "certification": "Certificação Mestre Teacher Gamer"
+      },
+      "curriculum": {
+        "standards": "Compreendendo as Diretrizes Educacionais",
+        "campaignDesign": "Design de Campanha Alinhado às Diretrizes",
+        "support": "Construindo o Apoio da Gestão",
+        "assessment": "Avaliação & Documentação",
+        "scaling": "Implementação & Expansão do Programa",
+        "mentoring": "Mentorando os Futuros Teacher Gamers",
+        "capstone": "Projeto Final da Certificação Mestre"
+      },
+      "finalCta": {
+        "title": "Pronto para se Tornar um Mestre Teacher Gamer?",
+        "description": "Lidere a transformação da educação na sua rede de ensino por meio da aprendizagem baseada em jogos.",
+        "button": "Inscreva-se na Certificação Nível 3"
+      }
+    }
+  }
+}

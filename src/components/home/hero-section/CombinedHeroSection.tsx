@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowRight, Shield, Star, Users } from "lucide-react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { forwardRef } from "react";
@@ -11,12 +12,14 @@ import ShopSectionCard from "../shop/ShopSectionCard";
 import ShinyText from "@/components/ui/shinytext";
 
 const features = [
-  { icon: Shield, label: "Proven Method" },
-  { icon: Users, label: "For All Classrooms" },
-  { icon: Star, label: "Expert-Led Training" },
-];
+  { id: "proven", icon: Shield },
+  { id: "classrooms", icon: Users },
+  { id: "expert", icon: Star },
+] as const;
 
 const CombinedHeroSection = forwardRef<HTMLElement>((_props, ref) => {
+  const t = useTranslations("home");
+
   return (
     <section
       id="hero-section"
@@ -25,8 +28,8 @@ const CombinedHeroSection = forwardRef<HTMLElement>((_props, ref) => {
       style={{ backgroundImage: `url('${MEDIA.backgrounds.hero}')` }}
     >
       {/* 40% black overlay - provides contrast while maintaining magical atmosphere */}
-      <div 
-        className="absolute inset-0 animate-hero-fade-in" 
+      <div
+        className="absolute inset-0 animate-hero-fade-in"
         style={{ backgroundColor: "rgba(26, 26, 31, 0.4)" }}
       />
 
@@ -43,26 +46,27 @@ const CombinedHeroSection = forwardRef<HTMLElement>((_props, ref) => {
                 spread={30}
                 yoyo
               >
-                Transform Your Classroom with{" "}
-                <span 
-                  className="bg-clip-text text-transparent"
-                  style={{ 
-                    backgroundImage: "linear-gradient(135deg, var(--color-accent) 0%, var(--color-secondary) 50%, var(--color-accent) 100%)"
-                  }}
-                >
-                  Educational RPGs
-                </span>
+                {t.rich("hero.title", {
+                  highlight: (chunks) => (
+                    <span
+                      className="bg-clip-text text-transparent"
+                      style={{
+                        backgroundImage:
+                          "linear-gradient(135deg, var(--color-accent) 0%, var(--color-secondary) 50%, var(--color-accent) 100%)",
+                      }}
+                    >
+                      {chunks}
+                    </span>
+                  ),
+                })}
               </ShinyText>
             </h1>
 
-            <p 
+            <p
               className="text-lg md:text-xl leading-relaxed max-w-xl"
               style={{ color: "var(--color-lighter)" }}
             >
-              Learn the Teacher-Gamer method and bring role-playing games into
-              your classroom. Engage students, build social-emotional skills,
-              and create meaningful learning experiences through collaborative
-              storytelling and purposeful play.
+              {t("hero.description")}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
@@ -72,7 +76,8 @@ const CombinedHeroSection = forwardRef<HTMLElement>((_props, ref) => {
                 style={{
                   backgroundColor: "var(--color-accent)",
                   color: "var(--color-background)",
-                  boxShadow: "0 4px 20px var(--color-accent-glow), 0 0 40px var(--color-secondary-soft)",
+                  boxShadow:
+                    "0 4px 20px var(--color-accent-glow), 0 0 40px var(--color-secondary-soft)",
                 }}
                 onClick={() => {
                   const coursesSection =
@@ -82,15 +87,18 @@ const CombinedHeroSection = forwardRef<HTMLElement>((_props, ref) => {
                   }
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = "var(--color-accent-light)";
-                  e.currentTarget.style.boxShadow = "0 6px 30px var(--color-accent), 0 0 50px var(--color-secondary)";
+                  e.currentTarget.style.backgroundColor =
+                    "var(--color-accent-light)";
+                  e.currentTarget.style.boxShadow =
+                    "0 6px 30px var(--color-accent), 0 0 50px var(--color-secondary)";
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.backgroundColor = "var(--color-accent)";
-                  e.currentTarget.style.boxShadow = "0 4px 20px var(--color-accent-glow), 0 0 40px var(--color-secondary-soft)";
+                  e.currentTarget.style.boxShadow =
+                    "0 4px 20px var(--color-accent-glow), 0 0 40px var(--color-secondary-soft)";
                 }}
               >
-                Explore Courses
+                {t("hero.exploreCourses")}
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
               <Button
@@ -98,34 +106,35 @@ const CombinedHeroSection = forwardRef<HTMLElement>((_props, ref) => {
                 variant="outline"
                 className="font-semibold text-lg px-8 text-white transition-all duration-300"
                 style={{
-                  backgroundColor: 'transparent',
+                  backgroundColor: "transparent",
                   borderColor: "var(--color-primary-light)",
-                  borderWidth: '2px',
+                  borderWidth: "2px",
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = "var(--color-primary-subtle)";
+                  e.currentTarget.style.backgroundColor =
+                    "var(--color-primary-subtle)";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'transparent';
+                  e.currentTarget.style.backgroundColor = "transparent";
                 }}
                 asChild
               >
-                <Link href="/media">Watch How It Works</Link>
+                <Link href="/media">{t("hero.watchHowItWorks")}</Link>
               </Button>
             </div>
 
             <div className="flex flex-wrap gap-6 pt-4">
-              {features.map(({ icon: Icon, label }) => (
-                <div key={label} className="flex items-center gap-2">
-                  <Icon 
-                    className="w-5 h-5" 
+              {features.map(({ id, icon: Icon }) => (
+                <div key={id} className="flex items-center gap-2">
+                  <Icon
+                    className="w-5 h-5"
                     style={{ color: "var(--color-accent)" }}
                   />
-                  <span 
+                  <span
                     className="text-sm font-medium"
                     style={{ color: "var(--color-lighter)" }}
                   >
-                    {label}
+                    {t(`hero.features.${id}`)}
                   </span>
                 </div>
               ))}
@@ -135,24 +144,24 @@ const CombinedHeroSection = forwardRef<HTMLElement>((_props, ref) => {
           </div>
 
           <div className="relative">
-            <div 
+            <div
               className="aspect-square overflow-hidden rounded-4xl shadow-2xl"
-              style={{ 
+              style={{
                 backgroundColor: "var(--color-white)",
                 border: "4px solid var(--color-primary)",
-                boxShadow: "0 25px 50px -12px var(--color-primary-glow), 0 0 60px var(--color-primary-subtle)"
+                boxShadow:
+                  "0 25px 50px -12px var(--color-primary-glow), 0 0 60px var(--color-primary-subtle)",
               }}
             >
               <Image
                 src={MEDIA.hero.image}
-                alt="Children learning and playing safely in an educational environment"
+                alt={t("hero.imageAlt")}
                 fill
                 className="object-cover rounded-4xl transparent"
                 priority
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
-
           </div>
         </div>
       </div>
@@ -160,11 +169,11 @@ const CombinedHeroSection = forwardRef<HTMLElement>((_props, ref) => {
       {/* Scroll Down Indicator */}
       <div className="absolute bottom-12 sm:bottom-16 left-1/2 transform -translate-x-1/2 z-10 animate-hero-fade-in">
         <div className="flex flex-col items-center gap-2 animate-bounce">
-          <span 
+          <span
             className="text-sm uppercase tracking-wider"
             style={{ color: "var(--color-lighter)" }}
           >
-            Scroll
+            {t("hero.scroll")}
           </span>
           <svg
             className="w-6 h-6"
@@ -175,10 +184,10 @@ const CombinedHeroSection = forwardRef<HTMLElement>((_props, ref) => {
             viewBox="0 0 24 24"
             stroke="currentColor"
             style={{ color: "var(--color-accent)" }}
-            aria-label="Scroll down indicator"
+            aria-label={t("hero.scrollDownLabel")}
             role="img"
           >
-            <title>Scroll down</title>
+            <title>{t("hero.scrollDownTitle")}</title>
             <path d="M19 14l-7 7m0 0l-7-7m7 7V3" />
           </svg>
         </div>
@@ -207,35 +216,32 @@ const CombinedHeroSection = forwardRef<HTMLElement>((_props, ref) => {
                 spread={30}
                 yoyo
               >
-                The Teacher-Gamer Handbook
+                {t("handbook.title")}
               </ShinyText>
             </h1>
 
-            <h2 
+            <h2
               className="text-base md:text-lg leading-relaxed"
               style={{ color: "var(--color-lighter)" }}
             >
-              Build literacy. Spark imagination. Empower learners. Transform
-              classrooms into immersive adventures where students learn by
-              playing, failing, and growing together.
+              {t("handbook.subtitle")}
             </h2>
 
-            <ul 
+            <ul
               className="list-disc list-inside text-sm md:text-base space-y-2"
               style={{ color: "var(--color-lighter)" }}
             >
-              <li>300 pages of creative strategies and lesson plans</li>
-              <li>36 life skills through collaborative RPG experiences</li>
-              <li>Designed for educators guiding 10+ year-old learners</li>
-              <li>40+ hours of co-creative play and storytelling</li>
+              <li>{t("handbook.bullets.pages")}</li>
+              <li>{t("handbook.bullets.skills")}</li>
+              <li>{t("handbook.bullets.designed")}</li>
+              <li>{t("handbook.bullets.hours")}</li>
             </ul>
 
-            <h2 
+            <h2
               className="text-base md:text-lg leading-relaxed"
               style={{ color: "var(--color-lighter)" }}
             >
-              A complete framework to bring the power of role-playing into
-              education.
+              {t("handbook.framework")}
             </h2>
 
             <Link href="/shop">
@@ -245,34 +251,40 @@ const CombinedHeroSection = forwardRef<HTMLElement>((_props, ref) => {
                 style={{
                   backgroundColor: "var(--color-accent)",
                   color: "var(--color-background)",
-                  boxShadow: "0 4px 20px var(--color-accent-glow), 0 0 40px var(--color-secondary-soft)",
+                  boxShadow:
+                    "0 4px 20px var(--color-accent-glow), 0 0 40px var(--color-secondary-soft)",
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = "var(--color-accent-light)";
-                  e.currentTarget.style.boxShadow = "0 6px 30px var(--color-accent), 0 0 50px var(--color-secondary)";
+                  e.currentTarget.style.backgroundColor =
+                    "var(--color-accent-light)";
+                  e.currentTarget.style.boxShadow =
+                    "0 6px 30px var(--color-accent), 0 0 50px var(--color-secondary)";
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.backgroundColor = "var(--color-accent)";
-                  e.currentTarget.style.boxShadow = "0 4px 20px var(--color-accent-glow), 0 0 40px var(--color-secondary-soft)";
+                  e.currentTarget.style.boxShadow =
+                    "0 4px 20px var(--color-accent-glow), 0 0 40px var(--color-secondary-soft)";
                 }}
               >
-                Get the Handbook
+                {t("handbook.cta")}
               </button>
             </Link>
           </div>
         </div>
 
         {/* Bottom horizontal transition element - magical glow */}
-        <div 
+        <div
           className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
           style={{
-            background: "linear-gradient(to top, var(--color-secondary-soft), transparent)"
+            background:
+              "linear-gradient(to top, var(--color-secondary-soft), transparent)",
           }}
         />
-        <div 
+        <div
           className="absolute bottom-0 left-0 right-0 h-px opacity-60"
           style={{
-            background: "linear-gradient(to right, transparent, var(--color-accent), var(--color-secondary), var(--color-accent), transparent)"
+            background:
+              "linear-gradient(to right, transparent, var(--color-accent), var(--color-secondary), var(--color-accent), transparent)",
           }}
         />
       </div>

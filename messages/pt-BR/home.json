@@ -1,1 +1,109 @@
-{}
+{
+  "hero": {
+    "title": "Transforme sua Sala de Aula com <highlight>RPGs Educacionais</highlight>",
+    "description": "Aprenda o método Teacher-Gamer e leve os jogos de RPG de mesa para a sua sala de aula. Engaje os alunos, desenvolva habilidades socioemocionais e crie experiências de aprendizagem significativas por meio da narrativa colaborativa e do brincar com propósito.",
+    "exploreCourses": "Explorar Cursos",
+    "watchHowItWorks": "Veja Como Funciona",
+    "features": {
+      "proven": "Método Comprovado",
+      "classrooms": "Para Todas as Salas de Aula",
+      "expert": "Formação com Especialistas"
+    },
+    "imageAlt": "Crianças aprendendo e brincando com segurança em um ambiente educacional",
+    "scroll": "Role",
+    "scrollDownLabel": "Indicador para rolar a página",
+    "scrollDownTitle": "Rolar para baixo"
+  },
+  "handbook": {
+    "title": "The Teacher-Gamer Handbook",
+    "subtitle": "Desenvolva o letramento. Desperte a imaginação. Fortaleça os aprendizes. Transforme salas de aula em aventuras imersivas onde os alunos aprendem jogando, errando e crescendo juntos.",
+    "bullets": {
+      "pages": "300 páginas de estratégias criativas e planos de aula",
+      "skills": "36 habilidades para a vida por meio de experiências colaborativas de RPG",
+      "designed": "Pensado para educadores que guiam aprendizes a partir de 10 anos",
+      "hours": "Mais de 40 horas de jogo cocriativo e narrativa"
+    },
+    "framework": "Uma estrutura completa para levar o poder do RPG para a educação.",
+    "cta": "Adquira o Handbook",
+    "shopNow": "COMPRE AGORA",
+    "cardLabel": "Cartão da seção da loja"
+  },
+  "socialProof": {
+    "avatarAlt": "Usuário {n}",
+    "text": "<strong>Mais de 1.000</strong> famílias confiam em nós para um brincar seguro e educativo"
+  },
+  "nav": {
+    "courses": "Cursos",
+    "calendar": "Calendário",
+    "shop": "Loja",
+    "contact": "Contato",
+    "training": "Formação",
+    "shopNow": "Compre Agora"
+  },
+  "testimonials": {
+    "title": "Depoimentos",
+    "readMore": "Leia mais",
+    "imageAlt": "Depoimento",
+    "close": "Fechar",
+    "community": "Comunidade"
+  },
+  "courses": {
+    "title": "Escolha sua próxima Aventura!",
+    "description": "Entre no multiverso Teacher-Gamer — um conjunto interligado de mundos narrativos e trilhas de formação que ajudam educadores a usar jogos de RPG como metáforas para a aprendizagem no mundo real. Cada aventura equipa você com novas ferramentas, novas perspectivas e novas formas de levar a narrativa colaborativa para a sua sala de aula.",
+    "workshopsBanner": "Teacher Gamers Tour 2026 & Workshops Perto de Você",
+    "learnMore": "Saiba Mais",
+    "diceAlt": "Dado"
+  },
+  "substack": {
+    "title": "Novidades do Substack",
+    "loading": "Carregando as publicações mais recentes...",
+    "errors": {
+      "noPosts": "Nenhuma publicação encontrada. Tente novamente mais tarde.",
+      "loadFailed": "Não foi possível carregar as publicações mais recentes. Tente novamente mais tarde."
+    },
+    "readMore": "Leia mais",
+    "subscribe": "Assine a Newsletter TG"
+  },
+  "research": {
+    "title": "Pesquisas Publicadas Teacher-Gamer",
+    "subtitle": "Artigos revisados por pares no <accent>Academia.edu</accent> que exploram como os jogos de RPG transformam a aprendizagem",
+    "follow": "Siga Zach Reznichek no Academia.edu",
+    "articles": {
+      "multiverse": {
+        "views": "7.228 visualizações",
+        "abstract": "A ideia de que, ao jogar RPG, você mergulha 'dentro do jogo' para se aventurar, explorar e resolver problemas por meio da experimentação coloca à prova sua imaginação, seu senso de identidade e sua moralidade. Este artigo explora os RPGs como uma disciplina educacional própria, que estimula o pensamento crítico, a criatividade e a aprendizagem colaborativa."
+      },
+      "authenticEducation": {
+        "views": "24.241 visualizações • Top 4%",
+        "abstract": "A resposta simples incluiria que uma 'educação autêntica' é pensada para guiar os alunos a desenvolverem seus talentos e habilidades únicos, em vez de forçá-los a se encaixar em medidas padronizadas. Este artigo examina os fundamentos filosóficos da educação autêntica e suas implicações para a pedagogia moderna."
+      },
+      "authenticEducationAi": {
+        "views": "Novo",
+        "abstract": "Este artigo explora a natureza da 'educação autêntica' em um mundo cada vez mais moldado pela inteligência artificial (IA) e propõe uma filosofia curricular enraizada no autodesenvolvimento, na consciência cívica e no cuidado ecológico."
+      },
+      "selfDetermination": {
+        "views": "177 visualizações",
+        "abstract": "No final do século XX, as preocupações com a dependência, a insegurança, a desmotivação e a ansiedade dos alunos haviam atingido níveis críticos. Este artigo examina a Teoria da Autodeterminação e argumenta contra o uso excessivo de motivadores extrínsecos em contextos educacionais, defendendo a motivação intrínseca por meio da autonomia, da competência e do pertencimento."
+      },
+      "writingJourney": {
+        "views": "120 visualizações",
+        "abstract": "A educação não se resume aos grandes marcos, como formaturas e certificações, mas também à jornada de aprendizagem e crescimento contínuos. Este artigo explora abordagens pedagógicas para ajudar os alunos a iniciarem sua jornada na escrita com confiança, criatividade e voz autêntica."
+      },
+      "authenticityMatters": {
+        "views": "2.625 visualizações",
+        "abstract": "Como subproduto corrompido da política socioeconômica, a filosofia curricular é inadequada para resolver os desafios educacionais. Esta tese defendida examina o declínio das práticas contemplativas na educação e a ascensão do construtivismo social como paradigma educacional dominante, questionando se a autenticidade ainda importa na pedagogia moderna."
+      }
+    }
+  },
+  "calendar": {
+    "title": "Agende uma Sessão",
+    "subtitle": "Escolha a melhor data e horário para a sua aventura",
+    "modalButton": "Agende uma Sessão"
+  },
+  "contact": {
+    "title": "Fale Conosco",
+    "subtitle": "Tem dúvidas ou quer se conectar? Entre em contato pela sua rede social preferida.",
+    "description": "Estamos ativos em todos esses canais e adoraríamos ouvir você!",
+    "support": "Apoie o Projeto"
+  }
+}

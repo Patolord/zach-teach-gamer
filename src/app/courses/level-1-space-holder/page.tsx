@@ -9,42 +9,43 @@ import {
   Star,
   Users,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useEffect } from "react";
 import { getCalApi } from "@calcom/embed-react";
 import { Button } from "@/components/ui/button";
 import { MEDIA } from "@/lib/media";
-import { CAL_CONFIG, getCalUIConfig, getCalConfig } from "@/components/home/calendar/cal-config";
+import {
+  CAL_CONFIG,
+  getCalUIConfig,
+  getCalConfig,
+} from "@/components/home/calendar/cal-config";
 import RandomTestimonialsGrid from "@/components/testimonials/RandomTestimonialsGrid";
 
 const courseFeatures = [
-  "Master out-game character development techniques",
-  "Transition seamlessly from character building to role-playing",
-  "Run your first pilot session with confidence",
-  "Earn Teacher Gamer Level 1 Certification",
-  "Comprehensive session planning guides",
-  "Behavior management strategies for game sessions",
-  "Assessment and evaluation tools",
-  "Access to exclusive educator community",
-];
+  "outGame",
+  "transition",
+  "pilot",
+  "certification",
+  "planning",
+  "behaviour",
+  "assessment",
+  "community",
+] as const;
 
 const whatYouWillLearn = [
-  {
-    icon: Users,
-    title: "Space-Holding Skills",
-    description: "Create safe, engaging environments for student-led play",
-  },
-  {
-    icon: Book,
-    title: "Session Management",
-    description: "Plan and facilitate effective RPG sessions",
-  },
-  {
-    icon: Award,
-    title: "Level 1 Certification",
-    description: "Complete your pilot and earn professional recognition",
-  },
-];
+  { id: "spaceHolding", icon: Users },
+  { id: "sessions", icon: Book },
+  { id: "certification", icon: Award },
+] as const;
+
+const curriculum = [
+  { id: "characterDevelopment", lessons: 6 },
+  { id: "rolePlaying", lessons: 8 },
+  { id: "spaceHolding", lessons: 7 },
+  { id: "pilot", lessons: 5 },
+  { id: "certification", lessons: 4 },
+] as const;
 
 const calProps = {
   "data-cal-namespace": CAL_CONFIG.username,
@@ -53,6 +54,8 @@ const calProps = {
 };
 
 export default function Level1SpaceHolderPage() {
+  const t = useTranslations("courses");
+
   useEffect(() => {
     (async () => {
       const cal = await getCalApi({ namespace: CAL_CONFIG.username });
@@ -78,7 +81,7 @@ export default function Level1SpaceHolderPage() {
             className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
-            Back to Courses
+            {t("common.backToCourses")}
           </Link>
         </div>
 
@@ -88,43 +91,41 @@ export default function Level1SpaceHolderPage() {
             {/* Header Section */}
             <div className="space-y-6">
               <div className="flex gap-3 flex-wrap">
-                <div
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-course-level-1/20 border border-course-level-1/30 text-course-level-1"
-                >
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-course-level-1/20 border border-course-level-1/30 text-course-level-1">
                   <Star className="w-4 h-4" />
-                  <span className="text-sm font-semibold">BEST VALUE</span>
+                  <span className="text-sm font-semibold">
+                    {t("badges.bestValue")}
+                  </span>
                 </div>
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-course-level-1/10 border border-course-level-1/20 text-white">
                   <Award className="w-4 h-4" />
                   <span className="text-sm font-semibold">
-                    Certification Course
+                    {t("common.certificationCourse")}
                   </span>
                 </div>
               </div>
 
               <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight">
-                Level 1 TG Space-Holder Certificate Course
+                {t("level1.page.heading")}
               </h1>
 
               <p className="text-xl text-white/90 leading-relaxed max-w-3xl">
-                Learn to move from out-game character development to in-game
-                role-playing and run a pilot to get teacher gamer level one
-                certified.
+                {t("level1.page.lead")}
               </p>
 
               {/* Course Stats */}
               <div className="flex flex-wrap gap-6 pt-4">
                 <div className="flex items-center gap-2 text-white/80">
                   <Clock className="w-5 h-5 text-course-level-1" />
-                  <span>10-12 weeks</span>
+                  <span>{t("level1.page.stats.duration")}</span>
                 </div>
                 <div className="flex items-center gap-2 text-white/80">
                   <Users className="w-5 h-5 text-course-level-1" />
-                  <span>Cohort-based learning</span>
+                  <span>{t("common.cohortBased")}</span>
                 </div>
                 <div className="flex items-center gap-2 text-white/80">
                   <Award className="w-5 h-5 text-course-level-1" />
-                  <span>Level 1 Certification</span>
+                  <span>{t("level1.page.stats.certification")}</span>
                 </div>
               </div>
             </div>
@@ -132,7 +133,7 @@ export default function Level1SpaceHolderPage() {
             <RandomTestimonialsGrid
               count={2}
               tags={["level-1", "training"]}
-              title="What Certified Educators Are Saying"
+              title={t("level1.page.testimonialsTitle")}
               iconClassName="w-6 h-6 text-course-level-1"
               accentClassName="text-course-level-1"
               borderClassName="border-course-level-1/20"
@@ -144,23 +145,23 @@ export default function Level1SpaceHolderPage() {
               <div className="relative flex flex-col md:flex-row items-center gap-8">
                 <div className="flex-1 text-center md:text-left">
                   <h3 className="text-2xl font-bold text-white mb-3">
-                    Ready to Earn Your Certification?
+                    {t("level1.page.cta.title")}
                   </h3>
                   <p className="text-white/70 mb-5 leading-relaxed">
-                    Book a free 15-minute discovery call to discuss your certification journey. We'll map out the best path for your goals.
+                    {t("level1.page.cta.description")}
                   </p>
                   <div className="flex flex-wrap gap-4 justify-center md:justify-start text-sm text-white/60">
                     <span className="flex items-center gap-1.5">
                       <CheckCircle className="w-4 h-4 text-course-level-1" />
-                      No commitment required
+                      {t("common.noCommitment")}
                     </span>
                     <span className="flex items-center gap-1.5">
                       <Clock className="w-4 h-4 text-course-level-1" />
-                      15-minute call
+                      {t("common.fifteenMinuteCall")}
                     </span>
                     <span className="flex items-center gap-1.5">
                       <Award className="w-4 h-4 text-course-level-1" />
-                      Includes certification
+                      {t("level1.page.cta.includesCertification")}
                     </span>
                   </div>
                 </div>
@@ -170,7 +171,7 @@ export default function Level1SpaceHolderPage() {
                     className="text-lg font-bold text-white px-10 py-6 bg-course-level-1 hover:scale-105 transition-transform"
                     {...calProps}
                   >
-                    Enroll Now
+                    {t("common.enrollNow")}
                   </Button>
                 </div>
               </div>
@@ -179,21 +180,23 @@ export default function Level1SpaceHolderPage() {
             {/* What You'll Learn */}
             <div className="space-y-6">
               <h2 className="text-3xl font-bold text-white">
-                What You'll Learn
+                {t("common.whatYouWillLearn")}
               </h2>
               <div className="grid md:grid-cols-3 gap-6">
-                {whatYouWillLearn.map(({ icon: Icon, title, description }) => (
+                {whatYouWillLearn.map(({ id, icon: Icon }) => (
                   <div
-                    key={title}
+                    key={id}
                     className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20"
                   >
                     <div className="w-12 h-12 mb-4 rounded-full flex items-center justify-center bg-course-level-1/20">
                       <Icon className="w-6 h-6 text-course-level-1" />
                     </div>
                     <h3 className="text-xl font-bold text-white mb-2">
-                      {title}
+                      {t(`level1.page.learn.${id}.title`)}
                     </h3>
-                    <p className="text-white/80">{description}</p>
+                    <p className="text-white/80">
+                      {t(`level1.page.learn.${id}.description`)}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -201,15 +204,17 @@ export default function Level1SpaceHolderPage() {
 
             {/* Course Features */}
             <div className="space-y-6">
-              <h2 className="text-3xl font-bold text-white">Course Includes</h2>
+              <h2 className="text-3xl font-bold text-white">
+                {t("common.courseIncludes")}
+              </h2>
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/20">
                 <ul className="grid md:grid-cols-2 gap-4">
                   {courseFeatures.map((feature) => (
                     <li key={feature} className="flex items-start gap-3">
-                      <CheckCircle
-                        className="w-5 h-5 mt-0.5 shrink-0 text-course-level-1"
-                      />
-                      <span className="text-white/90">{feature}</span>
+                      <CheckCircle className="w-5 h-5 mt-0.5 shrink-0 text-course-level-1" />
+                      <span className="text-white/90">
+                        {t(`level1.page.features.${feature}`)}
+                      </span>
                     </li>
                   ))}
                 </ul>
@@ -219,53 +224,25 @@ export default function Level1SpaceHolderPage() {
             {/* Course Curriculum */}
             <div className="space-y-6">
               <h2 className="text-3xl font-bold text-white">
-                Course Curriculum
+                {t("common.courseCurriculum")}
               </h2>
               <div className="space-y-4">
-                {[
-                  {
-                    module: "Module 1",
-                    title: "Advanced Character Development",
-                    lessons: 6,
-                  },
-                  {
-                    module: "Module 2",
-                    title: "Facilitating In-Game Role-Playing",
-                    lessons: 8,
-                  },
-                  {
-                    module: "Module 3",
-                    title: "Space-Holding Techniques",
-                    lessons: 7,
-                  },
-                  {
-                    module: "Module 4",
-                    title: "Running Your Pilot Session",
-                    lessons: 5,
-                  },
-                  {
-                    module: "Module 5",
-                    title: "Certification Preparation",
-                    lessons: 4,
-                  },
-                ].map((module) => (
+                {curriculum.map((module, index) => (
                   <div
-                    key={module.module}
+                    key={module.id}
                     className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20"
                   >
                     <div className="flex items-center justify-between">
                       <div>
-                        <p
-                          className="text-sm font-semibold mb-1 text-course-level-1"
-                        >
-                          {module.module}
+                        <p className="text-sm font-semibold mb-1 text-course-level-1">
+                          {t("common.module", { n: index + 1 })}
                         </p>
                         <h3 className="text-xl font-bold text-white">
-                          {module.title}
+                          {t(`level1.page.curriculum.${module.id}`)}
                         </h3>
                       </div>
                       <span className="text-white/60 text-sm">
-                        {module.lessons} lessons
+                        {t("common.lessons", { count: module.lessons })}
                       </span>
                     </div>
                   </div>
@@ -276,18 +253,17 @@ export default function Level1SpaceHolderPage() {
             {/* Final CTA */}
             <div className="bg-gradient-to-br from-course-level-1/20 to-transparent rounded-xl p-8 border border-course-level-1/30 text-center space-y-6">
               <h2 className="text-3xl font-bold text-white">
-                Ready to Get Certified?
+                {t("level1.page.finalCta.title")}
               </h2>
               <p className="text-xl text-white/80 max-w-2xl mx-auto">
-                Join the next cohort and earn your Level 1 Teacher Gamer
-                Certification.
+                {t("level1.page.finalCta.description")}
               </p>
               <Button
                 size="lg"
                 className="text-lg font-bold text-white px-12 py-6 bg-course-level-1"
                 {...calProps}
               >
-                Enroll in Level 1 Certification
+                {t("level1.page.finalCta.button")}
               </Button>
             </div>
           </div>
