@@ -2,9 +2,9 @@ import { ImageKitProvider } from "@imagekit/next";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import Script from "next/script";
-import { NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { resolveLocale } from "@/i18n/params";
+import ScopedMessages from "@/i18n/ScopedMessages";
 import "./globals.css";
 
 import ConditionalSplashCursor from "@/components/shared/ConditionalSplashCursor";
@@ -131,14 +131,15 @@ export default async function RootLayout({ children, params }: LayoutProps) {
             src="https://px.ads.linkedin.com/collect/?pid=9671124&fmt=gif"
           />
         </noscript>
-        <NextIntlClientProvider>
+        {/* Global client UI (booking button) only; pages scope their own. */}
+        <ScopedMessages namespaces={["shared"]}>
           <ImageKitProvider urlEndpoint="https://ik.imagekit.io/TeacherGamer/Site/">
             {children}
 
             <FloatingBookingButton />
             <ConditionalSplashCursor />
           </ImageKitProvider>
-        </NextIntlClientProvider>
+        </ScopedMessages>
       </body>
     </html>
   );

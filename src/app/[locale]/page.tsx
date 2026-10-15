@@ -3,6 +3,7 @@ import { setRequestLocale } from "next-intl/server";
 import LandingPageClient from "@/components/landing/LandingPageClient";
 import VideoPreloader from "@/components/landing/VideoPreloader";
 import type { LocaleParams } from "@/i18n/params";
+import ScopedMessages from "@/i18n/ScopedMessages";
 import { MEDIA } from "@/lib/media";
 
 export default async function Home({ params }: { params: LocaleParams }) {
@@ -33,7 +34,9 @@ export default async function Home({ params }: { params: LocaleParams }) {
       </div>
 
       {/* Client component for interactive video and content */}
-      <LandingPageClient />
+      <ScopedMessages namespaces={["landing"]}>
+        <LandingPageClient />
+      </ScopedMessages>
     </section>
   );
 }

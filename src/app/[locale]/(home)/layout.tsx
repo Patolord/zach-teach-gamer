@@ -2,6 +2,7 @@ import { setRequestLocale } from "next-intl/server";
 import Footer from "@/components/footer";
 import { Header } from "@/components/header";
 import { resolveLocale } from "@/i18n/params";
+import ScopedMessages from "@/i18n/ScopedMessages";
 
 export default async function HomeLayout({
   children,
@@ -14,10 +15,12 @@ export default async function HomeLayout({
   setRequestLocale(locale);
 
   return (
-    <section>
-      <Header />
-      {children}
-      <Footer />
-    </section>
+    <ScopedMessages namespaces={["header", "footer"]}>
+      <section>
+        <Header />
+        {children}
+        <Footer />
+      </section>
+    </ScopedMessages>
   );
 }
