@@ -7,8 +7,8 @@ import {
   Play,
   Volume2,
 } from "lucide-react";
-import { useTranslations } from "next-intl";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 // Podcast episodes - Replace with your actual Podbean episode IDs

@@ -1,6 +1,5 @@
 "use client";
 
-import gsap from "gsap";
 import { useEffect } from "react";
 import CalendarBookingSection from "@/components/home/calendar/CalendarBookingSection";
 import ContactSection from "@/components/home/contact/ContactSection";
@@ -26,12 +25,16 @@ export default function HomePage() {
         '[style*="z-index: 99999"], [style*="z-index:99999"]',
       );
       if (overlay) {
-        gsap.to(overlay, {
-          opacity: 0,
-          duration: 0.5,
-          ease: "power2.out",
-          onComplete: () => overlay.remove(),
+        // Plain CSS transition: keeps GSAP out of the home route bundle.
+        overlay.style.transition = "opacity 0.5s ease-out";
+        overlay.addEventListener("transitionend", () => overlay.remove(), {
+          once: true,
         });
+        requestAnimationFrame(() => {
+          overlay.style.opacity = "0";
+        });
+        // Safety net in case transitionend never fires (e.g. tab hidden).
+        setTimeout(() => overlay.remove(), 800);
       }
     }
   }, []);

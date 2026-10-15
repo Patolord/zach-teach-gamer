@@ -1,9 +1,9 @@
 import { ArrowLeft, Handshake, Landmark } from "lucide-react";
 import type { Metadata } from "next";
-import { useTranslations } from "next-intl";
-import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import {
   PARTNER_INTAKE_SURVEY_URL,
   SPONSOR_INTAKE_SURVEY_URL,

@@ -1,8 +1,8 @@
 "use client";
 
 import { ExternalLink, Newspaper } from "lucide-react";
-import { useTranslations } from "next-intl";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { MEDIA } from "@/lib/media";
 
 const featuredPress = [
@@ -118,7 +118,7 @@ export default function PressPage() {
                   </p>
                   <div className="relative w-full aspect-4/3 rounded-xl overflow-hidden mt-auto">
                     <Image
-                      src={featuredPress[0].image!}
+                      src={featuredPress[0].image ?? ""}
                       alt={featuredPress[0].title}
                       fill
                       className="object-cover"
@@ -144,7 +144,7 @@ export default function PressPage() {
                 <div className="flex-1 flex items-center justify-center p-8">
                   <div className="relative w-full max-w-[220px] aspect-2/1">
                     <Image
-                      src={featuredPress[1].logo!}
+                      src={featuredPress[1].logo ?? ""}
                       alt="IndieGoGo"
                       fill
                       className="object-contain"
@@ -170,7 +170,7 @@ export default function PressPage() {
                 <div className="flex-1 flex items-center justify-center p-8">
                   <div className="relative w-full max-w-[220px] aspect-square">
                     <Image
-                      src={featuredPress[2].logo!}
+                      src={featuredPress[2].logo ?? ""}
                       alt="HundrED"
                       fill
                       className="object-contain"

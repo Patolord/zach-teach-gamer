@@ -1,24 +1,17 @@
 "use client";
 
-import { ArrowLeft, Book, CheckCircle, Clock, Star, Users } from "lucide-react";
-import { useTranslations } from "next-intl";
-import Link from "next/link";
-import { useEffect } from "react";
 import { getCalApi } from "@calcom/embed-react";
-import { Button } from "@/components/ui/button";
-import { MEDIA } from "@/lib/media";
+import { ArrowLeft, Book, CheckCircle, Clock, Star, Users } from "lucide-react";
+import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { useEffect } from "react";
 import {
   CAL_CONFIG,
   getCalUIConfig,
-  getCalConfig,
 } from "@/components/home/calendar/cal-config";
 import RandomTestimonialsGrid from "@/components/testimonials/RandomTestimonialsGrid";
-
-const calProps = {
-  "data-cal-namespace": CAL_CONFIG.username,
-  "data-cal-link": CAL_CONFIG.username,
-  "data-cal-config": JSON.stringify(getCalConfig()),
-};
+import { Button } from "@/components/ui/button";
+import { MEDIA } from "@/lib/media";
 
 const courseFeatures = [
   "fundamentals",

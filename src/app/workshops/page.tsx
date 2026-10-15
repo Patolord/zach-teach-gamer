@@ -10,9 +10,9 @@ import {
   Play,
   Star,
 } from "lucide-react";
-import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { useEffect } from "react";
 import {
   CAL_CONFIG,

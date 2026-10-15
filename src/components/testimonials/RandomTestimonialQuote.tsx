@@ -9,7 +9,10 @@ type Props = {
   className?: string;
 };
 
-export default function RandomTestimonialQuote({ tags, className = "" }: Props) {
+export default function RandomTestimonialQuote({
+  tags,
+  className = "",
+}: Props) {
   const testimonial = useRandomTestimonial(tags);
 
   if (!testimonial) return null;

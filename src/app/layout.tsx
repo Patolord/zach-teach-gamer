@@ -11,19 +11,19 @@ import FloatingBookingButton from "@/components/shared/FloatingBookingButton";
 
 // Local fonts - no external requests, fastest option
 const amarante = localFont({
-  src: "../fonts/Amarante-Regular.ttf",
+  src: "../fonts/Amarante-Regular.woff2",
   variable: "--font-amarante",
   display: "swap",
 });
 
 const aladin = localFont({
-  src: "../fonts/Aladin-Regular.ttf",
+  src: "../fonts/Aladin-Regular.woff2",
   variable: "--font-aladin",
   display: "swap",
 });
 
 const pirataOne = localFont({
-  src: "../fonts/PirataOne-Regular.ttf",
+  src: "../fonts/PirataOne-Regular.woff2",
   variable: "--font-pirata-one",
   display: "swap",
 });
@@ -95,7 +95,7 @@ export default async function RootLayout({
         <link rel="dns-prefetch" href="https://ik.imagekit.io" />
       </head>
       <body className="antialiased">
-        <Script id="linkedin-insight-tag" strategy="afterInteractive">
+        <Script id="linkedin-insight-tag" strategy="lazyOnload">
           {`
             _linkedin_partner_id = "9671124";
             window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
@@ -117,6 +117,7 @@ export default async function RootLayout({
           `}
         </Script>
         <noscript>
+          {/* biome-ignore lint/performance/noImgElement: tracking pixel inside <noscript>; next/image cannot be used here */}
           <img
             height="1"
             width="1"

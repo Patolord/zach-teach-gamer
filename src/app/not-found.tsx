@@ -1,6 +1,6 @@
 import { Dice6, Home, MapPinned, ScrollText, Swords } from "lucide-react";
-import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { MEDIA } from "@/lib/media";
 
 const quickLinks = [

@@ -1,6 +1,6 @@
 import { CheckCircle, Download } from "lucide-react";
-import { getTranslations } from "next-intl/server";
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import Stripe from "stripe";
 import { Button } from "@/components/ui/button";
 import {
@@ -34,7 +34,7 @@ async function getSessionState(sessionId?: string): Promise<SessionState> {
   }
 
   const stripe = new Stripe(stripeSecretKey, {
-    apiVersion: "2026-02-25.clover",
+    apiVersion: "2026-09-30.endive",
   });
 
   try {

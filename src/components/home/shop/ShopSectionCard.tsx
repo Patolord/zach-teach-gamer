@@ -1,6 +1,5 @@
 "use client";
 
-import { gsap } from "gsap";
 import { useTranslations } from "next-intl";
 import type React from "react";
 import { type ReactNode, useEffect, useRef } from "react";
@@ -56,6 +55,12 @@ const ShopSectionCard: React.FC<ShopSectionCardProps> = ({
       cursor.current = { x: ev.clientX, y: ev.clientY };
     };
 
+    // The effect only reacts to a mouse, so skip the per-frame loop entirely
+    // on touch devices and for people who prefer reduced motion.
+    const canHover = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (!canHover.matches || reducedMotion.matches) return;
+
     window.addEventListener("resize", handleResize);
     window.addEventListener("mousemove", handleMouseMove);
 
@@ -64,7 +69,12 @@ const ShopSectionCard: React.FC<ShopSectionCardProps> = ({
       displacementScale: 0,
     };
 
+    let frameId: number | null = null;
+    let isVisible = true;
+
     const render = () => {
+      frameId = null;
+      if (!isVisible) return;
       let targetX = lerp(
         imgValues.imgTransforms.x,
         map(cursor.current.x, 0, winsize.current.width, -120, 120),
@@ -92,11 +102,7 @@ const ShopSectionCard: React.FC<ShopSectionCardProps> = ({
       imgValues.imgTransforms.rz = targetRz;
 
       if (svgRef.current) {
-        gsap.set(svgRef.current, {
-          x: imgValues.imgTransforms.x,
-          y: imgValues.imgTransforms.y,
-          rotateZ: imgValues.imgTransforms.rz,
-        });
+        svgRef.current.style.transform = `translate3d(${imgValues.imgTransforms.x}px, ${imgValues.imgTransforms.y}px, 0) rotate(${imgValues.imgTransforms.rz}deg)`;
       }
 
       const cursorTravelledDistance = distance(
@@ -112,19 +118,29 @@ const ShopSectionCard: React.FC<ShopSectionCardProps> = ({
       );
 
       if (displacementMapRef.current) {
-        gsap.set(displacementMapRef.current, {
-          attr: { scale: imgValues.displacementScale },
-        });
+        displacementMapRef.current.setAttribute(
+          "scale",
+          String(imgValues.displacementScale),
+        );
       }
 
       cachedCursor.current = { ...cursor.current };
 
-      requestAnimationFrame(render);
+      frameId = requestAnimationFrame(render);
     };
 
-    render();
+    // Only animate while the card is on screen.
+    const observer = new IntersectionObserver(([entry]) => {
+      isVisible = entry.isIntersecting;
+      if (isVisible && frameId === null) {
+        frameId = requestAnimationFrame(render);
+      }
+    });
+    if (svgRef.current) observer.observe(svgRef.current);
 
     return () => {
+      observer.disconnect();
+      if (frameId !== null) cancelAnimationFrame(frameId);
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("mousemove", handleMouseMove);
     };

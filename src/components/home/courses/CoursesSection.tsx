@@ -1,11 +1,10 @@
 "use client";
 
-import { MapPin, Sparkles } from "lucide-react";
-import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { MEDIA } from "@/lib/media";
+import { useTranslations } from "next-intl";
 import ShinyText from "@/components/ui/shinytext";
 import { homeCourseCards } from "@/data/course-themes";
+import { MEDIA } from "@/lib/media";
 import EletricCard from "./EletricCard";
 
 interface CoursesSectionProps {

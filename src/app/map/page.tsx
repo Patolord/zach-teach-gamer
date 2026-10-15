@@ -1,18 +1,9 @@
 "use client";
 
-import {
-  ArrowLeft,
-  Award,
-  CalendarDays,
-  Instagram,
-  Linkedin,
-  Mail,
-  MapPin,
-  X,
-} from "lucide-react";
-import { useTranslations } from "next-intl";
+import { ArrowLeft, Award, CalendarDays, Mail, MapPin, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import type { SVGProps } from "react";
 import { useEffect, useState } from "react";
 import {
@@ -22,6 +13,7 @@ import {
   Marker,
   ZoomableGroup,
 } from "react-simple-maps";
+import { Instagram, Linkedin } from "@/components/ui/brand-icons";
 import { Button } from "@/components/ui/button";
 import { MEDIA } from "@/lib/media";
 
@@ -418,15 +410,7 @@ export default function TeachersMapPage() {
                     fill="var(--color-dark)"
                     stroke="var(--color-medium)"
                     strokeWidth={0.5}
-                    style={{
-                      default: { outline: "none", opacity: 0.8 },
-                      hover: {
-                        fill: "var(--color-medium)",
-                        outline: "none",
-                        opacity: 1,
-                      },
-                      pressed: { outline: "none" },
-                    }}
+                    className="map-geography"
                   />
                 ))
               }

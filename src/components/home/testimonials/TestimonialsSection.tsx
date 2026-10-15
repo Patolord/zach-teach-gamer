@@ -1,11 +1,11 @@
 ﻿"use client";
 
-import { useTranslations } from "next-intl";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
+import ShinyText from "@/components/ui/shinytext";
 import { MEDIA } from "@/lib/media";
 import { pickUniqueRandomTestimonials } from "@/lib/testimonials";
-import ShinyText from "@/components/ui/shinytext";
 import "./Testimonials.css";
 
 type TextMarqueeItem = {
@@ -183,9 +183,11 @@ function MarqueeRow({
       >
         {track.map((item, index) =>
           item.kind === "image" ? (
+            // biome-ignore lint/suspicious/noArrayIndexKey: the marquee track repeats each item, so the index distinguishes the copies
             <ImageCard key={`${item.id}-${index}`} item={item} />
           ) : (
             <TextCard
+              // biome-ignore lint/suspicious/noArrayIndexKey: the marquee track repeats each item, so the index distinguishes the copies
               key={`${item.id}-${index}`}
               item={item}
               onReadMore={onReadMore}

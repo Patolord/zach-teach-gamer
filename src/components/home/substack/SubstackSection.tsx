@@ -1,11 +1,11 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
-import { MEDIA } from "@/lib/media";
 import ShinyText from "@/components/ui/shinytext";
+import { MEDIA } from "@/lib/media";
 
 // Using global CSS theme variables
 
@@ -128,6 +128,7 @@ export default function SubstackSection({ sectionIndex }: Props) {
                 rel="noopener noreferrer"
                 className="block group"
               >
+                {/* biome-ignore lint/a11y/noStaticElementInteractions: hover handlers only restyle the card; the wrapping <a> is the interactive element */}
                 <div
                   className="backdrop-blur-sm rounded-lg shadow-lg border-2 overflow-hidden transition-all"
                   style={{
