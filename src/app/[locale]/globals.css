@@ -197,6 +197,13 @@ body {
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    /* Safety net against horizontal page scroll from a stray wide element.
+       Text that cannot wrap (whitespace-nowrap) and transformed boxes still
+       widen the mobile layout viewport, so those must be fixed at the source.
+       `clip` keeps position: fixed/sticky working, unlike overflow: hidden. */
+    overflow-x: clip;
+  }
   body {
     @apply bg-background text-foreground;
   }

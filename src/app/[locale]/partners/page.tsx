@@ -76,7 +76,7 @@ export default async function PartnersPage({ params }: PageProps) {
                 const content = (
                   <>
                     {org.logoSrc ? (
-                      <div className="relative mx-auto h-32 w-full sm:h-40">
+                      <div className="relative mx-auto h-32 w-full overflow-hidden sm:h-40">
                         <div className="absolute inset-x-8 top-1/2 h-12 -translate-y-1/2 rounded-full bg-accent/20 blur-2xl transition-opacity duration-300 group-hover:opacity-80" />
                         <Image
                           src={org.logoSrc}
