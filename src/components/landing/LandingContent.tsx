@@ -2,11 +2,11 @@
 
 import { ChevronRight, Loader2, Swords } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import LocaleToggle from "@/components/shared/LocaleToggle";
 import ScrambledText from "@/components/shared/ScrambledText";
+import { Link } from "@/i18n/navigation";
 
 type Props = {
   onButtonClick?: () => void;

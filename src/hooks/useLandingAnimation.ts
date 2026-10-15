@@ -3,8 +3,8 @@
 import { useGSAP } from "@gsap/react";
 import { buildSrc } from "@imagekit/next";
 import gsap from "gsap";
-import { useRouter } from "next/navigation";
 import { startTransition, useCallback, useRef, useState } from "react";
+import { useRouter } from "@/i18n/navigation";
 
 const floatingTextStyle = `
   position: fixed;

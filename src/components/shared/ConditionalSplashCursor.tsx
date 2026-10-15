@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { usePathname } from "next/navigation";
+import { usePathname } from "@/i18n/navigation";
 import { useEffect, useState } from "react";
 
 // The WebGL fluid simulation is ~1400 lines; load it only when it will run.

@@ -1,9 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { useTranslations } from "next-intl";
 import ShinyText from "@/components/ui/shinytext";
 import { homeCourseCards } from "@/data/course-themes";
+import { Link } from "@/i18n/navigation";
 import { MEDIA } from "@/lib/media";
 import EletricCard from "./EletricCard";
 
