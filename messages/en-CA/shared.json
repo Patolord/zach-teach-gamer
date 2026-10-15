@@ -1,0 +1,17 @@
+{
+  "tourPopup": {
+    "openAria": "Open Teacher-Gamer Tour 2026 poster",
+    "close": "Close",
+    "closePopup": "Close popup",
+    "previous": "Show previous poster",
+    "next": "Show next poster"
+  },
+  "booking": {
+    "open": "Open booking",
+    "dismiss": "Dismiss message",
+    "minimize": "Minimize",
+    "title": "Free Discovery Call",
+    "subtitle": "Book a 15-min chat to see how RPGs can transform your classroom.",
+    "cta": "Book a Discovery Call"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "hero": {
+    "badge": "Press & Publications",
+    "title": "Press",
+    "description": "News, interviews, and more — media appearances featuring the Teacher-Gamer methodology."
+  },
+  "featured": {
+    "heading": "News, Interviews and More"
+  },
+  "more": {
+    "heading": "Conferences & Publications"
+  },
+  "types": {
+    "webinar": "Webinar",
+    "publication": "Publication",
+    "conference": "Conference"
+  },
+  "items": {
+    "isepWebinar": {
+      "date": "March 2026",
+      "description": "Z Reznichek presents eruptive methodologies for embodied, off-screen, collective learning through RPGs at the School of Engineering webinar series."
+    },
+    "indireAuthenticEducation": {
+      "date": "2025",
+      "description": "Published research exploring the nature of authentic education in a world shaped by AI, proposing a curriculum rooted in self-development, civic consciousness, and ecological stewardship."
+    },
+    "relearnConference": {
+      "date": "2020",
+      "description": "Presentation at the [Re]Learn 2020 conference on authentic approaches to education through game-based and experiential learning."
+    }
+  }
+}

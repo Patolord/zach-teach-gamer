@@ -1,0 +1,102 @@
+{
+  "backToHome": "Voltar ao Início",
+  "hero": {
+    "coverAlt": "Capa do The Teacher-Gamer Handbook",
+    "rating": "4,9/5 de mais de 200 Educadores",
+    "badge": "Recurso Educacional",
+    "title": "<accent>The Teacher-Gamer</accent> Handbook",
+    "tagline": "Desenvolva o letramento. Desperte a imaginação. Empodere quem aprende. Transforme salas de aula em aventuras imersivas onde os estudantes aprendem jogando, errando e crescendo juntos.",
+    "formats": "Disponível em versão digital e física",
+    "discountBadge": "19% OFF",
+    "buyPdf": "Baixe o PDF — Download Imediato",
+    "buyPdfNote": "Economize 19% em relação ao livro físico — $29.99 CAD via Stripe — Download Imediato",
+    "buyPhysical": "Comprar Livro Físico"
+  },
+  "benefits": {
+    "framework": {
+      "title": "Estrutura Completa",
+      "description": "Tudo o que você precisa para integrar RPGs ao seu currículo"
+    },
+    "proven": {
+      "title": "Métodos Comprovados",
+      "description": "Testados em salas de aula reais, com resultados mensuráveis"
+    },
+    "easy": {
+      "title": "Fácil de Seguir",
+      "description": "Instruções claras para educadores de todos os níveis de experiência"
+    }
+  },
+  "features": {
+    "title": "<accent>O Que Tem</accent> Dentro",
+    "items": {
+      "pages": "📘 300 páginas de estratégias criativas e planos de aula",
+      "lifeSkills": "🎲 36 habilidades para a vida por meio de experiências colaborativas de RPG",
+      "audience": "⚔️ Pensado para educadores que acompanham estudantes a partir de 10 anos",
+      "hours": "🔥 Mais de 40 horas de jogo cocriativo e contação de histórias",
+      "guides": "✨ Guias de implementação passo a passo",
+      "activities": "🎯 Atividades e cenários testados em sala de aula",
+      "assessment": "📊 Ferramentas de avaliação e acompanhamento de progresso",
+      "tips": "💡 Dicas de educadores experientes que são mestres de jogo"
+    }
+  },
+  "testimonials": {
+    "title": "<accent>O Que os Educadores</accent> Estão Dizendo"
+  },
+  "products": {
+    "title": "Produtos <accent>Disponíveis</accent>",
+    "startingFrom": "A partir de:",
+    "handbookPdf": {
+      "name": "Teacher Gamer Handbook (PDF)",
+      "cta": "Comprar PDF"
+    },
+    "handbookPrint": {
+      "name": "Teacher Gamer Handbook (Capa Mole / Capa Dura)",
+      "cta": "COMPRAR AGORA"
+    },
+    "screenLandscape": {
+      "name": "Teacher Gamer Screen (Paisagem)",
+      "cta": "Comprar PDF Paisagem"
+    },
+    "screenPortrait": {
+      "name": "Teacher Gamer Screen (Retrato)",
+      "cta": "Comprar PDF Retrato"
+    }
+  },
+  "partner": {
+    "logoAlt": "Hero Workshop",
+    "eyebrow": "Parceiro em Destaque",
+    "title": "TG Nível 1: Curso Certificado Introdução ao Multiverso no Hero Workshop, presencial em Culver City, Califórnia",
+    "intro": "Curso intensivo presencial de 24 horas!",
+    "dates": "9, 15 e 16 de agosto de 2026.",
+    "hours": "(8h30 - 17h15)",
+    "description": "Estamos nos unindo ao Hero Workshop para levar a Teacher-Gamer Revolution à comunidade educacional de Los Angeles.",
+    "storyLed": "Aprendizagem guiada por histórias",
+    "creativeFacilitation": "Facilitação criativa",
+    "spotlight": "Parceiro em destaque",
+    "enroll": "Inscreva-se Agora"
+  },
+  "cta": {
+    "title": "<accent>Pronto para</accent> Começar?",
+    "description": "Explore nossa coleção de recursos educacionais criados para transformar a sua sala de aula em uma aventura de aprendizagem envolvente.",
+    "button": "Começar - Comprar PDF"
+  },
+  "success": {
+    "title": "Pagamento Confirmado!",
+    "ready": "Seu {product} está pronto. Use o botão abaixo para baixar a sua cópia pessoal.",
+    "pending": "Confirmamos a sua compra, mas os links de download ainda não estão prontos. Entre em contato com o suporte se isso não se resolver em breve.",
+    "thanks": "Obrigado pela sua compra! Seu pagamento foi concluído com sucesso.",
+    "download": "Baixar PDF",
+    "continueShopping": "Continuar Comprando",
+    "productLabels": {
+      "handbook": "handbook",
+      "screen_landscape": "PDF do screen em paisagem",
+      "screen_portrait": "PDF do screen em retrato"
+    }
+  },
+  "cancel": {
+    "title": "Pagamento Cancelado",
+    "description": "Seu pagamento foi cancelado. Nenhuma cobrança foi feita. Se você teve algum problema, entre em contato com a nossa equipe de suporte.",
+    "tryAgain": "Tentar Novamente",
+    "contactSupport": "Falar com o Suporte"
+  }
+}

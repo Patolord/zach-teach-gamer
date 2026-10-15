@@ -1,0 +1,34 @@
+{
+  "backToHome": "Voltar ao Início",
+  "hero": {
+    "title": "Fale Conosco",
+    "body": "Tem perguntas? Adoraríamos ouvir você. Junte-se à nossa comunidade e conecte-se com outros educadores!"
+  },
+  "discord": {
+    "title": "Junte-se à Nossa Comunidade no <brand>Discord</brand>",
+    "body": "Se você quer conhecer e interagir mais com outros aventureiros na jornada Teacher-Gamer, junte-se a nós no Discord. Conecte-se com outros educadores, tire dúvidas, compartilhe suas experiências com a aprendizagem baseada em jogos e receba suporte direto da equipe Teacher Gamer.",
+    "cta": "Entrar no Servidor do Discord",
+    "note": "Gratuito - Nossa comunidade é ativa e acolhedora!"
+  },
+  "social": {
+    "title": "Conecte-se Conosco",
+    "labels": {
+      "facebook": "Facebook",
+      "twitter": "Twitter / X",
+      "youtube": "YouTube",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn"
+    },
+    "support": "Apoie o Projeto"
+  },
+  "faq": {
+    "title": "Tem Mais Perguntas?",
+    "body": "Confira nossa página completa de Perguntas Frequentes para respostas às dúvidas mais comuns.",
+    "cta": "Ver Perguntas Frequentes"
+  },
+  "cta": {
+    "title": "Pronto para Transformar o Seu Ensino?",
+    "body": "Explore nossos cursos e comece hoje sua jornada na aprendizagem baseada em jogos.",
+    "button": "Ver Nossos Cursos"
+  }
+}

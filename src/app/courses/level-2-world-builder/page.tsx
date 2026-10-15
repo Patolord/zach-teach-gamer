@@ -9,42 +9,44 @@ import {
   Sparkles,
   Users,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useEffect } from "react";
 import { getCalApi } from "@calcom/embed-react";
 import { Button } from "@/components/ui/button";
 import { MEDIA } from "@/lib/media";
-import { CAL_CONFIG, getCalUIConfig, getCalConfig } from "@/components/home/calendar/cal-config";
+import {
+  CAL_CONFIG,
+  getCalUIConfig,
+  getCalConfig,
+} from "@/components/home/calendar/cal-config";
 import RandomTestimonialsGrid from "@/components/testimonials/RandomTestimonialsGrid";
 
 const courseFeatures = [
-  "Design comprehensive campaign worlds",
-  "Create original stories, creatures, and magic systems",
-  "Develop unique technology and world mechanics",
-  "Implement your campaign in real classrooms",
-  "Advanced world-building frameworks",
-  "Student engagement optimization strategies",
-  "Cross-curricular integration techniques",
-  "Level 2 Teacher Gamer Certification",
-];
+  "worlds",
+  "stories",
+  "technology",
+  "implement",
+  "frameworks",
+  "engagement",
+  "crossCurricular",
+  "certification",
+] as const;
 
 const whatYouWillLearn = [
-  {
-    icon: Sparkles,
-    title: "World Creation",
-    description: "Build immersive, engaging campaign worlds from scratch",
-  },
-  {
-    icon: Book,
-    title: "Story Crafting",
-    description: "Develop compelling narratives and plot structures",
-  },
-  {
-    icon: Award,
-    title: "Level 2 Certification",
-    description: "Demonstrate mastery through your own campaign",
-  },
-];
+  { id: "world", icon: Sparkles },
+  { id: "story", icon: Book },
+  { id: "certification", icon: Award },
+] as const;
+
+const curriculum = [
+  { id: "foundations", lessons: 7 },
+  { id: "creatures", lessons: 8 },
+  { id: "magic", lessons: 9 },
+  { id: "storyArc", lessons: 6 },
+  { id: "implementation", lessons: 7 },
+  { id: "project", lessons: 4 },
+] as const;
 
 const calProps = {
   "data-cal-namespace": CAL_CONFIG.username,
@@ -53,6 +55,8 @@ const calProps = {
 };
 
 export default function Level2WorldBuilderPage() {
+  const t = useTranslations("courses");
+
   useEffect(() => {
     (async () => {
       const cal = await getCalApi({ namespace: CAL_CONFIG.username });
@@ -78,7 +82,7 @@ export default function Level2WorldBuilderPage() {
             className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
-            Back to Courses
+            {t("common.backToCourses")}
           </Link>
         </div>
 
@@ -88,42 +92,41 @@ export default function Level2WorldBuilderPage() {
             {/* Header Section */}
             <div className="space-y-6">
               <div className="flex gap-3 flex-wrap">
-                <div
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-course-level-2/20 border border-course-level-2/30 text-course-level-2"
-                >
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-course-level-2/20 border border-course-level-2/30 text-course-level-2">
                   <Sparkles className="w-4 h-4" />
-                  <span className="text-sm font-semibold">Advanced Level</span>
+                  <span className="text-sm font-semibold">
+                    {t("level2.page.badge")}
+                  </span>
                 </div>
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-course-level-2/10 border border-course-level-2/20 text-white">
                   <Award className="w-4 h-4" />
                   <span className="text-sm font-semibold">
-                    Certification Course
+                    {t("common.certificationCourse")}
                   </span>
                 </div>
               </div>
 
               <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight">
-                Level 2 TG World Builder Certificate
+                {t("level2.page.heading")}
               </h1>
 
               <p className="text-xl text-white/90 leading-relaxed max-w-3xl">
-                Build & implement your own campaign world. Uncharted territory:
-                New stories, creatures, magic & tech.
+                {t("level2.page.lead")}
               </p>
 
               {/* Course Stats */}
               <div className="flex flex-wrap gap-6 pt-4">
                 <div className="flex items-center gap-2 text-white/80">
                   <Clock className="w-5 h-5 text-course-level-2" />
-                  <span>14-16 weeks</span>
+                  <span>{t("level2.page.stats.duration")}</span>
                 </div>
                 <div className="flex items-center gap-2 text-white/80">
                   <Users className="w-5 h-5 text-course-level-2" />
-                  <span>Cohort-based learning</span>
+                  <span>{t("common.cohortBased")}</span>
                 </div>
                 <div className="flex items-center gap-2 text-white/80">
                   <Award className="w-5 h-5 text-course-level-2" />
-                  <span>Level 2 Certification</span>
+                  <span>{t("level2.page.stats.certification")}</span>
                 </div>
               </div>
             </div>
@@ -131,7 +134,7 @@ export default function Level2WorldBuilderPage() {
             <RandomTestimonialsGrid
               count={2}
               tags={["level-2", "training"]}
-              title="What World Builders Are Saying"
+              title={t("level2.page.testimonialsTitle")}
               iconClassName="w-6 h-6 text-course-level-2"
               accentClassName="text-course-level-2"
               borderClassName="border-course-level-2/20"
@@ -141,8 +144,10 @@ export default function Level2WorldBuilderPage() {
             {/* Prerequisites */}
             <div className="bg-course-level-2/10 backdrop-blur-sm rounded-xl p-6 border border-course-level-2/30">
               <p className="text-white/90">
-                <strong className="text-course-level-2">Prerequisite:</strong>{" "}
-                Level 1 TG Space-Holder Certificate or equivalent experience
+                <strong className="text-course-level-2">
+                  {t("common.prerequisite")}
+                </strong>{" "}
+                {t("level2.page.prerequisite")}
               </p>
             </div>
 
@@ -152,23 +157,23 @@ export default function Level2WorldBuilderPage() {
               <div className="relative flex flex-col md:flex-row items-center gap-8">
                 <div className="flex-1 text-center md:text-left">
                   <h3 className="text-2xl font-bold text-white mb-3">
-                    Ready to Build Your World?
+                    {t("level2.page.cta.title")}
                   </h3>
                   <p className="text-white/70 mb-5 leading-relaxed">
-                    Book a free 15-minute discovery call to explore how World Builder certification can elevate your practice. Let's design your next step.
+                    {t("level2.page.cta.description")}
                   </p>
                   <div className="flex flex-wrap gap-4 justify-center md:justify-start text-sm text-white/60">
                     <span className="flex items-center gap-1.5">
                       <CheckCircle className="w-4 h-4 text-course-level-2" />
-                      No commitment required
+                      {t("common.noCommitment")}
                     </span>
                     <span className="flex items-center gap-1.5">
                       <Clock className="w-4 h-4 text-course-level-2" />
-                      15-minute call
+                      {t("common.fifteenMinuteCall")}
                     </span>
                     <span className="flex items-center gap-1.5">
                       <Award className="w-4 h-4 text-course-level-2" />
-                      Project-based certification
+                      {t("level2.page.cta.projectBased")}
                     </span>
                   </div>
                 </div>
@@ -178,7 +183,7 @@ export default function Level2WorldBuilderPage() {
                     className="text-lg font-bold text-white px-10 py-6 bg-course-level-2 hover:scale-105 transition-transform"
                     {...calProps}
                   >
-                    Enroll Now
+                    {t("common.enrollNow")}
                   </Button>
                 </div>
               </div>
@@ -187,21 +192,23 @@ export default function Level2WorldBuilderPage() {
             {/* What You'll Learn */}
             <div className="space-y-6">
               <h2 className="text-3xl font-bold text-white">
-                What You'll Learn
+                {t("common.whatYouWillLearn")}
               </h2>
               <div className="grid md:grid-cols-3 gap-6">
-                {whatYouWillLearn.map(({ icon: Icon, title, description }) => (
+                {whatYouWillLearn.map(({ id, icon: Icon }) => (
                   <div
-                    key={title}
+                    key={id}
                     className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20"
                   >
                     <div className="w-12 h-12 mb-4 rounded-full flex items-center justify-center bg-course-level-2/20">
                       <Icon className="w-6 h-6 text-course-level-2" />
                     </div>
                     <h3 className="text-xl font-bold text-white mb-2">
-                      {title}
+                      {t(`level2.page.learn.${id}.title`)}
                     </h3>
-                    <p className="text-white/80">{description}</p>
+                    <p className="text-white/80">
+                      {t(`level2.page.learn.${id}.description`)}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -209,15 +216,17 @@ export default function Level2WorldBuilderPage() {
 
             {/* Course Features */}
             <div className="space-y-6">
-              <h2 className="text-3xl font-bold text-white">Course Includes</h2>
+              <h2 className="text-3xl font-bold text-white">
+                {t("common.courseIncludes")}
+              </h2>
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/20">
                 <ul className="grid md:grid-cols-2 gap-4">
                   {courseFeatures.map((feature) => (
                     <li key={feature} className="flex items-start gap-3">
-                      <CheckCircle
-                        className="w-5 h-5 mt-0.5 shrink-0 text-course-level-2"
-                      />
-                      <span className="text-white/90">{feature}</span>
+                      <CheckCircle className="w-5 h-5 mt-0.5 shrink-0 text-course-level-2" />
+                      <span className="text-white/90">
+                        {t(`level2.page.features.${feature}`)}
+                      </span>
                     </li>
                   ))}
                 </ul>
@@ -227,58 +236,25 @@ export default function Level2WorldBuilderPage() {
             {/* Course Curriculum */}
             <div className="space-y-6">
               <h2 className="text-3xl font-bold text-white">
-                Course Curriculum
+                {t("common.courseCurriculum")}
               </h2>
               <div className="space-y-4">
-                {[
-                  {
-                    module: "Module 1",
-                    title: "World-Building Foundations",
-                    lessons: 7,
-                  },
-                  {
-                    module: "Module 2",
-                    title: "Creating Creatures & Characters",
-                    lessons: 8,
-                  },
-                  {
-                    module: "Module 3",
-                    title: "Magic Systems & Technology",
-                    lessons: 9,
-                  },
-                  {
-                    module: "Module 4",
-                    title: "Story Arc Development",
-                    lessons: 6,
-                  },
-                  {
-                    module: "Module 5",
-                    title: "Campaign Implementation",
-                    lessons: 7,
-                  },
-                  {
-                    module: "Module 6",
-                    title: "Certification Project",
-                    lessons: 4,
-                  },
-                ].map((module) => (
+                {curriculum.map((module, index) => (
                   <div
-                    key={module.module}
+                    key={module.id}
                     className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20"
                   >
                     <div className="flex items-center justify-between">
                       <div>
-                        <p
-                          className="text-sm font-semibold mb-1 text-course-level-2"
-                        >
-                          {module.module}
+                        <p className="text-sm font-semibold mb-1 text-course-level-2">
+                          {t("common.module", { n: index + 1 })}
                         </p>
                         <h3 className="text-xl font-bold text-white">
-                          {module.title}
+                          {t(`level2.page.curriculum.${module.id}`)}
                         </h3>
                       </div>
                       <span className="text-white/60 text-sm">
-                        {module.lessons} lessons
+                        {t("common.lessons", { count: module.lessons })}
                       </span>
                     </div>
                   </div>
@@ -289,18 +265,17 @@ export default function Level2WorldBuilderPage() {
             {/* Final CTA */}
             <div className="bg-gradient-to-br from-course-level-2/20 to-transparent rounded-xl p-8 border border-course-level-2/30 text-center space-y-6">
               <h2 className="text-3xl font-bold text-white">
-                Ready to Build Your World?
+                {t("level2.page.finalCta.title")}
               </h2>
               <p className="text-xl text-white/80 max-w-2xl mx-auto">
-                Create an unforgettable campaign that will engage and inspire
-                your students.
+                {t("level2.page.finalCta.description")}
               </p>
               <Button
                 size="lg"
                 className="text-lg font-bold text-white px-12 py-6 bg-course-level-2"
                 {...calProps}
               >
-                Enroll in Level 2 Certification
+                {t("level2.page.finalCta.button")}
               </Button>
             </div>
           </div>

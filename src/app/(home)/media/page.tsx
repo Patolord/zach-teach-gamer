@@ -7,38 +7,43 @@ import {
   Play,
   Volume2,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { useState } from "react";
 
 // Podcast episodes - Replace with your actual Podbean episode IDs
-const podcastEpisodes = [
+type PodcastEpisodeId = "powerOfGbl" | "ep1JesseDriver" | "ep8HandbookIntro";
+
+interface PodcastEpisode {
+  id: PodcastEpisodeId;
+  title: string;
+  embedId: string;
+  duration: string;
+  url?: string;
+}
+
+// Titles are proper episode titles; descriptions and dates live in messages/*/media.json
+const podcastEpisodes: PodcastEpisode[] = [
   {
-    id: "episode-1",
+    id: "powerOfGbl",
     title: "The Power of Game-Based Learning",
-    description:
-      "Exploring how tabletop RPGs transform education and build critical thinking skills in young minds.",
     embedId: "pb-fudp4-17a3ee4", // Replace with your actual Podbean embed ID
     duration: "45 min",
-    date: "Dec 2024",
   },
   {
-    id: "episode-1",
-    title: "TGPC - ep 1 - Jesse Driver - International Teacher-Gamer at Green School Bali",
-    description:
-      "Our opening episode highlights different styles of teacher-gaming. We talk \"Make Play\", Mantic Games, cheap materials, MS hobby & craft time, TT vs digital culture, mini-war gaming, homebrewing.",
+    id: "ep1JesseDriver",
+    title:
+      "TGPC - ep 1 - Jesse Driver - International Teacher-Gamer at Green School Bali",
     embedId: "pb-fudp4-17a3ee4",
     duration: "",
-    date: "Dec 2021",
     url: "https://teachergamer.podbean.com/e/tgpc-episode-1-jesse-driver-international-teacher-gamer-at-green-school-bali/",
   },
   {
-    id: "episode-8",
-    title: "TGPC - E08 - Zach Reads the Teacher-Gamer Handbook Intro with Testimonials",
-    description:
-      "Kicking the season off with a sneak peek of the Teacher-Gamer Handbook audio book. Deep dive into using RPGs in schools as project based (PBL) and social emotional learning (SEL) through Zach's 36 life-skills methodology.",
+    id: "ep8HandbookIntro",
+    title:
+      "TGPC - E08 - Zach Reads the Teacher-Gamer Handbook Intro with Testimonials",
     embedId: "pb-fudp4-17a3ee4",
     duration: "",
-    date: "Mar 2025",
     url: "https://teachergamer.podbean.com/e/tgpc-e08-s03-zach-reznichek-reads-the-teacher-gamer-handbook-zach-reads-the-tghb-intro-with-testimonials-about-teacher-gamer-training/",
   },
 ];
@@ -116,145 +121,130 @@ const GALLERY_BASE_URL = "https://ik.imagekit.io/TeacherGamer/Gallery/";
 
 // All gallery images
 const galleryImages = [
-  { filename: "DSC01241.jpg", alt: "Gaming Session", category: "Sessions" },
-  { filename: "DSC01266.jpg", alt: "Group Activity", category: "Sessions" },
-  { filename: "D_D 024b.jpg", alt: "D&D Adventure", category: "Sessions" },
-  { filename: "D_D 055.jpg", alt: "Tabletop Gaming", category: "Sessions" },
-  { filename: "FVMV8019.JPG", alt: "Learning Moment", category: "Learning" },
+  { filename: "DSC01241.jpg", id: "gamingSession", category: "sessions" },
+  { filename: "DSC01266.jpg", id: "groupActivity", category: "sessions" },
+  { filename: "D_D 024b.jpg", id: "dndAdventure", category: "sessions" },
+  { filename: "D_D 055.jpg", id: "tabletopGaming", category: "sessions" },
+  { filename: "FVMV8019.JPG", id: "learningMoment", category: "learning" },
   {
     filename: "IMG_0186_2177x1633.jpg",
-    alt: "Classroom Session",
-    category: "Learning",
+    id: "classroomSession",
+    category: "learning",
   },
-  { filename: "IMG_1332.JPG", alt: "Student Engagement", category: "Learning" },
-  { filename: "IMG_1782.JPG", alt: "Creative Play", category: "Sessions" },
-  { filename: "IMG_2452.JPG", alt: "Workshop Activity", category: "Workshops" },
+  { filename: "IMG_1332.JPG", id: "studentEngagement", category: "learning" },
+  { filename: "IMG_1782.JPG", id: "creativePlay", category: "sessions" },
+  { filename: "IMG_2452.JPG", id: "workshopActivity", category: "workshops" },
   {
     filename: "IMG_2461c.JPG",
-    alt: "Game Master Teaching",
-    category: "Workshops",
+    id: "gameMasterTeaching",
+    category: "workshops",
   },
   {
     filename: "IMG_2510.JPG",
-    alt: "Collaborative Learning",
-    category: "Learning",
+    id: "collaborativeLearning",
+    category: "learning",
   },
-  { filename: "IMG_2553.JPG", alt: "RPG Session", category: "Sessions" },
+  { filename: "IMG_2553.JPG", id: "rpgSession", category: "sessions" },
   {
     filename: "IMG_2936bb.jpg",
-    alt: "Character Building",
-    category: "Workshops",
+    id: "characterBuilding",
+    category: "workshops",
   },
   {
     filename: "IMG_2945b.jpg",
-    alt: "Storytelling Session",
-    category: "Sessions",
+    id: "storytellingSession",
+    category: "sessions",
   },
-  { filename: "IMG_2956.JPG", alt: "Team Collaboration", category: "Learning" },
-  { filename: "IMG_2990.JPG", alt: "Adventure Planning", category: "Sessions" },
-  { filename: "IMG_3228b.jpg", alt: "Game Setup", category: "Sessions" },
-  { filename: "IMG_3301.JPG", alt: "Student Focus", category: "Learning" },
+  { filename: "IMG_2956.JPG", id: "teamCollaboration", category: "learning" },
+  { filename: "IMG_2990.JPG", id: "adventurePlanning", category: "sessions" },
+  { filename: "IMG_3228b.jpg", id: "gameSetup", category: "sessions" },
+  { filename: "IMG_3301.JPG", id: "studentFocus", category: "learning" },
   {
     filename: "IMG_3337b.jpg",
-    alt: "Interactive Learning",
-    category: "Learning",
+    id: "interactiveLearning",
+    category: "learning",
   },
-  { filename: "IMG_3461.JPG", alt: "Group Discussion", category: "Workshops" },
+  { filename: "IMG_3461.JPG", id: "groupDiscussion", category: "workshops" },
   {
     filename: "IMG_3758a.jpg",
-    alt: "Creative Expression",
-    category: "Workshops",
+    id: "creativeExpression",
+    category: "workshops",
   },
-  { filename: "IMG_3768b.jpg", alt: "Problem Solving", category: "Learning" },
-  { filename: "IMG_4842.JPG", alt: "Gaming Fun", category: "Sessions" },
-  {
-    filename: "IMG_5101.JPG",
-    alt: "Classroom Adventure",
-    category: "Learning",
-  },
-  { filename: "IMG_5152b.JPG", alt: "Team Building", category: "Workshops" },
-  {
-    filename: "IMG_5273.JPG",
-    alt: "Imagination at Work",
-    category: "Sessions",
-  },
-  {
-    filename: "IMG_5358.JPG",
-    alt: "Learning Through Play",
-    category: "Learning",
-  },
-  { filename: "IMG_5394.JPG", alt: "Game Mastering", category: "Workshops" },
-  { filename: "IMG_5467.JPG", alt: "Student Creativity", category: "Learning" },
-  { filename: "IMG_5672.JPG", alt: "Adventure Time", category: "Sessions" },
+  { filename: "IMG_3768b.jpg", id: "problemSolving", category: "learning" },
+  { filename: "IMG_4842.JPG", id: "gamingFun", category: "sessions" },
+  { filename: "IMG_5101.JPG", id: "classroomAdventure", category: "learning" },
+  { filename: "IMG_5152b.JPG", id: "teamBuilding", category: "workshops" },
+  { filename: "IMG_5273.JPG", id: "imaginationAtWork", category: "sessions" },
+  { filename: "IMG_5358.JPG", id: "learningThroughPlay", category: "learning" },
+  { filename: "IMG_5394.JPG", id: "gameMastering", category: "workshops" },
+  { filename: "IMG_5467.JPG", id: "studentCreativity", category: "learning" },
+  { filename: "IMG_5672.JPG", id: "adventureTime", category: "sessions" },
   {
     filename: "IMG_5888 (2).JPG",
-    alt: "Collaborative Story",
-    category: "Sessions",
+    id: "collaborativeStory",
+    category: "sessions",
   },
-  { filename: "IMG_5909n.jpg", alt: "Workshop Moment", category: "Workshops" },
+  { filename: "IMG_5909n.jpg", id: "workshopMoment", category: "workshops" },
   {
     filename: "IMG_6022b.JPG",
-    alt: "Teacher Gamer Session",
-    category: "Sessions",
+    id: "teacherGamerSession",
+    category: "sessions",
   },
-  { filename: "IMG_6082d.jpg", alt: "Engaged Learners", category: "Learning" },
+  { filename: "IMG_6082d.jpg", id: "engagedLearners", category: "learning" },
   {
     filename: "IMG_6123paint.JPG",
-    alt: "Miniature Painting",
-    category: "Workshops",
+    id: "miniaturePainting",
+    category: "workshops",
   },
-  { filename: "IMG_6515b.JPG", alt: "Role-Playing Fun", category: "Sessions" },
+  { filename: "IMG_6515b.JPG", id: "rolePlayingFun", category: "sessions" },
   {
     filename: "IMG_6776bpan.jpg",
-    alt: "Panoramic Session",
-    category: "Sessions",
+    id: "panoramicSession",
+    category: "sessions",
   },
-  { filename: "IMG_6781b.JPG", alt: "Gaming Group", category: "Sessions" },
-  { filename: "IMG_7477.JPG", alt: "Teaching Moment", category: "Learning" },
-  {
-    filename: "IMG_7717.JPG",
-    alt: "Student Achievement",
-    category: "Learning",
-  },
-  { filename: "IMG_9471b.JPG", alt: "Game Night", category: "Sessions" },
-  { filename: "LGVT5638b.jpg", alt: "Special Event", category: "Workshops" },
+  { filename: "IMG_6781b.JPG", id: "gamingGroup", category: "sessions" },
+  { filename: "IMG_7477.JPG", id: "teachingMoment", category: "learning" },
+  { filename: "IMG_7717.JPG", id: "studentAchievement", category: "learning" },
+  { filename: "IMG_9471b.JPG", id: "gameNight", category: "sessions" },
+  { filename: "LGVT5638b.jpg", id: "specialEvent", category: "workshops" },
   {
     filename: "ZachZoomTeach1.png",
-    alt: "Online Teaching",
-    category: "Learning",
+    id: "onlineTeaching",
+    category: "learning",
   },
-  {
-    filename: "_ZAR2710b.jpg",
-    alt: "Behind the Scenes",
-    category: "Workshops",
-  },
-];
+  { filename: "_ZAR2710b.jpg", id: "behindTheScenes", category: "workshops" },
+] as const;
+
+type GalleryCategory = (typeof galleryImages)[number]["category"];
+type GalleryFilter = "all" | GalleryCategory;
 
 // Generate gallery items from the image list
 const galleryItems = galleryImages.map((img, index) => ({
   id: index + 1,
   src: `${GALLERY_BASE_URL}${img.filename}`,
-  alt: img.alt,
+  altKey: img.id,
   category: img.category,
 }));
 
 // Get unique categories from gallery items
-const categories = [
-  "All",
+const categories: GalleryFilter[] = [
+  "all",
   ...Array.from(new Set(galleryImages.map((img) => img.category))),
 ];
 
 const IMAGES_PER_PAGE = 8;
 
 export default function MediaPage() {
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const t = useTranslations("media");
+  const [selectedCategory, setSelectedCategory] =
+    useState<GalleryFilter>("all");
   const [selectedImage, setSelectedImage] = useState<
     (typeof galleryItems)[0] | null
   >(null);
   const [visibleCount, setVisibleCount] = useState(IMAGES_PER_PAGE);
 
   const filteredGallery =
-    selectedCategory === "All"
+    selectedCategory === "all"
       ? galleryItems
       : galleryItems.filter((item) => item.category === selectedCategory);
 
@@ -267,7 +257,7 @@ export default function MediaPage() {
   };
 
   // Reset visible count when category changes
-  const handleCategoryChange = (category: string) => {
+  const handleCategoryChange = (category: GalleryFilter) => {
     setSelectedCategory(category);
     setVisibleCount(IMAGES_PER_PAGE);
   };
@@ -291,13 +281,11 @@ export default function MediaPage() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 bg-linear-to-r from-lighter via-accent to-lighter bg-clip-text text-transparent">
-              Podcasts & Gallery
+              {t("hero.title")}
             </h1>
 
             <p className="text-xl text-zinc-400 leading-relaxed max-w-2xl mx-auto">
-              Dive into conversations about game-based learning, explore
-              behind-the-scenes moments, and discover the magic of the
-              Teacher-Gamer methodology.
+              {t("hero.description")}
             </p>
           </div>
 
@@ -312,7 +300,7 @@ export default function MediaPage() {
                 <div className="aspect-video w-full  flex items-center justify-center">
                   {/* Replace this iframe src with your actual video embed URL (YouTube, Vimeo, etc.) */}
                   <iframe
-                    title="Teacher Gamer Introduction Video"
+                    title={t("hero.introVideoTitle")}
                     src="https://www.youtube.com/embed/TOU90iP2VJY"
                     width="100%"
                     height="100%"
@@ -330,7 +318,7 @@ export default function MediaPage() {
           {moreVideos.length > 0 && (
             <div className="mt-16">
               <h3 className="text-2xl font-semibold text-lighter text-center mb-8">
-                More Videos
+                {t("videos.more")}
               </h3>
               <div className="grid md:grid-cols-2 gap-6">
                 {moreVideos.slice(0, 2).map((video) => (
@@ -367,7 +355,7 @@ export default function MediaPage() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-6 py-3 bg-linear-to-r from-red-500 to-red-500 text-zinc-900 font-semibold rounded-full hover:from-accent-light hover:to-accent-light transition-all duration-300 hover:shadow-[0_4px_24px_rgba(251,191,36,0.4)]"
                   >
-                    Subscribe on Youtube
+                    {t("videos.subscribe")}
                     <ExternalLink className="w-4 h-4" />
                   </a>
                 </div>
@@ -421,9 +409,13 @@ export default function MediaPage() {
             <div className="flex items-center gap-3">
               <Volume2 className="w-6 h-6 text-accent" />
               <h2 className="text-3xl md:text-4xl font-semibold text-lighter">
-                Latest{" "}
-                <span className="bg-linear-to-r from-accent to-secondary bg-clip-text text-transparent">Teacher Gamer Podcast</span>{" "}
-                Episodes
+                {t.rich("podcast.title", {
+                  gradient: (chunks) => (
+                    <span className="bg-linear-to-r from-accent to-secondary bg-clip-text text-transparent">
+                      {chunks}
+                    </span>
+                  ),
+                })}
               </h2>
             </div>
             <div className="h-px flex-1 max-w-32 bg-linear-to-l from-transparent to-accent/50" />
@@ -439,10 +431,10 @@ export default function MediaPage() {
                 <div className="p-6 md:p-8">
                   <div className="flex items-center gap-2 mb-4">
                     <span className="px-3 py-1 text-xs font-semibold bg-accent text-zinc-900 rounded-full uppercase tracking-wider">
-                      Featured
+                      {t("podcast.featured")}
                     </span>
                     <span className="text-zinc-500 text-sm">
-                      {podcastEpisodes[0].date}
+                      {t(`podcast.episodes.${podcastEpisodes[0].id}.date`)}
                     </span>
                   </div>
 
@@ -450,13 +442,13 @@ export default function MediaPage() {
                     {podcastEpisodes[0].title}
                   </h3>
                   <p className="text-zinc-400 mb-6 text-lg">
-                    {podcastEpisodes[0].description}
+                    {t(`podcast.episodes.${podcastEpisodes[0].id}.description`)}
                   </p>
 
                   {/* Podbean Embed - Replace src with your actual Podbean player URL */}
                   <div className="aspect-3/1 rounded-xl overflow-hidden bg-zinc-800">
                     <iframe
-                      title="TGPC - The Power of Writing"
+                      title={t("podcast.playerTitle")}
                       width="100%"
                       height="100%"
                       style={{
@@ -486,7 +478,7 @@ export default function MediaPage() {
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-4">
                     <span className="text-zinc-500 text-sm">
-                      {episode.date}
+                      {t(`podcast.episodes.${episode.id}.date`)}
                     </span>
                     <span className="text-accent text-sm font-medium">
                       {episode.duration}
@@ -497,7 +489,7 @@ export default function MediaPage() {
                     {episode.title}
                   </h4>
                   <p className="text-zinc-400 text-sm mb-4 line-clamp-2">
-                    {episode.description}
+                    {t(`podcast.episodes.${episode.id}.description`)}
                   </p>
 
                   <a
@@ -507,7 +499,7 @@ export default function MediaPage() {
                     className="flex items-center gap-2 text-accent hover:text-accent-light font-medium transition-colors"
                   >
                     <Play className="w-4 h-4 fill-current" />
-                    <span>Listen Now</span>
+                    <span>{t("podcast.listenNow")}</span>
                   </a>
                 </div>
               </div>
@@ -516,7 +508,9 @@ export default function MediaPage() {
 
           {/* Podcast Platforms */}
           <div className="text-center mt-12">
-            <h3 className="text-xl font-medium text-lighter mb-6">Listen on your favorite platform</h3>
+            <h3 className="text-xl font-medium text-lighter mb-6">
+              {t("podcast.platforms")}
+            </h3>
             <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
               {podcastPlatforms.map((platform) => (
                 <a
@@ -539,7 +533,7 @@ export default function MediaPage() {
                 </a>
               ))}
             </div>
-            
+
             <div className="mt-8">
               <a
                 href="https://teachergamer.podbean.com/page/1/"
@@ -548,7 +542,7 @@ export default function MediaPage() {
                 className="inline-flex items-center gap-2 px-6 py-3 bg-zinc-800/50 hover:bg-zinc-700/50 text-zinc-400 hover:text-lighter font-medium rounded-full transition-all duration-300 border border-zinc-700 hover:border-accent/50"
               >
                 <Headphones className="w-5 h-5" />
-                View on Podbean
+                {t("podcast.viewOnPodbean")}
                 <ExternalLink className="w-4 h-4" />
               </a>
             </div>
@@ -572,15 +566,14 @@ export default function MediaPage() {
             <div className="flex items-center gap-3">
               <ImageIcon className="w-6 h-6 text-accent" />
               <h2 className="text-3xl md:text-4xl font-semibold text-lighter">
-                Gallery
+                {t("gallery.title")}
               </h2>
             </div>
             <div className="h-px flex-1 max-w-32 bg-linear-to-l from-transparent to-accent/50" />
           </div>
 
           <p className="text-center text-zinc-400 mb-12 max-w-2xl mx-auto">
-            Explore moments from our sessions, workshops, and the creative world
-            of game-based learning.
+            {t("gallery.description")}
           </p>
 
           {/* Category Filter */}
@@ -596,7 +589,7 @@ export default function MediaPage() {
                     : "bg-zinc-800/80 text-zinc-300 hover:bg-zinc-700 hover:text-lighter border border-zinc-700 hover:border-zinc-600"
                 }`}
               >
-                {category}
+                {t(`gallery.categories.${category}`)}
               </button>
             ))}
           </div>
@@ -616,7 +609,7 @@ export default function MediaPage() {
                 {/* Image */}
                 <Image
                   src={item.src}
-                  alt={item.alt}
+                  alt={t(`gallery.images.${item.altKey}`)}
                   fill
                   loading="lazy"
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -633,13 +626,15 @@ export default function MediaPage() {
                 {/* Category tag */}
                 <div className="absolute top-3 left-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <span className="px-2 py-1 text-xs font-medium bg-accent/90 text-zinc-900 rounded-md">
-                    {item.category}
+                    {t(`gallery.categories.${item.category}`)}
                   </span>
                 </div>
 
                 {/* Caption */}
                 <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                  <p className="text-lighter font-medium text-sm">{item.alt}</p>
+                  <p className="text-lighter font-medium text-sm">
+                    {t(`gallery.images.${item.altKey}`)}
+                  </p>
                 </div>
 
                 {/* Border glow on hover */}
@@ -656,9 +651,11 @@ export default function MediaPage() {
                 onClick={loadMore}
                 className="inline-flex items-center gap-2 px-8 py-3 bg-zinc-800/80 text-zinc-300 hover:bg-zinc-700 hover:text-lighter border border-zinc-700 hover:border-accent/50 font-medium rounded-full transition-all duration-300 hover:shadow-[0_4px_24px_rgba(251,191,36,0.2)]"
               >
-                Load More
+                {t("gallery.loadMore")}
                 <span className="text-zinc-500 text-sm">
-                  ({filteredGallery.length - visibleCount} remaining)
+                  {t("gallery.remaining", {
+                    n: filteredGallery.length - visibleCount,
+                  })}
                 </span>
               </button>
             </div>
@@ -677,13 +674,13 @@ export default function MediaPage() {
           onKeyDown={(e) => e.key === "Escape" && setSelectedImage(null)}
           role="dialog"
           aria-modal="true"
-          aria-label="Image lightbox"
+          aria-label={t("lightbox.aria")}
         >
           <button
             type="button"
             className="absolute top-6 right-6 text-lighter/70 hover:text-lighter transition-colors text-4xl font-light"
             onClick={() => setSelectedImage(null)}
-            aria-label="Close lightbox"
+            aria-label={t("lightbox.close")}
           >
             ×
           </button>
@@ -691,7 +688,7 @@ export default function MediaPage() {
           <div className="relative max-w-5xl max-h-[85vh] w-full aspect-4/3">
             <Image
               src={selectedImage.src}
-              alt={selectedImage.alt}
+              alt={t(`gallery.images.${selectedImage.altKey}`)}
               fill
               className="object-contain rounded-lg"
               sizes="100vw"
@@ -700,9 +697,11 @@ export default function MediaPage() {
 
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-center">
             <span className="px-3 py-1 text-xs font-medium bg-accent/90 text-zinc-900 rounded-full mr-3">
-              {selectedImage.category}
+              {t(`gallery.categories.${selectedImage.category}`)}
             </span>
-            <span className="text-lighter font-medium">{selectedImage.alt}</span>
+            <span className="text-lighter font-medium">
+              {t(`gallery.images.${selectedImage.altKey}`)}
+            </span>
           </div>
         </div>
       )}

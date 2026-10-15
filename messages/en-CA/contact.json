@@ -1,0 +1,34 @@
+{
+  "backToHome": "Back to Home",
+  "hero": {
+    "title": "Get In Touch",
+    "body": "Have questions? We’d love to hear from you. Join our community and connect with fellow educators!"
+  },
+  "discord": {
+    "title": "Join Our <brand>Discord</brand> Community",
+    "body": "If you want to meet and interact more with other adventurers on the Teacher-Gamer journey, join us on Discord. Connect with other educators, ask questions, share your experiences with game-based learning, and get direct support from the Teacher Gamer team.",
+    "cta": "Join Discord Server",
+    "note": "Free to join - Our community is active and welcoming!"
+  },
+  "social": {
+    "title": "Connect With Us",
+    "labels": {
+      "facebook": "Facebook",
+      "twitter": "Twitter / X",
+      "youtube": "YouTube",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn"
+    },
+    "support": "Support the Project"
+  },
+  "faq": {
+    "title": "Have More Questions?",
+    "body": "Check out our comprehensive FAQ page for answers to common questions.",
+    "cta": "View FAQ"
+  },
+  "cta": {
+    "title": "Ready to Transform Your Teaching?",
+    "body": "Explore our courses and start your journey into game-based learning today.",
+    "button": "View Our Courses"
+  }
+}

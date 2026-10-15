@@ -1,0 +1,57 @@
+{
+  "metadata": {
+    "title": "Parceiros e Patrocinadores | Teacher Gamer",
+    "description": "Organizações que apoiam o Teacher-Gamer — e como colaborar como parceiro ou patrocinador."
+  },
+  "backToHome": "Voltar ao Início",
+  "hero": {
+    "eyebrow": "Colaboração",
+    "title": "<accent>Parceiros</accent> e Patrocinadores",
+    "body": "Somos gratos às empresas, escolas e marcas que ajudam a expandir a aprendizagem baseada em jogos com o Teacher-Gamer. Quer se juntar a elas? Conte-nos como você gostaria de trabalhar conosco."
+  },
+  "featured": {
+    "title": "Organizações em destaque",
+    "empty": "Os logos de parceiros e patrocinadores aparecerão aqui à medida que anunciarmos colaborações.",
+    "visit": "Visitar {name}"
+  },
+  "organizations": {
+    "daVinciLifeSkills": {
+      "description": "A Da Vinci Life-Skills é uma organização educacional sem fins lucrativos que oferece um currículo biofílico baseado em projetos, um sistema de avaliação baseado em habilidades e formação certificada de mentores para ajudar escolas e comunidades de educação domiciliar a proporcionar uma aprendizagem holística e conectada ao mundo real, em que os estudantes possam florescer."
+    },
+    "rpgDojo": {
+      "description": "Uma comunidade digital para estudar, jogar, conversar e aprender mais sobre TTRPGs."
+    },
+    "heroWorkshop": {
+      "description": "The Hero Workshop apoia jovens por meio de experiências narrativas e baseadas em jogos que desenvolvem confiança, criatividade e crescimento socioemocional."
+    },
+    "undiscoveredCountry": {
+      "description": "A Undiscovered Country oferece diagnósticos de paz e conflito, perfis de arquétipos e programas de formação que ajudam organizações e escolas a compreender tensões, transformar conflitos e construir culturas mais saudáveis e harmoniosas."
+    },
+    "upcraftCrew": {
+      "description": "Suporte de engenharia full-stack para equipes que precisam resolver gargalos de entrega, refatorações e construção de MVPs."
+    },
+    "gaiaKids": {
+      "description": "Uma iniciativa global de arte para impacto que capacita crianças a usar a criatividade para provocar mudanças sociais, defender a justiça ambiental e construir comunidade por meio de projetos artísticos colaborativos."
+    },
+    "cultivate": {
+      "description": "A Cultivate é uma escola pequena, empática e fundamentada em pesquisa para crianças de 6 a 14 anos, onde a aprendizagem por meio do brincar, da conexão, da criatividade e de projetos capacita as crianças a pertencer, colaborar e florescer como participantes ativas da própria educação."
+    },
+    "vitaEquilibrium": {
+      "description": "A VitaEquilibrium oferece workshops e retiros contemplativos baseados em movimento — enraizados em práticas de movimento somático como o 5Rhythms — que ajudam as pessoas a cultivar equilíbrio, conexão e um modo de vida mais harmonioso."
+    }
+  },
+  "workWithUs": {
+    "title": "Trabalhe conosco",
+    "body": "Pronto para explorar uma parceria ou um patrocínio? Escolha o caminho que combina com você e responda a uma breve pesquisa — a partir daí, entraremos em contato.",
+    "partner": {
+      "title": "Seja um parceiro",
+      "body": "Programas, cocriação, formação, comunidade — conte-nos o que você tem em mente.",
+      "cta": "Abrir pesquisa para parceiros →"
+    },
+    "sponsor": {
+      "title": "Seja um patrocinador",
+      "body": "Apoie missões, tours, bolsas de estudo ou eventos — compartilhe seus objetivos aqui.",
+      "cta": "Abrir pesquisa para patrocinadores →"
+    }
+  }
+}

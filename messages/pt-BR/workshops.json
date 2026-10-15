@@ -1,0 +1,51 @@
+{
+  "backToHome": "Voltar ao Início",
+  "hero": {
+    "badge": "Eventos Presenciais",
+    "title": "<accent>Workshops</accent> Perto de Você",
+    "description": "Participe presencialmente de workshops práticos e imersivos. Aprenda métodos de ensino baseados em jogos lado a lado com outros educadores da sua região."
+  },
+  "tour": {
+    "photoAlt": "Workshop com um grande grupo em um pavilhão de bambu ao ar livre",
+    "comingSoon": "Em Breve",
+    "title": "Teacher-Gamer <gradient>Tour 2026</gradient>",
+    "description": "Workshops ao vivo, experiências imersivas de RPG e a metodologia Teacher-Gamer — chegando a cidades do mundo todo, começando pela América do Norte, de junho a setembro de 2026. Datas e locais oficiais serão anunciados em breve.",
+    "region": "América do Norte e Além",
+    "dates": "Jun – Set 2026",
+    "stayTuned": "Fique de olho — os detalhes serão anunciados aqui."
+  },
+  "hostSurvey": {
+    "eyebrow": "Teacher-Gamer Tour",
+    "title": "Quer receber um workshop aí no seu cantinho do mundo?",
+    "description": "Preencha esta pesquisa para conversarmos sobre a melhor forma de apoiar a sua comunidade de aprendizagem.",
+    "cta": "Abrir pesquisa"
+  },
+  "posters": {
+    "items": {
+      "tour2026": {
+        "title": "Teacher-Gamer Tour 2026",
+        "alt": "Pôster do Teacher-Gamer Tour 2026"
+      },
+      "originsGama": {
+        "title": "Origins Game Fair 2026 — Conferência de Educação e Terapia Baseadas em Jogos",
+        "alt": "Programação de workshops e conferência da GAMA Origins Game Fair 2026"
+      }
+    },
+    "cta": "Agende uma Chamada de Descoberta para conversarmos e colocarmos tudo em movimento."
+  },
+  "featured": {
+    "videoTitle": "Antecipando Habilidades para a Vida na Janela dos 11–14 Anos – Webinar ISEP",
+    "badge": "Webinar ISEP",
+    "date": "4 de março de 2026 · 16h00",
+    "location": "ISEP — Politécnico do Porto, Portugal",
+    "title": "Antecipando Habilidades para a Vida na Janela dos 11–14 Anos",
+    "speaker": "Z Reznichek — Teacher-Gamer",
+    "description": "Explorando ‘metodologias eruptivas’ práticas, que são corporais, fora das telas e coletivas — passando pelo ‘pensamento de possibilidades’ rumo a PBL, SEL, GBL e jogos de RPG de construção de mundos que são, pedagogicamente falando, ambientes de aprendizagem cocriados para agência, risco e imaginação nessa Janela de Encantamento dos 11 aos 14 anos."
+  },
+  "requestWorkshop": {
+    "title": "Quer um Workshop na <accent>Sua Cidade</accent>?",
+    "description": "Estamos sempre chegando a novos lugares. Se você quer sediar ou solicitar um workshop Teacher Gamer na sua região, fale com a gente!",
+    "request": "Solicitar um Workshop",
+    "contact": "Fale Conosco"
+  }
+}

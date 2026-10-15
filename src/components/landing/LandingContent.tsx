@@ -1,9 +1,11 @@
 "use client";
 
 import { ChevronRight, Loader2, Swords } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import LocaleToggle from "@/components/shared/LocaleToggle";
 import ScrambledText from "@/components/shared/ScrambledText";
 
 type Props = {
@@ -15,6 +17,8 @@ export default function LandingContent({
   onButtonClick,
   isLoading = false,
 }: Props) {
+  const t = useTranslations("landing");
+  const locale = useLocale();
   const [hasWatchedIntro, setHasWatchedIntro] = useState(false);
 
   useEffect(() => {
@@ -25,12 +29,17 @@ export default function LandingContent({
 
   return (
     <div className="relative z-20 flex flex-col items-center justify-center gap-8 px-4 w-full max-w-5xl mx-auto">
+      <LocaleToggle
+        variant="dark"
+        className="pointer-events-auto fixed top-4 left-4 z-30"
+      />
+
       {hasWatchedIntro ? (
         <Link
           href="/home"
           className="pointer-events-auto fixed top-4 right-4 z-30 inline-flex items-center gap-1 rounded-full border border-white/20 bg-black/40 px-3 py-1 text-xs uppercase tracking-wider text-white/70 backdrop-blur-sm transition-colors hover:border-white/40 hover:text-white"
         >
-          <span>Skip intro</span>
+          <span>{t("skipIntro")}</span>
           <ChevronRight className="h-3 w-3" />
         </Link>
       ) : null}
@@ -38,7 +47,7 @@ export default function LandingContent({
       <h1 className="w-full max-w-4xl px-2 sm:px-5">
         <Image
           src="/teacher-gamer-revolution-logo-transparent.png"
-          alt="Teacher Gamer Revolution"
+          alt={t("logoAlt")}
           width={1024}
           height={265}
           priority
@@ -48,14 +57,19 @@ export default function LandingContent({
         />
       </h1>
 
-      <div className="pb-30 text-lg sm:text-xl md:text-2xl px-2 text-center text-shadow-subtitle flex flex-col gap-2">
+      {/* Keyed by locale: ScrambledText splits the text into spans on mount,
+          so it must remount to show the newly selected language. */}
+      <div
+        key={locale}
+        className="pb-30 text-lg sm:text-xl md:text-2xl px-2 text-center text-shadow-subtitle flex flex-col gap-2"
+      >
         <ScrambledText
           radius={50}
           duration={1.2}
           speed={0.5}
           scrambleChars=".:"
         >
-          The future of education is here,
+          {t("tagline1")}
         </ScrambledText>
         <ScrambledText
           radius={50}
@@ -63,7 +77,7 @@ export default function LandingContent({
           speed={0.5}
           scrambleChars=".:"
         >
-          happening on tabletops & in schools everywhere.
+          {t("tagline2")}
         </ScrambledText>
         <ScrambledText
           radius={50}
@@ -71,7 +85,7 @@ export default function LandingContent({
           speed={0.5}
           scrambleChars=".:"
         >
-          Join the community and revolutionize the way we learn.
+          {t("tagline3")}
         </ScrambledText>
       </div>
 
@@ -86,7 +100,7 @@ export default function LandingContent({
         ) : (
           <Swords className="w-5 h-5" />
         )}
-        <span>{isLoading ? "Loading..." : "Get Started Now"}</span>
+        <span>{isLoading ? t("loading") : t("getStarted")}</span>
       </button>
 
     </div>

@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const avatars = [
@@ -37,6 +38,7 @@ export default function SocialProof({
   align = "center",
   variant = "dark",
 }: SocialProofProps) {
+  const t = useTranslations("home.socialProof");
   const alignmentClass = align === "left" ? "items-start" : "items-center";
   const isLight = variant === "light";
 
@@ -51,7 +53,7 @@ export default function SocialProof({
           >
             <AvatarImage
               src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${avatar.seed}`}
-              alt={`User ${index + 1}`}
+              alt={t("avatarAlt", { n: index + 1 })}
               loading="lazy"
               fetchPriority="low"
             />
@@ -72,12 +74,15 @@ export default function SocialProof({
           </span>
         </div>
         <p className={`text-sm ${isLight ? "text-gray-700" : "text-gray-300"}`}>
-          <span
-            className={`font-bold ${isLight ? "text-gray-900" : "text-white"}`}
-          >
-            1,000+
-          </span>{" "}
-          families trust us for safe, educational play
+          {t.rich("text", {
+            strong: (chunks) => (
+              <span
+                className={`font-bold ${isLight ? "text-gray-900" : "text-white"}`}
+              >
+                {chunks}
+              </span>
+            ),
+          })}
         </p>
       </div>
     </div>

@@ -20,6 +20,27 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Languages & regional themes
+
+The site is bilingual: **English (Canada)** `en-CA` (default) and **Português (Brasil)** `pt-BR`,
+powered by [`next-intl`](https://next-intl.dev).
+
+- The visitor picks a language with the 🇨🇦 / 🇧🇷 toggle in the header (and on the landing
+  page). The choice is stored in the `NEXT_LOCALE` cookie, so URLs stay the same for both
+  languages. Resolution happens in `src/i18n/request.ts`.
+- Each locale switch also swaps the brand theme: Canada uses the deep-purple palette, Brazil uses a
+  forest-green one. The root layout sets `<html lang data-locale>`, and `src/app/globals.css`
+  overrides the `--primary*` variables under `:root[data-locale="pt-BR"]`. Any component that
+  uses `var(--color-primary)` / `text-primary` / `border-primary-light` etc. follows automatically.
+- Translations live in `messages/<locale>/<namespace>.json`, one file per page or section, merged by
+  `messages/<locale>/index.ts`. Both locales must have identical key structures; TypeScript checks
+  the keys you use in `t("...")` against the `en-CA` files (`src/i18n/global.d.ts`).
+
+To add text: put the key in both `messages/en-CA/<ns>.json` and `messages/pt-BR/<ns>.json`, then
+read it with `useTranslations("<ns>")` (client or non-async server component) or
+`await getTranslations("<ns>")` (async server component / `generateMetadata`). To add a new
+namespace, create the two JSON files and register them in both `messages/*/index.ts`.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

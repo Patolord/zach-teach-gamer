@@ -1,4 +1,5 @@
 import { ArrowRightIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import Image from "next/image";
 import ElectricBorder from "@/components/shared/ElectricBorder";
@@ -29,6 +30,8 @@ export default function EletricCard({
   href,
   diceImage,
 }: EletricCardProps) {
+  const t = useTranslations("home.courses");
+
   return (
     <ElectricBorder
       color={color}
@@ -44,7 +47,7 @@ export default function EletricCard({
             <div className="absolute top-3 right-3 w-14 h-14 drop-shadow-lg transition-transform duration-300 hover:scale-110 hover:rotate-12 -z-10 opacity-70">
               <Image
                 src={diceImage}
-                alt="Dice"
+                alt={t("diceAlt")}
                 width={56}
                 height={56}
                 className="object-contain"
@@ -58,8 +61,7 @@ export default function EletricCard({
             {description}
           </CardDescription>
         </CardHeader>
-        <CardContent className="font-light text-base text-medium">
-        </CardContent>
+        <CardContent className="font-light text-base text-medium"></CardContent>
         <CardFooter className="mt-auto px-6">
           <Button
             variant="outline"
@@ -72,13 +74,13 @@ export default function EletricCard({
               e.currentTarget.style.borderColor = color;
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'transparent';
+              e.currentTarget.style.backgroundColor = "transparent";
               e.currentTarget.style.borderColor = color;
             }}
             asChild
           >
             <Link href={href || "#"}>
-              Learn More
+              {t("learnMore")}
               <ArrowRightIcon className="w-4 h-4" />
             </Link>
           </Button>

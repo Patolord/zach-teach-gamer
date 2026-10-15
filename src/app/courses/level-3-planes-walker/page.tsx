@@ -8,42 +8,45 @@ import {
   GraduationCap,
   Users,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useEffect } from "react";
 import { getCalApi } from "@calcom/embed-react";
 import { Button } from "@/components/ui/button";
 import { MEDIA } from "@/lib/media";
-import { CAL_CONFIG, getCalUIConfig, getCalConfig } from "@/components/home/calendar/cal-config";
+import {
+  CAL_CONFIG,
+  getCalUIConfig,
+  getCalConfig,
+} from "@/components/home/calendar/cal-config";
 import RandomTestimonialsGrid from "@/components/testimonials/RandomTestimonialsGrid";
 
 const courseFeatures = [
-  "Align RPG campaigns with district learning standards",
-  "Navigate educational policy and approval processes",
-  "Build administrator buy-in and support",
-  "Create cross-curricular learning connections",
-  "Develop assessment and evaluation frameworks",
-  "Scale RPG programs within your district",
-  "Mentor other educators in RPG integration",
-  "Master Teacher Gamer Certification",
-];
+  "standards",
+  "policy",
+  "buyIn",
+  "crossCurricular",
+  "assessment",
+  "scale",
+  "mentor",
+  "certification",
+] as const;
 
 const whatYouWillLearn = [
-  {
-    icon: GraduationCap,
-    title: "Standards Alignment",
-    description: "Map RPG elements to educational learning objectives",
-  },
-  {
-    icon: Users,
-    title: "Program Scaling",
-    description: "Expand RPG integration across multiple classrooms",
-  },
-  {
-    icon: Award,
-    title: "Master Certification",
-    description: "Achieve the highest level of Teacher Gamer recognition",
-  },
-];
+  { id: "standards", icon: GraduationCap },
+  { id: "scaling", icon: Users },
+  { id: "certification", icon: Award },
+] as const;
+
+const curriculum = [
+  { id: "standards", lessons: 6 },
+  { id: "campaignDesign", lessons: 8 },
+  { id: "support", lessons: 5 },
+  { id: "assessment", lessons: 7 },
+  { id: "scaling", lessons: 9 },
+  { id: "mentoring", lessons: 6 },
+  { id: "capstone", lessons: 5 },
+] as const;
 
 const calProps = {
   "data-cal-namespace": CAL_CONFIG.username,
@@ -52,6 +55,8 @@ const calProps = {
 };
 
 export default function Level3PlanesWalkerPage() {
+  const t = useTranslations("courses");
+
   useEffect(() => {
     (async () => {
       const cal = await getCalApi({ namespace: CAL_CONFIG.username });
@@ -77,7 +82,7 @@ export default function Level3PlanesWalkerPage() {
             className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
-            Back to Courses
+            {t("common.backToCourses")}
           </Link>
         </div>
 
@@ -87,42 +92,41 @@ export default function Level3PlanesWalkerPage() {
             {/* Header Section */}
             <div className="space-y-6">
               <div className="flex gap-3 flex-wrap">
-                <div
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-course-level-3/20 border border-course-level-3/30 text-course-level-3"
-                >
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-course-level-3/20 border border-course-level-3/30 text-course-level-3">
                   <GraduationCap className="w-4 h-4" />
-                  <span className="text-sm font-semibold">Master Level</span>
+                  <span className="text-sm font-semibold">
+                    {t("level3.page.badge")}
+                  </span>
                 </div>
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-course-level-3/10 border border-course-level-3/20 text-white">
                   <Award className="w-4 h-4" />
                   <span className="text-sm font-semibold">
-                    Master Certification
+                    {t("level3.page.masterCertification")}
                   </span>
                 </div>
               </div>
 
               <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight">
-                Level 3 TG Planes Walker Certificate Course
+                {t("level3.title")}
               </h1>
 
               <p className="text-xl text-white/90 leading-relaxed max-w-3xl">
-                Integrate your own RPGs campaign into your local school system's
-                learning objectives with guidance.
+                {t("level3.page.lead")}
               </p>
 
               {/* Course Stats */}
               <div className="flex flex-wrap gap-6 pt-4">
                 <div className="flex items-center gap-2 text-white/80">
                   <Clock className="w-5 h-5 text-course-level-3" />
-                  <span>16-20 weeks</span>
+                  <span>{t("level3.page.stats.duration")}</span>
                 </div>
                 <div className="flex items-center gap-2 text-white/80">
                   <Users className="w-5 h-5 text-course-level-3" />
-                  <span>Mentored implementation</span>
+                  <span>{t("level3.page.stats.format")}</span>
                 </div>
                 <div className="flex items-center gap-2 text-white/80">
                   <Award className="w-5 h-5 text-course-level-3" />
-                  <span>Master Certification</span>
+                  <span>{t("level3.page.masterCertification")}</span>
                 </div>
               </div>
             </div>
@@ -130,7 +134,7 @@ export default function Level3PlanesWalkerPage() {
             <RandomTestimonialsGrid
               count={2}
               tags={["level-3", "training", "educator"]}
-              title="What Planes Walkers Are Saying"
+              title={t("level3.page.testimonialsTitle")}
               iconClassName="w-6 h-6 text-course-level-3"
               accentClassName="text-course-level-3"
               borderClassName="border-course-level-3/20"
@@ -139,9 +143,10 @@ export default function Level3PlanesWalkerPage() {
             {/* Prerequisites */}
             <div className="bg-course-level-3/10 backdrop-blur-sm rounded-xl p-6 border border-course-level-3/30">
               <p className="text-white/90">
-                <strong className="text-course-level-3">Prerequisite:</strong>{" "}
-                Level 2 TG World Builder Certificate and at least one year of
-                campaign experience
+                <strong className="text-course-level-3">
+                  {t("common.prerequisite")}
+                </strong>{" "}
+                {t("level3.page.prerequisite")}
               </p>
             </div>
 
@@ -151,23 +156,23 @@ export default function Level3PlanesWalkerPage() {
               <div className="relative flex flex-col md:flex-row items-center gap-8">
                 <div className="flex-1 text-center md:text-left">
                   <h3 className="text-2xl font-bold text-white mb-3">
-                    Ready to Walk Between Worlds?
+                    {t("level3.page.cta.title")}
                   </h3>
                   <p className="text-white/70 mb-5 leading-relaxed">
-                    Book a free 15-minute discovery call to discuss the Planes Walker path. This is the highest level of mastery — let's see if you're ready.
+                    {t("level3.page.cta.description")}
                   </p>
                   <div className="flex flex-wrap gap-4 justify-center md:justify-start text-sm text-white/60">
                     <span className="flex items-center gap-1.5">
                       <CheckCircle className="w-4 h-4 text-course-level-3" />
-                      No commitment required
+                      {t("common.noCommitment")}
                     </span>
                     <span className="flex items-center gap-1.5">
                       <Clock className="w-4 h-4 text-course-level-3" />
-                      15-minute call
+                      {t("common.fifteenMinuteCall")}
                     </span>
                     <span className="flex items-center gap-1.5">
                       <GraduationCap className="w-4 h-4 text-course-level-3" />
-                      1-on-1 mentorship included
+                      {t("level3.page.cta.mentorship")}
                     </span>
                   </div>
                 </div>
@@ -177,7 +182,7 @@ export default function Level3PlanesWalkerPage() {
                     className="text-lg font-bold text-white px-10 py-6 bg-course-level-3 hover:scale-105 transition-transform"
                     {...calProps}
                   >
-                    Enroll Now
+                    {t("common.enrollNow")}
                   </Button>
                 </div>
               </div>
@@ -186,21 +191,23 @@ export default function Level3PlanesWalkerPage() {
             {/* What You'll Learn */}
             <div className="space-y-6">
               <h2 className="text-3xl font-bold text-white">
-                What You'll Learn
+                {t("common.whatYouWillLearn")}
               </h2>
               <div className="grid md:grid-cols-3 gap-6">
-                {whatYouWillLearn.map(({ icon: Icon, title, description }) => (
+                {whatYouWillLearn.map(({ id, icon: Icon }) => (
                   <div
-                    key={title}
+                    key={id}
                     className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20"
                   >
                     <div className="w-12 h-12 mb-4 rounded-full flex items-center justify-center bg-course-level-3/20">
                       <Icon className="w-6 h-6 text-course-level-3" />
                     </div>
                     <h3 className="text-xl font-bold text-white mb-2">
-                      {title}
+                      {t(`level3.page.learn.${id}.title`)}
                     </h3>
-                    <p className="text-white/80">{description}</p>
+                    <p className="text-white/80">
+                      {t(`level3.page.learn.${id}.description`)}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -208,15 +215,17 @@ export default function Level3PlanesWalkerPage() {
 
             {/* Course Features */}
             <div className="space-y-6">
-              <h2 className="text-3xl font-bold text-white">Course Includes</h2>
+              <h2 className="text-3xl font-bold text-white">
+                {t("common.courseIncludes")}
+              </h2>
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/20">
                 <ul className="grid md:grid-cols-2 gap-4">
                   {courseFeatures.map((feature) => (
                     <li key={feature} className="flex items-start gap-3">
-                      <CheckCircle
-                        className="w-5 h-5 mt-0.5 shrink-0 text-course-level-3"
-                      />
-                      <span className="text-white/90">{feature}</span>
+                      <CheckCircle className="w-5 h-5 mt-0.5 shrink-0 text-course-level-3" />
+                      <span className="text-white/90">
+                        {t(`level3.page.features.${feature}`)}
+                      </span>
                     </li>
                   ))}
                 </ul>
@@ -226,63 +235,25 @@ export default function Level3PlanesWalkerPage() {
             {/* Course Curriculum */}
             <div className="space-y-6">
               <h2 className="text-3xl font-bold text-white">
-                Course Curriculum
+                {t("common.courseCurriculum")}
               </h2>
               <div className="space-y-4">
-                {[
-                  {
-                    module: "Module 1",
-                    title: "Understanding Educational Standards",
-                    lessons: 6,
-                  },
-                  {
-                    module: "Module 2",
-                    title: "Standards-Aligned Campaign Design",
-                    lessons: 8,
-                  },
-                  {
-                    module: "Module 3",
-                    title: "Building Administrative Support",
-                    lessons: 5,
-                  },
-                  {
-                    module: "Module 4",
-                    title: "Assessment & Documentation",
-                    lessons: 7,
-                  },
-                  {
-                    module: "Module 5",
-                    title: "Program Implementation & Scaling",
-                    lessons: 9,
-                  },
-                  {
-                    module: "Module 6",
-                    title: "Mentoring Future Teacher Gamers",
-                    lessons: 6,
-                  },
-                  {
-                    module: "Module 7",
-                    title: "Master Certification Capstone",
-                    lessons: 5,
-                  },
-                ].map((module) => (
+                {curriculum.map((module, index) => (
                   <div
-                    key={module.module}
+                    key={module.id}
                     className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20"
                   >
                     <div className="flex items-center justify-between">
                       <div>
-                        <p
-                          className="text-sm font-semibold mb-1 text-course-level-3"
-                        >
-                          {module.module}
+                        <p className="text-sm font-semibold mb-1 text-course-level-3">
+                          {t("common.module", { n: index + 1 })}
                         </p>
                         <h3 className="text-xl font-bold text-white">
-                          {module.title}
+                          {t(`level3.page.curriculum.${module.id}`)}
                         </h3>
                       </div>
                       <span className="text-white/60 text-sm">
-                        {module.lessons} lessons
+                        {t("common.lessons", { count: module.lessons })}
                       </span>
                     </div>
                   </div>
@@ -293,18 +264,17 @@ export default function Level3PlanesWalkerPage() {
             {/* Final CTA */}
             <div className="bg-gradient-to-br from-course-level-3/20 to-transparent rounded-xl p-8 border border-course-level-3/30 text-center space-y-6">
               <h2 className="text-3xl font-bold text-white">
-                Ready to Become a Master Teacher Gamer?
+                {t("level3.page.finalCta.title")}
               </h2>
               <p className="text-xl text-white/80 max-w-2xl mx-auto">
-                Lead the transformation of education in your school district
-                through game-based learning.
+                {t("level3.page.finalCta.description")}
               </p>
               <Button
                 size="lg"
                 className="text-lg font-bold text-white px-12 py-6 bg-course-level-3"
                 {...calProps}
               >
-                Enroll in Level 3 Certification
+                {t("level3.page.finalCta.button")}
               </Button>
             </div>
           </div>

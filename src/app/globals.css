@@ -19,15 +19,19 @@
   --radius-xl: calc(var(--radius) + 4px);
 
   /* ========================================
-     PRIMARY COLORS - Deep Purple (Main Theme)
+     PRIMARY COLORS - Brand hue (locale-aware)
+     Deep Purple for Canada (en-CA, default),
+     Forest Green for Brazil (pt-BR).
+     Values live on :root below so the
+     [data-locale] override can swap them.
      ======================================== */
-  --color-primary: #6A4BCF;
-  --color-primary-light: #B9A7FF;
-  --color-primary-lighter: #D4C9FF;
-  --color-primary-dark: #5538B5;
-  --color-primary-subtle: rgba(106, 75, 207, 0.1);
-  --color-primary-glow: rgba(106, 75, 207, 0.3);
-  --color-primary-foreground: #F9F9F9;
+  --color-primary: var(--primary);
+  --color-primary-light: var(--primary-light);
+  --color-primary-lighter: var(--primary-lighter);
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-subtle: var(--primary-subtle);
+  --color-primary-glow: var(--primary-glow);
+  --color-primary-foreground: var(--primary-foreground);
 
   /* ========================================
      ACCENT COLORS - Lime Yellow (CTAs & Highlights)
@@ -71,9 +75,9 @@
      ======================================== */
   --color-destructive: #DC2626;
   --color-destructive-foreground: #F9F9F9;
-  --color-border: rgba(185, 167, 255, 0.2);
-  --color-input: rgba(185, 167, 255, 0.3);
-  --color-ring: #B9A7FF;
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
 
   /* ========================================
      CARD & POPOVER
@@ -103,8 +107,13 @@ body {
      ======================================== */
   --radius: 0.625rem;
   
-  /* Primary - Deep Purple */
+  /* Primary - Deep Purple (Canada / en-CA default) */
   --primary: #6A4BCF;
+  --primary-light: #B9A7FF;
+  --primary-lighter: #D4C9FF;
+  --primary-dark: #5538B5;
+  --primary-subtle: rgba(106, 75, 207, 0.1);
+  --primary-glow: rgba(106, 75, 207, 0.3);
   --primary-foreground: #F9F9F9;
   
   /* Accent - Lime Yellow */
@@ -156,6 +165,32 @@ body {
   --sidebar-accent-foreground: #1A1A1F;
   --sidebar-border: rgba(185, 167, 255, 0.2);
   --sidebar-ring: #B9A7FF;
+}
+
+/* ========================================
+   BRAZIL THEME (pt-BR)
+   Set by <html data-locale="pt-BR"> in the root layout.
+   Swaps the purple brand hue for a forest green while
+   keeping the lime/gold accents from the base theme.
+   ======================================== */
+:root[data-locale="pt-BR"] {
+  --primary: #1F9D55;
+  --primary-light: #7EE2A8;
+  --primary-lighter: #B9F0D0;
+  --primary-dark: #157A42;
+  --primary-subtle: rgba(31, 157, 85, 0.1);
+  --primary-glow: rgba(31, 157, 85, 0.3);
+
+  --border: rgba(126, 226, 168, 0.2);
+  --input: rgba(126, 226, 168, 0.3);
+  --ring: #7EE2A8;
+
+  --chart-1: #1F9D55;
+  --chart-2: #7EE2A8;
+
+  --sidebar-primary: #1F9D55;
+  --sidebar-border: rgba(126, 226, 168, 0.2);
+  --sidebar-ring: #7EE2A8;
 }
 
 @layer base {
@@ -319,10 +354,10 @@ body {
 
 /* 3D Button utilities for landing page */
 .btn-3d {
-  box-shadow: 0 4px 12px rgba(106, 75, 207, 0.3), inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px var(--primary-glow), inset 0 -2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .btn-3d:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(106, 75, 207, 0.4), inset 0 -3px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 6px 16px var(--primary-glow), inset 0 -3px 6px rgba(0, 0, 0, 0.3);
 }

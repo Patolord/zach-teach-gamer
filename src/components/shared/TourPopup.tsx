@@ -1,6 +1,7 @@
 "use client";
 
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -13,6 +14,8 @@ const ANIMATION_MS = 500;
 type PosterState = "hidden" | "entering" | "open" | "closing";
 
 export default function TourPopup() {
+  const t = useTranslations("shared.tourPopup");
+  const tWorkshops = useTranslations("workshops");
   const [mounted, setMounted] = useState(false);
   const [posterState, setPosterState] = useState<PosterState>("hidden");
   const [activePosterIndex, setActivePosterIndex] = useState(0);
@@ -84,7 +87,7 @@ export default function TourPopup() {
         <button
           type="button"
           onClick={reopen}
-          aria-label="Open Teacher-Gamer Tour 2026 poster"
+          aria-label={t("openAria")}
           className="fixed bottom-6 left-6 z-50 w-16 h-24 rounded-md overflow-hidden border-2 hover:scale-110 transition-transform cursor-pointer animate-in fade-in zoom-in-50 duration-300"
           style={{
             borderColor: "var(--color-accent)",
@@ -106,7 +109,7 @@ export default function TourPopup() {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-1 pointer-events-none">
           <button
             type="button"
-            aria-label="Close"
+            aria-label={t("close")}
             className={`absolute inset-0 bg-black/60 backdrop-blur-sm cursor-default transition-opacity duration-500 ${
               isOpen ? "opacity-100 pointer-events-auto" : "opacity-0"
             }`}
@@ -125,7 +128,7 @@ export default function TourPopup() {
             <button
               type="button"
               onClick={dismiss}
-              aria-label="Close popup"
+              aria-label={t("closePopup")}
               className="absolute top-3 right-3 z-10 w-9 h-9 flex items-center justify-center rounded-full bg-black/70 hover:bg-black/90 border border-white/20 transition-colors cursor-pointer"
               style={{ color: "var(--color-lighter)" }}
             >
@@ -137,7 +140,7 @@ export default function TourPopup() {
                 <button
                   type="button"
                   onClick={showPreviousPoster}
-                  aria-label="Show previous poster"
+                  aria-label={t("previous")}
                   className="absolute left-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/70 transition-colors hover:bg-black/90 cursor-pointer"
                   style={{ color: "var(--color-lighter)" }}
                 >
@@ -146,7 +149,7 @@ export default function TourPopup() {
                 <button
                   type="button"
                   onClick={showNextPoster}
-                  aria-label="Show next poster"
+                  aria-label={t("next")}
                   className="absolute right-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/70 transition-colors hover:bg-black/90 cursor-pointer"
                   style={{ color: "var(--color-lighter)" }}
                 >
@@ -161,7 +164,7 @@ export default function TourPopup() {
             <Link href="/workshops" onClick={dismiss} className="block h-full">
               <Image
                 src={activePoster.src}
-                alt={activePoster.alt}
+                alt={tWorkshops(`posters.items.${activePoster.id}.alt`)}
                 width={activePoster.width}
                 height={activePoster.height}
                 className="h-full w-auto object-contain"

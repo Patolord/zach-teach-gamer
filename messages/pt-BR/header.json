@@ -1,0 +1,18 @@
+{
+  "menu": "Menu",
+  "toggleMenu": "Abrir ou fechar menu",
+  "closeMenu": "Fechar menu",
+  "nav": {
+    "home": "Início",
+    "about": "Sobre",
+    "training": "Formação",
+    "calendar": "Agenda",
+    "workshops": "Workshops",
+    "partners": "Parceiros",
+    "map": "Mapa",
+    "media": "Mídia",
+    "press": "Imprensa",
+    "shop": "Loja",
+    "faq": "Perguntas Frequentes"
+  }
+}

@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { MEDIA } from "@/lib/media";
 import ShinyText from "@/components/ui/shinytext";
 import Calendar from "./Calendar";
@@ -14,6 +15,8 @@ interface CalendarBookingSectionProps {
 export default function CalendarBookingSection({
   sectionIndex,
 }: CalendarBookingSectionProps) {
+  const t = useTranslations("home.calendar");
+
   return (
     <section
       id="calendar-section"
@@ -31,13 +34,15 @@ export default function CalendarBookingSection({
       <div
         className="absolute top-0 left-0 right-0 h-px opacity-60 z-20"
         style={{
-          background: "linear-gradient(to right, transparent, var(--color-accent), var(--color-secondary), var(--color-accent), transparent)"
+          background:
+            "linear-gradient(to right, transparent, var(--color-accent), var(--color-secondary), var(--color-accent), transparent)",
         }}
       />
       <div
         className="absolute top-0 left-0 right-0 h-24 pointer-events-none z-20"
         style={{
-          background: "linear-gradient(to bottom, var(--color-secondary-soft), transparent)"
+          background:
+            "linear-gradient(to bottom, var(--color-secondary-soft), transparent)",
         }}
       />
 
@@ -56,14 +61,14 @@ export default function CalendarBookingSection({
             spread={30}
             yoyo
           >
-            Schedule a Session
+            {t("title")}
           </ShinyText>
         </h2>
-        <p 
+        <p
           className="text-xl text-center font-amarante"
           style={{ color: "var(--color-lighter)" }}
         >
-          Choose the best date and time for your adventure
+          {t("subtitle")}
         </p>
 
         <div className="hidden lg:block">
@@ -78,13 +83,15 @@ export default function CalendarBookingSection({
       <div
         className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none z-20"
         style={{
-          background: "linear-gradient(to top, var(--color-secondary-soft), transparent)"
+          background:
+            "linear-gradient(to top, var(--color-secondary-soft), transparent)",
         }}
       />
       <div
         className="absolute bottom-0 left-0 right-0 h-px opacity-60 z-20"
         style={{
-          background: "linear-gradient(to right, transparent, var(--color-accent), var(--color-secondary), var(--color-accent), transparent)"
+          background:
+            "linear-gradient(to right, transparent, var(--color-accent), var(--color-secondary), var(--color-accent), transparent)",
         }}
       />
     </section>

@@ -1,11 +1,14 @@
 "use client";
 
 import { XCircle } from "lucide-react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { MEDIA } from "@/lib/media";
 
 export default function CancelPage() {
+  const t = useTranslations("shop.cancel");
+
   return (
     <main className="relative min-h-screen flex items-center justify-center">
       {/* Background */}
@@ -23,13 +26,10 @@ export default function CancelPage() {
           </div>
 
           <h1 className="text-3xl md:text-4xl font-bold text-white">
-            Payment Cancelled
+            {t("title")}
           </h1>
 
-          <p className="text-white/80 text-lg">
-            Your payment was cancelled. No charges have been made. If you
-            experienced any issues, please contact our support team.
-          </p>
+          <p className="text-white/80 text-lg">{t("description")}</p>
 
           <div className="pt-4 space-y-3">
             <Button
@@ -37,7 +37,7 @@ export default function CancelPage() {
               className="w-full bg-accent hover:bg-accent-dark text-background font-bold"
               asChild
             >
-              <Link href="/shop">Try Again</Link>
+              <Link href="/shop">{t("tryAgain")}</Link>
             </Button>
 
             <Button
@@ -46,7 +46,7 @@ export default function CancelPage() {
               className="w-full border-white/30 text-white hover:bg-white/10 font-bold"
               asChild
             >
-              <Link href="/contact">Contact Support</Link>
+              <Link href="/contact">{t("contactSupport")}</Link>
             </Button>
           </div>
         </div>

@@ -1,0 +1,32 @@
+{
+  "hero": {
+    "badge": "Imprensa e Publicações",
+    "title": "Imprensa",
+    "description": "Notícias, entrevistas e muito mais — aparições na mídia com a metodologia Teacher-Gamer."
+  },
+  "featured": {
+    "heading": "Notícias, Entrevistas e Mais"
+  },
+  "more": {
+    "heading": "Conferências e Publicações"
+  },
+  "types": {
+    "webinar": "Webinar",
+    "publication": "Publicação",
+    "conference": "Conferência"
+  },
+  "items": {
+    "isepWebinar": {
+      "date": "Março de 2026",
+      "description": "Z Reznichek apresenta metodologias eruptivas para uma aprendizagem corporal, fora das telas e coletiva por meio de RPGs na série de webinars da Escola de Engenharia."
+    },
+    "indireAuthenticEducation": {
+      "date": "2025",
+      "description": "Pesquisa publicada que explora a natureza da educação autêntica em um mundo moldado pela IA, propondo um currículo enraizado em autodesenvolvimento, consciência cívica e cuidado ecológico."
+    },
+    "relearnConference": {
+      "date": "2020",
+      "description": "Apresentação na conferência [Re]Learn 2020 sobre abordagens autênticas para a educação por meio da aprendizagem baseada em jogos e experiencial."
+    }
+  }
+}

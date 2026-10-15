@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -18,10 +19,13 @@ type Post = {
   image?: string | null;
 };
 
+type SubstackError = "noPosts" | "loadFailed";
+
 export default function SubstackSection({ sectionIndex }: Props) {
+  const t = useTranslations("home.substack");
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<SubstackError | null>(null);
 
   useEffect(() => {
     const fetchRSS = async () => {
@@ -34,11 +38,11 @@ export default function SubstackSection({ sectionIndex }: Props) {
         if (data.posts && data.posts.length > 0) {
           setPosts(data.posts.slice(0, 3));
         } else {
-          setError("No posts found");
+          setError("noPosts");
         }
       } catch (err) {
         console.error("Error fetching Substack feed:", err);
-        setError("Failed to load latest posts");
+        setError("loadFailed");
       } finally {
         setLoading(false);
       }
@@ -59,22 +63,24 @@ export default function SubstackSection({ sectionIndex }: Props) {
         style={{ backgroundImage: `url('${MEDIA.backgrounds.substack}')` }}
       />
       {/* 40% black overlay */}
-      <div 
-        className="absolute inset-0" 
+      <div
+        className="absolute inset-0"
         style={{ backgroundColor: "rgba(26, 26, 31, 0.4)" }}
       />
 
       {/* Top gradient */}
-      <div 
+      <div
         className="absolute top-0 left-0 right-0 h-px opacity-60 z-10"
         style={{
-          background: "linear-gradient(to right, transparent, var(--color-accent), var(--color-secondary), var(--color-accent), transparent)"
+          background:
+            "linear-gradient(to right, transparent, var(--color-accent), var(--color-secondary), var(--color-accent), transparent)",
         }}
       />
-      <div 
+      <div
         className="absolute top-0 left-0 right-0 h-24 pointer-events-none z-10"
         style={{
-          background: "linear-gradient(to bottom, var(--color-secondary-soft), transparent)"
+          background:
+            "linear-gradient(to bottom, var(--color-secondary-soft), transparent)",
         }}
       />
 
@@ -93,22 +99,22 @@ export default function SubstackSection({ sectionIndex }: Props) {
             spread={30}
             yoyo
           >
-            Latest from Substack
+            {t("title")}
           </ShinyText>
         </h2>
 
         {loading && (
-          <div 
+          <div
             className="py-8 text-center"
             style={{ color: "var(--color-accent)" }}
           >
-            Loading latest posts...
+            {t("loading")}
           </div>
         )}
 
         {error && (
           <div className="text-red-500/70 py-8 text-center">
-            {error}. Please try again later.
+            {t(`errors.${error}`)}
           </div>
         )}
 
@@ -122,73 +128,79 @@ export default function SubstackSection({ sectionIndex }: Props) {
                 rel="noopener noreferrer"
                 className="block group"
               >
-                <div 
+                <div
                   className="backdrop-blur-sm rounded-lg shadow-lg border-2 overflow-hidden transition-all"
                   style={{
-                    backgroundColor: 'rgba(0, 0, 0, 0.3)',
-                    borderColor: "color-mix(in srgb, var(--color-primary-light) 50%, transparent)",
-                    boxShadow: "0 10px 30px var(--color-primary-glow)"
+                    backgroundColor: "rgba(0, 0, 0, 0.3)",
+                    borderColor:
+                      "color-mix(in srgb, var(--color-primary-light) 50%, transparent)",
+                    boxShadow: "0 10px 30px var(--color-primary-glow)",
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+                    e.currentTarget.style.backgroundColor =
+                      "rgba(0, 0, 0, 0.5)";
                     e.currentTarget.style.borderColor = "var(--color-accent)";
-                    e.currentTarget.style.boxShadow = "0 10px 40px var(--color-accent-light), 0 0 30px var(--color-primary-glow)";
+                    e.currentTarget.style.boxShadow =
+                      "0 10px 40px var(--color-accent-light), 0 0 30px var(--color-primary-glow)";
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
-                    e.currentTarget.style.borderColor = "color-mix(in srgb, var(--color-primary-light) 50%, transparent)";
-                    e.currentTarget.style.boxShadow = "0 10px 30px var(--color-primary-glow)";
+                    e.currentTarget.style.backgroundColor =
+                      "rgba(0, 0, 0, 0.3)";
+                    e.currentTarget.style.borderColor =
+                      "color-mix(in srgb, var(--color-primary-light) 50%, transparent)";
+                    e.currentTarget.style.boxShadow =
+                      "0 10px 30px var(--color-primary-glow)";
                   }}
                 >
                   <div className="p-6 md:p-8 flex gap-5">
-                  {post.image && (
-                    <div className="relative shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-md overflow-hidden">
-                      <Image
-                        src={post.image}
-                        alt={post.title}
-                        fill
-                        sizes="96px"
-                        className="object-cover transition-transform duration-300 group-hover:scale-105"
-                      />
+                    {post.image && (
+                      <div className="relative shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-md overflow-hidden">
+                        <Image
+                          src={post.image}
+                          alt={post.title}
+                          fill
+                          sizes="96px"
+                          className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        />
+                      </div>
+                    )}
+
+                    <div className="flex-1 min-w-0">
+                      <h3
+                        className="text-xl pb-4 font-semibold transition-colors"
+                        style={{ color: "var(--color-lighter)" }}
+                      >
+                        {post.title}
+                      </h3>
+
+                      <p
+                        className="pb-6 leading-relaxed"
+                        style={{ color: "var(--color-lighter)" }}
+                      >
+                        {post.description}
+                      </p>
+
+                      <div
+                        className="flex items-center gap-2 transition-colors font-medium"
+                        style={{ color: "var(--color-accent)" }}
+                      >
+                        <span>{t("readMore")}</span>
+                        <svg
+                          className="w-5 h-5"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          aria-hidden="true"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                          />
+                        </svg>
+                      </div>
                     </div>
-                  )}
-
-                  <div className="flex-1 min-w-0">
-                  <h3 
-                    className="text-xl pb-4 font-semibold transition-colors"
-                    style={{ color: "var(--color-lighter)" }}
-                  >
-                    {post.title}
-                  </h3>
-
-                  <p 
-                    className="pb-6 leading-relaxed"
-                    style={{ color: "var(--color-lighter)" }}
-                  >
-                    {post.description}
-                  </p>
-
-                  <div 
-                    className="flex items-center gap-2 transition-colors font-medium"
-                    style={{ color: "var(--color-accent)" }}
-                  >
-                    <span>Read more</span>
-                    <svg
-                      className="w-5 h-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                      />
-                    </svg>
-                  </div>
-                  </div>
                   </div>
                 </div>
               </Link>
@@ -204,7 +216,7 @@ export default function SubstackSection({ sectionIndex }: Props) {
                   color: "var(--color-accent)",
                 }}
               >
-                Subscribe to the TG Newsletter
+                {t("subscribe")}
               </Link>
             </p>
           </div>
@@ -212,16 +224,18 @@ export default function SubstackSection({ sectionIndex }: Props) {
       </div>
 
       {/* Bottom gradient */}
-      <div 
+      <div
         className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none z-10"
         style={{
-          background: "linear-gradient(to top, var(--color-secondary-soft), transparent)"
+          background:
+            "linear-gradient(to top, var(--color-secondary-soft), transparent)",
         }}
       />
-      <div 
+      <div
         className="absolute bottom-0 left-0 right-0 h-px opacity-60 z-10"
         style={{
-          background: "linear-gradient(to right, transparent, var(--color-accent), var(--color-secondary), var(--color-accent), transparent)"
+          background:
+            "linear-gradient(to right, transparent, var(--color-accent), var(--color-secondary), var(--color-accent), transparent)",
         }}
       />
     </section>

@@ -10,6 +10,7 @@ import {
   MapPin,
   X,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import type { SVGProps } from "react";
@@ -49,13 +50,6 @@ function DiscordIcon({ className, ...props }: SVGProps<SVGSVGElement>) {
   );
 }
 
-const CONTACT_LABEL: Record<ContactLinkType, string> = {
-  instagram: "Instagram",
-  linkedin: "LinkedIn",
-  discord: "Discord",
-  email: "Email",
-};
-
 function displayFirstName(fullName: string): string {
   const parts = fullName.trim().split(/\s+/);
   if (parts[0] === "Dr." && parts[1]) return parts[1];
@@ -77,29 +71,82 @@ function contactLinkIcon(
   }
 }
 
+type SpecialtyId =
+  | "teacherTraining"
+  | "curriculumDevelopment"
+  | "sel"
+  | "gbl"
+  | "pbl"
+  | "rpgFacilitation"
+  | "improvFacilitation"
+  | "narrativeDesign"
+  | "professionalDming"
+  | "communityBuilding"
+  | "corporateTraining"
+  | "keynoteSpeaking"
+  | "gameBasedLearning"
+  | "creativeStrategy"
+  | "publicSpeaking"
+  | "digitalMarketing"
+  | "copywriting"
+  | "translationEnPtBr"
+  | "martialArts"
+  | "humanCenteredDesign"
+  | "decentralizedLeadership"
+  | "translationEnPtBrEn"
+  | "lessonPlanDevelopment"
+  | "eventOrganising"
+  | "personalLogoFacilitation"
+  | "professor"
+  | "educationalLeadership"
+  | "skillAcquisition";
+
+type CertificateId =
+  | "bsDesign"
+  | "maEducation"
+  | "eslCertificate"
+  | "mindfulnessCertificate"
+  | "founderTeacherGamer"
+  | "authorHandbook"
+  | "coFounderDaVinci"
+  | "baMultimediaDesign"
+  | "targetTealCorporateFacilitation"
+  | "targetTealCultureHacking"
+  | "futureOfStorytelling"
+  | "businessExperienceTracksale"
+  | "humanizedMarketing"
+  | "tgIntroMultiverse"
+  | "tgLevel1"
+  | "baNursing"
+  | "tgIntroLevel1"
+  | "daVinciIntroLevel1"
+  | "nvcIntensive"
+  | "tgIntroLevel1Level2"
+  | "daVinciIntroLevel1Level2"
+  | "doctorateEducationalLeadership";
+
 interface TeacherProfile {
   id: number;
   name: string;
   city: string;
   country: string;
   coordinates: [number, number];
-  specialties: string[];
-  certificates: string[];
+  specialties: SpecialtyId[];
+  certificates: CertificateId[];
   avatar: string;
   contactLinks: ContactLink[];
 }
 
+type WorkshopId = "columbusOh2026";
+type WorkshopHighlightId = "live" | "practice" | "method";
+
 interface WorkshopMarker {
-  id: string;
-  title: string;
+  id: WorkshopId;
   city: string;
   region: string;
   country: string;
   coordinates: [number, number];
-  dateLabel: string;
-  statusLabel: string;
-  description: string;
-  highlights: string[];
+  highlights: WorkshopHighlightId[];
 }
 
 const ZACH_MAP_AVATAR = "/teachers/zachary-reznichek.png";
@@ -110,29 +157,29 @@ const ZACH_CONTACT_LINKS: ContactLink[] = [
   { type: "instagram", href: "https://www.instagram.com/teachergamerhandbook" },
 ];
 
-const zachSpecialties: string[] = [
-  "Teacher Training",
-  "Curriculum Development",
-  "Social Emotional Learning (SEL)",
-  "Game-Based Learning (GBL)",
-  "Project Based Learning (PBL)",
-  "RPG-Based Facilitation",
-  "Improv Facilitation",
-  "Narrative Design",
-  "Professional DMing",
-  "Community Building",
-  "Corporate Training & Facilitation",
-  "Keynote Speaking",
+const zachSpecialties: SpecialtyId[] = [
+  "teacherTraining",
+  "curriculumDevelopment",
+  "sel",
+  "gbl",
+  "pbl",
+  "rpgFacilitation",
+  "improvFacilitation",
+  "narrativeDesign",
+  "professionalDming",
+  "communityBuilding",
+  "corporateTraining",
+  "keynoteSpeaking",
 ];
 
-const zachCertificates: string[] = [
-  "BS in Design",
-  "MA in Education",
-  "ESL Teaching Certificate",
-  "Mindfulness Training Certificate",
-  "Founder — Teacher-Gamer",
-  "Author — Teacher-Gamer Handbook",
-  "Co-Founder — Da Vinci Life Skills Curriculum",
+const zachCertificates: CertificateId[] = [
+  "bsDesign",
+  "maEducation",
+  "eslCertificate",
+  "mindfulnessCertificate",
+  "founderTeacherGamer",
+  "authorHandbook",
+  "coFounderDaVinci",
 ];
 
 // Real Teacher Gamer locations (MAP roster)
@@ -144,30 +191,30 @@ const teacherLocations: TeacherProfile[] = [
     country: "Brazil",
     coordinates: [-46.6333, -23.5505] as [number, number],
     specialties: [
-      "Game-Based Learning",
-      "RPG-Based Facilitation",
-      "Narrative Design",
-      "Professional DMing",
-      "Creative Strategy & Innovation",
-      "Community Building",
-      "Corporate Training & Facilitation",
-      "Public Speaking",
-      "Digital Marketing",
-      "Copywriting",
-      "Translation (EN → PT-BR)",
-      "Martial Arts",
-      "Human-Centered Design & Innovation",
-      "Decentralized Leadership",
+      "gameBasedLearning",
+      "rpgFacilitation",
+      "narrativeDesign",
+      "professionalDming",
+      "creativeStrategy",
+      "communityBuilding",
+      "corporateTraining",
+      "publicSpeaking",
+      "digitalMarketing",
+      "copywriting",
+      "translationEnPtBr",
+      "martialArts",
+      "humanCenteredDesign",
+      "decentralizedLeadership",
     ],
     certificates: [
-      "BA in Multimedia Design",
-      "Target Teal — Corporate Facilitation",
-      "Target Teal — Culture Hacking",
-      "Future of Storytelling (University of Potsdam)",
-      "Business Experience (Tracksale)",
-      "Humanized Marketing (Liliane Ferrari)",
-      "Teacher-Gamer — Intro to Multiverse",
-      "Teacher-Gamer — Level 1",
+      "baMultimediaDesign",
+      "targetTealCorporateFacilitation",
+      "targetTealCultureHacking",
+      "futureOfStorytelling",
+      "businessExperienceTracksale",
+      "humanizedMarketing",
+      "tgIntroMultiverse",
+      "tgLevel1",
     ],
     avatar: "/teachers/bruno-cobbi.jpg",
     contactLinks: [
@@ -215,24 +262,20 @@ const teacherLocations: TeacherProfile[] = [
     country: "USA",
     coordinates: [-82.3534, 36.3134] as [number, number],
     specialties: [
-      "Game-Based Learning (GBL)",
-      "Project Based Learning (PBL)",
-      "RPG-Based Facilitation",
-      "Narrative Design",
-      "Professional DMing",
-      "Creative Strategy & Innovation",
-      "Community Building",
-      "Corporate Training & Facilitation",
-      "Public Speaking",
-      "Digital Marketing",
-      "Copywriting",
-      "Translation (EN → PT-BR → EN)",
+      "gbl",
+      "pbl",
+      "rpgFacilitation",
+      "narrativeDesign",
+      "professionalDming",
+      "creativeStrategy",
+      "communityBuilding",
+      "corporateTraining",
+      "publicSpeaking",
+      "digitalMarketing",
+      "copywriting",
+      "translationEnPtBrEn",
     ],
-    certificates: [
-      "BA Nursing",
-      "Teacher-Gamer — Intro & Level 1",
-      "Da Vinci Life Skills — Intro & Level 1",
-    ],
+    certificates: ["baNursing", "tgIntroLevel1", "daVinciIntroLevel1"],
     avatar: "/teachers/dennis-grillo-de-albuquerque.png",
     contactLinks: [
       {
@@ -249,21 +292,21 @@ const teacherLocations: TeacherProfile[] = [
     country: "Indonesia",
     coordinates: [115.2589, -8.5069] as [number, number],
     specialties: [
-      "Lesson Plan Development",
-      "Social Emotional Learning (SEL)",
-      "Game-Based Learning (GBL)",
-      "Project Based Learning (PBL)",
-      "RPG-Based Facilitation",
-      "Improv Facilitation",
-      "Professional DMing",
-      "Community Building",
-      "Event Organising",
-      "Personal Logo Making Facilitation",
+      "lessonPlanDevelopment",
+      "sel",
+      "gbl",
+      "pbl",
+      "rpgFacilitation",
+      "improvFacilitation",
+      "professionalDming",
+      "communityBuilding",
+      "eventOrganising",
+      "personalLogoFacilitation",
     ],
     certificates: [
-      "NonViolent Communication — International Intensive Training",
-      "Teacher-Gamer — Intro, Level 1 & Level 2",
-      "Da Vinci Life Skills — Intro, Level 1 & Level 2",
+      "nvcIntensive",
+      "tgIntroLevel1Level2",
+      "daVinciIntroLevel1Level2",
     ],
     avatar: "/teachers/randy-ryes.png",
     contactLinks: [
@@ -278,14 +321,12 @@ const teacherLocations: TeacherProfile[] = [
     country: "USA",
     coordinates: [-97.9364, 35.0526] as [number, number],
     specialties: [
-      "Professor",
-      "Educational Leadership",
-      "Skill Acquisition",
-      "Game-Based Learning",
+      "professor",
+      "educationalLeadership",
+      "skillAcquisition",
+      "gameBasedLearning",
     ],
-    certificates: [
-      "Doctorate in Educational Leadership — secondary education & game-based learning; emphasis on skill acquisition through game-based learning",
-    ],
+    certificates: ["doctorateEducationalLeadership"],
     avatar: "/teachers/kevin-jennings.png",
     contactLinks: [
       { type: "email", href: "mailto:KJennigs1987@gmail.com" },
@@ -301,21 +342,12 @@ type Teacher = (typeof teacherLocations)[number];
 
 const mockWorkshopMarkers: WorkshopMarker[] = [
   {
-    id: "columbus-oh-2026",
-    title: "Teacher-Gamer Workshop Quest",
+    id: "columbusOh2026",
     city: "Columbus",
     region: "Ohio",
     country: "USA",
     coordinates: [-82.9988, 39.9612] as [number, number],
-    dateLabel: "June 11-21, 2026",
-    statusLabel: "Mock Workshop",
-    description:
-      "A mocked in-person Teacher-Gamer workshop stop for hands-on RPG-based facilitation, game-based learning, and community practice.",
-    highlights: [
-      "Live workshop sessions",
-      "RPG-based facilitation practice",
-      "Teacher-Gamer methodology",
-    ],
+    highlights: ["live", "practice", "method"],
   },
 ];
 
@@ -330,6 +362,7 @@ interface Particle {
 }
 
 export default function TeachersMapPage() {
+  const t = useTranslations("map");
   const [selectedTeacher, setSelectedTeacher] = useState<Teacher | null>(null);
   const [hoveredTeacher, setHoveredTeacher] = useState<Teacher | null>(null);
   const [selectedWorkshop, setSelectedWorkshop] = useState<Workshop | null>(
@@ -527,9 +560,12 @@ export default function TeachersMapPage() {
               {hoveredTeacher.city}, {hoveredTeacher.country}
             </p>
             <p className="text-lighter/60 text-sm mt-1">
-              {hoveredTeacher.specialties.slice(0, 2).join(" • ")}
+              {hoveredTeacher.specialties
+                .slice(0, 2)
+                .map((item) => t(`specialties.${item}`))
+                .join(" • ")}
               {hoveredTeacher.specialties.length > 2 &&
-                ` + ${hoveredTeacher.specialties.length - 2} more`}
+                ` ${t("tooltip.more", { n: hoveredTeacher.specialties.length - 2 })}`}
             </p>
           </div>
         )}
@@ -537,13 +573,13 @@ export default function TeachersMapPage() {
         {hoveredWorkshop && !selectedTeacher && !selectedWorkshop && (
           <div className="absolute top-24 right-4 md:right-8 bg-background/90 backdrop-blur-sm rounded-lg p-4 border border-secondary/40 pointer-events-none z-50 max-w-xs shadow-xl animate-in fade-in zoom-in-95 duration-200">
             <p className="text-secondary font-semibold text-lg">
-              {hoveredWorkshop.title}
+              {t(`workshops.${hoveredWorkshop.id}.title`)}
             </p>
             <p className="text-lighter/90">
               {hoveredWorkshop.city}, {hoveredWorkshop.region}
             </p>
             <p className="text-lighter/60 text-sm mt-1">
-              {hoveredWorkshop.dateLabel}
+              {t(`workshops.${hoveredWorkshop.id}.dateLabel`)}
             </p>
           </div>
         )}
@@ -553,16 +589,18 @@ export default function TeachersMapPage() {
           <div className="space-y-2">
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 rounded-full bg-accent animate-pulse" />
-              <span className="text-lighter/70 text-xs">Teacher Location</span>
+              <span className="text-lighter/70 text-xs">
+                {t("legend.teacher")}
+              </span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 rotate-45 rounded-sm bg-secondary animate-pulse" />
-              <span className="text-lighter/70 text-xs">Workshop</span>
+              <span className="text-lighter/70 text-xs">
+                {t("legend.workshop")}
+              </span>
             </div>
           </div>
-          <p className="text-lighter/50 text-xs mt-1">
-            Click marker for details
-          </p>
+          <p className="text-lighter/50 text-xs mt-1">{t("legend.hint")}</p>
         </div>
       </div>
 
@@ -591,7 +629,7 @@ export default function TeachersMapPage() {
             className="inline-flex items-center gap-2 text-lighter/80 hover:text-lighter transition-colors bg-background/20 backdrop-blur-sm px-4 py-2 rounded-full border border-white/5 hover:bg-background/40"
           >
             <ArrowLeft className="w-5 h-5" />
-            Back to Home
+            {t("backToHome")}
           </Link>
         </div>
 
@@ -599,15 +637,18 @@ export default function TeachersMapPage() {
         <div className="absolute bottom-24 left-0 w-full max-w-[250px] pointer-events-none px-4 md:bottom-8 md:px-6">
           <div className="bg-background/80 backdrop-blur-md rounded-2xl p-4 border border-white/10 text-left pointer-events-auto shadow-2xl">
             <h1 className="text-xl font-bold text-lighter mb-3 leading-tight">
-              Teacher Gamers{" "}
-              <span className="block text-accent text-2xl">Worldwide</span>
+              {t.rich("title", {
+                accent: (chunks) => (
+                  <span className="block text-accent text-2xl">{chunks}</span>
+                ),
+              })}
             </h1>
 
             {/* Stats Grid */}
             <div className="grid grid-cols-2 gap-3 pt-3 border-t border-white/10">
               <div>
                 <p className="text-lighter/60 text-[10px] uppercase tracking-wider mb-0.5">
-                  Teachers
+                  {t("stats.teachers")}
                 </p>
                 <div className="flex items-center gap-1.5">
                   <span className="text-xl font-bold text-accent">
@@ -619,7 +660,7 @@ export default function TeachersMapPage() {
 
               <div>
                 <p className="text-lighter/60 text-[10px] uppercase tracking-wider mb-0.5">
-                  Education / Certificates
+                  {t("stats.certificates")}
                 </p>
                 <div className="flex items-center gap-1.5">
                   <span className="text-xl font-bold text-accent">
@@ -637,18 +678,16 @@ export default function TeachersMapPage() {
           <div className="bg-background/90 backdrop-blur-md rounded-xl p-4 border border-accent/20 shadow-2xl flex items-center justify-between gap-4 pointer-events-auto">
             <div className="text-left">
               <h3 className="text-base font-bold text-lighter">
-                Join the Network
+                {t("cta.title")}
               </h3>
-              <p className="text-xs text-lighter/70">
-                Become a certified Teacher Gamer
-              </p>
+              <p className="text-xs text-lighter/70">{t("cta.subtitle")}</p>
             </div>
             <Button
               size="sm"
               className="bg-accent hover:bg-accent-light text-background font-semibold shrink-0"
               asChild
             >
-              <Link href="/home#courses-section">Get Certified</Link>
+              <Link href="/home#courses-section">{t("cta.button")}</Link>
             </Button>
           </div>
         </div>
@@ -659,7 +698,7 @@ export default function TeachersMapPage() {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <button
             type="button"
-            aria-label="Close teacher details"
+            aria-label={t("teacherModal.closeAria")}
             className="absolute inset-0 bg-background/60 backdrop-blur-sm"
             onClick={() => setSelectedTeacher(null)}
           />
@@ -705,7 +744,7 @@ export default function TeachersMapPage() {
             <div className="space-y-4">
               <div className="bg-lighter/5 rounded-lg p-4">
                 <p className="text-lighter/50 text-sm mb-2">
-                  Specialties / Services
+                  {t("teacherModal.specialties")}
                 </p>
                 <ul className="flex flex-wrap gap-1.5">
                   {selectedTeacher.specialties.map((item) => (
@@ -713,7 +752,7 @@ export default function TeachersMapPage() {
                       key={item}
                       className="text-xs font-medium text-lighter bg-accent/15 border border-accent/25 rounded-full px-2.5 py-1"
                     >
-                      {item}
+                      {t(`specialties.${item}`)}
                     </li>
                   ))}
                 </ul>
@@ -721,11 +760,12 @@ export default function TeachersMapPage() {
 
               <div className="bg-lighter/5 rounded-lg p-4">
                 <p className="text-lighter/50 text-sm mb-2">
-                  Education / Certificates
+                  {t("teacherModal.certificates")}
                 </p>
                 <ul className="space-y-1.5">
                   {selectedTeacher.certificates.map((cert) => {
-                    const isTeacherGamer = cert.startsWith("Teacher-Gamer");
+                    const label = t(`certificates.${cert}`);
+                    const isTeacherGamer = label.startsWith("Teacher-Gamer");
                     return (
                       <li
                         key={cert}
@@ -736,10 +776,10 @@ export default function TeachersMapPage() {
                             isTeacherGamer ? "text-accent" : "text-primary"
                           }`}
                         />
-                        <span className="flex-1">{cert}</span>
+                        <span className="flex-1">{label}</span>
                         {isTeacherGamer && (
                           <span className="shrink-0 text-[10px] uppercase tracking-wider font-bold bg-accent text-accent-foreground rounded-full px-2 py-0.5">
-                            TG
+                            {t("teacherModal.tgBadge")}
                           </span>
                         )}
                       </li>
@@ -752,11 +792,13 @@ export default function TeachersMapPage() {
             {/* Contact links */}
             <div className="mt-6">
               <p className="text-lighter/50 text-sm mb-3 text-center">
-                Connect with {displayFirstName(selectedTeacher.name)}
+                {t("teacherModal.connectWith", {
+                  name: displayFirstName(selectedTeacher.name),
+                })}
               </p>
               <ul className="flex items-center justify-center gap-3 flex-wrap">
                 {selectedTeacher.contactLinks.map((link) => {
-                  const label = CONTACT_LABEL[link.type];
+                  const label = t(`contactLabels.${link.type}`);
                   const Icon = contactLinkIcon(link);
                   const isEmail = link.type === "email";
                   return (
@@ -768,8 +810,13 @@ export default function TeachersMapPage() {
                           : { target: "_blank", rel: "noopener noreferrer" })}
                         aria-label={
                           isEmail
-                            ? `Email ${selectedTeacher.name}`
-                            : `${selectedTeacher.name} on ${label}`
+                            ? t("teacherModal.emailAria", {
+                                name: selectedTeacher.name,
+                              })
+                            : t("teacherModal.profileAria", {
+                                name: selectedTeacher.name,
+                                platform: label,
+                              })
                         }
                         title={label}
                         className="group flex items-center justify-center w-11 h-11 rounded-full bg-lighter/5 border border-lighter/10 text-lighter/80 hover:text-background hover:bg-accent hover:border-accent transition-colors"
@@ -790,7 +837,7 @@ export default function TeachersMapPage() {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <button
             type="button"
-            aria-label="Close workshop details"
+            aria-label={t("workshopModal.closeAria")}
             className="absolute inset-0 bg-background/60 backdrop-blur-sm"
             onClick={() => setSelectedWorkshop(null)}
           />
@@ -816,37 +863,43 @@ export default function TeachersMapPage() {
 
             <div className="text-center mb-6">
               <p className="mb-2 text-xs font-bold uppercase tracking-[0.22em] text-secondary">
-                {selectedWorkshop.statusLabel}
+                {t(`workshops.${selectedWorkshop.id}.statusLabel`)}
               </p>
               <h2 className="text-2xl font-bold text-lighter mb-1">
-                {selectedWorkshop.title}
+                {t(`workshops.${selectedWorkshop.id}.title`)}
               </h2>
               <p className="text-secondary font-medium">
                 {selectedWorkshop.city}, {selectedWorkshop.region},{" "}
                 {selectedWorkshop.country}
               </p>
               <p className="mt-2 text-sm font-semibold text-lighter/80">
-                {selectedWorkshop.dateLabel}
+                {t(`workshops.${selectedWorkshop.id}.dateLabel`)}
               </p>
             </div>
 
             <div className="space-y-4">
               <div className="bg-lighter/5 rounded-lg p-4">
-                <p className="text-lighter/50 text-sm mb-2">Workshop Details</p>
+                <p className="text-lighter/50 text-sm mb-2">
+                  {t("workshopModal.details")}
+                </p>
                 <p className="text-sm leading-relaxed text-lighter/80">
-                  {selectedWorkshop.description}
+                  {t(`workshops.${selectedWorkshop.id}.description`)}
                 </p>
               </div>
 
               <div className="bg-lighter/5 rounded-lg p-4">
-                <p className="text-lighter/50 text-sm mb-2">What to Expect</p>
+                <p className="text-lighter/50 text-sm mb-2">
+                  {t("workshopModal.expect")}
+                </p>
                 <ul className="flex flex-wrap gap-1.5">
                   {selectedWorkshop.highlights.map((highlight) => (
                     <li
                       key={highlight}
                       className="text-xs font-medium text-lighter bg-secondary/15 border border-secondary/30 rounded-full px-2.5 py-1"
                     >
-                      {highlight}
+                      {t(
+                        `workshops.${selectedWorkshop.id}.highlights.${highlight}`,
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -857,7 +910,7 @@ export default function TeachersMapPage() {
               className="mt-6 w-full bg-secondary hover:bg-secondary/90 text-background font-semibold"
               asChild
             >
-              <Link href="/workshops">View Workshops</Link>
+              <Link href="/workshops">{t("workshopModal.viewWorkshops")}</Link>
             </Button>
           </div>
         </div>

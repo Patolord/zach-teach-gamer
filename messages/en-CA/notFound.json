@@ -1,0 +1,11 @@
+{
+  "badge": "Critical Miss",
+  "headline": "Your party rolled into an unmapped zone.",
+  "body": "This page does not exist in the Teacher-Gamer multiverse yet. No worries — grab a d20, regroup, and jump back into the adventure.",
+  "links": {
+    "home": "Back to Home Base",
+    "map": "Find Teacher Gamers",
+    "workshops": "Join a Workshop Quest",
+    "faq": "Read the Rulebook (FAQ)"
+  }
+}

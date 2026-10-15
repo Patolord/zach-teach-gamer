@@ -1,15 +1,18 @@
-import Link from "next/link";
 import { Dice6, Home, MapPinned, ScrollText, Swords } from "lucide-react";
+import { useTranslations } from "next-intl";
+import Link from "next/link";
 import { MEDIA } from "@/lib/media";
 
 const quickLinks = [
-  { href: "/home", label: "Back to Home Base", icon: Home },
-  { href: "/map", label: "Find Teacher Gamers", icon: MapPinned },
-  { href: "/workshops", label: "Join a Workshop Quest", icon: Swords },
-  { href: "/faq", label: "Read the Rulebook (FAQ)", icon: ScrollText },
+  { id: "home", href: "/home", icon: Home },
+  { id: "map", href: "/map", icon: MapPinned },
+  { id: "workshops", href: "/workshops", icon: Swords },
+  { id: "faq", href: "/faq", icon: ScrollText },
 ] as const;
 
 export default function NotFound() {
+  const t = useTranslations("notFound");
+
   return (
     <main className="relative min-h-screen overflow-hidden text-lighter">
       <div
@@ -21,7 +24,7 @@ export default function NotFound() {
       <section className="relative z-10 mx-auto flex min-h-screen w-full max-w-4xl flex-col items-center justify-center px-6 py-20 text-center">
         <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-4 py-2 text-xs font-bold uppercase tracking-widest text-accent">
           <Dice6 className="h-4 w-4" />
-          Critical Miss
+          {t("badge")}
         </p>
 
         <h1 className="text-6xl font-bold leading-none text-accent sm:text-7xl md:text-8xl">
@@ -29,12 +32,11 @@ export default function NotFound() {
         </h1>
 
         <h2 className="mt-4 text-2xl font-bold text-white sm:text-3xl md:text-4xl">
-          Your party rolled into an unmapped zone.
+          {t("headline")}
         </h2>
 
         <p className="mt-5 max-w-2xl text-base leading-relaxed text-lighter/80 sm:text-lg">
-          This page does not exist in the Teacher-Gamer multiverse yet. No worries
-          — grab a d20, regroup, and jump back into the adventure.
+          {t("body")}
         </p>
 
         <div className="mt-10 grid w-full grid-cols-1 gap-3 sm:grid-cols-2">
@@ -50,7 +52,7 @@ export default function NotFound() {
                   <Icon className="h-5 w-5 text-accent group-hover:text-background" />
                 </span>
                 <span className="font-semibold text-lighter group-hover:text-background">
-                  {item.label}
+                  {t(`links.${item.id}`)}
                 </span>
               </Link>
             );
