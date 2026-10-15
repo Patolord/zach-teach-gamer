@@ -1,8 +1,8 @@
 import { ExternalLink } from "lucide-react";
-import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import ShinyText from "@/components/ui/shinytext";
+import { Link } from "@/i18n/navigation";
 import { MEDIA } from "@/lib/media";
 
 // Using global CSS theme variables
@@ -124,7 +124,7 @@ export default function ResearchSection({
       >
         {/* Header */}
         <div data-animate className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-4 inline-block whitespace-nowrap">
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-4 inline-block text-balance">
             <ShinyText
               speed={3}
               delay={1}

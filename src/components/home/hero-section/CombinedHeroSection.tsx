@@ -2,12 +2,12 @@
 
 import { ArrowRight, Shield, Star, Users } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { forwardRef } from "react";
 import RandomTestimonialQuote from "@/components/testimonials/RandomTestimonialQuote";
 import { Button } from "@/components/ui/button";
 import ShinyText from "@/components/ui/shinytext";
+import { Link } from "@/i18n/navigation";
 import { MEDIA } from "@/lib/media";
 import ShopSectionCard from "../shop/ShopSectionCard";
 

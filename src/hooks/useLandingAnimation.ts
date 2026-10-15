@@ -3,8 +3,9 @@
 import { useGSAP } from "@gsap/react";
 import { buildSrc } from "@imagekit/next";
 import gsap from "gsap";
-import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { startTransition, useCallback, useRef, useState } from "react";
+import { useRouter } from "@/i18n/navigation";
 
 const floatingTextStyle = `
   position: fixed;
@@ -72,6 +73,7 @@ function animateFloatingText(
 }
 
 export function useLandingAnimation() {
+  const t = useTranslations("landing");
   const headerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const landingSectionRef = useRef<HTMLDivElement>(null);
@@ -169,11 +171,7 @@ export function useLandingAnimation() {
         // Floating text 1 at ~35% progress
         if (progress >= 0.35 && !text1Created) {
           text1Created = true;
-          const text1 = createFloatingText(
-            "Welcome to the Revolution",
-            1000,
-            true,
-          );
+          const text1 = createFloatingText(t("videoText1"), 1000, true);
           const tl = gsap.timeline();
           animateFloatingText(tl, text1, 0, videoDuration);
         }
@@ -181,7 +179,7 @@ export function useLandingAnimation() {
         // Floating text 2 at ~45% progress
         if (progress >= 0.45 && !text2Created) {
           text2Created = true;
-          const text2 = createFloatingText("Join the Movement", 1001);
+          const text2 = createFloatingText(t("videoText2"), 1001);
           const tl = gsap.timeline();
           animateFloatingText(tl, text2, 0, videoDuration);
         }
@@ -268,7 +266,7 @@ export function useLandingAnimation() {
         video.load();
       }
     }
-  }, [router, isLoading]);
+  }, [router, isLoading, t]);
 
   return {
     landingSectionRef,

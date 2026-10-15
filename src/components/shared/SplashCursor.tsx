@@ -113,7 +113,16 @@ export default function SplashCursor({
       TRANSPARENT
     };
 
-    const { gl, ext } = getWebGLContext(canvas);
+    // A decorative effect must never take the page down: browsers with WebGL
+    // disabled or unavailable (no GPU, hardware acceleration off, locked-down
+    // profiles) simply don't get the splash.
+    let context: ReturnType<typeof getWebGLContext>;
+    try {
+      context = getWebGLContext(canvas);
+    } catch {
+      return;
+    }
+    const { gl, ext } = context;
     if (!gl || !ext) return;
 
     if (!ext.supportLinearFiltering) {
