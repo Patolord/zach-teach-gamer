@@ -36,12 +36,12 @@ export const partnerOrganizations: PartnerEntry[] = [
     logoClassName: "scale-90",
   },
   {
-    name: "Undiscovered Country",
+    name: "VitaEquilibrium",
     description:
-      "Undiscovered Country provides peace‑and‑conflict diagnostics, archetype profiling, and training programmes that help organisations and schools understand tensions, transform conflict, and build healthier, more harmonious cultures.",
-    logoSrc: "/partners/undiscovered-country-logo-2.png",
-    logoClassName: "scale-80",
-    website: "https://www.undiscoveredcountry.org.uk/",
+      "VitaEquilibrium offers movement\u{2011}based, contemplative workshops and retreats\u{2014}rooted in somatic movement practices like 5Rhythms\u{2014}that help people cultivate balance, connection, and a more harmonious way of living.",
+    logoSrc: "/partners/vitaequilibrium-logo.png",
+    logoClassName: "scale-95",
+    website: "https://www.vitaequilibrium.com/",
   },
   {
     name: "Upcraft Crew",
@@ -66,27 +66,19 @@ export const partnerOrganizations: PartnerEntry[] = [
     website: "https://gaiakids.net",
   },
   {
-    name: "Cultivate",
-    description:
-      "Cultivate is a small, empathic, research\u{2011}informed school for ages 6\u{2013}14 where learning through play, connection, creativity, and project\u{2011}based learning empowers children to belong, collaborate, and flourish as active participants in their own education.",
-    logoSrc: "/partners/cultivate-logo-bright.png",
-    logoClassName: "scale-90 drop-shadow-[0_0_20px_rgba(120,200,120,0.35)]",
-    website: "https://www.cultivatelearning.org.uk/",
-  },
-  {
-    name: "VitaEquilibrium",
-    description:
-      "VitaEquilibrium offers movement\u{2011}based, contemplative workshops and retreats\u{2014}rooted in somatic movement practices like 5Rhythms\u{2014}that help people cultivate balance, connection, and a more harmonious way of living.",
-    logoSrc: "/partners/vitaequilibrium-logo.png",
-    logoClassName: "scale-95",
-    website: "https://www.vitaequilibrium.com/",
-  },
-  {
     name: "The Hero Workshop",
     description:
       "The Hero Workshop supports young people through story-driven, game-based experiences that build confidence, creativity, and social-emotional growth.",
     logoSrc: "/partners/hero-workshop-logo.png",
     logoClassName: "scale-95",
     website: "https://www.heroworkshop.org/",
+  },
+  {
+    name: "Undiscovered Country",
+    description:
+      "Undiscovered Country provides peace‑and‑conflict diagnostics, archetype profiling, and training programmes that help organisations and schools understand tensions, transform conflict, and build healthier, more harmonious cultures.",
+    logoSrc: "/partners/undiscovered-country-logo-2.png",
+    logoClassName: "scale-80",
+    website: "https://www.undiscoveredcountry.org.uk/",
   },
 ];
