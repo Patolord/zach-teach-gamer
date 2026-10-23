@@ -21,12 +21,49 @@ export const partnerOrganizations: PartnerEntry[] = [
     website: "https://davincilifeskills.com/",
   },
   {
+    name: "Teacher-Gamer Brasil",
+    description:
+      "A Teacher-Gamer Brasil \u{e9} a parceira oficial da Teacher-Gamer Global no Brasil, apoiando escolas, universidades, ONGs e comunidades por meio de forma\u{e7}\u{e3}o de educadores, programas de certifica\u{e7}\u{e3}o, aprendizagem baseada em jogos e abordagens inovadoras para a aprendizagem socioemocional e baseada em projetos.",
+    logoSrc: "/partners/teacher-gamer-brasil-logo.png",
+    logoClassName: "scale-95",
+    website: "https://www.instagram.com/teachergamerbr/",
+  },
+  {
+    name: "Gambito do Rei",
+    description:
+      "A Gambito do Rei leva a aprendizagem baseada em jogos a escolas p\u{fa}blicas brasileiras, unindo neuroeduca\u{e7}\u{e3}o, desenvolvimento de habilidades socioemocionais e forma\u{e7}\u{e3}o de educadores, com uma equipe presente ao lado de professores e alunos em sala de aula.",
+    logoSrc: "/partners/gambito-do-rei-logo.png",
+    logoClassName: "scale-90",
+  },
+  {
+    name: "VitaEquilibrium",
+    description:
+      "VitaEquilibrium offers movement\u{2011}based, contemplative workshops and retreats\u{2014}rooted in somatic movement practices like 5Rhythms\u{2014}that help people cultivate balance, connection, and a more harmonious way of living.",
+    logoSrc: "/partners/vitaequilibrium-logo.png",
+    logoClassName: "scale-95",
+    website: "https://www.vitaequilibrium.com/",
+  },
+  {
+    name: "Upcraft Crew",
+    description:
+      "Full-stack engineering support for teams fixing delivery bottlenecks, refactors, and MVP builds.",
+    logoSrc: "/partners/upcraftcrew-logo.png",
+    website: "https://upcraftcrew.com/",
+  },
+  {
     name: "RPG Dojo",
     description:
       "A digital community for studying, playing, chatting, and learning more about TTRPGs.",
     logoSrc: "/partners/rpg-dojo-logo.png",
     logoClassName: "scale-95",
     website: "https://rpgdojo.super.site/",
+  },
+  {
+    name: "GAIA Kids",
+    description:
+      "A global arts\u{2011}for\u{2011}impact initiative that empowers children to use creativity to spark social change, advocate for environmental justice, and build community through collaborative art projects.",
+    logoSrc: "/partners/gaia-kids-logo-removebg-preview.png",
+    website: "https://gaiakids.net",
   },
   {
     name: "The Hero Workshop",
@@ -43,35 +80,5 @@ export const partnerOrganizations: PartnerEntry[] = [
     logoSrc: "/partners/undiscovered-country-logo-2.png",
     logoClassName: "scale-80",
     website: "https://www.undiscoveredcountry.org.uk/",
-  },
-  {
-    name: "Upcraft Crew",
-    description:
-      "Full-stack engineering support for teams fixing delivery bottlenecks, refactors, and MVP builds.",
-    logoSrc: "/partners/upcraftcrew-logo.png",
-    website: "https://upcraftcrew.com/",
-  },
-  {
-    name: "GAIA Kids",
-    description:
-      "A global arts\u{2011}for\u{2011}impact initiative that empowers children to use creativity to spark social change, advocate for environmental justice, and build community through collaborative art projects.",
-    logoSrc: "/partners/gaia-kids-logo-removebg-preview.png",
-    website: "https://gaiakids.net",
-  },
-  {
-    name: "Cultivate",
-    description:
-      "Cultivate is a small, empathic, research\u{2011}informed school for ages 6\u{2013}14 where learning through play, connection, creativity, and project\u{2011}based learning empowers children to belong, collaborate, and flourish as active participants in their own education.",
-    logoSrc: "/partners/cultivate-logo-bright.png",
-    logoClassName: "scale-90 drop-shadow-[0_0_20px_rgba(120,200,120,0.35)]",
-    website: "https://www.cultivatelearning.org.uk/",
-  },
-  {
-    name: "VitaEquilibrium",
-    description:
-      "VitaEquilibrium offers movement\u{2011}based, contemplative workshops and retreats\u{2014}rooted in somatic movement practices like 5Rhythms\u{2014}that help people cultivate balance, connection, and a more harmonious way of living.",
-    logoSrc: "/partners/vitaequilibrium-logo.png",
-    logoClassName: "scale-95",
-    website: "https://www.vitaequilibrium.com/",
   },
 ];
