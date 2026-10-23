@@ -21,20 +21,20 @@ export const partnerOrganizations: PartnerEntry[] = [
     website: "https://davincilifeskills.com/",
   },
   {
-    name: "RPG Dojo",
+    name: "Teacher-Gamer Brasil",
     description:
-      "A digital community for studying, playing, chatting, and learning more about TTRPGs.",
-    logoSrc: "/partners/rpg-dojo-logo.png",
-    logoClassName: "scale-95",
-    website: "https://rpgdojo.super.site/",
+      "A Teacher-Gamer Brasil \u{e9} a parceira oficial da Teacher-Gamer Global no Brasil, apoiando escolas, universidades, ONGs e comunidades por meio de forma\u{e7}\u{e3}o de educadores, programas de certifica\u{e7}\u{e3}o, aprendizagem baseada em jogos e abordagens inovadoras para a aprendizagem socioemocional e baseada em projetos.",
+    // TODO: drop the @teachergamerbr Instagram profile picture at
+    // public/partners/teacher-gamer-brasil-logo.png and enable the line below.
+    // logoSrc: "/partners/teacher-gamer-brasil-logo.png",
+    website: "https://www.instagram.com/teachergamerbr/",
   },
   {
-    name: "The Hero Workshop",
+    name: "Gambito do Rei",
     description:
-      "The Hero Workshop supports young people through story-driven, game-based experiences that build confidence, creativity, and social-emotional growth.",
-    logoSrc: "/partners/hero-workshop-logo.png",
-    logoClassName: "scale-95",
-    website: "https://www.heroworkshop.org/",
+      "A Gambito do Rei leva a aprendizagem baseada em jogos a escolas p\u{fa}blicas brasileiras, unindo neuroeduca\u{e7}\u{e3}o, desenvolvimento de habilidades socioemocionais e forma\u{e7}\u{e3}o de educadores, com uma equipe presente ao lado de professores e alunos em sala de aula.",
+    logoSrc: "/partners/gambito-do-rei-logo.png",
+    logoClassName: "scale-90",
   },
   {
     name: "Undiscovered Country",
@@ -50,6 +50,14 @@ export const partnerOrganizations: PartnerEntry[] = [
       "Full-stack engineering support for teams fixing delivery bottlenecks, refactors, and MVP builds.",
     logoSrc: "/partners/upcraftcrew-logo.png",
     website: "https://upcraftcrew.com/",
+  },
+  {
+    name: "RPG Dojo",
+    description:
+      "A digital community for studying, playing, chatting, and learning more about TTRPGs.",
+    logoSrc: "/partners/rpg-dojo-logo.png",
+    logoClassName: "scale-95",
+    website: "https://rpgdojo.super.site/",
   },
   {
     name: "GAIA Kids",
@@ -73,5 +81,13 @@ export const partnerOrganizations: PartnerEntry[] = [
     logoSrc: "/partners/vitaequilibrium-logo.png",
     logoClassName: "scale-95",
     website: "https://www.vitaequilibrium.com/",
+  },
+  {
+    name: "The Hero Workshop",
+    description:
+      "The Hero Workshop supports young people through story-driven, game-based experiences that build confidence, creativity, and social-emotional growth.",
+    logoSrc: "/partners/hero-workshop-logo.png",
+    logoClassName: "scale-95",
+    website: "https://www.heroworkshop.org/",
   },
 ];
