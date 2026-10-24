@@ -40,7 +40,7 @@ export default function PartnersPage() {
             Collaboration
           </p>
           <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight">
-            <span className="text-accent">Partners</span> &amp; Sponsors
+            <span className="text-accent">Partners</span>&nbsp;&amp; Sponsors
           </h1>
           <p className="text-lg text-white/75 max-w-2xl mx-auto leading-relaxed">
             We are grateful to the companies, schools, and brands that help grow
