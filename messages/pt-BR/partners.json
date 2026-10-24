@@ -18,26 +18,29 @@
     "daVinciLifeSkills": {
       "description": "A Da Vinci Life-Skills é uma organização educacional sem fins lucrativos que oferece um currículo biofílico baseado em projetos, um sistema de avaliação baseado em habilidades e formação certificada de mentores para ajudar escolas e comunidades de educação domiciliar a proporcionar uma aprendizagem holística e conectada ao mundo real, em que os estudantes possam florescer."
     },
+    "teacherGamerBrasil": {
+      "description": "A Teacher-Gamer Brasil é a parceira oficial da Teacher-Gamer Global no Brasil, apoiando escolas, universidades, ONGs e comunidades por meio de formação de educadores, programas de certificação, aprendizagem baseada em jogos e abordagens inovadoras para a aprendizagem socioemocional e baseada em projetos."
+    },
+    "gambitoDoRei": {
+      "description": "A Gambito do Rei leva a aprendizagem baseada em jogos a escolas públicas brasileiras, unindo neuroeducação, desenvolvimento de habilidades socioemocionais e formação de educadores, com uma equipe presente ao lado de professores e alunos em sala de aula."
+    },
+    "vitaEquilibrium": {
+      "description": "A VitaEquilibrium oferece workshops e retiros contemplativos baseados em movimento — enraizados em práticas de movimento somático como o 5Rhythms — que ajudam as pessoas a cultivar equilíbrio, conexão e um modo de vida mais harmonioso."
+    },
+    "upcraftCrew": {
+      "description": "Suporte de engenharia full-stack para equipes que precisam resolver gargalos de entrega, refatorações e construção de MVPs."
+    },
     "rpgDojo": {
       "description": "Uma comunidade digital para estudar, jogar, conversar e aprender mais sobre TTRPGs."
+    },
+    "gaiaKids": {
+      "description": "Uma iniciativa global de arte para impacto que capacita crianças a usar a criatividade para provocar mudanças sociais, defender a justiça ambiental e construir comunidade por meio de projetos artísticos colaborativos."
     },
     "heroWorkshop": {
       "description": "The Hero Workshop apoia jovens por meio de experiências narrativas e baseadas em jogos que desenvolvem confiança, criatividade e crescimento socioemocional."
     },
     "undiscoveredCountry": {
       "description": "A Undiscovered Country oferece diagnósticos de paz e conflito, perfis de arquétipos e programas de formação que ajudam organizações e escolas a compreender tensões, transformar conflitos e construir culturas mais saudáveis e harmoniosas."
-    },
-    "upcraftCrew": {
-      "description": "Suporte de engenharia full-stack para equipes que precisam resolver gargalos de entrega, refatorações e construção de MVPs."
-    },
-    "gaiaKids": {
-      "description": "Uma iniciativa global de arte para impacto que capacita crianças a usar a criatividade para provocar mudanças sociais, defender a justiça ambiental e construir comunidade por meio de projetos artísticos colaborativos."
-    },
-    "cultivate": {
-      "description": "A Cultivate é uma escola pequena, empática e fundamentada em pesquisa para crianças de 6 a 14 anos, onde a aprendizagem por meio do brincar, da conexão, da criatividade e de projetos capacita as crianças a pertencer, colaborar e florescer como participantes ativas da própria educação."
-    },
-    "vitaEquilibrium": {
-      "description": "A VitaEquilibrium oferece workshops e retiros contemplativos baseados em movimento — enraizados em práticas de movimento somático como o 5Rhythms — que ajudam as pessoas a cultivar equilíbrio, conexão e um modo de vida mais harmonioso."
     }
   },
   "workWithUs": {

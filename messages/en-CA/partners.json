@@ -18,26 +18,29 @@
     "daVinciLifeSkills": {
       "description": "Da Vinci Life-Skills is a non‑profit education organisation that provides a biophilic, project‑based curriculum, a skills‑based assessment framework, and certified mentor training to help schools and home‑education communities deliver holistic, real‑world learning where students can flourish."
     },
+    "teacherGamerBrasil": {
+      "description": "Teacher-Gamer Brasil is the official Brazilian partner of Teacher-Gamer Global, supporting schools, universities, NGOs, and communities through educator training, certification programs, game-based learning, and innovative approaches to social-emotional and project-based learning."
+    },
+    "gambitoDoRei": {
+      "description": "Gambito do Rei brings game-based learning to Brazilian public schools, combining neuroeducation, social-emotional skill development, and educator training, with a team working alongside teachers and students in the classroom."
+    },
+    "vitaEquilibrium": {
+      "description": "VitaEquilibrium offers movement‑based, contemplative workshops and retreats—rooted in somatic movement practices like 5Rhythms—that help people cultivate balance, connection, and a more harmonious way of living."
+    },
+    "upcraftCrew": {
+      "description": "Full-stack engineering support for teams fixing delivery bottlenecks, refactors, and MVP builds."
+    },
     "rpgDojo": {
       "description": "A digital community for studying, playing, chatting, and learning more about TTRPGs."
+    },
+    "gaiaKids": {
+      "description": "A global arts‑for‑impact initiative that empowers children to use creativity to spark social change, advocate for environmental justice, and build community through collaborative art projects."
     },
     "heroWorkshop": {
       "description": "The Hero Workshop supports young people through story-driven, game-based experiences that build confidence, creativity, and social-emotional growth."
     },
     "undiscoveredCountry": {
       "description": "Undiscovered Country provides peace‑and‑conflict diagnostics, archetype profiling, and training programmes that help organisations and schools understand tensions, transform conflict, and build healthier, more harmonious cultures."
-    },
-    "upcraftCrew": {
-      "description": "Full-stack engineering support for teams fixing delivery bottlenecks, refactors, and MVP builds."
-    },
-    "gaiaKids": {
-      "description": "A global arts‑for‑impact initiative that empowers children to use creativity to spark social change, advocate for environmental justice, and build community through collaborative art projects."
-    },
-    "cultivate": {
-      "description": "Cultivate is a small, empathic, research‑informed school for ages 6–14 where learning through play, connection, creativity, and project‑based learning empowers children to belong, collaborate, and flourish as active participants in their own education."
-    },
-    "vitaEquilibrium": {
-      "description": "VitaEquilibrium offers movement‑based, contemplative workshops and retreats—rooted in somatic movement practices like 5Rhythms—that help people cultivate balance, connection, and a more harmonious way of living."
     }
   },
   "workWithUs": {

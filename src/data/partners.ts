@@ -5,13 +5,14 @@
 
 export type PartnerId =
   | "daVinciLifeSkills"
-  | "rpgDojo"
-  | "heroWorkshop"
-  | "undiscoveredCountry"
+  | "teacherGamerBrasil"
+  | "gambitoDoRei"
+  | "vitaEquilibrium"
   | "upcraftCrew"
+  | "rpgDojo"
   | "gaiaKids"
-  | "cultivate"
-  | "vitaEquilibrium";
+  | "heroWorkshop"
+  | "undiscoveredCountry";
 
 export type PartnerEntry = {
   /** Stable key for `partners.organizations.<id>` in the message files */
@@ -32,11 +33,44 @@ export const partnerOrganizations: PartnerEntry[] = [
     website: "https://davincilifeskills.com/",
   },
   {
+    id: "teacherGamerBrasil",
+    name: "Teacher-Gamer Brasil",
+    logoSrc: "/partners/teacher-gamer-brasil-logo-transparent.png",
+    logoClassName: "scale-95",
+    website: "https://www.instagram.com/teachergamerbr/",
+  },
+  {
+    id: "gambitoDoRei",
+    name: "Gambito do Rei",
+    logoSrc: "/partners/gambito-do-rei-logo.png",
+    logoClassName: "scale-[0.58]",
+    website: "https://gambitodorei.com.br/",
+  },
+  {
+    id: "vitaEquilibrium",
+    name: "VitaEquilibrium",
+    logoSrc: "/partners/vitaequilibrium-logo.png",
+    logoClassName: "scale-95",
+    website: "https://www.vitaequilibrium.com/",
+  },
+  {
+    id: "upcraftCrew",
+    name: "Upcraft Crew",
+    logoSrc: "/partners/upcraftcrew-logo.png",
+    website: "https://upcraftcrew.com/",
+  },
+  {
     id: "rpgDojo",
     name: "RPG Dojo",
     logoSrc: "/partners/rpg-dojo-logo.png",
     logoClassName: "scale-95",
     website: "https://rpgdojo.super.site/",
+  },
+  {
+    id: "gaiaKids",
+    name: "GAIA Kids",
+    logoSrc: "/partners/gaia-kids-logo-removebg-preview.png",
+    website: "https://gaiakids.net",
   },
   {
     id: "heroWorkshop",
@@ -51,31 +85,5 @@ export const partnerOrganizations: PartnerEntry[] = [
     logoSrc: "/partners/undiscovered-country-logo-2.png",
     logoClassName: "scale-80",
     website: "https://www.undiscoveredcountry.org.uk/",
-  },
-  {
-    id: "upcraftCrew",
-    name: "Upcraft Crew",
-    logoSrc: "/partners/upcraftcrew-logo.png",
-    website: "https://upcraftcrew.com/",
-  },
-  {
-    id: "gaiaKids",
-    name: "GAIA Kids",
-    logoSrc: "/partners/gaia-kids-logo-removebg-preview.png",
-    website: "https://gaiakids.net",
-  },
-  {
-    id: "cultivate",
-    name: "Cultivate",
-    logoSrc: "/partners/cultivate-logo-bright.png",
-    logoClassName: "scale-90 drop-shadow-[0_0_20px_rgba(120,200,120,0.35)]",
-    website: "https://www.cultivatelearning.org.uk/",
-  },
-  {
-    id: "vitaEquilibrium",
-    name: "VitaEquilibrium",
-    logoSrc: "/partners/vitaequilibrium-logo.png",
-    logoClassName: "scale-95",
-    website: "https://www.vitaequilibrium.com/",
   },
 ];
