@@ -25,13 +25,20 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 The site is bilingual: **English (Canada)** `en-CA` (default) and **Português (Brasil)** `pt-BR`,
 powered by [`next-intl`](https://next-intl.dev).
 
-- The visitor picks a language with the 🇨🇦 / 🇧🇷 toggle in the header (and on the landing
-  page). The choice is stored in the `NEXT_LOCALE` cookie, so URLs stay the same for both
-  languages. Resolution happens in `src/i18n/request.ts`.
-- Each locale switch also swaps the brand theme: Canada uses the deep-purple palette, Brazil uses a
-  forest-green one. The root layout sets `<html lang data-locale>`, and `src/app/globals.css`
-  overrides the `--primary*` variables under `:root[data-locale="pt-BR"]`. Any component that
-  uses `var(--color-primary)` / `text-primary` / `border-primary-light` etc. follows automatically.
+- Each language has its own URLs: English is unprefixed (`/about`) and Portuguese lives under
+  `/pt` (`/pt/about`). Routing is defined in `src/i18n/routing.ts`; `src/proxy.ts` adds or strips
+  the prefix, remembers the visitor's choice in the `NEXT_LOCALE` cookie, and honours
+  `Accept-Language` on the first visit. Because the locale is in the URL, every page is
+  prerendered once per language, and `sitemap.xml` lists both versions with hreflang alternates.
+- Use `Link`, `useRouter`, `usePathname` and `redirect` from `@/i18n/navigation` instead of
+  `next/link` / `next/navigation` so internal links keep the current language.
+- Pages live under `src/app/[locale]/`. A page written as a client component is named
+  `page.client.tsx` with a thin server `page.tsx` that calls `setRequestLocale` so it can be
+  prerendered; server pages call `setRequestLocale` themselves.
+- The 🇨🇦 / 🇧🇷 toggle in the header (and on the intro page) navigates to the same page in the
+  other language. Each locale also swaps the brand theme: the root layout sets
+  `<html lang data-locale>`, and `src/app/[locale]/globals.css` overrides the `--primary*`
+  variables under `:root[data-locale="pt-BR"]` with a forest-green palette.
 - Translations live in `messages/<locale>/<namespace>.json`, one file per page or section, merged by
   `messages/<locale>/index.ts`. Both locales must have identical key structures; TypeScript checks
   the keys you use in `t("...")` against the `en-CA` files (`src/i18n/global.d.ts`).
