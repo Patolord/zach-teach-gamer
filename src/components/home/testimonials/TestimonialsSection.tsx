@@ -1,10 +1,11 @@
 ﻿"use client";
 
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
+import ShinyText from "@/components/ui/shinytext";
 import { MEDIA } from "@/lib/media";
 import { pickUniqueRandomTestimonials } from "@/lib/testimonials";
-import ShinyText from "@/components/ui/shinytext";
 import "./Testimonials.css";
 
 type TextMarqueeItem = {
@@ -94,6 +95,7 @@ function TextCard({
   item: TextMarqueeItem;
   onReadMore: (item: TextMarqueeItem) => void;
 }) {
+  const t = useTranslations("home.testimonials");
   const MAX_LENGTH = 200;
   const needsTruncation = item.text.length > MAX_LENGTH;
   const displayText = needsTruncation
@@ -122,7 +124,7 @@ function TextCard({
             className="ml-2 font-semibold"
             style={{ color: "var(--color-accent)" }}
           >
-            Read more
+            {t("readMore")}
           </span>
         ) : null}
       </p>
@@ -137,6 +139,8 @@ function TextCard({
 }
 
 function ImageCard({ item }: { item: ImageMarqueeItem }) {
+  const t = useTranslations("home.testimonials");
+
   return (
     <div
       className={`${cardShell} relative overflow-hidden`}
@@ -147,7 +151,7 @@ function ImageCard({ item }: { item: ImageMarqueeItem }) {
     >
       <Image
         src={item.image}
-        alt="Testimonial"
+        alt={t("imageAlt")}
         fill
         className="object-cover"
         sizes="340px"
@@ -179,9 +183,11 @@ function MarqueeRow({
       >
         {track.map((item, index) =>
           item.kind === "image" ? (
+            // biome-ignore lint/suspicious/noArrayIndexKey: the marquee track repeats each item, so the index distinguishes the copies
             <ImageCard key={`${item.id}-${index}`} item={item} />
           ) : (
             <TextCard
+              // biome-ignore lint/suspicious/noArrayIndexKey: the marquee track repeats each item, so the index distinguishes the copies
               key={`${item.id}-${index}`}
               item={item}
               onReadMore={onReadMore}
@@ -194,6 +200,7 @@ function MarqueeRow({
 }
 
 const Testimonials = ({ sectionIndex }: TestimonialsProps) => {
+  const t = useTranslations("home.testimonials");
   const [modalItem, setModalItem] = useState<TextMarqueeItem | null>(null);
   const [row1, setRow1] = useState<MarqueeItem[]>([]);
   const [row2, setRow2] = useState<MarqueeItem[]>([]);
@@ -234,7 +241,10 @@ const Testimonials = ({ sectionIndex }: TestimonialsProps) => {
         }}
       />
 
-      <div data-section-content className="relative z-20 mx-auto max-w-7xl px-4">
+      <div
+        data-section-content
+        className="relative z-20 mx-auto max-w-7xl px-4"
+      >
         <div className="relative z-20 mb-12 text-center">
           <h3 className="text-4xl font-semibold tracking-tight text-accent">
             <ShinyText
@@ -245,7 +255,7 @@ const Testimonials = ({ sectionIndex }: TestimonialsProps) => {
               spread={30}
               yoyo
             >
-              Testimonials
+              {t("title")}
             </ShinyText>
           </h3>
         </div>
@@ -287,7 +297,7 @@ const Testimonials = ({ sectionIndex }: TestimonialsProps) => {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <button
             type="button"
-            aria-label="Close"
+            aria-label={t("close")}
             className="absolute inset-0 cursor-default bg-black/70 backdrop-blur-sm"
             onClick={() => setModalItem(null)}
           />
@@ -305,7 +315,7 @@ const Testimonials = ({ sectionIndex }: TestimonialsProps) => {
               onClick={() => setModalItem(null)}
               className="absolute top-4 right-4 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20"
               style={{ color: "var(--color-lighter)" }}
-              aria-label="Close"
+              aria-label={t("close")}
             >
               ×
             </button>

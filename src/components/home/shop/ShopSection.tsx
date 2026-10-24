@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { MEDIA } from "@/lib/media";
 import ShopSectionCard from "./ShopSectionCard";
 
@@ -6,6 +7,8 @@ interface ShopSectionProps {
 }
 
 export default function ShopSection({ sectionIndex }: ShopSectionProps) {
+  const t = useTranslations("home.handbook");
+
   return (
     <section
       data-scroll-section={sectionIndex}
@@ -27,33 +30,28 @@ export default function ShopSection({ sectionIndex }: ShopSectionProps) {
           data-animate="slide-right"
           className="flex flex-col text-left space-y-6 md:space-y-4 w-full"
         >
-          <h1 className="text-white text-3xl md:text-4xl">
-            The Teacher-Gamer Handbook
-          </h1>
+          <h1 className="text-white text-3xl md:text-4xl">{t("title")}</h1>
 
           <h2 className="text-white text-base md:text-lg leading-relaxed">
-            Build literacy. Spark imagination. Empower learners. Transform
-            classrooms into immersive adventures where students learn by
-            playing, failing, and growing together.
+            {t("subtitle")}
           </h2>
 
           <ul className="list-disc list-inside text-sm md:text-base text-white space-y-2">
-            <li>📘 300 pages of creative strategies and lesson plans</li>
-            <li>🎲 36 life skills through collaborative RPG experiences</li>
-            <li>⚔️ Designed for educators guiding 10+ year-old learners</li>
-            <li>🔥 40+ hours of co-creative play and storytelling</li>
+            <li>📘 {t("bullets.pages")}</li>
+            <li>🎲 {t("bullets.skills")}</li>
+            <li>⚔️ {t("bullets.designed")}</li>
+            <li>🔥 {t("bullets.hours")}</li>
           </ul>
 
           <h2 className="text-white text-base md:text-lg leading-relaxed">
-            A complete framework to bring the power of role-playing into
-            education.
+            {t("framework")}
           </h2>
 
           <button
             type="button"
             className="self-start px-8 py-3 bg-linear-to-r from-amber-400 to-amber-400 hover:from-amber-300 hover:to-amber-300 text-zinc-900 font-semibold rounded-full transition-all duration-300 hover:shadow-[0_4px_24px_rgba(251,191,36,0.4)]"
           >
-            SHOP NOW
+            {t("shopNow")}
           </button>
         </div>
       </div>

@@ -1,10 +1,10 @@
 "use client";
 
-import { MapPin, Sparkles } from "lucide-react";
-import Link from "next/link";
-import { MEDIA } from "@/lib/media";
+import { useTranslations } from "next-intl";
 import ShinyText from "@/components/ui/shinytext";
 import { homeCourseCards } from "@/data/course-themes";
+import { Link } from "@/i18n/navigation";
+import { MEDIA } from "@/lib/media";
 import EletricCard from "./EletricCard";
 
 interface CoursesSectionProps {
@@ -12,6 +12,8 @@ interface CoursesSectionProps {
 }
 
 export default function CoursesSection({ sectionIndex }: CoursesSectionProps) {
+  const t = useTranslations("home.courses");
+  const tCourses = useTranslations("courses");
 
   return (
     <section
@@ -21,22 +23,28 @@ export default function CoursesSection({ sectionIndex }: CoursesSectionProps) {
       style={{ backgroundImage: `url('${MEDIA.backgrounds.courses}')` }}
     >
       {/* 40% black overlay */}
-      <div 
-        className="absolute inset-0" 
-        style={{ backgroundColor: "rgba(26, 26, 31, 0.4)", left: "-103px", top: "-5px" }}
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundColor: "rgba(26, 26, 31, 0.4)",
+          left: "-103px",
+          top: "-5px",
+        }}
       />
 
       {/* Top horizontal transition element */}
-      <div 
+      <div
         className="absolute top-0 left-0 right-0 h-px opacity-60"
         style={{
-          background: "linear-gradient(to right, transparent, var(--color-accent), var(--color-secondary), var(--color-accent), transparent)"
+          background:
+            "linear-gradient(to right, transparent, var(--color-accent), var(--color-secondary), var(--color-accent), transparent)",
         }}
       />
-      <div 
+      <div
         className="absolute top-0 left-0 right-0 h-24 pointer-events-none"
         style={{
-          background: "linear-gradient(to bottom, var(--color-secondary-soft), transparent)"
+          background:
+            "linear-gradient(to bottom, var(--color-secondary-soft), transparent)",
         }}
       />
 
@@ -51,11 +59,14 @@ export default function CoursesSection({ sectionIndex }: CoursesSectionProps) {
               spread={30}
               yoyo
             >
-              Choose your next Adventure!
+              {t("title")}
             </ShinyText>
           </h2>
-          <p className="text-base md:text-lg leading-relaxed max-w-3xl mx-auto mt-4" style={{ color: "var(--color-lighter)" }}>
-            Step into the Teacher-Gamer multiverse—an interconnected set of storyworlds and training paths that help educators use role-playing games as metaphors for real-world learning. Each adventure equips you with new tools, new perspectives, and new ways to bring collaborative storytelling into your classroom.
+          <p
+            className="text-base md:text-lg leading-relaxed max-w-3xl mx-auto mt-4"
+            style={{ color: "var(--color-lighter)" }}
+          >
+            {t("description")}
           </p>
         </div>
         <div
@@ -65,10 +76,12 @@ export default function CoursesSection({ sectionIndex }: CoursesSectionProps) {
           {homeCourseCards.map((course) => (
             <EletricCard
               key={course.id}
-              title={course.title}
-              description={course.description}
+              title={tCourses(`${course.id}.title`)}
+              description={tCourses(`${course.id}.description`)}
               color={course.color}
-              badge={course.badge}
+              badge={
+                course.badge ? tCourses(`badges.${course.badge}`) : undefined
+              }
               href={course.href}
               diceImage={course.diceImage}
             />
@@ -81,14 +94,21 @@ export default function CoursesSection({ sectionIndex }: CoursesSectionProps) {
             href="/workshops"
             className="group relative block w-full rounded-2xl p-[2px] overflow-hidden transition-all duration-500 hover:scale-[1.01]"
             style={{
-              background: "linear-gradient(135deg, var(--color-accent), var(--color-secondary), var(--color-accent-light), var(--color-primary-light), var(--color-accent))",
+              background:
+                "linear-gradient(135deg, var(--color-accent), var(--color-secondary), var(--color-accent-light), var(--color-primary-light), var(--color-accent))",
               backgroundSize: "300% 300%",
               animation: "shimmer 4s ease-in-out infinite",
             }}
           >
-            <div className="relative w-full rounded-2xl px-4 sm:px-8 py-6 flex items-center justify-center backdrop-blur-sm text-center" style={{ backgroundColor: "rgba(26, 26, 31, 0.85)" }}>
-              <span className="text-base sm:text-lg md:text-xl font-bold tracking-tight text-balance" style={{ color: "var(--color-lighter)" }}>
-                Teacher Gamers Tour 2026 &amp; Workshops Near You
+            <div
+              className="relative w-full rounded-2xl px-4 sm:px-8 py-6 flex items-center justify-center backdrop-blur-sm text-center"
+              style={{ backgroundColor: "rgba(26, 26, 31, 0.85)" }}
+            >
+              <span
+                className="text-base sm:text-lg md:text-xl font-bold tracking-tight text-balance"
+                style={{ color: "var(--color-lighter)" }}
+              >
+                {t("workshopsBanner")}
               </span>
             </div>
           </Link>
@@ -96,16 +116,18 @@ export default function CoursesSection({ sectionIndex }: CoursesSectionProps) {
       </div>
 
       {/* Bottom horizontal transition element */}
-      <div 
+      <div
         className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
         style={{
-          background: "linear-gradient(to top, var(--color-secondary-soft), transparent)"
+          background:
+            "linear-gradient(to top, var(--color-secondary-soft), transparent)",
         }}
       />
-      <div 
+      <div
         className="absolute bottom-0 left-0 right-0 h-px opacity-60"
         style={{
-          background: "linear-gradient(to right, transparent, var(--color-accent), var(--color-secondary), var(--color-accent), transparent)"
+          background:
+            "linear-gradient(to right, transparent, var(--color-accent), var(--color-secondary), var(--color-accent), transparent)",
         }}
       />
     </section>

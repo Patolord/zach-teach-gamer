@@ -1,0 +1,17 @@
+{
+  "tourPopup": {
+    "openAria": "Abrir pôster da Turnê Teacher-Gamer 2026",
+    "close": "Fechar",
+    "closePopup": "Fechar janela",
+    "previous": "Mostrar pôster anterior",
+    "next": "Mostrar próximo pôster"
+  },
+  "booking": {
+    "open": "Abrir agendamento",
+    "dismiss": "Dispensar mensagem",
+    "minimize": "Minimizar",
+    "title": "Conversa Gratuita",
+    "subtitle": "Agende um bate-papo de 15 min para ver como os RPGs podem transformar sua sala de aula.",
+    "cta": "Agendar uma Conversa"
+  }
+}

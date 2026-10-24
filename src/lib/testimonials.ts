@@ -15,7 +15,9 @@ export function shuffle<T>(items: readonly T[]): T[] {
   return copy;
 }
 
-export function filterTestimonials(tags?: readonly TestimonialTag[]): Testimonial[] {
+export function filterTestimonials(
+  tags?: readonly TestimonialTag[],
+): Testimonial[] {
   if (!tags?.length) return [...testimonials];
   return testimonials.filter((item) =>
     tags.some((tag) => item.tags.includes(tag)),

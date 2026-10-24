@@ -1,0 +1,95 @@
+{
+  "hero": {
+    "title": "Podcasts e Galeria",
+    "description": "Mergulhe em conversas sobre aprendizagem baseada em jogos, explore momentos dos bastidores e descubra a magia da metodologia Teacher-Gamer.",
+    "introVideoTitle": "Vídeo de Apresentação do Teacher Gamer"
+  },
+  "videos": {
+    "more": "Mais Vídeos",
+    "subscribe": "Inscreva-se no Youtube"
+  },
+  "podcast": {
+    "title": "Últimos Episódios do <gradient>Teacher Gamer Podcast</gradient>",
+    "featured": "Destaque",
+    "playerTitle": "TGPC - The Power of Writing",
+    "listenNow": "Ouvir Agora",
+    "platforms": "Ouça na sua plataforma favorita",
+    "viewOnPodbean": "Ver no Podbean",
+    "episodes": {
+      "powerOfGbl": {
+        "date": "Dez 2024",
+        "description": "Explorando como os jogos de RPG de mesa transformam a educação e desenvolvem o pensamento crítico nas mentes jovens."
+      },
+      "ep1JesseDriver": {
+        "date": "Dez 2021",
+        "description": "Nosso episódio de estreia destaca diferentes estilos de ensinar com jogos. Falamos sobre \"Make Play\", Mantic Games, materiais baratos, hora de hobby e artesanato no Ensino Fundamental II, cultura de mesa vs. digital, mini-wargames e homebrewing."
+      },
+      "ep8HandbookIntro": {
+        "date": "Mar 2025",
+        "description": "Abrindo a temporada com uma prévia do audiolivro do Teacher-Gamer Handbook. Um mergulho no uso de RPGs nas escolas como aprendizagem baseada em projetos (PBL) e aprendizagem socioemocional (SEL) por meio da metodologia das 36 habilidades para a vida do Zach."
+      }
+    }
+  },
+  "gallery": {
+    "title": "Galeria",
+    "description": "Explore momentos das nossas sessões, workshops e do universo criativo da aprendizagem baseada em jogos.",
+    "categories": {
+      "all": "Todos",
+      "sessions": "Sessões",
+      "learning": "Aprendizagem",
+      "workshops": "Workshops"
+    },
+    "loadMore": "Carregar Mais",
+    "remaining": "({n} restantes)",
+    "images": {
+      "gamingSession": "Sessão de Jogo",
+      "groupActivity": "Atividade em Grupo",
+      "dndAdventure": "Aventura de D&D",
+      "tabletopGaming": "Jogo de Mesa",
+      "learningMoment": "Momento de Aprendizagem",
+      "classroomSession": "Sessão em Sala de Aula",
+      "studentEngagement": "Engajamento dos Estudantes",
+      "creativePlay": "Brincar Criativo",
+      "workshopActivity": "Atividade de Workshop",
+      "gameMasterTeaching": "Mestre de Jogo Ensinando",
+      "collaborativeLearning": "Aprendizagem Colaborativa",
+      "rpgSession": "Sessão de RPG",
+      "characterBuilding": "Criação de Personagens",
+      "storytellingSession": "Sessão de Contação de Histórias",
+      "teamCollaboration": "Colaboração em Equipe",
+      "adventurePlanning": "Planejamento da Aventura",
+      "gameSetup": "Preparação do Jogo",
+      "studentFocus": "Estudantes Concentrados",
+      "interactiveLearning": "Aprendizagem Interativa",
+      "groupDiscussion": "Discussão em Grupo",
+      "creativeExpression": "Expressão Criativa",
+      "problemSolving": "Resolução de Problemas",
+      "gamingFun": "Diversão no Jogo",
+      "classroomAdventure": "Aventura em Sala de Aula",
+      "teamBuilding": "Construção de Equipe",
+      "imaginationAtWork": "Imaginação em Ação",
+      "learningThroughPlay": "Aprender Brincando",
+      "gameMastering": "Mestrando o Jogo",
+      "studentCreativity": "Criatividade dos Estudantes",
+      "adventureTime": "Hora da Aventura",
+      "collaborativeStory": "História Colaborativa",
+      "workshopMoment": "Momento de Workshop",
+      "teacherGamerSession": "Sessão Teacher Gamer",
+      "engagedLearners": "Estudantes Engajados",
+      "miniaturePainting": "Pintura de Miniaturas",
+      "rolePlayingFun": "Diversão com Interpretação de Papéis",
+      "panoramicSession": "Sessão Panorâmica",
+      "gamingGroup": "Grupo de Jogo",
+      "teachingMoment": "Momento de Ensino",
+      "studentAchievement": "Conquista dos Estudantes",
+      "gameNight": "Noite de Jogos",
+      "specialEvent": "Evento Especial",
+      "onlineTeaching": "Ensino Online",
+      "behindTheScenes": "Por Trás das Cenas"
+    }
+  },
+  "lightbox": {
+    "aria": "Visualizador de imagem",
+    "close": "Fechar visualizador"
+  }
+}

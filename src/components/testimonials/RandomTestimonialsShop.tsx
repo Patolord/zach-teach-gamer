@@ -1,9 +1,11 @@
 "use client";
 
-import { Star } from "lucide-react";
+import { useTranslations } from "next-intl";
+import StarRating from "@/components/ui/star-rating";
 import { useRandomTestimonials } from "@/hooks/useRandomTestimonials";
 
 export default function RandomTestimonialsShop() {
+  const t = useTranslations("home.testimonials");
   const items = useRandomTestimonials(3, ["handbook", "educator"]);
 
   if (!items.length) return null;
@@ -17,14 +19,9 @@ export default function RandomTestimonialsShop() {
         >
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
-              {[...Array(5)].map((_, i) => (
-                <Star
-                  key={`${item.id}-star-${i}`}
-                  className="w-4 h-4 text-accent fill-accent"
-                />
-              ))}
+              <StarRating className="w-4 h-4" />
             </div>
-            <span className="text-xs text-lighter/50">Community</span>
+            <span className="text-xs text-lighter/50">{t("community")}</span>
           </div>
           <p className="text-base italic mb-4 text-light flex-1">
             &ldquo;{item.quote}&rdquo;

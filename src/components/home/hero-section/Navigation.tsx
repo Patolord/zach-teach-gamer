@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { type CSSProperties, forwardRef } from "react";
 
 interface NavigationProps {
@@ -8,6 +9,8 @@ interface NavigationProps {
 
 const Navigation = forwardRef<HTMLElement, NavigationProps>(
   ({ style }, ref) => {
+    const t = useTranslations("home.nav");
+
     return (
       <nav
         ref={ref}
@@ -35,25 +38,25 @@ const Navigation = forwardRef<HTMLElement, NavigationProps>(
               href="#courses-section"
               className="text-black hover:opacity-70 transition-opacity text-[10px] sm:text-xs font-medium uppercase whitespace-nowrap"
             >
-              Courses
+              {t("courses")}
             </a>
             <a
               href="#calendar-section"
               className="text-black hover:opacity-70 transition-opacity text-[10px] sm:text-xs font-medium uppercase whitespace-nowrap"
             >
-              Calendar
+              {t("calendar")}
             </a>
             <a
               href="/shop"
               className="text-black hover:opacity-70 transition-opacity text-[10px] sm:text-xs font-medium uppercase whitespace-nowrap"
             >
-              Shop
+              {t("shop")}
             </a>
             <a
               href="/about"
               className="text-black hover:opacity-70 transition-opacity text-[10px] sm:text-xs font-medium uppercase whitespace-nowrap"
             >
-              Contact
+              {t("contact")}
             </a>
           </div>
           {/* Buttons */}
@@ -63,7 +66,7 @@ const Navigation = forwardRef<HTMLElement, NavigationProps>(
                 href="#courses-section"
                 className="text-[10px] sm:text-xs font-medium uppercase text-black whitespace-nowrap"
               >
-                Training
+                {t("training")}
               </a>
             </div>
             <div className="px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 rounded bg-black border border-white">
@@ -71,7 +74,7 @@ const Navigation = forwardRef<HTMLElement, NavigationProps>(
                 href="#shop-section"
                 className="text-[10px] sm:text-xs font-medium uppercase text-white whitespace-nowrap"
               >
-                Shop Now
+                {t("shopNow")}
               </a>
             </div>
           </div>

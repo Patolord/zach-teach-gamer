@@ -1,0 +1,155 @@
+{
+  "backToHome": "Voltar ao Início",
+  "hero": {
+    "badge": "Perguntas Frequentes",
+    "title": "<accent>Como Podemos</accent><light> Ajudar?</light>",
+    "intro": "Encontre respostas para as dúvidas mais comuns sobre nossos cursos, produtos e metodologia de aprendizagem baseada em jogos. Não encontrou o que procura? <link>Fale conosco</link>."
+  },
+  "stats": {
+    "educators": { "value": "500+", "label": "Educadores Formados" },
+    "students": { "value": "10 mil+", "label": "Estudantes Alcançados" },
+    "satisfaction": { "value": "95%", "label": "Índice de Satisfação" },
+    "support": { "value": "24/7", "label": "Acesso ao Suporte" }
+  },
+  "categories": {
+    "gettingStarted": "Primeiros Passos",
+    "courses": "Cursos e Conteúdo",
+    "pricing": "Preços e Pagamento",
+    "community": "Comunidade e Suporte",
+    "shop": "Loja e Produtos",
+    "technical": "Técnico e Geral"
+  },
+  "items": {
+    "whatIsGbl": {
+      "question": "O que é aprendizagem baseada em jogos?",
+      "answer": "A aprendizagem baseada em jogos usa jogos de RPG de mesa e narrativas interativas para ensinar conceitos e habilidades acadêmicas. Ela engaja os estudantes por meio da narrativa, do desenvolvimento de personagens e da resolução colaborativa de problemas, ao mesmo tempo em que atende aos padrões educacionais."
+    },
+    "rpgExperience": {
+      "question": "Preciso ter experiência com RPG para fazer os cursos?",
+      "answer": "De jeito nenhum! Nossos cursos foram pensados para educadores de todos os níveis, de iniciantes completos a mestres de jogo experientes. Começamos pelo básico e desenvolvemos suas habilidades progressivamente."
+    },
+    "ageGroups": {
+      "question": "Quais faixas etárias podem se beneficiar da aprendizagem baseada em jogos?",
+      "answer": "Trabalhamos principalmente com estudantes a partir de 10 anos, mas nossos métodos podem ser adaptados a diversas faixas etárias. O segredo é ajustar a complexidade e os temas ao nível de desenvolvimento dos estudantes."
+    },
+    "implementationTime": {
+      "question": "Quanto tempo leva para implementar a aprendizagem baseada em jogos?",
+      "answer": "Você pode começar pequeno, com sessões avulsas, e ampliar conforme ganha confiança. A maioria dos educadores começa a perceber ganhos de engajamento já nas primeiras sessões, e a implementação completa de um curso introdutório leva 10 semanas."
+    },
+    "courseLength": {
+      "question": "Qual é a duração dos cursos?",
+      "answer": "A duração varia de 6 a 20 semanas, dependendo do nível e da quantidade de horas por semana. O Nível 1 tem 24 horas em 6 semanas, o Nível 2 tem 48 horas em 12 semanas e o Nível 3 tem 72 horas em 20 semanas. Todos os cursos são no seu próprio ritmo, com a opção de aprendizagem em turmas. Há cursos presenciais e online."
+    },
+    "courseIncludes": {
+      "question": "O que está incluído em cada curso?",
+      "answer": "Cada curso inclui aulas online, materiais para download, modelos, acesso à comunidade Teacher Gamer WhatsApp Fellowship e ao servidor do Discord, além de atividades práticas. Os cursos de nível mais avançado incluem mentoria individual e materiais avançados."
+    },
+    "accessAfterCompletion": {
+      "question": "Posso acessar os materiais do curso depois de concluí-lo?",
+      "answer": "Sim. Você tem acesso vitalício a todos os materiais do curso, incluindo atualizações e acréscimos futuros."
+    },
+    "prerequisites": {
+      "question": "Há pré-requisitos para os cursos avançados?",
+      "answer": "A metodologia Teacher-Gamer é holística. Recomendamos fazer os cursos em ordem, pois cada um se apoia nos conceitos anteriores, e há elementos originais e únicos de aprendizagem socioemocional (SEL), aprendizagem baseada em projetos (PBL) e aprendizagem baseada em jogos (GBL) apresentados pelo Teacher-Gamer que trazem novas perspectivas até mesmo para educadores, jogadores e mestres experientes."
+    },
+    "groupTraining": {
+      "question": "Vocês oferecem formação para grupos ou para a escola inteira?",
+      "answer": "Sim. Oferecemos pacotes de formação personalizados para escolas e redes de ensino, incluindo preços para grupos e desenvolvimento profissional sob medida."
+    },
+    "courseCost": {
+      "question": "Quanto custam os cursos?",
+      "answer": "O Nível 1 começa em $299, o Nível 2 em $599 e o Nível 3 em $999. Há planos de pagamento e descontos para pacotes."
+    },
+    "refunds": {
+      "question": "Vocês oferecem reembolso?",
+      "answer": "Sim. Oferecemos garantia de devolução do dinheiro em até 30 dias."
+    },
+    "paymentPlans": {
+      "question": "Há planos de pagamento disponíveis?",
+      "answer": "Sim. Oferecemos planos de pagamento em 3 e 6 meses para todos os cursos."
+    },
+    "educatorDiscounts": {
+      "question": "Vocês oferecem desconto para educadores?",
+      "answer": "Sim. Educadores em atividade recebem 20% de desconto mediante comprovação."
+    },
+    "schoolReimbursement": {
+      "question": "Posso ser reembolsado pela minha escola?",
+      "answer": "Muitas escolas reembolsam o desenvolvimento profissional. Fornecemos recibos detalhados e documentação para apoiar pedidos de reembolso."
+    },
+    "communityAccess": {
+      "question": "Existe uma comunidade para os participantes dos cursos?",
+      "answer": "Sim. Todos os participantes têm acesso às comunidades privadas no WhatsApp e no Discord para se conectar, trocar experiências e receber feedback."
+    },
+    "gettingHelp": {
+      "question": "Como consigo ajuda se eu travar?",
+      "answer": "O suporte está disponível pelos fóruns da comunidade, por e-mail, em sessões de perguntas e respostas ao vivo (para os cursos de nível mais alto) e pela documentação. A maioria das dúvidas é respondida em até 24 horas."
+    },
+    "collaboration": {
+      "question": "Posso colaborar com outros educadores?",
+      "answer": "Sim. A colaboração é incentivada, incluindo docência compartilhada, troca de materiais e criação conjunta de campanhas."
+    },
+    "networking": {
+      "question": "Há oportunidades de networking?",
+      "answer": "Promovemos encontros virtuais mensais, conferências anuais e workshops regionais."
+    },
+    "products": {
+      "question": "Quais produtos vocês vendem?",
+      "answer": "Oferecemos guias para mestres de jogo, módulos de campanha, conjuntos de dados, fichas de personagem, modelos de construção de mundos e pôsteres para a sala de aula."
+    },
+    "digitalPhysical": {
+      "question": "Os produtos digitais vêm com itens físicos?",
+      "answer": "Alguns pacotes incluem componentes digitais e físicos. Os produtos digitais ficam disponíveis imediatamente após a compra."
+    },
+    "shipping": {
+      "question": "Qual é a política de envio?",
+      "answer": "Os pedidos são despachados em 2 a 3 dias úteis. O envio nacional leva de 5 a 7 dias; o envio internacional leva de 10 a 14 dias. Frete grátis nos EUA para pedidos acima de $50."
+    },
+    "returns": {
+      "question": "Posso devolver produtos físicos?",
+      "answer": "Produtos físicos podem ser devolvidos em até 30 dias, desde que não usados e em sua condição original. Produtos digitais não são reembolsáveis após o download."
+    },
+    "devices": {
+      "question": "Quais dispositivos são compatíveis?",
+      "answer": "Nossa plataforma funciona em computadores de mesa, notebooks, tablets e smartphones. Para os cursos, recomendamos uma tela maior."
+    },
+    "software": {
+      "question": "Preciso de algum software especial?",
+      "answer": "Não. Tudo roda no seu navegador. É necessário um leitor de PDF para ler o material baixado. O Discord é opcional para acessar a comunidade."
+    },
+    "accessPurchases": {
+      "question": "Como acesso minhas compras?",
+      "answer": "Entre na sua conta e acesse “Meus Cursos” ou “Meus Downloads” no seu painel."
+    },
+    "sharingAccess": {
+      "question": "Posso compartilhar meu acesso ao curso com colegas?",
+      "answer": "As licenças individuais são para um único usuário. Há pacotes para grupos e escolas."
+    },
+    "dataSecurity": {
+      "question": "Meus dados estão seguros?",
+      "answer": "Sim. Usamos criptografia padrão do setor e cumprimos todas as regulamentações de privacidade."
+    }
+  },
+  "stillQuestions": {
+    "title": "<accent>Ainda Tem</accent><light> Dúvidas?</light>",
+    "body": "Não encontrou a resposta que procura? Nossa equipe de suporte está aqui para ajudar. Entre em contato e responderemos o mais rápido possível.",
+    "contactSupport": "Falar com o Suporte",
+    "browseCourses": "Ver os Cursos"
+  },
+  "resources": {
+    "docs": {
+      "title": "Documentação",
+      "body": "Explore nossos guias e tutoriais completos.",
+      "link": "Ler a Documentação →"
+    },
+    "community": {
+      "title": "Comunidade",
+      "body": "Entre no nosso Discord para se conectar com outros educadores.",
+      "link": "Entrar no Discord →"
+    },
+    "trial": {
+      "title": "Teste Gratuito",
+      "body": "Experimente nosso curso introdutório gratuitamente antes de decidir.",
+      "link": "Começar o Teste Gratuito →"
+    }
+  }
+}

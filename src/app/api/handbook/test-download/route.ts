@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 import {
   downloadableProductTypes,
-  getProductDownloadUrl,
   getHandbookDownloadUrl,
+  getProductDownloadUrl,
   isDownloadableProductType,
   isHandbookBlobConfigured,
   isProductBlobConfigured,

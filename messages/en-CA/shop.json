@@ -1,0 +1,102 @@
+{
+  "backToHome": "Back to Home",
+  "hero": {
+    "coverAlt": "The Teacher-Gamer Handbook Cover",
+    "rating": "4.9/5 from 200+ Educators",
+    "badge": "Educational Resource",
+    "title": "<accent>The Teacher-Gamer</accent> Handbook",
+    "tagline": "Build literacy. Spark imagination. Empower learners. Transform classrooms into immersive adventures where students learn by playing, failing, and growing together.",
+    "formats": "Digital & Physical versions available",
+    "discountBadge": "19% OFF",
+    "buyPdf": "Get The PDF — Instant Download",
+    "buyPdfNote": "Save 19% vs Physical Book — $29.99 CAD via Stripe — Instant Download",
+    "buyPhysical": "Buy Physical Book"
+  },
+  "benefits": {
+    "framework": {
+      "title": "Complete Framework",
+      "description": "Everything you need to integrate RPGs into your curriculum"
+    },
+    "proven": {
+      "title": "Proven Methods",
+      "description": "Tested in real classrooms with measurable results"
+    },
+    "easy": {
+      "title": "Easy to Follow",
+      "description": "Clear instructions for educators of all experience levels"
+    }
+  },
+  "features": {
+    "title": "<accent>What's</accent> Inside",
+    "items": {
+      "pages": "📘 300 pages of creative strategies and lesson plans",
+      "lifeSkills": "🎲 36 life skills through collaborative RPG experiences",
+      "audience": "⚔️ Designed for educators guiding 10+ year-old learners",
+      "hours": "🔥 40+ hours of co-creative play and storytelling",
+      "guides": "✨ Step-by-step implementation guides",
+      "activities": "🎯 Classroom-tested activities and scenarios",
+      "assessment": "📊 Assessment tools and progress tracking",
+      "tips": "💡 Tips from experienced game master educators"
+    }
+  },
+  "testimonials": {
+    "title": "<accent>What Educators</accent> Are Saying"
+  },
+  "products": {
+    "title": "<accent>Available</accent> Products",
+    "startingFrom": "Starting From:",
+    "handbookPdf": {
+      "name": "Teacher Gamer Handbook (PDF)",
+      "cta": "Buy PDF"
+    },
+    "handbookPrint": {
+      "name": "Teacher Gamer Handbook (Softcover / Hardcover)",
+      "cta": "BUY NOW"
+    },
+    "screenLandscape": {
+      "name": "Teacher Gamer Screen (Landscape)",
+      "cta": "Buy Landscape PDF"
+    },
+    "screenPortrait": {
+      "name": "Teacher Gamer Screen (Portrait)",
+      "cta": "Buy Portrait PDF"
+    }
+  },
+  "partner": {
+    "logoAlt": "Hero Workshop",
+    "eyebrow": "Partner Highlight",
+    "title": "Level 1 TG: Intro to the Multiverse Certificate Course at Hero Workshop, in-person Culver City, California",
+    "intro": "24-hour in-person accelerator course!",
+    "dates": "August 9, 15, 16, 2026.",
+    "hours": "(8:30am - 5:15pm)",
+    "description": "We are teaming up with Hero Workshop to bring the Teacher-Gamer Revolution to the Los Angeles education community.",
+    "storyLed": "Story-led learning",
+    "creativeFacilitation": "Creative facilitation",
+    "spotlight": "Partner spotlight",
+    "enroll": "Enroll Now"
+  },
+  "cta": {
+    "title": "<accent>Ready to Get</accent> Started?",
+    "description": "Explore our collection of educational resources designed to transform your classroom into an engaging learning adventure.",
+    "button": "Get Started - Buy PDF"
+  },
+  "success": {
+    "title": "Payment Successful!",
+    "ready": "Your {product} is ready. Use the button below to download your private copy.",
+    "pending": "We confirmed your purchase, but the download links are not ready yet. Please contact support if this does not resolve shortly.",
+    "thanks": "Thank you for your purchase! Your payment was completed successfully.",
+    "download": "Download PDF",
+    "continueShopping": "Continue Shopping",
+    "productLabels": {
+      "handbook": "handbook",
+      "screen_landscape": "landscape screen PDF",
+      "screen_portrait": "portrait screen PDF"
+    }
+  },
+  "cancel": {
+    "title": "Payment Cancelled",
+    "description": "Your payment was cancelled. No charges have been made. If you experienced any issues, please contact our support team.",
+    "tryAgain": "Try Again",
+    "contactSupport": "Contact Support"
+  }
+}

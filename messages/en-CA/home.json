@@ -1,0 +1,109 @@
+{
+  "hero": {
+    "title": "Transform Your Classroom with <highlight>Educational RPGs</highlight>",
+    "description": "Learn the Teacher-Gamer method and bring role-playing games into your classroom. Engage students, build social-emotional skills, and create meaningful learning experiences through collaborative storytelling and purposeful play.",
+    "exploreCourses": "Explore Courses",
+    "watchHowItWorks": "Watch How It Works",
+    "features": {
+      "proven": "Proven Method",
+      "classrooms": "For All Classrooms",
+      "expert": "Expert-Led Training"
+    },
+    "imageAlt": "Children learning and playing safely in an educational environment",
+    "scroll": "Scroll",
+    "scrollDownLabel": "Scroll down indicator",
+    "scrollDownTitle": "Scroll down"
+  },
+  "handbook": {
+    "title": "The Teacher-Gamer Handbook",
+    "subtitle": "Build literacy. Spark imagination. Empower learners. Transform classrooms into immersive adventures where students learn by playing, failing, and growing together.",
+    "bullets": {
+      "pages": "300 pages of creative strategies and lesson plans",
+      "skills": "36 life skills through collaborative RPG experiences",
+      "designed": "Designed for educators guiding 10+ year-old learners",
+      "hours": "40+ hours of co-creative play and storytelling"
+    },
+    "framework": "A complete framework to bring the power of role-playing into education.",
+    "cta": "Get the Handbook",
+    "shopNow": "SHOP NOW",
+    "cardLabel": "Shop Section Card"
+  },
+  "socialProof": {
+    "avatarAlt": "User {n}",
+    "text": "<strong>1,000+</strong> families trust us for safe, educational play"
+  },
+  "nav": {
+    "courses": "Courses",
+    "calendar": "Calendar",
+    "shop": "Shop",
+    "contact": "Contact",
+    "training": "Training",
+    "shopNow": "Shop Now"
+  },
+  "testimonials": {
+    "title": "Testimonials",
+    "readMore": "Read more",
+    "imageAlt": "Testimonial",
+    "close": "Close",
+    "community": "Community"
+  },
+  "courses": {
+    "title": "Choose your next Adventure!",
+    "description": "Step into the Teacher-Gamer multiverse—an interconnected set of storyworlds and training paths that help educators use role-playing games as metaphors for real-world learning. Each adventure equips you with new tools, new perspectives, and new ways to bring collaborative storytelling into your classroom.",
+    "workshopsBanner": "Teacher Gamers Tour 2026 & Workshops Near You",
+    "learnMore": "Learn More",
+    "diceAlt": "Dice"
+  },
+  "substack": {
+    "title": "Latest from Substack",
+    "loading": "Loading latest posts...",
+    "errors": {
+      "noPosts": "No posts found. Please try again later.",
+      "loadFailed": "Failed to load latest posts. Please try again later."
+    },
+    "readMore": "Read more",
+    "subscribe": "Subscribe to the TG Newsletter"
+  },
+  "research": {
+    "title": "Teacher-Gamer Published Research",
+    "subtitle": "Peer-reviewed papers on <accent>Academia.edu</accent> exploring how role-playing games transform learning",
+    "follow": "Follow Zach Reznichek on Academia.edu",
+    "articles": {
+      "multiverse": {
+        "views": "7,228 Views",
+        "abstract": "The idea that when you play role-playing games (RPGs): you submerge yourself 'in-game' to adventure, explore, and problem-solve through experimentation, puts your imagination, sense of self, and morality to the test. This paper explores RPGs as a distinct educational discipline that fosters critical thinking, creativity, and collaborative learning."
+      },
+      "authenticEducation": {
+        "views": "24,241 Views • Top 4%",
+        "abstract": "The simple response would include that an 'authentic education' is designed to guide students to develop their unique talents and abilities, rather than forcing them to conform to standardized measures. This paper examines the philosophical foundations of authentic education and its implications for modern pedagogy."
+      },
+      "authenticEducationAi": {
+        "views": "New",
+        "abstract": "This paper explores the nature of 'authentic education' in a world increasingly shaped by artificial intelligence (AI) and proposes a curriculum philosophy rooted in self-development, civic consciousness, and ecological stewardship."
+      },
+      "selfDetermination": {
+        "views": "177 Views",
+        "abstract": "By the end of the 20th century, concerns over students' dependency, self-doubt, demotivation, and anxiety had reached critical levels. This paper examines Self-Determination Theory and argues against the overuse of extrinsic motivators in educational settings, advocating for intrinsic motivation through autonomy, competence, and relatedness."
+      },
+      "writingJourney": {
+        "views": "120 Views",
+        "abstract": "Education is not only about major milestones, like graduations and certifications, but also about the journey of continuous learning and growth. This paper explores pedagogical approaches to help students begin their writing journey with confidence, creativity, and authentic voice."
+      },
+      "authenticityMatters": {
+        "views": "2,625 Views",
+        "abstract": "As a corrupted byproduct of socioeconomic politics, curriculum philosophy is unsuitable to solve educational challenges. This defended thesis examines the decline of contemplative practices in education and the emergence of social constructivism as the dominant educational paradigm, questioning whether authenticity still matters in modern pedagogy."
+      }
+    }
+  },
+  "calendar": {
+    "title": "Schedule a Session",
+    "subtitle": "Choose the best date and time for your adventure",
+    "modalButton": "Schedule a Session"
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "subtitle": "Have questions or want to connect? Reach out through your preferred social media platform.",
+    "description": "We're active on all these channels and would love to hear from you!",
+    "support": "Support the Project"
+  }
+}

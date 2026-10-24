@@ -2,10 +2,10 @@ import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import {
+  type DownloadableProductType,
   getDownloadableProductLabel,
   getProductDownloadUrl,
   isDownloadableProductType,
-  type DownloadableProductType,
 } from "@/lib/handbook-download";
 
 const resendApiKey = process.env.RESEND_API_KEY;
@@ -68,7 +68,7 @@ export async function POST(request: Request) {
   }
 
   const stripe = new Stripe(stripeSecretKey, {
-    apiVersion: "2026-02-25.clover",
+    apiVersion: "2026-09-30.endive",
   });
   const payload = await request.text();
   const signature = (await headers()).get("stripe-signature");

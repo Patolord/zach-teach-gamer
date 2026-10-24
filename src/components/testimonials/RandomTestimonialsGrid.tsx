@@ -37,9 +37,7 @@ export default function RandomTestimonialsGrid({
       )}
       <div
         className={
-          columns === 1
-            ? "grid grid-cols-1 gap-5"
-            : "grid md:grid-cols-2 gap-5"
+          columns === 1 ? "grid grid-cols-1 gap-5" : "grid md:grid-cols-2 gap-5"
         }
       >
         {items.map((item) => (

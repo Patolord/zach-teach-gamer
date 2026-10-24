@@ -1,0 +1,109 @@
+{
+  "backToHome": "Voltar ao Início",
+  "title": "Teacher Gamers <accent>pelo Mundo</accent>",
+  "stats": {
+    "teachers": "Professores",
+    "certificates": "Formação / Certificados"
+  },
+  "legend": {
+    "teacher": "Localização de Professor",
+    "workshop": "Workshop",
+    "hint": "Clique no marcador para ver detalhes"
+  },
+  "tooltip": {
+    "more": "+ {n} mais"
+  },
+  "cta": {
+    "title": "Entre para a Rede",
+    "subtitle": "Torne-se um Teacher Gamer certificado",
+    "button": "Certifique-se"
+  },
+  "contactLabels": {
+    "instagram": "Instagram",
+    "linkedin": "LinkedIn",
+    "discord": "Discord",
+    "email": "E-mail"
+  },
+  "teacherModal": {
+    "closeAria": "Fechar detalhes do professor",
+    "specialties": "Especialidades / Serviços",
+    "certificates": "Formação / Certificados",
+    "tgBadge": "TG",
+    "connectWith": "Conecte-se com {name}",
+    "emailAria": "Enviar e-mail para {name}",
+    "profileAria": "{name} no {platform}"
+  },
+  "workshopModal": {
+    "closeAria": "Fechar detalhes do workshop",
+    "details": "Detalhes do Workshop",
+    "expect": "O Que Esperar",
+    "viewWorkshops": "Ver Workshops"
+  },
+  "specialties": {
+    "teacherTraining": "Formação de Professores",
+    "curriculumDevelopment": "Desenvolvimento Curricular",
+    "sel": "Aprendizagem Socioemocional (SEL)",
+    "gbl": "Aprendizagem Baseada em Jogos (GBL)",
+    "pbl": "Aprendizagem Baseada em Projetos (PBL)",
+    "rpgFacilitation": "Facilitação com RPG",
+    "improvFacilitation": "Facilitação com Improviso",
+    "narrativeDesign": "Design Narrativo",
+    "professionalDming": "Mestre de RPG Profissional",
+    "communityBuilding": "Construção de Comunidade",
+    "corporateTraining": "Treinamento e Facilitação Corporativa",
+    "keynoteSpeaking": "Palestras Keynote",
+    "gameBasedLearning": "Aprendizagem Baseada em Jogos",
+    "creativeStrategy": "Estratégia Criativa e Inovação",
+    "publicSpeaking": "Oratória",
+    "digitalMarketing": "Marketing Digital",
+    "copywriting": "Copywriting",
+    "translationEnPtBr": "Tradução (EN → PT-BR)",
+    "martialArts": "Artes Marciais",
+    "humanCenteredDesign": "Design Centrado no Ser Humano e Inovação",
+    "decentralizedLeadership": "Liderança Descentralizada",
+    "translationEnPtBrEn": "Tradução (EN → PT-BR → EN)",
+    "lessonPlanDevelopment": "Elaboração de Planos de Aula",
+    "eventOrganising": "Organização de Eventos",
+    "personalLogoFacilitation": "Facilitação de Criação de Logo Pessoal",
+    "professor": "Professor Universitário",
+    "educationalLeadership": "Liderança Educacional",
+    "skillAcquisition": "Aquisição de Habilidades"
+  },
+  "certificates": {
+    "bsDesign": "Bacharelado em Design",
+    "maEducation": "Mestrado em Educação",
+    "eslCertificate": "Certificado de Ensino de Inglês (ESL)",
+    "mindfulnessCertificate": "Certificado em Treinamento de Mindfulness",
+    "founderTeacherGamer": "Fundador — Teacher-Gamer",
+    "authorHandbook": "Autor — Teacher-Gamer Handbook",
+    "coFounderDaVinci": "Cofundador — Currículo Da Vinci Life Skills",
+    "baMultimediaDesign": "Bacharelado em Design Multimídia",
+    "targetTealCorporateFacilitation": "Target Teal — Facilitação Corporativa",
+    "targetTealCultureHacking": "Target Teal — Culture Hacking",
+    "futureOfStorytelling": "Future of Storytelling (Universidade de Potsdam)",
+    "businessExperienceTracksale": "Experiência de Negócios (Tracksale)",
+    "humanizedMarketing": "Marketing Humanizado (Liliane Ferrari)",
+    "tgIntroMultiverse": "Teacher-Gamer — Introdução ao Multiverso",
+    "tgLevel1": "Teacher-Gamer — Nível 1",
+    "baNursing": "Bacharelado em Enfermagem",
+    "tgIntroLevel1": "Teacher-Gamer — Introdução e Nível 1",
+    "daVinciIntroLevel1": "Da Vinci Life Skills — Introdução e Nível 1",
+    "nvcIntensive": "Comunicação Não Violenta — Treinamento Intensivo Internacional",
+    "tgIntroLevel1Level2": "Teacher-Gamer — Introdução, Nível 1 e Nível 2",
+    "daVinciIntroLevel1Level2": "Da Vinci Life Skills — Introdução, Nível 1 e Nível 2",
+    "doctorateEducationalLeadership": "Doutorado em Liderança Educacional — ensino médio e aprendizagem baseada em jogos; ênfase em aquisição de habilidades por meio da aprendizagem baseada em jogos"
+  },
+  "workshops": {
+    "columbusOh2026": {
+      "title": "Missão de Workshop Teacher-Gamer",
+      "dateLabel": "11 a 21 de junho de 2026",
+      "statusLabel": "Workshop de Exemplo",
+      "description": "Uma parada de exemplo do workshop presencial Teacher-Gamer, com prática de facilitação com RPG, aprendizagem baseada em jogos e vivência em comunidade.",
+      "highlights": {
+        "live": "Sessões de workshop ao vivo",
+        "practice": "Prática de facilitação com RPG",
+        "method": "Metodologia Teacher-Gamer"
+      }
+    }
+  }
+}
