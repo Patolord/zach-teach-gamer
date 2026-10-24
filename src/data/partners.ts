@@ -34,6 +34,7 @@ export const partnerOrganizations: PartnerEntry[] = [
       "A Gambito do Rei leva a aprendizagem baseada em jogos a escolas p\u{fa}blicas brasileiras, unindo neuroeduca\u{e7}\u{e3}o, desenvolvimento de habilidades socioemocionais e forma\u{e7}\u{e3}o de educadores, com uma equipe presente ao lado de professores e alunos em sala de aula.",
     logoSrc: "/partners/gambito-do-rei-logo.png",
     logoClassName: "scale-[0.58]",
+    website: "https://gambitodorei.com.br/",
   },
   {
     name: "VitaEquilibrium",
