@@ -24,7 +24,7 @@ export const partnerOrganizations: PartnerEntry[] = [
     name: "Teacher-Gamer Brasil",
     description:
       "A Teacher-Gamer Brasil \u{e9} a parceira oficial da Teacher-Gamer Global no Brasil, apoiando escolas, universidades, ONGs e comunidades por meio de forma\u{e7}\u{e3}o de educadores, programas de certifica\u{e7}\u{e3}o, aprendizagem baseada em jogos e abordagens inovadoras para a aprendizagem socioemocional e baseada em projetos.",
-    logoSrc: "/partners/teacher-gamer-brasil-logo.png",
+    logoSrc: "/partners/teacher-gamer-brasil-logo-transparent.png",
     logoClassName: "scale-95",
     website: "https://www.instagram.com/teachergamerbr/",
   },
