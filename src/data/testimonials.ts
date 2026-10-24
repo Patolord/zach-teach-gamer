@@ -209,7 +209,8 @@ export const testimonials: Testimonial[] = [
   },
   {
     id: "angela-highly-recommend",
-    quote: "Highly recommend Zachary Reznichek and the Teacher-Gamer experience!",
+    quote:
+      "Highly recommend Zachary Reznichek and the Teacher-Gamer experience!",
     author: "Angela Fubler, Founder of Chatmore British International School",
     tags: ["educator", "hero", "marquee"],
   },
@@ -360,7 +361,8 @@ export const testimonials: Testimonial[] = [
   },
   {
     id: "genevieve-ace",
-    quote: "A dynamic ACE Spring Conference! Thank you Zachary Reznichek for an inspiring keynote!",
+    quote:
+      "A dynamic ACE Spring Conference! Thank you Zachary Reznichek for an inspiring keynote!",
     author: "Geneviève Ducharme, MEd, Pedagogical Consultant",
     tags: ["educator", "marquee"],
   },
@@ -408,7 +410,8 @@ export const testimonials: Testimonial[] = [
   },
   {
     id: "podcast-guest",
-    quote: "Thanks for coming to talk with Zachary Reznichek. It was such a wonderful conversation.",
+    quote:
+      "Thanks for coming to talk with Zachary Reznichek. It was such a wonderful conversation.",
     author: "Teacher-Gamer Podcast Guest",
     tags: ["educator", "marquee"],
   },

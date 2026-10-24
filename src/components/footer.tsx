@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { X } from "lucide-react";
-import { useTranslations } from "next-intl";
 import Image from "next/image";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { useEffect, useState } from "react";
+import { Link } from "@/i18n/navigation";
 
 interface ModalProps {
   isOpen: boolean;
@@ -20,8 +20,10 @@ function Modal({ isOpen, onClose, title, children }: ModalProps) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* Backdrop */}
-      <div
-        className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+      <button
+        type="button"
+        aria-label={t("closeModal")}
+        className="absolute inset-0 bg-black/70 backdrop-blur-sm cursor-default"
         onClick={onClose}
       />
 
@@ -31,6 +33,7 @@ function Modal({ isOpen, onClose, title, children }: ModalProps) {
         <div className="flex items-center justify-between p-4 border-b border-gray-700">
           <h2 className="text-xl font-bold text-white">{title}</h2>
           <button
+            type="button"
             onClick={onClose}
             className="p-2 text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg transition-colors"
             aria-label={t("closeModal")}
@@ -188,6 +191,7 @@ export default function Footer() {
               </p>
               <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-0.5 text-xs md:justify-end md:text-sm">
                 <button
+                  type="button"
                   onClick={() => setTermsOpen(true)}
                   className="text-gray-400 hover:text-white transition-colors underline-offset-2 hover:underline"
                 >
@@ -195,6 +199,7 @@ export default function Footer() {
                 </button>
                 <span className="text-gray-600">|</span>
                 <button
+                  type="button"
                   onClick={() => setPrivacyOpen(true)}
                   className="text-gray-400 hover:text-white transition-colors underline-offset-2 hover:underline"
                 >

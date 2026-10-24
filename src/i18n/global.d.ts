@@ -1,9 +1,9 @@
-import type { locales } from "./config";
 import type messages from "../../messages/en-CA";
+import type { routing } from "./routing";
 
 declare module "next-intl" {
   interface AppConfig {
-    Locale: (typeof locales)[number];
+    Locale: (typeof routing.locales)[number];
     Messages: typeof messages;
   }
 }

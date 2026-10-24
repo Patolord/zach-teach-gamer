@@ -2,10 +2,9 @@
 
 import { ChevronDown, Menu, X } from "lucide-react";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import LocaleToggle from "@/components/shared/LocaleToggle";
+import { Link, usePathname } from "@/i18n/navigation";
 
 type NavKey =
   | "home"
@@ -52,7 +51,10 @@ export function Header() {
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target as Node)
+      ) {
         setOpenDropdown(null);
       }
     };

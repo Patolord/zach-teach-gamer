@@ -9,9 +9,7 @@ const orderConfirmFromEmail = process.env.ORDER_CONFIRM_FROM_EMAIL;
 
 async function sendHandbookEmail(email: string) {
   if (!resendApiKey || !orderConfirmFromEmail) {
-    throw new Error(
-      "RESEND_API_KEY or ORDER_CONFIRM_FROM_EMAIL is missing",
-    );
+    throw new Error("RESEND_API_KEY or ORDER_CONFIRM_FROM_EMAIL is missing");
   }
 
   const handbookDownloadUrl = await getHandbookDownloadUrl();

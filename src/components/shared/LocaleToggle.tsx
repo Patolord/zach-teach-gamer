@@ -1,10 +1,9 @@
 "use client";
 
 import { useLocale } from "next-intl";
-import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import { type Locale, locales } from "@/i18n/config";
-import { setLocale } from "@/i18n/actions";
+import { usePathname, useRouter } from "@/i18n/navigation";
 
 const FLAGS: Record<Locale, { flag: string; short: string; label: string }> = {
   "en-CA": { flag: "🇨🇦", short: "EN", label: "English (Canada)" },
@@ -18,16 +17,17 @@ type LocaleToggleProps = {
 };
 
 /**
- * Canada / Brazil language switch. Persists the choice in a cookie via a
- * server action and refreshes the tree so every page re-renders translated.
- * The <html data-locale> attribute set by the root layout drives the
- * purple (Canada) → green (Brazil) theme swap in globals.css.
+ * Canada / Brazil language switch. Navigates to the same page under the other
+ * locale's URL (`/about` <-> `/pt/about`); the proxy remembers the choice in
+ * the NEXT_LOCALE cookie. The <html data-locale> attribute set by the root
+ * layout drives the purple (Canada) -> green (Brazil) theme swap in globals.css.
  */
 export default function LocaleToggle({
   variant = "light",
   className = "",
 }: LocaleToggleProps) {
   const locale = useLocale();
+  const pathname = usePathname();
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
@@ -35,12 +35,11 @@ export default function LocaleToggle({
 
   const switchTo = (next: Locale) => {
     if (next === locale || isPending) return;
-    startTransition(async () => {
-      await setLocale(next);
+    startTransition(() => {
       // Swap theme immediately so the colour change feels instant.
       document.documentElement.lang = next;
       document.documentElement.dataset.locale = next;
-      router.refresh();
+      router.replace(pathname, { locale: next });
     });
   };
 

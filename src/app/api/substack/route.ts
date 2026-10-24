@@ -1,3 +1,4 @@
+import { unstable_cache } from "next/cache";
 import { NextResponse } from "next/server";
 import Parser from "rss-parser";
 
@@ -24,21 +25,39 @@ function extractImage(item: Parser.Item & CustomItem): string | null {
   return match?.[1] ?? null;
 }
 
+const FEED_URL = "https://zacharyreznichek.substack.com/feed";
+const REVALIDATE_SECONDS = 60 * 60;
+
+async function fetchPosts() {
+  const feed = await parser.parseURL(FEED_URL);
+
+  return feed.items.map((item) => ({
+    title: item.title || "",
+    description: item.contentSnippet || item.content || "",
+    link: item.link || "",
+    pubDate: item.pubDate || "",
+    image: extractImage(item),
+  }));
+}
+
+// Cache the parsed feed for an hour so every visitor doesn't trigger a
+// round-trip to Substack. Errors are not cached, so a failed fetch retries.
+const getCachedPosts = unstable_cache(fetchPosts, ["substack-feed"], {
+  revalidate: REVALIDATE_SECONDS,
+});
+
 export async function GET() {
   try {
-    const feed = await parser.parseURL(
-      "https://zacharyreznichek.substack.com/feed",
+    const posts = await getCachedPosts();
+
+    return NextResponse.json(
+      { posts },
+      {
+        headers: {
+          "Cache-Control": `public, s-maxage=${REVALIDATE_SECONDS}, stale-while-revalidate=${REVALIDATE_SECONDS}`,
+        },
+      },
     );
-
-    const posts = feed.items.map((item) => ({
-      title: item.title || "",
-      description: item.contentSnippet || item.content || "",
-      link: item.link || "",
-      pubDate: item.pubDate || "",
-      image: extractImage(item),
-    }));
-
-    return NextResponse.json({ posts });
   } catch (error) {
     console.error("Error fetching RSS feed:", error);
     return NextResponse.json(

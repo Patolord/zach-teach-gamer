@@ -1,15 +1,17 @@
-import { cookies } from "next/headers";
+import { hasLocale } from "next-intl";
 import { getRequestConfig } from "next-intl/server";
-import { defaultLocale, isLocale, LOCALE_COOKIE, localeMeta } from "./config";
+import { localeMeta } from "./config";
+import { routing } from "./routing";
 
 /**
- * Locale resolution without URL prefixes: the language lives in a cookie
- * that the LocaleToggle sets, and every page re-renders in that language.
+ * The locale comes from the URL segment (see src/proxy.ts and
+ * src/app/[locale]). Unknown segments fall back to the default language.
  */
-export default getRequestConfig(async () => {
-  const store = await cookies();
-  const requested = store.get(LOCALE_COOKIE)?.value;
-  const locale = isLocale(requested) ? requested : defaultLocale;
+export default getRequestConfig(async ({ requestLocale }) => {
+  const requested = await requestLocale;
+  const locale = hasLocale(routing.locales, requested)
+    ? requested
+    : routing.defaultLocale;
 
   const messages =
     locale === "pt-BR"

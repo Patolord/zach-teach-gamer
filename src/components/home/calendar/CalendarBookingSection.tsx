@@ -1,8 +1,8 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { MEDIA } from "@/lib/media";
 import ShinyText from "@/components/ui/shinytext";
+import { MEDIA } from "@/lib/media";
 import Calendar from "./Calendar";
 import CalendarModal from "./CalendarModal";
 

@@ -1,7 +1,6 @@
 import { ArrowRightIcon } from "lucide-react";
-import { useTranslations } from "next-intl";
-import Link from "next/link";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import ElectricBorder from "@/components/shared/ElectricBorder";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,6 +11,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Link } from "@/i18n/navigation";
 
 type EletricCardProps = {
   title: string;

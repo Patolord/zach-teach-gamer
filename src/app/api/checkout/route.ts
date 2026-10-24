@@ -35,7 +35,7 @@ async function createCheckoutSession(
   }
 
   const stripe = new Stripe(stripeSecretKey, {
-    apiVersion: "2026-02-25.clover",
+    apiVersion: "2026-09-30.endive",
   });
   const priceId = productPriceEnv[productType];
 

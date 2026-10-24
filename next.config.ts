@@ -7,6 +7,8 @@ const nextConfig: NextConfig = {
   /* config options here */
   reactCompiler: true,
   images: {
+    // AVIF first (smaller), WebP fallback; both are cached after first render.
+    formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
         protocol: "https",
