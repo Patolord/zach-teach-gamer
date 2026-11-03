@@ -1,6 +1,5 @@
 import { CheckCircle, Download } from "lucide-react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import Stripe from "stripe";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import type { LocaleParams } from "@/i18n/params";
@@ -10,6 +9,7 @@ import {
   isDownloadableProductType,
 } from "@/lib/handbook-download";
 import { MEDIA } from "@/lib/media";
+import { createStripeClient } from "@/lib/stripe";
 
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 
@@ -35,9 +35,7 @@ async function getSessionState(sessionId?: string): Promise<SessionState> {
     };
   }
 
-  const stripe = new Stripe(stripeSecretKey, {
-    apiVersion: "2026-09-30.endive",
-  });
+  const stripe = createStripeClient(stripeSecretKey);
 
   try {
     const session = await stripe.checkout.sessions.retrieve(sessionId);
