@@ -9,7 +9,7 @@ import {
   Star,
 } from "lucide-react";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import RandomTestimonialsShop from "@/components/testimonials/RandomTestimonialsShop";
 import { Button } from "@/components/ui/button";
 import StarRating from "@/components/ui/star-rating";
@@ -33,8 +33,14 @@ const benefits = [
   { id: "easy", icon: CheckCircle },
 ] as const;
 
+function checkoutHref(productType: string, locale: string) {
+  const params = new URLSearchParams({ locale, productType });
+  return `/api/checkout?${params.toString()}`;
+}
+
 export default function ShopPage() {
   const t = useTranslations("shop");
+  const locale = useLocale();
 
   return (
     <main className="relative min-h-screen">
@@ -154,7 +160,7 @@ export default function ShopPage() {
                       size="lg"
                       className="relative w-full text-xl font-extrabold py-7 transition-all duration-300 bg-accent text-background hover:bg-accent-light shadow-[0_4px_20px_var(--color-accent-glow),0_0_40px_var(--color-secondary-soft)] hover:shadow-[0_6px_30px_rgba(218,255,13,0.45),0_0_50px_rgba(255,216,90,0.25)] hover:scale-[1.02]"
                     >
-                      <a href="/api/checkout?productType=handbook">
+                      <a href={checkoutHref("handbook", locale)}>
                         <ShoppingCart className="w-5 h-5 mr-2" />
                         {t("hero.buyPdf")}
                       </a>
@@ -252,7 +258,7 @@ export default function ShopPage() {
                       asChild
                       className="w-full font-bold mt-auto transition-all duration-300 bg-accent text-background hover:bg-accent-light"
                     >
-                      <a href="/api/checkout?productType=handbook">
+                      <a href={checkoutHref("handbook", locale)}>
                         {t("products.handbookPdf.cta")}
                       </a>
                     </Button>
@@ -320,7 +326,7 @@ export default function ShopPage() {
                       asChild
                       className="w-full font-bold mt-auto transition-all duration-300 bg-accent text-background hover:bg-accent-light"
                     >
-                      <a href="/api/checkout?productType=screen_landscape">
+                      <a href={checkoutHref("screen_landscape", locale)}>
                         {t("products.screenLandscape.cta")}
                       </a>
                     </Button>
@@ -349,7 +355,7 @@ export default function ShopPage() {
                       asChild
                       className="w-full font-bold mt-auto transition-all duration-300 bg-accent text-background hover:bg-accent-light"
                     >
-                      <a href="/api/checkout?productType=screen_portrait">
+                      <a href={checkoutHref("screen_portrait", locale)}>
                         {t("products.screenPortrait.cta")}
                       </a>
                     </Button>
@@ -414,7 +420,7 @@ export default function ShopPage() {
                       size="lg"
                       className="text-lg font-bold px-10 py-6 bg-course-intro text-background hover:scale-105 transition-transform shadow-[0_0_30px_rgba(83,190,255,0.24)]"
                     >
-                      <a href="/api/checkout?productType=level1_workshop">
+                      <a href={checkoutHref("level1_workshop", locale)}>
                         {t("partner.enroll")}
                       </a>
                     </Button>
@@ -440,7 +446,7 @@ export default function ShopPage() {
                 size="lg"
                 className="text-lg font-bold px-12 py-6 transition-all duration-300 bg-accent text-background hover:bg-accent-light shadow-[0_4px_20px_var(--color-accent-glow),0_0_40px_var(--color-secondary-soft)] hover:shadow-[0_6px_30px_rgba(218,255,13,0.45),0_0_50px_rgba(255,216,90,0.25)]"
               >
-                <a href="/api/checkout?productType=handbook">
+                <a href={checkoutHref("handbook", locale)}>
                   <ShoppingCart className="w-5 h-5 mr-2" />
                   {t("cta.button")}
                 </a>
