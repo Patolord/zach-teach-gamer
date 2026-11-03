@@ -8,18 +8,32 @@ import {
   isDownloadableProductType,
 } from "@/lib/handbook-download";
 
-const resendApiKey = process.env.RESEND_API_KEY;
-const orderConfirmFromEmail = process.env.ORDER_CONFIRM_FROM_EMAIL;
+async function fulfillCheckoutSession(session: Stripe.Checkout.Session) {
+  if (session.payment_status === "unpaid") {
+    return;
+  }
+
+  const productType = session.metadata?.productType;
+  const email = session.customer_details?.email ?? session.customer_email;
+
+  if (!isDownloadableProductType(productType) || !email) {
+    return;
+  }
+
+  await sendDownloadEmail(email, productType);
+}
 
 async function sendDownloadEmail(
   email: string,
   productType: DownloadableProductType,
 ) {
+  const resendApiKey = process.env.RESEND_API_KEY;
+  const orderConfirmFromEmail = process.env.ORDER_CONFIRM_FROM_EMAIL;
+
   if (!resendApiKey || !orderConfirmFromEmail) {
-    console.warn(
-      "RESEND_API_KEY or ORDER_CONFIRM_FROM_EMAIL is missing; webhook confirmed payment but no custom email was sent",
+    throw new Error(
+      "RESEND_API_KEY or ORDER_CONFIRM_FROM_EMAIL is missing, so the paid download email was not sent",
     );
-    return;
   }
 
   const downloadUrl = await getProductDownloadUrl(productType);
@@ -97,14 +111,18 @@ export async function POST(request: Request) {
   }
 
   try {
-    if (event.type === "checkout.session.completed") {
-      const session = event.data.object as Stripe.Checkout.Session;
-      const productType = session.metadata?.productType;
-      const email = session.customer_details?.email ?? session.customer_email;
+    if (
+      event.type === "checkout.session.completed" ||
+      event.type === "checkout.session.async_payment_succeeded"
+    ) {
+      await fulfillCheckoutSession(event.data.object);
+    }
 
-      if (isDownloadableProductType(productType) && email) {
-        await sendDownloadEmail(email, productType);
-      }
+    if (event.type === "checkout.session.async_payment_failed") {
+      console.error("Stripe async payment failed", {
+        sessionId: event.data.object.id,
+        productType: event.data.object.metadata?.productType,
+      });
     }
 
     return NextResponse.json({ received: true });
