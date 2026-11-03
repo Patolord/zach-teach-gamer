@@ -1,5 +1,8 @@
 import { type NextRequest, NextResponse } from "next/server";
-import Stripe from "stripe";
+import { createStripeClient } from "@/lib/stripe";
+
+/** Stable label so this shop flow can be compared in the Stripe Dashboard. */
+const shopCheckoutIntegrationId = "teacher-gamer-shop-bvkqmwnx";
 
 const workshopPriceId =
   process.env.STRIPE_LEVEL1_WORKSHOP_PRICE_ID ??
@@ -34,9 +37,7 @@ async function createCheckoutSession(
     throw new Error("Stripe checkout is not configured");
   }
 
-  const stripe = new Stripe(stripeSecretKey, {
-    apiVersion: "2026-09-30.endive",
-  });
+  const stripe = createStripeClient(stripeSecretKey);
   const priceId = productPriceEnv[productType];
 
   if (!priceId) {
@@ -50,6 +51,7 @@ async function createCheckoutSession(
     mode: "payment",
     customer_creation: "always",
     billing_address_collection: "auto",
+    integration_identifier: shopCheckoutIntegrationId,
     metadata: {
       productType,
     },
