@@ -2,9 +2,10 @@
 
 import { X } from "lucide-react";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { Link } from "@/i18n/navigation";
+import { brandLogoSrc } from "@/lib/brand-logo";
 
 interface ModalProps {
   isOpen: boolean;
@@ -150,6 +151,7 @@ function PrivacyPolicyContent() {
 
 export default function Footer() {
   const t = useTranslations("footer");
+  const locale = useLocale();
   const [termsOpen, setTermsOpen] = useState(false);
   const [privacyOpen, setPrivacyOpen] = useState(false);
   const [visitorCount, setVisitorCount] = useState<number | null>(null);
@@ -176,7 +178,7 @@ export default function Footer() {
               aria-label={t("logoAriaLabel")}
             >
               <Image
-                src="/teacher-gamer-revolution-logo-transparent.png"
+                src={brandLogoSrc(locale)}
                 alt={t("logoAlt")}
                 width={1024}
                 height={265}

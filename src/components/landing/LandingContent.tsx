@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import LocaleToggle from "@/components/shared/LocaleToggle";
 import ScrambledText from "@/components/shared/ScrambledText";
 import { Link } from "@/i18n/navigation";
+import { brandLogoSrc } from "@/lib/brand-logo";
 
 type Props = {
   onButtonClick?: () => void;
@@ -46,7 +47,7 @@ export default function LandingContent({
 
       <h1 className="w-full max-w-4xl px-2 sm:px-5">
         <Image
-          src="/teacher-gamer-revolution-logo-transparent.png"
+          src={brandLogoSrc(locale)}
           alt={t("logoAlt")}
           width={1024}
           height={265}
