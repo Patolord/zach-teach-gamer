@@ -1,15 +1,29 @@
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
-import Stripe from "stripe";
+import type Stripe from "stripe";
 import {
   type DownloadableProductType,
   getDownloadableProductLabel,
   getProductDownloadUrl,
   isDownloadableProductType,
 } from "@/lib/handbook-download";
+import { createStripeClient } from "@/lib/stripe";
 
 const resendApiKey = process.env.RESEND_API_KEY;
 const orderConfirmFromEmail = process.env.ORDER_CONFIRM_FROM_EMAIL;
+
+async function fulfillCheckoutSession(session: Stripe.Checkout.Session) {
+  if (session.payment_status === "unpaid") {
+    return;
+  }
+
+  const productType = session.metadata?.productType;
+  const email = session.customer_details?.email ?? session.customer_email;
+
+  if (isDownloadableProductType(productType) && email) {
+    await sendDownloadEmail(email, productType);
+  }
+}
 
 async function sendDownloadEmail(
   email: string,
@@ -67,9 +81,7 @@ export async function POST(request: Request) {
     );
   }
 
-  const stripe = new Stripe(stripeSecretKey, {
-    apiVersion: "2026-09-30.endive",
-  });
+  const stripe = createStripeClient(stripeSecretKey);
   const payload = await request.text();
   const signature = (await headers()).get("stripe-signature");
 
@@ -97,14 +109,18 @@ export async function POST(request: Request) {
   }
 
   try {
-    if (event.type === "checkout.session.completed") {
-      const session = event.data.object as Stripe.Checkout.Session;
-      const productType = session.metadata?.productType;
-      const email = session.customer_details?.email ?? session.customer_email;
+    if (
+      event.type === "checkout.session.completed" ||
+      event.type === "checkout.session.async_payment_succeeded"
+    ) {
+      await fulfillCheckoutSession(event.data.object);
+    }
 
-      if (isDownloadableProductType(productType) && email) {
-        await sendDownloadEmail(email, productType);
-      }
+    if (event.type === "checkout.session.async_payment_failed") {
+      console.error("Stripe async payment failed", {
+        sessionId: event.data.object.id,
+        productType: event.data.object.metadata?.productType,
+      });
     }
 
     return NextResponse.json({ received: true });
