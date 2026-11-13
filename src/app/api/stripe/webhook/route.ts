@@ -9,9 +9,6 @@ import {
 } from "@/lib/handbook-download";
 import { createStripeClient } from "@/lib/stripe";
 
-const resendApiKey = process.env.RESEND_API_KEY;
-const orderConfirmFromEmail = process.env.ORDER_CONFIRM_FROM_EMAIL;
-
 async function fulfillCheckoutSession(session: Stripe.Checkout.Session) {
   if (session.payment_status === "unpaid") {
     return;
@@ -20,20 +17,24 @@ async function fulfillCheckoutSession(session: Stripe.Checkout.Session) {
   const productType = session.metadata?.productType;
   const email = session.customer_details?.email ?? session.customer_email;
 
-  if (isDownloadableProductType(productType) && email) {
-    await sendDownloadEmail(email, productType);
+  if (!isDownloadableProductType(productType) || !email) {
+    return;
   }
+
+  await sendDownloadEmail(email, productType);
 }
 
 async function sendDownloadEmail(
   email: string,
   productType: DownloadableProductType,
 ) {
+  const resendApiKey = process.env.RESEND_API_KEY;
+  const orderConfirmFromEmail = process.env.ORDER_CONFIRM_FROM_EMAIL;
+
   if (!resendApiKey || !orderConfirmFromEmail) {
-    console.warn(
-      "RESEND_API_KEY or ORDER_CONFIRM_FROM_EMAIL is missing; webhook confirmed payment but no custom email was sent",
+    throw new Error(
+      "RESEND_API_KEY or ORDER_CONFIRM_FROM_EMAIL is missing, so the paid download email was not sent",
     );
-    return;
   }
 
   const downloadUrl = await getProductDownloadUrl(productType);

@@ -1,4 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server";
+import { defaultLocale, type Locale, locales } from "@/i18n/config";
 import { createStripeClient } from "@/lib/stripe";
 
 /** Stable label so this shop flow can be compared in the Stripe Dashboard. */
@@ -13,6 +14,30 @@ const productPriceEnv: Record<string, string | undefined> = {
   screen_landscape: process.env.STRIPE_SCREEN_LANDSCAPE_PRICE_ID,
   screen_portrait: process.env.STRIPE_SCREEN_PORTRAIT_PRICE_ID,
 };
+
+function isLocale(value: string | null | undefined): value is Locale {
+  return locales.some((locale) => locale === value);
+}
+
+function resolveCheckoutLocale(
+  request: NextRequest,
+  explicitLocale: string | null,
+): Locale {
+  if (isLocale(explicitLocale)) return explicitLocale;
+  const cookieLocale = request.cookies.get("NEXT_LOCALE")?.value;
+  if (isLocale(cookieLocale)) return cookieLocale;
+  return defaultLocale;
+}
+
+function shopReturnUrl(
+  origin: string,
+  locale: Locale,
+  page: "success" | "cancel",
+) {
+  const prefix = locale === "pt-BR" ? "/pt" : "";
+  const session = page === "success" ? "?session_id={CHECKOUT_SESSION_ID}" : "";
+  return `${origin}${prefix}/shop/${page}${session}`;
+}
 
 function checkoutErrorResponse(error: unknown) {
   const message = error instanceof Error ? error.message : "Unknown error";
@@ -30,6 +55,7 @@ function checkoutErrorResponse(error: unknown) {
 async function createCheckoutSession(
   request: NextRequest,
   productType: string,
+  locale: Locale,
 ) {
   const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 
@@ -44,7 +70,7 @@ async function createCheckoutSession(
     throw new Error(`Price ID not configured for ${productType}`);
   }
 
-  const origin = request.headers.get("origin") || request.nextUrl.origin;
+  const origin = request.nextUrl.origin;
 
   return stripe.checkout.sessions.create({
     line_items: [{ price: priceId, quantity: 1 }],
@@ -55,8 +81,8 @@ async function createCheckoutSession(
     metadata: {
       productType,
     },
-    success_url: `${origin}/shop/success?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${origin}/shop/cancel`,
+    success_url: shopReturnUrl(origin, locale, "success"),
+    cancel_url: shopReturnUrl(origin, locale, "cancel"),
   });
 }
 
@@ -64,7 +90,11 @@ export async function GET(request: NextRequest) {
   try {
     const productType =
       request.nextUrl.searchParams.get("productType") ?? "handbook";
-    const session = await createCheckoutSession(request, productType);
+    const locale = resolveCheckoutLocale(
+      request,
+      request.nextUrl.searchParams.get("locale"),
+    );
+    const session = await createCheckoutSession(request, productType, locale);
 
     if (!session.url) {
       throw new Error("Stripe did not return a checkout URL");
@@ -80,10 +110,12 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const body = (await request.json().catch(() => ({}))) as {
+      locale?: string;
       productType?: string;
     };
     const productType = body.productType ?? "handbook";
-    const session = await createCheckoutSession(request, productType);
+    const locale = resolveCheckoutLocale(request, body.locale ?? null);
+    const session = await createCheckoutSession(request, productType, locale);
 
     return NextResponse.json({ url: session.url });
   } catch (error) {
